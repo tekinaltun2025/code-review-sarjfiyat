@@ -1,3 +1,4 @@
+
 export interface Provider {
   id: string;
   name: string;
@@ -25,7 +26,7 @@ export const providers: Provider[] = [
   {
     id: "zesev",
     name: "ZES",
-    logo: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=200&h=200&fit=crop&auto=format",
+    logo: "/lovable-uploads/ba1d435b-9f77-4746-a06c-2418d2fc09a7.png",
     acPrice: 8.15,
     dcPrice: 9.56,
     fastDcPrice: 12.30,
