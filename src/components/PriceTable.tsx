@@ -26,13 +26,26 @@ const PriceTable = () => {
     }
   };
   
-  const sortedProviders = [...providers].sort((a, b) => {
-    if (sortOrder === 'asc') {
-      return a[sortBy] - b[sortBy];
-    } else {
-      return b[sortBy] - a[sortBy];
-    }
-  });
+  // Split providers into two categories - with custom logos and without
+  const providersWithCustomLogos = providers.filter(p => p.logo !== "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png");
+  const providersWithoutCustomLogos = providers.filter(p => p.logo === "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png");
+  
+  // Sort each category separately
+  const sortProviders = (providerList: Provider[]) => {
+    return [...providerList].sort((a, b) => {
+      if (sortOrder === 'asc') {
+        return a[sortBy] - b[sortBy];
+      } else {
+        return b[sortBy] - a[sortBy];
+      }
+    });
+  };
+  
+  const sortedProvidersWithCustomLogos = sortProviders(providersWithCustomLogos);
+  const sortedProvidersWithoutCustomLogos = sortProviders(providersWithoutCustomLogos);
+  
+  // Combine the two sorted arrays
+  const sortedProviders = [...sortedProvidersWithCustomLogos, ...sortedProvidersWithoutCustomLogos];
   
   const getSortIcon = (key: SortKey) => {
     if (sortBy !== key) return null;
@@ -128,8 +141,15 @@ const PriceTable = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {sortedProviders.map((provider: Provider) => (
-                  <tr key={provider.id} className="hover:bg-gray-50">
+                {sortedProviders.map((provider: Provider, index: number) => (
+                  <tr 
+                    key={provider.id} 
+                    className={`hover:bg-gray-50 ${
+                      index === sortedProvidersWithCustomLogos.length 
+                        ? "border-t-2 border-t-gray-300" 
+                        : ""
+                    }`}
+                  >
                     <td className="px-6 py-4">
                       <div className="flex items-center space-x-3">
                         <div className="h-10 w-10 flex-shrink-0 bg-gray-100 rounded-md overflow-hidden">
