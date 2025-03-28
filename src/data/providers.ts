@@ -15,7 +15,7 @@ export const providers: Provider[] = [
   {
     id: "esarj",
     name: "E-Şarj",
-    logo: "/placeholder.svg", // Changed to local placeholder
+    logo: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=200&h=200&fit=crop&auto=format",
     acPrice: 7.87,
     dcPrice: 9.12,
     fastDcPrice: 11.25,
@@ -26,7 +26,7 @@ export const providers: Provider[] = [
   {
     id: "zesev",
     name: "ZES",
-    logo: "/placeholder.svg", // Changed to local placeholder
+    logo: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=200&h=200&fit=crop&auto=format",
     acPrice: 8.15,
     dcPrice: 9.56,
     fastDcPrice: 12.30,
@@ -37,7 +37,7 @@ export const providers: Provider[] = [
   {
     id: "sharz",
     name: "Sharz",
-    logo: "/placeholder.svg", // Changed to local placeholder
+    logo: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=200&h=200&fit=crop&auto=format",
     acPrice: 7.95,
     dcPrice: 9.25,
     fastDcPrice: 11.75,
@@ -48,7 +48,7 @@ export const providers: Provider[] = [
   {
     id: "voltrun",
     name: "Voltrun",
-    logo: "/placeholder.svg", // Changed to local placeholder
+    logo: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=200&h=200&fit=crop&auto=format",
     acPrice: 8.05,
     dcPrice: 9.45,
     fastDcPrice: 12.10,
@@ -59,7 +59,7 @@ export const providers: Provider[] = [
   {
     id: "echarge",
     name: "ECharge",
-    logo: "/placeholder.svg", // Using local placeholder
+    logo: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=200&h=200&fit=crop&auto=format",
     acPrice: 7.92,
     dcPrice: 9.18,
     fastDcPrice: 11.50,
@@ -70,7 +70,7 @@ export const providers: Provider[] = [
   {
     id: "powersarj",
     name: "PowerŞarj",
-    logo: "/placeholder.svg", // Using local placeholder
+    logo: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=200&h=200&fit=crop&auto=format&q=80",
     acPrice: 8.25,
     dcPrice: 9.65,
     fastDcPrice: 12.45,
