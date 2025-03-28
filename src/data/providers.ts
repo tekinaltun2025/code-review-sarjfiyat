@@ -12,6 +12,7 @@ export interface Provider {
   notes?: string;
 }
 
+// Providers with custom logos provided by the user
 export const providers: Provider[] = [
   {
     id: "esarj",
@@ -59,28 +60,6 @@ export const providers: Provider[] = [
     hasApp: true,
     websiteUrl: "https://voltrun.com",
     notes: "DC: 60 kWh ve üzeri"
-  },
-  {
-    id: "echarge",
-    name: "ECharge",
-    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
-    acPrice: 7.92,
-    dcPrice: 9.18,
-    fastDcPrice: 11.50,
-    membershipFee: 100,
-    hasApp: false,
-    websiteUrl: "https://example.com"
-  },
-  {
-    id: "powersarj",
-    name: "PowerŞarj",
-    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
-    acPrice: 8.25,
-    dcPrice: 9.65,
-    fastDcPrice: 12.45,
-    membershipFee: null,
-    hasApp: true,
-    websiteUrl: "https://example.com"
   },
   {
     id: "trugo",
@@ -153,6 +132,30 @@ export const providers: Provider[] = [
     hasApp: true,
     websiteUrl: "https://tesla.com",
     notes: "Tesla araçlar: 7,10 TL/kWh, Diğer araçlar: 8,60 TL/kWh"
+  },
+  
+  // Providers without custom logos
+  {
+    id: "echarge",
+    name: "ECharge",
+    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    acPrice: 7.92,
+    dcPrice: 9.18,
+    fastDcPrice: 11.50,
+    membershipFee: 100,
+    hasApp: false,
+    websiteUrl: "https://example.com"
+  },
+  {
+    id: "powersarj",
+    name: "PowerŞarj",
+    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    acPrice: 8.25,
+    dcPrice: 9.65,
+    fastDcPrice: 12.45,
+    membershipFee: null,
+    hasApp: true,
+    websiteUrl: "https://example.com"
   },
   {
     id: "aksasarj",
