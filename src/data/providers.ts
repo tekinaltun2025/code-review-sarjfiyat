@@ -70,7 +70,7 @@ export const providers: Provider[] = [
   {
     id: "powersarj",
     name: "PowerŞarj",
-    logo: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=200&h=200&fit=crop&auto=format&q=80",
+    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
     acPrice: 8.25,
     dcPrice: 9.65,
     fastDcPrice: 12.45,
@@ -79,3 +79,4 @@ export const providers: Provider[] = [
     websiteUrl: "https://example.com"
   }
 ];
+
