@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Provider, providers } from "@/data/providers";
 import { ArrowDown, ArrowUp, ExternalLink, Info } from "lucide-react";
@@ -126,9 +127,6 @@ const PriceTable = () => {
                     </TooltipProvider>
                   </th>
                   <th className="px-6 py-4 text-center text-sm font-semibold text-gray-800">
-                    Üyelik Ücreti (₺)
-                  </th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-800">
                     Uygulama
                   </th>
                   <th className="px-6 py-4 text-center text-sm font-semibold text-gray-800">
@@ -174,11 +172,6 @@ const PriceTable = () => {
                     <td className="px-6 py-4 text-center">
                       <span className={`text-sm font-medium ${sortBy === 'fastDcPrice' ? 'text-teal-600' : 'text-gray-700'}`}>
                         {provider.fastDcPrice.toFixed(2)} ₺
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-center">
-                      <span className="text-sm text-gray-700">
-                        {provider.membershipFee === null ? 'Ücretsiz' : `${provider.membershipFee.toFixed(2)} ₺`}
                       </span>
                     </td>
                     <td className="px-6 py-4 text-center">

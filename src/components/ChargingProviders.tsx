@@ -48,12 +48,6 @@ const ChargingProviders = () => {
                     <span className="text-gray-600">Hızlı DC Şarj:</span>
                     <span className="font-medium text-gray-900">{provider.fastDcPrice.toFixed(2)} ₺/kWh</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Üyelik:</span>
-                    <span className="font-medium text-gray-900">
-                      {provider.membershipFee === null ? 'Ücretsiz' : `${provider.membershipFee.toFixed(2)} ₺`}
-                    </span>
-                  </div>
                 </div>
                 
                 <div className="pt-4 border-t border-gray-100 flex justify-between items-center">
