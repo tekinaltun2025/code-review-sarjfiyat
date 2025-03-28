@@ -122,6 +122,9 @@ const PriceTable = () => {
                   <th className="px-6 py-4 text-center text-sm font-semibold text-gray-800">
                     Websitesi
                   </th>
+                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-800">
+                    Notlar
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
@@ -173,6 +176,11 @@ const PriceTable = () => {
                       >
                         <ExternalLink className="h-4 w-4" />
                       </a>
+                    </td>
+                    <td className="px-6 py-4 text-center">
+                      <span className="text-sm text-gray-700">
+                        {provider.notes || '-'}
+                      </span>
                     </td>
                   </tr>
                 ))}

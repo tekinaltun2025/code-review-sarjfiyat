@@ -9,6 +9,7 @@ export interface Provider {
   membershipFee: number | null;
   hasApp: boolean;
   websiteUrl: string;
+  notes?: string;
 }
 
 export const providers: Provider[] = [
@@ -16,23 +17,25 @@ export const providers: Provider[] = [
     id: "esarj",
     name: "E-Şarj",
     logo: "/lovable-uploads/9c5da173-d35f-4ee5-af1e-ade7186754c1.png",
-    acPrice: 7.87,
-    dcPrice: 9.12,
-    fastDcPrice: 11.25,
+    acPrice: 8.9,
+    dcPrice: 9.9,
+    fastDcPrice: 11.9,
     membershipFee: 0,
     hasApp: true,
-    websiteUrl: "https://esarj.com"
+    websiteUrl: "https://esarj.com",
+    notes: "DC 60 kW: 9,90 TL/kWh, Diğer DC soketler: 11,90 TL/kWh"
   },
   {
-    id: "zesev",
+    id: "zes",
     name: "ZES",
     logo: "/lovable-uploads/ba1d435b-9f77-4746-a06c-2418d2fc09a7.png",
-    acPrice: 8.15,
-    dcPrice: 9.56,
-    fastDcPrice: 12.30,
+    acPrice: 8.99,
+    dcPrice: 10.99,
+    fastDcPrice: 12.99,
     membershipFee: null,
     hasApp: true,
-    websiteUrl: "https://zes.net"
+    websiteUrl: "https://zes.net",
+    notes: "DC 60 kW: 10,99 TL/kWh, DC 60 kW üstü: 12,99 TL/kWh, CHAdeMO: 12,99 TL/kWh"
   },
   {
     id: "sharz",
@@ -49,12 +52,13 @@ export const providers: Provider[] = [
     id: "voltrun",
     name: "Voltrun",
     logo: "/lovable-uploads/fb66fe81-1208-4c6d-a276-363ee14ce4b9.png",
-    acPrice: 8.05,
-    dcPrice: 9.45,
-    fastDcPrice: 12.10,
+    acPrice: 9.29,
+    dcPrice: 12.49,
+    fastDcPrice: 12.49,
     membershipFee: 200,
     hasApp: true,
-    websiteUrl: "https://voltrun.com"
+    websiteUrl: "https://voltrun.com",
+    notes: "DC: 60 kWh ve üzeri"
   },
   {
     id: "echarge",
@@ -77,6 +81,209 @@ export const providers: Provider[] = [
     membershipFee: null,
     hasApp: true,
     websiteUrl: "https://example.com"
+  },
+  {
+    id: "trugo",
+    name: "Trugo",
+    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    acPrice: 8.49,
+    dcPrice: 11.82,
+    fastDcPrice: 11.82,
+    membershipFee: null,
+    hasApp: true,
+    websiteUrl: "https://example.com",
+    notes: "AC: 22 kW, DC: 180 kW ve 300 kW"
+  },
+  {
+    id: "astor",
+    name: "Astor Şarj",
+    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    acPrice: 6.49,
+    dcPrice: 8.99,
+    fastDcPrice: 8.99,
+    membershipFee: null,
+    hasApp: true,
+    websiteUrl: "https://example.com",
+    notes: "AC: 6,49 TL/kWh, DC: 8,99 TL/kWh"
+  },
+  {
+    id: "beefull",
+    name: "Beefull",
+    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    acPrice: 8.59,
+    dcPrice: 10.99,
+    fastDcPrice: 10.99,
+    membershipFee: null,
+    hasApp: true,
+    websiteUrl: "https://example.com",
+    notes: "DC: 60 kWh ve üzeri"
+  },
+  {
+    id: "otowatt",
+    name: "Otowatt",
+    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    acPrice: 6.49,
+    dcPrice: 10.99,
+    fastDcPrice: 10.99,
+    membershipFee: null,
+    hasApp: true,
+    websiteUrl: "https://example.com",
+    notes: "DC: 60 kWh ve üzeri"
+  },
+  {
+    id: "petrolofisi",
+    name: "Petrol Ofisi e-POwer",
+    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    acPrice: 7.50,
+    dcPrice: 8.50,
+    fastDcPrice: 8.50,
+    membershipFee: null,
+    hasApp: true,
+    websiteUrl: "https://example.com",
+    notes: "AC Tip 2 soketler: 7,50 TL/kWh, DC Tip CCS soketler: 8,50 TL/kWh"
+  },
+  {
+    id: "tesla",
+    name: "Tesla Supercharger",
+    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    acPrice: 7.10,
+    dcPrice: 8.60,
+    fastDcPrice: 8.60,
+    membershipFee: null,
+    hasApp: true,
+    websiteUrl: "https://tesla.com",
+    notes: "Tesla araçlar: 7,10 TL/kWh, Diğer araçlar: 8,60 TL/kWh"
+  },
+  {
+    id: "aksasarj",
+    name: "Aksa Şarj",
+    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    acPrice: 6.99,
+    dcPrice: 8.99,
+    fastDcPrice: 8.99,
+    membershipFee: null,
+    hasApp: true,
+    websiteUrl: "https://example.com",
+    notes: "AC: 22 kW, DC: 100 kW ve üzeri"
+  },
+  {
+    id: "multiforce",
+    name: "Multiforce",
+    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    acPrice: 4.20,
+    dcPrice: 8.39,
+    fastDcPrice: 8.39,
+    membershipFee: null,
+    hasApp: true,
+    websiteUrl: "https://example.com",
+    notes: "AC: En düşük AC fiyatı, DC: 30 kWh ve üzeri"
+  },
+  {
+    id: "swapp",
+    name: "Swapp",
+    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    acPrice: 5.90,
+    dcPrice: 6.90,
+    fastDcPrice: 6.90,
+    membershipFee: null,
+    hasApp: true,
+    websiteUrl: "https://example.com",
+    notes: "DC: En düşük DC fiyatı, DC: 30 kWh ve üzeri"
+  },
+  {
+    id: "onlife",
+    name: "Onlife",
+    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    acPrice: 5.79,
+    dcPrice: 9.99,
+    fastDcPrice: 9.99,
+    membershipFee: null,
+    hasApp: true,
+    websiteUrl: "https://example.com",
+    notes: "DC: 60 kWh ve üzeri"
+  },
+  {
+    id: "obisarj",
+    name: "Obişarj",
+    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    acPrice: 9.90,
+    dcPrice: 12.99,
+    fastDcPrice: 12.99,
+    membershipFee: null,
+    hasApp: true,
+    websiteUrl: "https://example.com",
+    notes: "AC: En yüksek AC fiyatı, DC: 180 kWh ve üzeri"
+  },
+  {
+    id: "borenco",
+    name: "Borenco",
+    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    acPrice: 8.99,
+    dcPrice: 12.99,
+    fastDcPrice: 12.99,
+    membershipFee: null,
+    hasApp: true,
+    websiteUrl: "https://example.com",
+    notes: "DC: 180 kWh ve üzeri"
+  },
+  {
+    id: "vale",
+    name: "Vale",
+    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    acPrice: 8.99,
+    dcPrice: 12.99,
+    fastDcPrice: 12.99,
+    membershipFee: null,
+    hasApp: true,
+    websiteUrl: "https://example.com",
+    notes: "DC: 180 kWh ve üzeri"
+  },
+  {
+    id: "nevasarj",
+    name: "Neva Şarj",
+    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    acPrice: 7.40,
+    dcPrice: 9.90,
+    fastDcPrice: 9.90,
+    membershipFee: null,
+    hasApp: true,
+    websiteUrl: "https://example.com",
+    notes: "DC: 180 kWh ve üzeri"
+  },
+  {
+    id: "magicline",
+    name: "Magicline",
+    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    acPrice: 6.60,
+    dcPrice: 7.80,
+    fastDcPrice: 7.80,
+    membershipFee: null,
+    hasApp: true,
+    websiteUrl: "https://example.com",
+    notes: "DC: 60 kWh ve üzeri"
+  },
+  {
+    id: "rhg",
+    name: "RHG",
+    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    acPrice: 4.70,
+    dcPrice: 8.80,
+    fastDcPrice: 8.80,
+    membershipFee: null,
+    hasApp: true,
+    websiteUrl: "https://example.com",
+    notes: "DC: 60 kWh ve üzeri"
+  },
+  {
+    id: "dcharge",
+    name: "D-Charge",
+    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    acPrice: 7.99,
+    dcPrice: 10.29,
+    fastDcPrice: 10.29,
+    membershipFee: null,
+    hasApp: true,
+    websiteUrl: "https://example.com",
+    notes: "DC: 60 kWh ve üzeri"
   }
 ];
-
