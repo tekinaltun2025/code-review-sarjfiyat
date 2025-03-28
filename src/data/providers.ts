@@ -48,7 +48,7 @@ export const providers: Provider[] = [
   {
     id: "voltrun",
     name: "Voltrun",
-    logo: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=200&h=200&fit=crop&auto=format",
+    logo: "/lovable-uploads/fb66fe81-1208-4c6d-a276-363ee14ce4b9.png",
     acPrice: 8.05,
     dcPrice: 9.45,
     fastDcPrice: 12.10,
