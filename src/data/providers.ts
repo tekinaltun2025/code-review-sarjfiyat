@@ -35,7 +35,7 @@ export const providers: Provider[] = [
     fastDcPrice: 12.99,
     membershipFee: null,
     hasApp: true,
-    websiteUrl: "https://zes.net",
+    websiteUrl: "https://zes.net/tr",
     notes: "DC 60 kW: 10,99 TL/kWh, DC 60 kW üstü: 12,99 TL/kWh, CHAdeMO: 12,99 TL/kWh"
   },
   {
@@ -47,7 +47,8 @@ export const providers: Provider[] = [
     fastDcPrice: 11.75,
     membershipFee: 150,
     hasApp: true,
-    websiteUrl: "https://sharz.net"
+    websiteUrl: "https://sharz.net",
+    notes: ""
   },
   {
     id: "voltrun",
@@ -70,7 +71,7 @@ export const providers: Provider[] = [
     fastDcPrice: 11.82,
     membershipFee: null,
     hasApp: true,
-    websiteUrl: "https://example.com",
+    websiteUrl: "https://trugo.com.tr",
     notes: "AC: 22 kW, DC: 180 kW ve 300 kW"
   },
   {
@@ -82,7 +83,7 @@ export const providers: Provider[] = [
     fastDcPrice: 8.99,
     membershipFee: null,
     hasApp: true,
-    websiteUrl: "https://example.com",
+    websiteUrl: "https://astorsarj.com",
     notes: "AC: 6,49 TL/kWh, DC: 8,99 TL/kWh"
   },
   {
@@ -94,7 +95,7 @@ export const providers: Provider[] = [
     fastDcPrice: 10.99,
     membershipFee: null,
     hasApp: true,
-    websiteUrl: "https://example.com",
+    websiteUrl: "https://beefull.com",
     notes: "DC: 60 kWh ve üzeri"
   },
   {
@@ -106,7 +107,7 @@ export const providers: Provider[] = [
     fastDcPrice: 10.99,
     membershipFee: null,
     hasApp: true,
-    websiteUrl: "https://example.com",
+    websiteUrl: "https://otowatt.com.tr",
     notes: "DC: 60 kWh ve üzeri"
   },
   {
@@ -118,7 +119,7 @@ export const providers: Provider[] = [
     fastDcPrice: 8.50,
     membershipFee: null,
     hasApp: true,
-    websiteUrl: "https://example.com",
+    websiteUrl: "https://epower.petrolofisi.com.tr",
     notes: "AC Tip 2 soketler: 7,50 TL/kWh, DC Tip CCS soketler: 8,50 TL/kWh"
   },
   {
@@ -130,7 +131,7 @@ export const providers: Provider[] = [
     fastDcPrice: 8.60,
     membershipFee: null,
     hasApp: true,
-    websiteUrl: "https://tesla.com",
+    websiteUrl: "https://www.tesla.com/tr_tr/supercharger",
     notes: "Tesla araçlar: 7,10 TL/kWh, Diğer araçlar: 8,60 TL/kWh"
   },
   
@@ -144,7 +145,8 @@ export const providers: Provider[] = [
     fastDcPrice: 11.50,
     membershipFee: 100,
     hasApp: false,
-    websiteUrl: "https://example.com"
+    websiteUrl: "https://echarge.com.tr",
+    notes: ""
   },
   {
     id: "powersarj",
@@ -155,7 +157,8 @@ export const providers: Provider[] = [
     fastDcPrice: 12.45,
     membershipFee: null,
     hasApp: true,
-    websiteUrl: "https://example.com"
+    websiteUrl: "https://powersarj.com",
+    notes: ""
   },
   {
     id: "aksasarj",
@@ -166,7 +169,7 @@ export const providers: Provider[] = [
     fastDcPrice: 8.99,
     membershipFee: null,
     hasApp: true,
-    websiteUrl: "https://example.com",
+    websiteUrl: "https://aksasarj.com",
     notes: "AC: 22 kW, DC: 100 kW ve üzeri"
   },
   {
@@ -178,7 +181,7 @@ export const providers: Provider[] = [
     fastDcPrice: 8.39,
     membershipFee: null,
     hasApp: true,
-    websiteUrl: "https://example.com",
+    websiteUrl: "https://bp.com/tr/turkey/home/products-and-services/elektrikli-arac-sarj-istasyonlari.html",
     notes: "AC: En düşük AC fiyatı, DC: 30 kWh ve üzeri"
   },
   {
@@ -190,7 +193,7 @@ export const providers: Provider[] = [
     fastDcPrice: 6.90,
     membershipFee: null,
     hasApp: true,
-    websiteUrl: "https://example.com",
+    websiteUrl: "https://swapp.com.tr",
     notes: "DC: En düşük DC fiyatı, DC: 30 kWh ve üzeri"
   },
   {
@@ -202,7 +205,7 @@ export const providers: Provider[] = [
     fastDcPrice: 9.99,
     membershipFee: null,
     hasApp: true,
-    websiteUrl: "https://example.com",
+    websiteUrl: "https://onlife.io",
     notes: "DC: 60 kWh ve üzeri"
   },
   {
@@ -214,7 +217,7 @@ export const providers: Provider[] = [
     fastDcPrice: 12.99,
     membershipFee: null,
     hasApp: true,
-    websiteUrl: "https://example.com",
+    websiteUrl: "https://obisarj.com",
     notes: "AC: En yüksek AC fiyatı, DC: 180 kWh ve üzeri"
   },
   {
@@ -226,7 +229,7 @@ export const providers: Provider[] = [
     fastDcPrice: 12.99,
     membershipFee: null,
     hasApp: true,
-    websiteUrl: "https://example.com",
+    websiteUrl: "https://borenco.com.tr",
     notes: "DC: 180 kWh ve üzeri"
   },
   {
@@ -238,7 +241,7 @@ export const providers: Provider[] = [
     fastDcPrice: 12.99,
     membershipFee: null,
     hasApp: true,
-    websiteUrl: "https://example.com",
+    websiteUrl: "https://vale.com.tr",
     notes: "DC: 180 kWh ve üzeri"
   },
   {
@@ -250,7 +253,7 @@ export const providers: Provider[] = [
     fastDcPrice: 9.90,
     membershipFee: null,
     hasApp: true,
-    websiteUrl: "https://example.com",
+    websiteUrl: "https://nevasarj.com",
     notes: "DC: 180 kWh ve üzeri"
   },
   {
@@ -262,7 +265,7 @@ export const providers: Provider[] = [
     fastDcPrice: 7.80,
     membershipFee: null,
     hasApp: true,
-    websiteUrl: "https://example.com",
+    websiteUrl: "https://magicline.com.tr",
     notes: "DC: 60 kWh ve üzeri"
   },
   {
@@ -274,7 +277,7 @@ export const providers: Provider[] = [
     fastDcPrice: 8.80,
     membershipFee: null,
     hasApp: true,
-    websiteUrl: "https://example.com",
+    websiteUrl: "https://rhg.com.tr/ev-sarj-cihazlari",
     notes: "DC: 60 kWh ve üzeri"
   },
   {
@@ -286,7 +289,7 @@ export const providers: Provider[] = [
     fastDcPrice: 10.29,
     membershipFee: null,
     hasApp: true,
-    websiteUrl: "https://example.com",
+    websiteUrl: "https://dcharge.com.tr",
     notes: "DC: 60 kWh ve üzeri"
   }
 ];
