@@ -1,5 +1,3 @@
-
-
 export interface Provider {
   id: string;
   name: string;
@@ -122,7 +120,7 @@ export const providers: Provider[] = [
   {
     id: "otowatt",
     name: "Otowatt",
-    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    logo: "/lovable-uploads/4d178d3c-d0c2-4960-a707-c4f0230e9885.png",
     acPrice: 6.49,
     dcPrice: 10.99,
     fastDcPrice: 10.99,
@@ -288,4 +286,3 @@ export const providers: Provider[] = [
     notes: "DC: 60 kWh ve üzeri"
   }
 ];
-
