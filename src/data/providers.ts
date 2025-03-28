@@ -134,11 +134,11 @@ export const providers: Provider[] = [
     notes: "Tesla araçlar: 7,10 TL/kWh, Diğer araçlar: 8,60 TL/kWh"
   },
   
-  // Providers without custom logos
+  // Providers without custom logos - now using the new charging station logo
   {
     id: "echarge",
     name: "ECharge",
-    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    logo: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
     acPrice: 7.92,
     dcPrice: 9.18,
     fastDcPrice: 11.50,
@@ -149,7 +149,7 @@ export const providers: Provider[] = [
   {
     id: "powersarj",
     name: "PowerŞarj",
-    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    logo: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
     acPrice: 8.25,
     dcPrice: 9.65,
     fastDcPrice: 12.45,
@@ -160,7 +160,7 @@ export const providers: Provider[] = [
   {
     id: "aksasarj",
     name: "Aksa Şarj",
-    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    logo: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
     acPrice: 6.99,
     dcPrice: 8.99,
     fastDcPrice: 8.99,
@@ -172,7 +172,7 @@ export const providers: Provider[] = [
   {
     id: "multiforce",
     name: "Multiforce",
-    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    logo: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
     acPrice: 4.20,
     dcPrice: 8.39,
     fastDcPrice: 8.39,
@@ -184,7 +184,7 @@ export const providers: Provider[] = [
   {
     id: "swapp",
     name: "Swapp",
-    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    logo: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
     acPrice: 5.90,
     dcPrice: 6.90,
     fastDcPrice: 6.90,
@@ -196,7 +196,7 @@ export const providers: Provider[] = [
   {
     id: "onlife",
     name: "Onlife",
-    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    logo: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
     acPrice: 5.79,
     dcPrice: 9.99,
     fastDcPrice: 9.99,
@@ -208,7 +208,7 @@ export const providers: Provider[] = [
   {
     id: "obisarj",
     name: "Obişarj",
-    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    logo: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
     acPrice: 9.90,
     dcPrice: 12.99,
     fastDcPrice: 12.99,
@@ -220,7 +220,7 @@ export const providers: Provider[] = [
   {
     id: "borenco",
     name: "Borenco",
-    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    logo: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
     acPrice: 8.99,
     dcPrice: 12.99,
     fastDcPrice: 12.99,
@@ -232,7 +232,7 @@ export const providers: Provider[] = [
   {
     id: "vale",
     name: "Vale",
-    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    logo: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
     acPrice: 8.99,
     dcPrice: 12.99,
     fastDcPrice: 12.99,
@@ -244,7 +244,7 @@ export const providers: Provider[] = [
   {
     id: "nevasarj",
     name: "Neva Şarj",
-    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    logo: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
     acPrice: 7.40,
     dcPrice: 9.90,
     fastDcPrice: 9.90,
@@ -256,7 +256,7 @@ export const providers: Provider[] = [
   {
     id: "magicline",
     name: "Magicline",
-    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    logo: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
     acPrice: 6.60,
     dcPrice: 7.80,
     fastDcPrice: 7.80,
@@ -268,7 +268,7 @@ export const providers: Provider[] = [
   {
     id: "rhg",
     name: "RHG",
-    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    logo: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
     acPrice: 4.70,
     dcPrice: 8.80,
     fastDcPrice: 8.80,
@@ -280,7 +280,7 @@ export const providers: Provider[] = [
   {
     id: "dcharge",
     name: "D-Charge",
-    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    logo: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
     acPrice: 7.99,
     dcPrice: 10.29,
     fastDcPrice: 10.29,

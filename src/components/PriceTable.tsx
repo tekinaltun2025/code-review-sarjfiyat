@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Provider, providers } from "@/data/providers";
 import { ArrowDown, ArrowUp, ExternalLink, Info } from "lucide-react";
@@ -26,9 +25,9 @@ const PriceTable = () => {
     }
   };
   
-  // Split providers into two categories - with custom logos and without
-  const providersWithCustomLogos = providers.filter(p => p.logo !== "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png");
-  const providersWithoutCustomLogos = providers.filter(p => p.logo === "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png");
+  // Split providers into two categories - with custom logos and with the generic charging station logo
+  const providersWithCustomLogos = providers.filter(p => p.logo !== "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png");
+  const providersWithoutCustomLogos = providers.filter(p => p.logo === "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png");
   
   // Sort each category separately
   const sortProviders = (providerList: Provider[]) => {
