@@ -37,7 +37,7 @@ export const providers: Provider[] = [
   {
     id: "sharz",
     name: "Sharz",
-    logo: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=200&h=200&fit=crop&auto=format",
+    logo: "/lovable-uploads/92c3c249-8f40-4cc6-9c8c-15f6891a5e5e.png",
     acPrice: 7.95,
     dcPrice: 9.25,
     fastDcPrice: 11.75,
