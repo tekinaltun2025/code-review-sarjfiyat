@@ -1,4 +1,5 @@
 
+
 export interface Provider {
   id: string;
   name: string;
@@ -145,7 +146,7 @@ export const providers: Provider[] = [
   {
     id: "tesla",
     name: "Tesla Supercharger",
-    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    logo: "/lovable-uploads/ee7cd67b-4d0f-482c-ade0-f02ed83fb68a.png",
     acPrice: 7.10,
     dcPrice: 8.60,
     fastDcPrice: 8.60,
@@ -287,3 +288,4 @@ export const providers: Provider[] = [
     notes: "DC: 60 kWh ve üzeri"
   }
 ];
+
