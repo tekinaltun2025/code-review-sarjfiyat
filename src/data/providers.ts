@@ -85,7 +85,7 @@ export const providers: Provider[] = [
   {
     id: "trugo",
     name: "Trugo",
-    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    logo: "/lovable-uploads/9c4dd2d3-7787-4798-83a5-c72f0e6b15a1.png",
     acPrice: 8.49,
     dcPrice: 11.82,
     fastDcPrice: 11.82,
