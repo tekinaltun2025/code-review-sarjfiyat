@@ -1,3 +1,4 @@
+
 export interface Provider {
   id: string;
   name: string;
@@ -132,7 +133,7 @@ export const providers: Provider[] = [
   {
     id: "petrolofisi",
     name: "Petrol Ofisi e-POwer",
-    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    logo: "/lovable-uploads/6e47365f-9335-4024-9da3-18b00c4ce94b.png",
     acPrice: 7.50,
     dcPrice: 8.50,
     fastDcPrice: 8.50,
