@@ -28,6 +28,9 @@ const Header = () => {
           <Link to="/" className="text-gray-800 hover:text-teal-500 transition-colors">
             Şarj Ağları
           </Link>
+          <Link to="/kampanyalar" className="text-gray-800 hover:text-teal-500 transition-colors">
+            Kampanyalar
+          </Link>
           <Link to="/" className="text-gray-800 hover:text-teal-500 transition-colors">
             Karşılaştır
           </Link>
@@ -66,6 +69,13 @@ const Header = () => {
               onClick={() => setMenuOpen(false)}
             >
               Şarj Ağları
+            </Link>
+            <Link 
+              to="/kampanyalar" 
+              className="text-gray-800 hover:text-teal-500 transition-colors"
+              onClick={() => setMenuOpen(false)}
+            >
+              Kampanyalar
             </Link>
             <Link 
               to="/" 
