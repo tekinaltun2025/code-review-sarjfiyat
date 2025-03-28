@@ -36,7 +36,7 @@ export const majorProviders: Provider[] = [
     fastDcPrice: 11.75,
     membershipFee: 150,
     hasApp: true,
-    websiteUrl: "https://sharz.net",
+    websiteUrl: "https://sharz.com.tr",
     notes: ""
   },
   {
