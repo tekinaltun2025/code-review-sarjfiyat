@@ -83,7 +83,7 @@ const Footer = () => {
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mr-3 text-teal-400 flex-shrink-0 mt-0.5" />
                 <span className="text-gray-400">
-                  Ankara, Türkiye
+                  Sakarya, Türkiye
                 </span>
               </li>
               <li className="flex items-center">
@@ -94,8 +94,8 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 mr-3 text-teal-400 flex-shrink-0" />
-                <a href="tel:+905555555555" className="text-gray-400 hover:text-white">
-                  +90 555 555 55 55
+                <a href="tel:+905443883888" className="text-gray-400 hover:text-white">
+                  +90 544 388 38 88
                 </a>
               </li>
             </ul>
