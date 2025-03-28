@@ -17,6 +17,9 @@ import PriceTableInfoFooter from "./price-table/PriceTableInfoFooter";
 type SortKey = 'acPrice' | 'dcPrice' | 'fastDcPrice';
 type SortOrder = 'asc' | 'desc';
 
+// IDs of providers to be prioritized in order
+const priorityProviderIds = ["trugo", "zes", "beefull", "esarj"];
+
 const PriceTable = () => {
   const [sortBy, setSortBy] = useState<SortKey>('acPrice');
   const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
@@ -30,11 +33,25 @@ const PriceTable = () => {
     }
   };
   
-  // Split providers into two categories - with custom logos and with the generic charging station logo
-  const providersWithCustomLogos = providers.filter(p => p.logo !== "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png");
-  const providersWithoutCustomLogos = providers.filter(p => p.logo === "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png");
+  // Split providers into prioritized and non-prioritized groups
+  const priorityProviders = priorityProviderIds
+    .map(id => providers.find(p => p.id === id))
+    .filter(Boolean) as Provider[];
   
-  // Sort each category separately
+  const otherProviders = providers.filter(
+    p => !priorityProviderIds.includes(p.id)
+  );
+  
+  // Split non-priority providers into those with custom logos and those without
+  const otherProvidersWithCustomLogos = otherProviders.filter(
+    p => p.logo !== "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png"
+  );
+  
+  const otherProvidersWithoutCustomLogos = otherProviders.filter(
+    p => p.logo === "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png"
+  );
+  
+  // Sort non-priority provider groups separately
   const sortProviders = (providerList: Provider[]) => {
     return [...providerList].sort((a, b) => {
       if (sortOrder === 'asc') {
@@ -45,11 +62,15 @@ const PriceTable = () => {
     });
   };
   
-  const sortedProvidersWithCustomLogos = sortProviders(providersWithCustomLogos);
-  const sortedProvidersWithoutCustomLogos = sortProviders(providersWithoutCustomLogos);
+  const sortedOtherProvidersWithCustomLogos = sortProviders(otherProvidersWithCustomLogos);
+  const sortedOtherProvidersWithoutCustomLogos = sortProviders(otherProvidersWithoutCustomLogos);
   
-  // Combine the two sorted arrays
-  const sortedProviders = [...sortedProvidersWithCustomLogos, ...sortedProvidersWithoutCustomLogos];
+  // Combine all groups
+  const allProviders = [
+    ...priorityProviders,
+    ...sortedOtherProvidersWithCustomLogos,
+    ...sortedOtherProvidersWithoutCustomLogos
+  ];
 
   return (
     <section id="price-comparison" className="py-12 bg-gray-50">
@@ -78,13 +99,13 @@ const PriceTable = () => {
                 }}
               />
               <tbody className="divide-y divide-gray-200">
-                {sortedProviders.map((provider: Provider, index: number) => (
+                {allProviders.map((provider: Provider, index: number) => (
                   <PriceTableRow
                     key={provider.id}
                     provider={provider}
                     index={index}
                     sortBy={sortBy}
-                    dividerIndex={sortedProvidersWithCustomLogos.length}
+                    dividerIndex={priorityProviders.length}
                   />
                 ))}
               </tbody>

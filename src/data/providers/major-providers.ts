@@ -4,16 +4,16 @@ import { Provider } from "../types/provider.types";
 // Providers with custom logos provided by the user
 export const majorProviders: Provider[] = [
   {
-    id: "esarj",
-    name: "E-Şarj",
-    logo: "/lovable-uploads/9c5da173-d35f-4ee5-af1e-ade7186754c1.png",
-    acPrice: 8.9,
-    dcPrice: 9.9,
-    fastDcPrice: 11.9,
-    membershipFee: 0,
+    id: "trugo",
+    name: "Trugo",
+    logo: "/lovable-uploads/9c4dd2d3-7787-4798-83a5-c72f0e6b15a1.png",
+    acPrice: 8.49,
+    dcPrice: 11.82,
+    fastDcPrice: 11.82,
+    membershipFee: null,
     hasApp: true,
-    websiteUrl: "https://esarj.com",
-    notes: "DC 60 kW: 9,90 TL/kWh, Diğer DC soketler: 11,90 TL/kWh"
+    websiteUrl: "https://trugo.com.tr",
+    notes: "AC: 22 kW, DC: 180 kW ve 300 kW"
   },
   {
     id: "zes",
@@ -26,6 +26,30 @@ export const majorProviders: Provider[] = [
     hasApp: true,
     websiteUrl: "https://zes.net/tr",
     notes: "DC 60 kW: 10,99 TL/kWh, DC 60 kW üstü: 12,99 TL/kWh, CHAdeMO: 12,99 TL/kWh"
+  },
+  {
+    id: "beefull",
+    name: "Beefull",
+    logo: "/lovable-uploads/cc0015aa-72d6-4e18-bc05-8c7486d57eb7.png",
+    acPrice: 8.59,
+    dcPrice: 10.99,
+    fastDcPrice: 10.99,
+    membershipFee: null,
+    hasApp: true,
+    websiteUrl: "https://beefull.com",
+    notes: "DC: 60 kWh ve üzeri"
+  },
+  {
+    id: "esarj",
+    name: "E-Şarj",
+    logo: "/lovable-uploads/9c5da173-d35f-4ee5-af1e-ade7186754c1.png",
+    acPrice: 8.9,
+    dcPrice: 9.9,
+    fastDcPrice: 11.9,
+    membershipFee: 0,
+    hasApp: true,
+    websiteUrl: "https://esarj.com",
+    notes: "DC 60 kW: 9,90 TL/kWh, Diğer DC soketler: 11,90 TL/kWh"
   },
   {
     id: "sharz",
@@ -52,18 +76,6 @@ export const majorProviders: Provider[] = [
     notes: "DC: 60 kWh ve üzeri"
   },
   {
-    id: "trugo",
-    name: "Trugo",
-    logo: "/lovable-uploads/9c4dd2d3-7787-4798-83a5-c72f0e6b15a1.png",
-    acPrice: 8.49,
-    dcPrice: 11.82,
-    fastDcPrice: 11.82,
-    membershipFee: null,
-    hasApp: true,
-    websiteUrl: "https://trugo.com.tr",
-    notes: "AC: 22 kW, DC: 180 kW ve 300 kW"
-  },
-  {
     id: "astor",
     name: "Astor Şarj",
     logo: "/lovable-uploads/eb86de15-9042-4788-88e3-57c2ebc2a451.png",
@@ -74,18 +86,6 @@ export const majorProviders: Provider[] = [
     hasApp: true,
     websiteUrl: "https://astorsarj.com",
     notes: "AC: 6,49 TL/kWh, DC: 8,99 TL/kWh"
-  },
-  {
-    id: "beefull",
-    name: "Beefull",
-    logo: "/lovable-uploads/cc0015aa-72d6-4e18-bc05-8c7486d57eb7.png",
-    acPrice: 8.59,
-    dcPrice: 10.99,
-    fastDcPrice: 10.99,
-    membershipFee: null,
-    hasApp: true,
-    websiteUrl: "https://beefull.com",
-    notes: "DC: 60 kWh ve üzeri"
   },
   {
     id: "otowatt",
