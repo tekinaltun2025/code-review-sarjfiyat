@@ -1,6 +1,7 @@
 
 import { BatteryCharging, Mail, Phone, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import { providers } from "@/data/providers";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
