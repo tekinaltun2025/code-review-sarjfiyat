@@ -1,4 +1,3 @@
-
 export interface Provider {
   id: string;
   name: string;
@@ -109,7 +108,7 @@ export const providers: Provider[] = [
   {
     id: "beefull",
     name: "Beefull",
-    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    logo: "/lovable-uploads/cc0015aa-72d6-4e18-bc05-8c7486d57eb7.png",
     acPrice: 8.59,
     dcPrice: 10.99,
     fastDcPrice: 10.99,
