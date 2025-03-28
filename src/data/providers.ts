@@ -59,7 +59,7 @@ export const providers: Provider[] = [
   {
     id: "echarge",
     name: "ECharge",
-    logo: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=200&h=200&fit=crop&auto=format",
+    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
     acPrice: 7.92,
     dcPrice: 9.18,
     fastDcPrice: 11.50,
