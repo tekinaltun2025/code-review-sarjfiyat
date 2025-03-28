@@ -1,3 +1,4 @@
+
 export interface Provider {
   id: string;
   name: string;
@@ -96,7 +97,7 @@ export const providers: Provider[] = [
   {
     id: "astor",
     name: "Astor Şarj",
-    logo: "/lovable-uploads/4b3d5c8b-d6ac-46c1-97c0-db34ddc7c98f.png",
+    logo: "/lovable-uploads/eb86de15-9042-4788-88e3-57c2ebc2a451.png",
     acPrice: 6.49,
     dcPrice: 8.99,
     fastDcPrice: 8.99,
