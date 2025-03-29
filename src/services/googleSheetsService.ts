@@ -1,27 +1,28 @@
 
 import { Provider } from "@/data/types/provider.types";
 
-const GOOGLE_SHEETS_URL = "https://docs.google.com/spreadsheets/d/1KLBQYxRzeesboC038qEyLK_Y8J1Uhs2TPh3lkCMoD-Q/edit?gid=0";
+// We'll use the sheets API v4 to fetch data from a public Google Sheet
+// Note: This sheet must be publicly accessible with "Anyone with the link can view"
 const SHEET_ID = "1KLBQYxRzeesboC038qEyLK_Y8J1Uhs2TPh3lkCMoD-Q";
-const API_KEY = "AIzaSyBwMVSRKmKZVZLHlwKKjlULk9VBpSOc9Ko"; // This is a public API key meant for client-side use
 
 export async function fetchProviderData(): Promise<Provider[]> {
   try {
-    // Google Sheets API v4 endpoint for public sheets
-    const endpoint = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Sheet1!A2:K100?key=${API_KEY}`;
+    // For public Google Sheets, we can use the export as CSV feature
+    // which doesn't require an API key
+    const csvUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
     
-    const response = await fetch(endpoint);
+    const response = await fetch(csvUrl);
     
     if (!response.ok) {
       throw new Error(`Failed to fetch data: ${response.status}`);
     }
     
-    const data = await response.json();
-    const rows = data.values || [];
+    // Parse CSV data
+    const csvText = await response.text();
+    const rows = parseCSV(csvText);
     
-    // Map the rows to provider objects
-    const providers: Provider[] = rows.map((row: any) => {
-      // Make sure to handle potential missing values
+    // Skip header row and map the rows to provider objects
+    const providers: Provider[] = rows.slice(1).map((row: string[]) => {
       return {
         id: row[0]?.toLowerCase()?.replace(/\s+/g, '') || `provider-${Math.random().toString(36).substring(2, 9)}`,
         name: row[0] || "Unnamed Provider",
@@ -59,4 +60,32 @@ export async function fetchProviderData(): Promise<Provider[]> {
     console.error("Failed to fetch provider data:", error);
     throw error;
   }
+}
+
+// Simple CSV parser function
+function parseCSV(text: string): string[][] {
+  const lines = text.split('\n');
+  return lines.map(line => {
+    // Handle quoted fields with commas inside
+    const result = [];
+    let currentField = '';
+    let inQuotes = false;
+    
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      
+      if (char === '"') {
+        inQuotes = !inQuotes;
+      } else if (char === ',' && !inQuotes) {
+        result.push(currentField);
+        currentField = '';
+      } else {
+        currentField += char;
+      }
+    }
+    
+    // Add the last field
+    result.push(currentField);
+    return result;
+  });
 }

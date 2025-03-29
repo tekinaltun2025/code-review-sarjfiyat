@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { providers, updateProviders } from "@/data/providers";
 import { Provider } from "@/data/types/provider.types";
-import { ArrowDown, ArrowUp, ExternalLink, Info } from "lucide-react";
+import { ArrowDown, ArrowUp, ExternalLink, Info, AlertTriangle } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -14,6 +14,7 @@ import PriceTableHeader from "./price-table/PriceTableHeader";
 import PriceTableRow from "./price-table/PriceTableRow";
 import PriceTableInfoFooter from "./price-table/PriceTableInfoFooter";
 import { fetchProviderData } from "@/services/googleSheetsService";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
 type SortKey = 'acPrice' | 'dcPrice' | 'fastDcPrice';
 type SortOrder = 'asc' | 'desc';
@@ -27,23 +28,26 @@ const PriceTable = () => {
   const [localProviders, setLocalProviders] = useState<Provider[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
   
   const loadData = async () => {
     setIsLoading(true);
+    setError(null);
     try {
       const data = await fetchProviderData();
       updateProviders(data);
       setLocalProviders(data);
       setLastUpdated(new Date());
-      setIsLoading(false);
     } catch (error) {
       console.error("Error fetching provider data:", error);
+      setError("Şarj operatörleri bilgileri yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.");
       toast({
         title: "Veri yüklenemedi",
         description: "Şarj operatörleri bilgileri yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.",
         variant: "destructive",
       });
+    } finally {
       setIsLoading(false);
     }
   };
@@ -51,6 +55,13 @@ const PriceTable = () => {
   // Load data on component mount
   useEffect(() => {
     loadData();
+    
+    // Set up auto refresh every 30 minutes (1800000 ms)
+    const refreshInterval = setInterval(() => {
+      loadData();
+    }, 1800000);
+    
+    return () => clearInterval(refreshInterval);
   }, []);
   
   const handleSort = (key: SortKey) => {
@@ -109,17 +120,36 @@ const PriceTable = () => {
           {lastUpdated && (
             <div className="mt-2">
               <span className="text-xs text-gray-500">
-                Son güncelleme: {lastUpdated.toLocaleTimeString()}
+                Son güncelleme: {lastUpdated.toLocaleTimeString('tr-TR', {
+                  hour: '2-digit',
+                  minute: '2-digit'
+                })}
               </span>
             </div>
           )}
         </div>
+        
+        {error && (
+          <Alert variant="destructive" className="mb-6">
+            <AlertTriangle className="h-4 w-4" />
+            <AlertTitle>Veri yüklenemedi</AlertTitle>
+            <AlertDescription>
+              Şarj operatörleri bilgileri yüklenirken bir hata oluştu. 
+              Lütfen daha sonra tekrar deneyin.
+            </AlertDescription>
+          </Alert>
+        )}
         
         <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
           {isLoading ? (
             <div className="p-12 text-center">
               <div className="animate-spin h-8 w-8 border-4 border-teal-500 border-t-transparent rounded-full mx-auto mb-4"></div>
               <p className="text-gray-600">Veriler yükleniyor...</p>
+            </div>
+          ) : error ? (
+            <div className="p-12 text-center text-red-500">
+              <AlertTriangle className="h-12 w-12 mx-auto mb-4" />
+              <p>Veri yüklenemedi</p>
             </div>
           ) : (
             <div className="overflow-x-auto">
