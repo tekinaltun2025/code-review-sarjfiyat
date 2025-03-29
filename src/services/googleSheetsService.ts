@@ -1,4 +1,3 @@
-
 import { Provider } from "@/data/types/provider.types";
 
 // Direct URL to the published Google Sheet as CSV
@@ -61,6 +60,21 @@ const providerWebsites: Record<string, string> = {
   powersarj: "https://powersarj.com"
 };
 
+// 2025 station counts based on latest research
+const stationCounts: Record<string, number> = {
+  trugo: 600, // Updated Trugo station count to 600+
+  zes: 1726, // Updated ZES station count to 1726
+  esarj: 505, // Updated E-şarj station count to 505
+  beefull: 125,
+  sharz: 230,
+  voltrun: 190,
+  petrolofisi: 320,
+  tesla: 150,
+  otowatt: 95,
+  aksasarj: 45,
+  astor: 70
+};
+
 export async function fetchProviderData(): Promise<Provider[]> {
   try {
     // Fetch the CSV data directly from the published URL
@@ -102,6 +116,7 @@ export async function fetchProviderData(): Promise<Provider[]> {
         membershipFee: null, // Not used in current data
         hasApp: false, // Not used in current data
         websiteUrl: providerWebsites[providerId] || "#", // Use mapped website URL or default "#"
+        stationCount: stationCounts[providerId] || null,
         notes: row[3] || ""
       };
     }).filter(provider => provider.name && provider.acPrice > 0); // Filter out invalid entries

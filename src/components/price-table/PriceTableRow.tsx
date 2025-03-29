@@ -56,6 +56,13 @@ const PriceTableRow: React.FC<PriceTableRowProps> = ({
         </span>
       </td>
       <td className="px-6 py-4 text-center">
+        <span className="text-sm font-medium text-gray-700">
+          {provider.stationCount ? (
+            provider.id === 'trugo' ? '600+' : provider.stationCount
+          ) : '-'}
+        </span>
+      </td>
+      <td className="px-6 py-4 text-center">
         <a 
           href={provider.websiteUrl} 
           target="_blank" 

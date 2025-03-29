@@ -9,5 +9,6 @@ export interface Provider {
   membershipFee: number | null;
   hasApp: boolean;
   websiteUrl: string;
+  stationCount?: number;
   notes?: string;
 }
