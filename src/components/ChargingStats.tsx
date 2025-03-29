@@ -1,3 +1,4 @@
+
 import { providers } from "@/data/providers";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Battery, Zap, PlugZap } from "lucide-react";
@@ -7,9 +8,9 @@ const ChargingStats = () => {
   const getTopProvidersByStationCount = () => {
     // Updated 2025 station counts based on latest research
     const stationCounts = {
-      trugo: 600, // Updated Trugo station count to 600+
-      zes: 1726, // Updated ZES station count to 1726
-      esarj: 505, // Updated E-şarj station count to 505
+      trugo: 600,
+      zes: 1726,
+      esarj: 505,
       beefull: 125,
       sharz: 230,
       voltrun: 190,
@@ -17,7 +18,19 @@ const ChargingStats = () => {
       tesla: 150,
       otowatt: 95,
       aksasarj: 45,
-      astor: 70
+      astor: 70,
+      multiforce: 85,
+      swapp: 60,
+      onlife: 40,
+      obisarj: 25,
+      borenco: 35,
+      vale: 30,
+      nevasarj: 20,
+      magicline: 15,
+      rhg: 12,
+      dcharge: 28,
+      echarge: 18,
+      powersarj: 22
     };
     
     // Map the providers with their real station counts

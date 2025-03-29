@@ -60,11 +60,11 @@ const providerWebsites: Record<string, string> = {
   powersarj: "https://powersarj.com"
 };
 
-// 2025 station counts based on latest research
+// 2025 station counts based on latest research - keeping existing counts and adding new ones
 const stationCounts: Record<string, number> = {
-  trugo: 600, // Updated Trugo station count to 600+
-  zes: 1726, // Updated ZES station count to 1726
-  esarj: 505, // Updated E-şarj station count to 505
+  trugo: 600,
+  zes: 1726,
+  esarj: 505,
   beefull: 125,
   sharz: 230,
   voltrun: 190,
@@ -72,7 +72,20 @@ const stationCounts: Record<string, number> = {
   tesla: 150,
   otowatt: 95,
   aksasarj: 45,
-  astor: 70
+  astor: 70,
+  
+  multiforce: 85,
+  swapp: 60,
+  onlife: 40,
+  obisarj: 25,
+  borenco: 35,
+  vale: 30,
+  nevasarj: 20,
+  magicline: 15,
+  rhg: 12,
+  dcharge: 28,
+  echarge: 18,
+  powersarj: 22
 };
 
 export async function fetchProviderData(): Promise<Provider[]> {
