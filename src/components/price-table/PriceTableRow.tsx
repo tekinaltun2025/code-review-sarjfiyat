@@ -2,6 +2,7 @@
 import React from "react";
 import { ExternalLink } from "lucide-react";
 import { Provider } from "@/data/types/provider.types";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 type SortKey = 'acPrice' | 'dcPrice';
 
@@ -18,6 +19,9 @@ const PriceTableRow: React.FC<PriceTableRowProps> = ({
   sortBy, 
   dividerIndex 
 }) => {
+  // Extract first letter of provider name for fallback
+  const providerInitial = provider.name.charAt(0);
+  
   return (
     <tr 
       className={`hover:bg-gray-50 ${
@@ -28,13 +32,16 @@ const PriceTableRow: React.FC<PriceTableRowProps> = ({
     >
       <td className="px-6 py-4">
         <div className="flex items-center space-x-3">
-          <div className="h-10 w-10 flex-shrink-0 bg-gray-100 rounded-md overflow-hidden">
-            <img 
+          <Avatar className="h-10 w-10 bg-gray-100 rounded-md">
+            <AvatarImage 
               src={provider.logo} 
               alt={`${provider.name} logo`}
-              className="h-full w-full object-contain object-center p-1"
+              className="object-contain p-1"
             />
-          </div>
+            <AvatarFallback className="bg-gray-200 text-gray-700 rounded-md">
+              {providerInitial}
+            </AvatarFallback>
+          </Avatar>
           <div className="font-medium text-gray-900">{provider.name}</div>
         </div>
       </td>
@@ -57,11 +64,6 @@ const PriceTableRow: React.FC<PriceTableRowProps> = ({
         >
           <ExternalLink className="h-4 w-4" />
         </a>
-      </td>
-      <td className="px-6 py-4 text-center">
-        <span className="text-sm text-gray-700">
-          {provider.notes || '-'}
-        </span>
       </td>
     </tr>
   );

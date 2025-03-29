@@ -4,7 +4,7 @@ import { Provider } from "@/data/types/provider.types";
 // Direct URL to the published Google Sheet as CSV
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR28VqZAXDGApycSFAqZ7lZGBnlp3cAwZxJaJqsLNy5ImubsKdVf-hVNgysIs8F-ZE6yHe6b7R8D4Ls/pub?output=csv";
 
-// Provider ID to logo mapping
+// Provider ID to logo mapping - updated with more logos
 const providerLogos: Record<string, string> = {
   trugo: "/lovable-uploads/9c4dd2d3-7787-4798-83a5-c72f0e6b15a1.png",
   zes: "/lovable-uploads/ba1d435b-9f77-4746-a06c-2418d2fc09a7.png",
@@ -15,7 +15,20 @@ const providerLogos: Record<string, string> = {
   astor: "/lovable-uploads/eb86de15-9042-4788-88e3-57c2ebc2a451.png",
   otowatt: "/lovable-uploads/4d178d3c-d0c2-4960-a707-c4f0230e9885.png",
   petrolofisi: "/lovable-uploads/6e47365f-9335-4024-9da3-18b00c4ce94b.png",
-  tesla: "/lovable-uploads/ee7cd67b-4d0f-482c-ade0-f02ed83fb68a.png"
+  tesla: "/lovable-uploads/ee7cd67b-4d0f-482c-ade0-f02ed83fb68a.png",
+  aksasarj: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
+  multiforce: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
+  swapp: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
+  onlife: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
+  obisarj: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
+  borenco: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
+  vale: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
+  nevasarj: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
+  magicline: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
+  rhg: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
+  dcharge: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
+  echarge: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
+  powersarj: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png"
 };
 
 // Default logo for providers without custom logos
