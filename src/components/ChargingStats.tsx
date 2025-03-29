@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { providers } from "@/data/providers";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -36,7 +35,6 @@ const ChargingStats = () => {
       aksasarj: 45,
       astor: 70,
       multiforce: 85,
-      swapp: 60,
       onlife: 40,
       obisarj: 25,
       borenco: 35,
@@ -89,9 +87,9 @@ const ChargingStats = () => {
     // Create a fallback list if the real data isn't loaded yet
     if (providers.length === 0) {
       return [
-        { id: "swapp", name: "Swapp", dcPrice: 6.9 },
         { id: "magicline", name: "Magicline", dcPrice: 7.8 },
-        { id: "petrolofisi", name: "Petrol Ofisi", dcPrice: 8.5 }
+        { id: "petrolofisi", name: "Petrol Ofisi", dcPrice: 8.5 },
+        { id: "rhg", name: "RHG", dcPrice: 8.8 }
       ];
     }
     

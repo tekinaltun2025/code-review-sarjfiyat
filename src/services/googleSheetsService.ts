@@ -17,7 +17,6 @@ const providerLogos: Record<string, string> = {
   tesla: "/lovable-uploads/ee7cd67b-4d0f-482c-ade0-f02ed83fb68a.png",
   aksasarj: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
   multiforce: "/lovable-uploads/4e883d70-0fb2-41c7-9bc4-f51d94c026ef.png", // Updated to new Multiforce logo
-  swapp: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
   onlife: "/lovable-uploads/cd2aee25-6669-44b4-b350-00d0b28175c3.png", // Updated to new OnLife logo
   obisarj: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
   borenco: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
@@ -47,7 +46,6 @@ const providerWebsites: Record<string, string> = {
   tesla: "https://www.tesla.com/tr_tr/supercharger",
   aksasarj: "https://aksasarj.com",
   multiforce: "https://bp.com/tr/turkey/home/products-and-services/elektrikli-arac-sarj-istasyonlari.html", 
-  swapp: "https://swapp.com.tr",
   onlife: "https://onlife.io",
   obisarj: "https://obisarj.com",
   borenco: "https://borenco.com.tr",
@@ -75,7 +73,6 @@ const stationCounts: Record<string, number> = {
   astor: 70,
   
   multiforce: 85,
-  swapp: 60,
   onlife: 40,
   obisarj: 25,
   borenco: 35,
@@ -132,7 +129,7 @@ export async function fetchProviderData(): Promise<Provider[]> {
         stationCount: stationCounts[providerId] || null,
         notes: row[3] || ""
       };
-    }).filter(provider => provider.name && provider.acPrice > 0); // Filter out invalid entries
+    }).filter(provider => provider.name && provider.acPrice > 0 && provider.id !== 'swapp'); // Added filter to exclude swapp
     
     // Ensure the priority providers are at the top
     const priorityProviderIds = ["trugo", "zes", "beefull", "esarj"];

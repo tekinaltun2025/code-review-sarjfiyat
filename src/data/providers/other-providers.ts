@@ -1,4 +1,5 @@
 
+
 // This file is kept for reference only
 // The actual data is now fetched from Google Sheets
 
@@ -53,18 +54,6 @@ export const otherProviders: Provider[] = [
     hasApp: true,
     websiteUrl: "https://bp.com/tr/turkey/home/products-and-services/elektrikli-arac-sarj-istasyonlari.html",
     notes: "AC: En düşük AC fiyatı, DC: 30 kWh ve üzeri"
-  },
-  {
-    id: "swapp",
-    name: "Swapp",
-    logo: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
-    acPrice: 5.90,
-    dcPrice: 6.90,
-    fastDcPrice: 6.90,
-    membershipFee: null,
-    hasApp: true,
-    websiteUrl: "https://swapp.com.tr",
-    notes: "DC: En düşük DC fiyatı, DC: 30 kWh ve üzeri"
   },
   {
     id: "onlife",
@@ -163,3 +152,4 @@ export const otherProviders: Provider[] = [
     notes: "DC: 60 kWh ve üzeri"
   }
 ];
+
