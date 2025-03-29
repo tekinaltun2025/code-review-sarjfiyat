@@ -1,3 +1,4 @@
+
 import { providers } from "@/data/providers";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Battery, Zap, PlugZap } from "lucide-react";
@@ -8,7 +9,7 @@ const ChargingStats = () => {
     // Updated 2025 station counts based on latest research
     const stationCounts = {
       trugo: 600, // Updated Trugo station count to 600+
-      zes: 950,
+      zes: 1726, // Updated ZES station count to 1726
       esarj: 510,
       beefull: 125,
       sharz: 230,
