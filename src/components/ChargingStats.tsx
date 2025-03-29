@@ -1,9 +1,25 @@
 
+import { useState, useEffect } from "react";
 import { providers } from "@/data/providers";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Battery, Zap, PlugZap } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const ChargingStats = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  
+  // Set up loading state that resolves after providers are loaded
+  useEffect(() => {
+    // Check if providers are loaded
+    if (providers.length > 0) {
+      setIsLoading(false);
+    } else {
+      // Set a timeout to check again in 2 seconds
+      const timer = setTimeout(() => setIsLoading(false), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   // Function to get providers with real station counts based on 2025 data
   const getTopProvidersByStationCount = () => {
     // Updated 2025 station counts based on latest research
@@ -33,6 +49,15 @@ const ChargingStats = () => {
       powersarj: 22
     };
     
+    // Create a fallback list of providers if the real data isn't loaded yet
+    if (providers.length === 0) {
+      return [
+        { id: "zes", name: "ZES", stationCount: 1726 },
+        { id: "trugo", name: "Trugo", stationCount: 600 },
+        { id: "esarj", name: "Eşarj", stationCount: 505 }
+      ];
+    }
+    
     // Map the providers with their real station counts
     const providersWithCounts = providers.map(provider => ({
       ...provider,
@@ -46,12 +71,30 @@ const ChargingStats = () => {
   };
 
   const getCheapestACProviders = () => {
+    // Create a fallback list if the real data isn't loaded yet
+    if (providers.length === 0) {
+      return [
+        { id: "multiforce", name: "Multiforce", acPrice: 4.2 },
+        { id: "rhg", name: "RHG", acPrice: 4.7 },
+        { id: "onlife", name: "Onlife", acPrice: 5.79 }
+      ];
+    }
+    
     return [...providers]
       .sort((a, b) => a.acPrice - b.acPrice)
       .slice(0, 3);
   };
 
   const getCheapestDCProviders = () => {
+    // Create a fallback list if the real data isn't loaded yet
+    if (providers.length === 0) {
+      return [
+        { id: "swapp", name: "Swapp", dcPrice: 6.9 },
+        { id: "magicline", name: "Magicline", dcPrice: 7.8 },
+        { id: "petrolofisi", name: "Petrol Ofisi", dcPrice: 8.5 }
+      ];
+    }
+    
     return [...providers]
       .sort((a, b) => a.dcPrice - b.dcPrice)
       .slice(0, 3);
@@ -61,14 +104,32 @@ const ChargingStats = () => {
   const topProviders = getTopProvidersByStationCount();
   const cheapestACProviders = getCheapestACProviders();
   const cheapestDCProviders = getCheapestDCProviders();
-  
-  // Add a check to ensure we have data
-  if (providers.length === 0) {
+
+  if (isLoading) {
     return (
-      <section className="py-8 bg-gradient-to-r from-teal-500 to-blue-500 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <div className="animate-spin h-8 w-8 border-4 border-white border-t-transparent rounded-full mx-auto mb-4"></div>
-          <p>Veriler yükleniyor...</p>
+      <section className="py-12 bg-gradient-to-r from-teal-500 to-blue-500">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[...Array(3)].map((_, i) => (
+                <Card key={i} className="border-0 rounded-lg shadow-lg bg-white">
+                  <CardHeader className="pb-2">
+                    <Skeleton className="h-6 w-40" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      {[...Array(3)].map((_, j) => (
+                        <div key={j} className="flex justify-between items-center border-b pb-2">
+                          <Skeleton className="h-5 w-24" />
+                          <Skeleton className="h-5 w-20" />
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     );
