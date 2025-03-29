@@ -25,106 +25,50 @@ const ChargingStats = () => {
   const topByDcPrice = sortProvidersByPrice("dcPrice", true).slice(0, 3);
 
   return (
-    <>
-      <section className="bg-gradient-to-r from-teal-500 to-blue-500 py-16 text-white">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="space-y-6">
-              <h1 className="text-4xl md:text-5xl font-bold">
-                Elektrikli Araç Şarj Fiyatlarını Karşılaştırın
-              </h1>
-              <p className="text-lg">
-                Türkiye'deki tüm şarj istasyonu operatörlerinin güncel fiyatlarını karşılaştırın,
-                sizin için en ekonomik şarj noktasını bulun.
-              </p>
-              <Button className="bg-white text-teal-600 hover:bg-gray-100 font-medium">
-                <Zap className="mr-2 h-4 w-4" />
-                Fiyatları Karşılaştır
-              </Button>
+    <section className="py-12 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="grid md:grid-cols-3 gap-8">
+          {/* Most Stations */}
+          <Card className="border-2 border-gray-200 p-6">
+            <h3 className="text-lg font-bold text-center border-b pb-2 mb-4">En çok istasyonu olan</h3>
+            <div className="space-y-4">
+              {topByStations.map((provider, index) => (
+                <div key={provider.id} className="flex justify-between items-center">
+                  <span className="font-medium">MARKA {index + 1}</span>
+                  <span className="font-bold">{provider.stationCount || 0}</span>
+                </div>
+              ))}
             </div>
-            
-            <div className="bg-blue-400/20 p-6 rounded-lg backdrop-blur-sm">
-              <div className="space-y-4">
-                <div className="flex items-start gap-4 p-3 hover:bg-blue-400/30 rounded-lg transition-colors">
-                  <div className="bg-teal-500 p-2 rounded-md">
-                    <Zap className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-lg">Güncel Tarifeler</h3>
-                    <p className="text-white/80 text-sm">Tüm operatörlerin en güncel şarj fiyatları</p>
-                  </div>
+          </Card>
+          
+          {/* Cheapest AC */}
+          <Card className="border-2 border-gray-200 p-6">
+            <h3 className="text-lg font-bold text-center border-b pb-2 mb-4">En ucuz AC istasyonlar</h3>
+            <div className="space-y-4">
+              {topByAcPrice.map((provider, index) => (
+                <div key={provider.id} className="flex justify-between items-center">
+                  <span className="font-medium">MARKA {index + 1}</span>
+                  <span className="font-bold">{provider.acPrice} ₺</span>
                 </div>
-                
-                <div className="flex items-start gap-4 p-3 hover:bg-blue-400/30 rounded-lg transition-colors">
-                  <div className="bg-teal-500 p-2 rounded-md">
-                    <DollarSign className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-lg">Şeffaf Fiyatlandırma</h3>
-                    <p className="text-white/80 text-sm">Üyelik detayleri ve tarifeler hakkında tam bilgi</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4 p-3 hover:bg-blue-400/30 rounded-lg transition-colors">
-                  <div className="bg-teal-500 p-2 rounded-md">
-                    <MapPin className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-lg">Tüm Şarj Ağları</h3>
-                    <p className="text-white/80 text-sm">Türkiye'deki tüm şarj operatörleri karşılaştırması</p>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
-          </div>
+          </Card>
+          
+          {/* Cheapest DC */}
+          <Card className="border-2 border-gray-200 p-6">
+            <h3 className="text-lg font-bold text-center border-b pb-2 mb-4">En ucuz DC istasyonlar</h3>
+            <div className="space-y-4">
+              {topByDcPrice.map((provider, index) => (
+                <div key={provider.id} className="flex justify-between items-center">
+                  <span className="font-medium">MARKA {index + 1}</span>
+                  <span className="font-bold">{provider.dcPrice} ₺</span>
+                </div>
+              ))}
+            </div>
+          </Card>
         </div>
-      </section>
-      
-      <section className="py-12 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Most Stations */}
-            <Card className="border-2 border-gray-200 p-6">
-              <h3 className="text-lg font-bold text-center border-b pb-2 mb-4">En çok istasyonu olan</h3>
-              <div className="space-y-4">
-                {topByStations.map((provider, index) => (
-                  <div key={provider.id} className="flex justify-between items-center">
-                    <span className="font-medium">MARKA {index + 1}</span>
-                    <span className="font-bold">{provider.stationCount || 0}</span>
-                  </div>
-                ))}
-              </div>
-            </Card>
-            
-            {/* Cheapest AC */}
-            <Card className="border-2 border-gray-200 p-6">
-              <h3 className="text-lg font-bold text-center border-b pb-2 mb-4">En ucuz AC istasyonlar</h3>
-              <div className="space-y-4">
-                {topByAcPrice.map((provider, index) => (
-                  <div key={provider.id} className="flex justify-between items-center">
-                    <span className="font-medium">MARKA {index + 1}</span>
-                    <span className="font-bold">{provider.acPrice} ₺</span>
-                  </div>
-                ))}
-              </div>
-            </Card>
-            
-            {/* Cheapest DC */}
-            <Card className="border-2 border-gray-200 p-6">
-              <h3 className="text-lg font-bold text-center border-b pb-2 mb-4">En ucuz DC istasyonlar</h3>
-              <div className="space-y-4">
-                {topByDcPrice.map((provider, index) => (
-                  <div key={provider.id} className="flex justify-between items-center">
-                    <span className="font-medium">MARKA {index + 1}</span>
-                    <span className="font-bold">{provider.dcPrice} ₺</span>
-                  </div>
-                ))}
-              </div>
-            </Card>
-          </div>
-        </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
