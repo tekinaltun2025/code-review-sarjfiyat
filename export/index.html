@@ -200,7 +200,7 @@
         </div>
       </section>
 
-      <!-- Charging Stats -->
+      <!-- Şarj İstatistikleri Bölümü - Güncellendi -->
       <section id="charging-stats" class="py-12 bg-gray-50">
         <div class="container mx-auto px-4">
           <h2 class="text-3xl font-bold text-center mb-8">Türkiye'de Elektrikli Araç Şarj İstatistikleri</h2>
@@ -221,7 +221,7 @@
         </div>
       </section>
 
-      <!-- Map Section -->
+      <!-- Şarj İstasyonları Haritası - Güncellendi -->
       <section class="py-8 bg-white">
         <div class="container mx-auto px-4">
           <div class="text-center mb-6">
@@ -251,7 +251,7 @@
         </div>
       </section>
 
-      <!-- Price Comparison Table -->
+      <!-- Fiyat Karşılaştırma Tablosu - Güncellendi -->
       <section id="price-comparison" class="py-12 bg-gray-50">
         <div class="container mx-auto px-4">
           <div class="text-center mb-10">
@@ -270,31 +270,18 @@
                 <thead class="bg-gray-50 border-b border-gray-200">
                   <tr>
                     <th class="px-6 py-4 text-left text-sm font-medium text-gray-500">Operatör</th>
-                    <th class="px-6 py-4 text-right text-sm font-medium text-gray-500 cursor-pointer">
-                      AC Şarj
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline h-4 w-4 ml-1">
-                        <path d="m18 15-6-6-6 6"/>
-                      </svg>
-                    </th>
-                    <th class="px-6 py-4 text-right text-sm font-medium text-gray-500 cursor-pointer">
-                      DC Şarj
-                    </th>
-                    <th class="px-6 py-4 text-right text-sm font-medium text-gray-500">
-                      Hızlı DC Şarj
-                    </th>
-                    <th class="px-6 py-4 text-center text-sm font-medium text-gray-500">
-                      Web Sitesi
-                    </th>
+                    <th class="px-6 py-4 text-right text-sm font-medium text-gray-500">AC Şarj</th>
+                    <th class="px-6 py-4 text-right text-sm font-medium text-gray-500">DC Şarj</th>
+                    <th class="px-6 py-4 text-right text-sm font-medium text-gray-500">Hızlı DC Şarj</th>
+                    <th class="px-6 py-4 text-center text-sm font-medium text-gray-500">Web Sitesi</th>
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
                   <tr class="hover:bg-gray-50">
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="flex items-center">
-                        <div class="h-10 w-10 flex-shrink-0 mr-3">
-                          <div class="h-10 w-10 rounded-full bg-teal-100 flex items-center justify-center text-teal-800 font-medium">
-                            ZS
-                          </div>
+                        <div class="h-10 w-10 flex-shrink-0 mr-3 rounded-full bg-teal-100 flex items-center justify-center text-teal-800 font-medium">
+                          ZS
                         </div>
                         <div class="text-sm font-medium text-gray-900">ZES</div>
                       </div>
@@ -322,10 +309,8 @@
                   <tr class="hover:bg-gray-50">
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="flex items-center">
-                        <div class="h-10 w-10 flex-shrink-0 mr-3">
-                          <div class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-800 font-medium">
-                            ES
-                          </div>
+                        <div class="h-10 w-10 flex-shrink-0 mr-3 rounded-full bg-blue-100 flex items-center justify-center text-blue-800 font-medium">
+                          ES
                         </div>
                         <div class="text-sm font-medium text-gray-900">Eşarj</div>
                       </div>
@@ -350,7 +335,64 @@
                       </a>
                     </td>
                   </tr>
-                  <!-- Diğer operatörler buraya eklenebilir -->
+                  <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="flex items-center">
+                        <div class="h-10 w-10 flex-shrink-0 mr-3 rounded-full bg-teal-100 flex items-center justify-center text-teal-800 font-medium">
+                          TR
+                        </div>
+                        <div class="text-sm font-medium text-gray-900">Trugo</div>
+                      </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <span class="font-medium text-gray-900">8.49 ₺/kWh</span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <span class="font-medium text-gray-900">11.82 ₺/kWh</span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <span class="font-medium text-gray-900">11.82 ₺/kWh</span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                      <a href="https://trugo.com.tr" target="_blank" rel="noopener noreferrer" class="text-teal-600 hover:text-teal-900 inline-flex items-center">
+                        <span class="mr-1">Websitesi</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="flex items-center">
+                        <div class="h-10 w-10 flex-shrink-0 mr-3 rounded-full bg-blue-100 flex items-center justify-center text-blue-800 font-medium">
+                          BF
+                        </div>
+                        <div class="text-sm font-medium text-gray-900">Beefull</div>
+                      </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <span class="font-medium text-gray-900">8.59 ₺/kWh</span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <span class="font-medium text-gray-900">10.99 ₺/kWh</span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <span class="font-medium text-gray-900">10.99 ₺/kWh</span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                      <a href="https://beefull.com" target="_blank" rel="noopener noreferrer" class="text-teal-600 hover:text-teal-900 inline-flex items-center">
+                        <span class="mr-1">Websitesi</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                      </a>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -363,7 +405,7 @@
         </div>
       </section>
 
-      <!-- Charging Providers -->
+      <!-- Şarj Operatörleri -->
       <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
           <div class="text-center mb-12">
@@ -474,7 +516,54 @@
               </div>
             </div>
             
-            <!-- Diğer operatörler buraya eklenebilir -->
+            <!-- Operatör 3 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow">
+              <div class="h-40 bg-gradient-to-r from-teal-500/10 to-blue-500/10 flex items-center justify-center p-6">
+                <div class="h-24 max-w-full">
+                  <div class="h-full w-full flex items-center justify-center">
+                    <span class="text-3xl font-bold text-teal-600">Trugo</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Trugo</h3>
+                
+                <div class="space-y-2 mb-6">
+                  <div class="flex justify-between">
+                    <span class="text-gray-600">AC Şarj:</span>
+                    <span class="font-medium text-gray-900">8.49 ₺/kWh</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-gray-600">DC Şarj:</span>
+                    <span class="font-medium text-gray-900">11.82 ₺/kWh</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-gray-600">Hızlı DC Şarj:</span>
+                    <span class="font-medium text-gray-900">11.82 ₺/kWh</span>
+                  </div>
+                </div>
+                
+                <div class="pt-4 border-t border-gray-100 flex justify-between items-center">
+                  <a href="#" class="text-teal-600 hover:text-teal-800 text-sm font-medium">
+                    Detaylı Bilgi
+                  </a>
+                  <a
+                    href="https://trugo.com.tr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900"
+                  >
+                    <span class="mr-1">Websitesi</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
