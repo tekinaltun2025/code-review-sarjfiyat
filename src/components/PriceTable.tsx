@@ -2,8 +2,7 @@
 import { useEffect, useState } from "react";
 import { providers, updateProviders } from "@/data/providers";
 import { Provider } from "@/data/types/provider.types";
-import { ArrowDown, ArrowUp, ExternalLink, Info, RefreshCw } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowDown, ArrowUp, ExternalLink, Info } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -63,14 +62,6 @@ const PriceTable = () => {
     }
   };
   
-  const handleRefresh = () => {
-    loadData();
-    toast({
-      title: "Veri yenileniyor",
-      description: "Şarj operatörleri bilgileri güncelleniyor...",
-    });
-  };
-  
   // Sort the providers based on current sort settings
   const getSortedProviders = () => {
     // Start with a copy of the providers to avoid mutating the original
@@ -115,23 +106,13 @@ const PriceTable = () => {
             Aşağıdaki tabloda Türkiye'deki elektrikli araç şarj istasyonu operatörlerinin 
             güncel fiyatlarını karşılaştırabilirsiniz.
           </p>
-          <div className="mt-4 flex justify-center items-center space-x-2">
-            <Button 
-              variant="outline" 
-              size="sm" 
-              onClick={handleRefresh}
-              disabled={isLoading}
-              className="flex items-center space-x-1"
-            >
-              <RefreshCw className={`h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />
-              <span>Verileri Güncelle</span>
-            </Button>
-            {lastUpdated && (
+          {lastUpdated && (
+            <div className="mt-2">
               <span className="text-xs text-gray-500">
                 Son güncelleme: {lastUpdated.toLocaleTimeString()}
               </span>
-            )}
-          </div>
+            </div>
+          )}
         </div>
         
         <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
