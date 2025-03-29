@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { providers, updateProviders } from "@/data/providers";
 import { Provider } from "@/data/types/provider.types";
-import { ArrowDown, ArrowUp, ExternalLink, Info, AlertTriangle } from "lucide-react";
+import { ArrowDown, ArrowUp, ExternalLink, Info, AlertTriangle, RefreshCw } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -15,6 +15,7 @@ import PriceTableRow from "./price-table/PriceTableRow";
 import PriceTableInfoFooter from "./price-table/PriceTableInfoFooter";
 import { fetchProviderData } from "@/services/googleSheetsService";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
 
 type SortKey = 'acPrice' | 'dcPrice' | 'fastDcPrice';
 type SortOrder = 'asc' | 'desc';
@@ -27,18 +28,31 @@ const PriceTable = () => {
   const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
   const [localProviders, setLocalProviders] = useState<Provider[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
   
-  const loadData = async () => {
-    setIsLoading(true);
+  const loadData = async (showRefreshState = true) => {
+    if (showRefreshState) {
+      setIsRefreshing(true);
+    } else {
+      setIsLoading(true);
+    }
     setError(null);
+    
     try {
       const data = await fetchProviderData();
       updateProviders(data);
       setLocalProviders(data);
       setLastUpdated(new Date());
+      
+      if (showRefreshState) {
+        toast({
+          title: "Veriler güncellendi",
+          description: "Şarj operatörleri bilgileri başarıyla yenilendi.",
+        });
+      }
     } catch (error) {
       console.error("Error fetching provider data:", error);
       setError("Şarj operatörleri bilgileri yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.");
@@ -49,16 +63,21 @@ const PriceTable = () => {
       });
     } finally {
       setIsLoading(false);
+      setIsRefreshing(false);
     }
+  };
+
+  const handleRefresh = () => {
+    loadData(true);
   };
 
   // Load data on component mount
   useEffect(() => {
-    loadData();
+    loadData(false);
     
     // Set up auto refresh every 30 minutes (1800000 ms)
     const refreshInterval = setInterval(() => {
-      loadData();
+      loadData(false);
     }, 1800000);
     
     return () => clearInterval(refreshInterval);
@@ -117,16 +136,26 @@ const PriceTable = () => {
             Aşağıdaki tabloda Türkiye'deki elektrikli araç şarj istasyonu operatörlerinin 
             güncel fiyatlarını karşılaştırabilirsiniz.
           </p>
-          {lastUpdated && (
-            <div className="mt-2">
-              <span className="text-xs text-gray-500">
+          <div className="mt-4 flex items-center justify-center gap-2">
+            {lastUpdated && (
+              <span className="text-sm text-gray-500">
                 Son güncelleme: {lastUpdated.toLocaleTimeString('tr-TR', {
                   hour: '2-digit',
                   minute: '2-digit'
                 })}
               </span>
-            </div>
-          )}
+            )}
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={handleRefresh}
+              disabled={isRefreshing || isLoading}
+              className="ml-2 flex items-center gap-1"
+            >
+              <RefreshCw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
+              <span>Yenile</span>
+            </Button>
+          </div>
         </div>
         
         {error && (

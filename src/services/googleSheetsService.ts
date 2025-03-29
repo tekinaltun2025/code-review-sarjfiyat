@@ -1,9 +1,8 @@
 
 import { Provider } from "@/data/types/provider.types";
 
-// We'll use the sheets API v4 to fetch data from a public Google Sheet
-// Note: This sheet must be publicly accessible with "Anyone with the link can view"
-const SHEET_ID = "1KLBQYxRzeesboC038qEyLK_Y8J1Uhs2TPh3lkCMoD-Q";
+// Direct URL to the published Google Sheet as CSV
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR28VqZAXDGApycSFAqZ7lZGBnlp3cAwZxJaJqsLNy5ImubsKdVf-hVNgysIs8F-ZE6yHe6b7R8D4Ls/pub?output=csv";
 
 // Provider ID to logo mapping
 const providerLogos: Record<string, string> = {
@@ -24,11 +23,8 @@ const DEFAULT_LOGO = "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png"
 
 export async function fetchProviderData(): Promise<Provider[]> {
   try {
-    // For public Google Sheets, we can use the export as CSV feature
-    // which doesn't require an API key
-    const csvUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
-    
-    const response = await fetch(csvUrl);
+    // Use the direct CSV URL instead of constructing it from the sheet ID
+    const response = await fetch(SHEET_URL);
     
     if (!response.ok) {
       throw new Error(`Failed to fetch data: ${response.status}`);
