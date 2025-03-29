@@ -1,10 +1,12 @@
 
 import { Provider } from "../types/provider.types";
-import { majorProviders } from "./major-providers";
-import { otherProviders } from "./other-providers";
+import { fetchProviderData } from "@/services/googleSheetsService";
 
-// Combine all provider lists
-export const providers: Provider[] = [...majorProviders, ...otherProviders];
+// The actual providers will be fetched from Google Sheets
+let providers: Provider[] = [];
+
+// Initialize with an empty array, will be populated later
+export { providers };
 
 // Utility functions for providers
 export const getProviderById = (id: string): Provider | undefined => {
@@ -20,3 +22,17 @@ export const sortProvidersByPrice = (priceType: 'acPrice' | 'dcPrice' | 'fastDcP
     return ascending ? a[priceType] - b[priceType] : b[priceType] - a[priceType];
   });
 };
+
+// This function will be called to update the providers array
+export const updateProviders = (newProviders: Provider[]) => {
+  providers = newProviders;
+};
+
+// Load the providers on initial import
+fetchProviderData()
+  .then(data => {
+    updateProviders(data);
+  })
+  .catch(error => {
+    console.error("Failed to initialize providers data:", error);
+  });

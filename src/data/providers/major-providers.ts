@@ -1,4 +1,7 @@
 
+// This file is kept for reference only
+// The actual data is now fetched from Google Sheets
+
 import { Provider } from "../types/provider.types";
 
 // Providers with custom logos provided by the user
