@@ -1,7 +1,6 @@
 
 import { BatteryCharging, Mail, Phone, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
-import { providers } from "@/data/providers";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -9,7 +8,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-9 gap-8">
           <div className="md:col-span-4 space-y-4">
             <div className="flex items-center space-x-2">
               <BatteryCharging className="h-8 w-8 text-teal-400" />
@@ -66,19 +65,6 @@ const Footer = () => {
                   Hakkımızda
                 </Link>
               </li>
-            </ul>
-          </div>
-          
-          <div className="md:col-span-3 space-y-4">
-            <h3 className="text-white font-medium text-lg">Popüler Şarj Ağları</h3>
-            <ul className="space-y-2">
-              {providers.slice(0, 5).map((provider) => (
-                <li key={provider.id}>
-                  <Link to="/" className="text-gray-400 hover:text-white transition-colors">
-                    {provider.name}
-                  </Link>
-                </li>
-              ))}
             </ul>
           </div>
           
