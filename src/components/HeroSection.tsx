@@ -1,5 +1,5 @@
 
-import { BatteryCharging, Zap, DollarSign, Car } from "lucide-react";
+import { BatteryCharging, Zap, MapPin, Car } from "lucide-react";
 
 const HeroSection = () => {
   return (
@@ -38,11 +38,11 @@ const HeroSection = () => {
               
               <div className="flex items-start space-x-4">
                 <div className="bg-blue-400 p-3 rounded-lg">
-                  <DollarSign className="h-6 w-6 text-white" />
+                  <MapPin className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-xl">Şeffaf Fiyatlandırma</h3>
-                  <p className="opacity-80">Üyelik ücretleri ve tarifeler hakkında tam bilgi</p>
+                  <h3 className="font-semibold text-xl">Şarj İstasyon Lokasyonları</h3>
+                  <p className="opacity-80">Türkiye genelindeki tüm şarj noktaları</p>
                 </div>
               </div>
               
