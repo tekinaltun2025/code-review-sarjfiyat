@@ -15,7 +15,7 @@ const MapSection = () => {
         </div>
         
         <Card className="border-0 rounded-xl overflow-hidden shadow-lg">
-          <div className="h-[300px] w-full">
+          <div className="h-[360px] w-full">
             <iframe 
               src="https://www.google.com/maps/d/embed?mid=1lBaxe2y6AUWzrXmXBX7apjvo8ZTKz90&femb=1&ll=38.64664278573175%2C35.050516500000015&z=7" 
               width="100%" 
