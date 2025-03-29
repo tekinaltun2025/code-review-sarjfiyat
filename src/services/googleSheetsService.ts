@@ -5,6 +5,23 @@ import { Provider } from "@/data/types/provider.types";
 // Note: This sheet must be publicly accessible with "Anyone with the link can view"
 const SHEET_ID = "1KLBQYxRzeesboC038qEyLK_Y8J1Uhs2TPh3lkCMoD-Q";
 
+// Provider ID to logo mapping
+const providerLogos: Record<string, string> = {
+  trugo: "/lovable-uploads/9c4dd2d3-7787-4798-83a5-c72f0e6b15a1.png",
+  zes: "/lovable-uploads/ba1d435b-9f77-4746-a06c-2418d2fc09a7.png",
+  beefull: "/lovable-uploads/cc0015aa-72d6-4e18-bc05-8c7486d57eb7.png",
+  esarj: "/lovable-uploads/9c5da173-d35f-4ee5-af1e-ade7186754c1.png",
+  sharz: "/lovable-uploads/92c3c249-8f40-4cc6-9c8c-15f6891a5e5e.png",
+  voltrun: "/lovable-uploads/fb66fe81-1208-4c6d-a276-363ee14ce4b9.png",
+  astor: "/lovable-uploads/eb86de15-9042-4788-88e3-57c2ebc2a451.png",
+  otowatt: "/lovable-uploads/4d178d3c-d0c2-4960-a707-c4f0230e9885.png",
+  petrolofisi: "/lovable-uploads/6e47365f-9335-4024-9da3-18b00c4ce94b.png",
+  tesla: "/lovable-uploads/ee7cd67b-4d0f-482c-ade0-f02ed83fb68a.png"
+};
+
+// Default logo for providers without custom logos
+const DEFAULT_LOGO = "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png";
+
 export async function fetchProviderData(): Promise<Provider[]> {
   try {
     // For public Google Sheets, we can use the export as CSV feature
@@ -23,10 +40,12 @@ export async function fetchProviderData(): Promise<Provider[]> {
     
     // Skip header row and map the rows to provider objects
     const providers: Provider[] = rows.slice(1).map((row: string[]) => {
+      const providerId = row[0]?.toLowerCase()?.replace(/\s+/g, '') || `provider-${Math.random().toString(36).substring(2, 9)}`;
+      
       return {
-        id: row[0]?.toLowerCase()?.replace(/\s+/g, '') || `provider-${Math.random().toString(36).substring(2, 9)}`,
+        id: providerId,
         name: row[0] || "Unnamed Provider",
-        logo: row[1] || "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png", // Default logo
+        logo: providerLogos[providerId] || DEFAULT_LOGO, // Use mapped logo or default
         acPrice: parseFloat(row[2]) || 0,
         dcPrice: parseFloat(row[3]) || 0,
         fastDcPrice: parseFloat(row[4]) || 0,
