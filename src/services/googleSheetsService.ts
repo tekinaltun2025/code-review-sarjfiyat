@@ -21,6 +21,33 @@ const providerLogos: Record<string, string> = {
 // Default logo for providers without custom logos
 const DEFAULT_LOGO = "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png";
 
+// Provider website URL mapping - updated with correct URLs
+const providerWebsites: Record<string, string> = {
+  trugo: "https://trugo.com.tr",
+  zes: "https://zes.net/tr",
+  beefull: "https://beefull.com",
+  esarj: "https://esarj.com",
+  sharz: "https://sharz.com.tr",
+  voltrun: "https://voltrun.com",
+  astor: "https://astorsarj.com",
+  otowatt: "https://otowatt.com.tr",
+  petrolofisi: "https://epower.petrolofisi.com.tr",
+  tesla: "https://www.tesla.com/tr_tr/supercharger",
+  aksasarj: "https://aksasarj.com",
+  multiforce: "https://bp.com/tr/turkey/home/products-and-services/elektrikli-arac-sarj-istasyonlari.html", 
+  swapp: "https://swapp.com.tr",
+  onlife: "https://onlife.io",
+  obisarj: "https://obisarj.com",
+  borenco: "https://borenco.com.tr",
+  vale: "https://vale.com.tr",
+  nevasarj: "https://nevasarj.com",
+  magicline: "https://magicline.com.tr",
+  rhg: "https://rhg.com.tr/ev-sarj-cihazlari",
+  dcharge: "https://dcharge.com.tr",
+  echarge: "https://echarge.com.tr",
+  powersarj: "https://powersarj.com"
+};
+
 export async function fetchProviderData(): Promise<Provider[]> {
   try {
     // Fetch the CSV data directly from the published URL
@@ -61,7 +88,7 @@ export async function fetchProviderData(): Promise<Provider[]> {
         fastDcPrice: parseFloat(fastDcPriceStr) || 0,
         membershipFee: null, // Not used in current data
         hasApp: false, // Not used in current data
-        websiteUrl: "#", // Not used in current data
+        websiteUrl: providerWebsites[providerId] || "#", // Use mapped website URL or default "#"
         notes: row[3] || ""
       };
     }).filter(provider => provider.name && provider.acPrice > 0); // Filter out invalid entries
