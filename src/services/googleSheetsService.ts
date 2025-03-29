@@ -23,7 +23,7 @@ const DEFAULT_LOGO = "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png"
 
 export async function fetchProviderData(): Promise<Provider[]> {
   try {
-    // Use the direct CSV URL instead of constructing it from the sheet ID
+    // Fetch the CSV data directly from the published URL
     const response = await fetch(SHEET_URL);
     
     if (!response.ok) {
@@ -36,21 +36,35 @@ export async function fetchProviderData(): Promise<Provider[]> {
     
     // Skip header row and map the rows to provider objects
     const providers: Provider[] = rows.slice(1).map((row: string[]) => {
-      const providerId = row[0]?.toLowerCase()?.replace(/\s+/g, '') || `provider-${Math.random().toString(36).substring(2, 9)}`;
+      // Create ID from provider name (lowercase, no spaces)
+      const providerName = row[0] || "Unnamed Provider";
+      // Generate a provider ID by converting the name to lowercase and removing spaces
+      const providerId = providerName.toLowerCase().replace(/\s+/g, '').replace(/[üşğıçöĞÜŞİÇÖ]/g, c => {
+        const turkishToEnglish: Record<string, string> = {
+          'ü': 'u', 'ş': 's', 'ğ': 'g', 'ı': 'i', 'ç': 'c', 'ö': 'o',
+          'Ü': 'U', 'Ş': 'S', 'Ğ': 'G', 'İ': 'I', 'Ç': 'C', 'Ö': 'O'
+        };
+        return turkishToEnglish[c] || c;
+      });
+      
+      // Parse prices, handling comma as decimal separator
+      const acPriceStr = row[1] ? row[1].replace(',', '.') : "0";
+      const dcPriceStr = row[2] ? row[2].replace(',', '.') : "0";
+      const fastDcPriceStr = row[3] ? row[3].replace(',', '.') : dcPriceStr; // Default to DC price if not specified
       
       return {
         id: providerId,
-        name: row[0] || "Unnamed Provider",
+        name: providerName,
         logo: providerLogos[providerId] || DEFAULT_LOGO, // Use mapped logo or default
-        acPrice: parseFloat(row[2]) || 0,
-        dcPrice: parseFloat(row[3]) || 0,
-        fastDcPrice: parseFloat(row[4]) || 0,
-        membershipFee: row[5] ? parseFloat(row[5]) : null,
-        hasApp: row[6]?.toLowerCase() === "true" || row[6]?.toLowerCase() === "var" || row[6]?.toLowerCase() === "yes" || false,
-        websiteUrl: row[7] || "#",
-        notes: row[8] || ""
+        acPrice: parseFloat(acPriceStr) || 0,
+        dcPrice: parseFloat(dcPriceStr) || 0,
+        fastDcPrice: parseFloat(fastDcPriceStr) || 0,
+        membershipFee: null, // Not used in current data
+        hasApp: false, // Not used in current data
+        websiteUrl: "#", // Not used in current data
+        notes: row[3] || ""
       };
-    });
+    }).filter(provider => provider.name && provider.acPrice > 0); // Filter out invalid entries
     
     // Ensure the priority providers are at the top
     const priorityProviderIds = ["trugo", "zes", "beefull", "esarj"];
