@@ -65,6 +65,11 @@ const PriceTableRow: React.FC<PriceTableRowProps> = ({
           <ExternalLink className="h-4 w-4" />
         </a>
       </td>
+      <td className="px-6 py-4 text-center">
+        <span className="text-sm text-gray-700">
+          {provider.notes || '-'}
+        </span>
+      </td>
     </tr>
   );
 };
