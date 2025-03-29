@@ -3,7 +3,7 @@ import React from "react";
 import { ExternalLink } from "lucide-react";
 import { Provider } from "@/data/types/provider.types";
 
-type SortKey = 'acPrice' | 'dcPrice' | 'fastDcPrice';
+type SortKey = 'acPrice' | 'dcPrice';
 
 interface PriceTableRowProps {
   provider: Provider;
@@ -46,11 +46,6 @@ const PriceTableRow: React.FC<PriceTableRowProps> = ({
       <td className="px-6 py-4 text-center">
         <span className={`text-sm font-medium ${sortBy === 'dcPrice' ? 'text-teal-600' : 'text-gray-700'}`}>
           {provider.dcPrice.toFixed(2)} ₺
-        </span>
-      </td>
-      <td className="px-6 py-4 text-center">
-        <span className={`text-sm font-medium ${sortBy === 'fastDcPrice' ? 'text-teal-600' : 'text-gray-700'}`}>
-          {provider.fastDcPrice.toFixed(2)} ₺
         </span>
       </td>
       <td className="px-6 py-4 text-center">

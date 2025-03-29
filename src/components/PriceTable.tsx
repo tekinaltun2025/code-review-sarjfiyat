@@ -16,7 +16,7 @@ import PriceTableInfoFooter from "./price-table/PriceTableInfoFooter";
 import { fetchProviderData } from "@/services/googleSheetsService";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
-type SortKey = 'acPrice' | 'dcPrice' | 'fastDcPrice';
+type SortKey = 'acPrice' | 'dcPrice';
 type SortOrder = 'asc' | 'desc';
 
 // IDs of providers to be prioritized in order

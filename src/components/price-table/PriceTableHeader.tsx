@@ -8,7 +8,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-type SortKey = 'acPrice' | 'dcPrice' | 'fastDcPrice';
+type SortKey = 'acPrice' | 'dcPrice';
 
 interface PriceTableHeaderProps {
   sortBy: SortKey;
@@ -57,23 +57,6 @@ const PriceTableHeader: React.FC<PriceTableHeaderProps> = ({
               </TooltipTrigger>
               <TooltipContent>
                 <p className="w-48">DC şarj, 50kW güçlerindeki hızlı şarj istasyonlarıdır.</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </th>
-        <th 
-          className="px-6 py-4 text-center text-sm font-semibold text-gray-800 cursor-pointer hover:text-teal-600"
-          onClick={() => handleSort('fastDcPrice')}
-        >
-          Hızlı DC Şarj (₺/kWh)
-          {getSortIcon('fastDcPrice')}
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger>
-                <Info className="inline h-4 w-4 ml-1 text-gray-400" />
-              </TooltipTrigger>
-              <TooltipContent>
-                <p className="w-48">Hızlı DC şarj, 90kW ve üzeri güçlerdeki ultra hızlı şarj istasyonlarıdır.</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
