@@ -61,12 +61,24 @@ const ChargingStats = () => {
   const topProviders = getTopProvidersByStationCount();
   const cheapestACProviders = getCheapestACProviders();
   const cheapestDCProviders = getCheapestDCProviders();
+  
+  // Add a check to ensure we have data
+  if (providers.length === 0) {
+    return (
+      <section className="py-8 bg-gradient-to-r from-teal-500 to-blue-500 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <div className="animate-spin h-8 w-8 border-4 border-white border-t-transparent rounded-full mx-auto mb-4"></div>
+          <p>Veriler yükleniyor...</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
-    <section className="py-8 bg-gradient-to-r from-teal-500 to-blue-500">
+    <section className="py-12 bg-gradient-to-r from-teal-500 to-blue-500">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Most Stations Card */}
             <Card className="border-0 rounded-lg shadow-lg hover:shadow-xl transition-shadow bg-white">
               <CardHeader className="pb-2">
@@ -81,7 +93,7 @@ const ChargingStats = () => {
                     <li key={provider.id} className="flex justify-between items-center border-b pb-2 last:border-0">
                       <span className="font-medium text-gray-800">{provider.name}</span>
                       <span className="text-gray-700 font-semibold">
-                        {provider.id === 'trugo' ? '600+ istasyon' : `${provider.stationCount} istasyon`}
+                        {provider.stationCount} istasyon
                       </span>
                     </li>
                   ))}
