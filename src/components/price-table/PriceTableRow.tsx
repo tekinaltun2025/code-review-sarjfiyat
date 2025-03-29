@@ -49,11 +49,6 @@ const PriceTableRow: React.FC<PriceTableRowProps> = ({
         </span>
       </td>
       <td className="px-6 py-4 text-center">
-        <span className="text-sm text-gray-700">
-          {provider.hasApp ? 'Var' : 'Yok'}
-        </span>
-      </td>
-      <td className="px-6 py-4 text-center">
         <a 
           href={provider.websiteUrl} 
           target="_blank" 

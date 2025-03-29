@@ -62,9 +62,6 @@ const PriceTableHeader: React.FC<PriceTableHeaderProps> = ({
           </TooltipProvider>
         </th>
         <th className="px-6 py-4 text-center text-sm font-semibold text-gray-800">
-          Uygulama
-        </th>
-        <th className="px-6 py-4 text-center text-sm font-semibold text-gray-800">
           Websitesi
         </th>
         <th className="px-6 py-4 text-center text-sm font-semibold text-gray-800">
