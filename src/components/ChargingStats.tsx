@@ -1,4 +1,3 @@
-
 import { providers } from "@/data/providers";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Battery, Zap, PlugZap } from "lucide-react";
@@ -8,7 +7,7 @@ const ChargingStats = () => {
   const getTopProvidersByStationCount = () => {
     // Updated 2025 station counts based on latest research
     const stationCounts = {
-      trugo: 280,
+      trugo: 600, // Updated Trugo station count to 600+
       zes: 950,
       esarj: 510,
       beefull: 125,
@@ -68,7 +67,9 @@ const ChargingStats = () => {
                   {topProviders.map((provider) => (
                     <li key={provider.id} className="flex justify-between items-center border-b pb-2 last:border-0">
                       <span className="font-medium text-gray-800">{provider.name}</span>
-                      <span className="text-gray-700 font-semibold">{provider.stationCount} istasyon</span>
+                      <span className="text-gray-700 font-semibold">
+                        {provider.id === 'trugo' ? '600+ istasyon' : `${provider.stationCount} istasyon`}
+                      </span>
                     </li>
                   ))}
                 </ul>
