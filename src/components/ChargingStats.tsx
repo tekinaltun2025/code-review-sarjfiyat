@@ -1,8 +1,6 @@
 
 import React from "react";
 import { Card } from "./ui/card";
-import { Button } from "./ui/button";
-import { Zap, DollarSign, MapPin } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchProviderData } from "@/services/googleSheetsService";
 import { sortProvidersByPrice } from "@/data/providers";
@@ -27,6 +25,7 @@ const ChargingStats = () => {
   return (
     <section className="py-12 bg-white">
       <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center mb-8">Türkiye'de Elektrikli Araç Şarj İstatistikleri</h2>
         <div className="grid md:grid-cols-3 gap-8">
           {/* Most Stations */}
           <Card className="border-2 border-gray-200 p-6">
@@ -34,7 +33,7 @@ const ChargingStats = () => {
             <div className="space-y-4">
               {topByStations.map((provider, index) => (
                 <div key={provider.id} className="flex justify-between items-center">
-                  <span className="font-medium">MARKA {index + 1}</span>
+                  <span className="font-medium">{provider.name}</span>
                   <span className="font-bold">{provider.stationCount || 0}</span>
                 </div>
               ))}
@@ -47,7 +46,7 @@ const ChargingStats = () => {
             <div className="space-y-4">
               {topByAcPrice.map((provider, index) => (
                 <div key={provider.id} className="flex justify-between items-center">
-                  <span className="font-medium">MARKA {index + 1}</span>
+                  <span className="font-medium">{provider.name}</span>
                   <span className="font-bold">{provider.acPrice} ₺</span>
                 </div>
               ))}
@@ -60,7 +59,7 @@ const ChargingStats = () => {
             <div className="space-y-4">
               {topByDcPrice.map((provider, index) => (
                 <div key={provider.id} className="flex justify-between items-center">
-                  <span className="font-medium">MARKA {index + 1}</span>
+                  <span className="font-medium">{provider.name}</span>
                   <span className="font-bold">{provider.dcPrice} ₺</span>
                 </div>
               ))}
