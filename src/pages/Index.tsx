@@ -17,17 +17,7 @@ const Index = () => {
     <main className="flex-grow">
       {!isInPanel && <HeroSection />}
       <ChargingStats />
-      <section id="price-comparison" className="py-16 px-4 bg-gray-50">
-        <div className="container mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">
-            Şarj Ağı Fiyat Karşılaştırması
-          </h2>
-          <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12">
-            Türkiye'deki tüm elektrikli araç şarj operatörlerinin güncel fiyatlarını karşılaştırın
-          </p>
-          <PriceTable />
-        </div>
-      </section>
+      <PriceTable />
       <MapSection />
       <ChargingProviders />
     </main>
