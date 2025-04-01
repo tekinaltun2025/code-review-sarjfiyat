@@ -1,32 +1,37 @@
 
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
 import Campaigns from "./pages/Campaigns";
 import HomeChargers from "./pages/HomeChargers";
+import NotFound from "./pages/NotFound";
+import { Toaster } from "./components/ui/toaster";
+import Panel from "./components/Panel";
+import AboutPage from "./pages/AboutPage";
+import "./App.css";
 
-const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
+function App() {
+  return (
+    <Router>
+      <Routes>
+        {/* Normal site routes */}
+        <Route path="/" element={<Index />} />
+        <Route path="/kampanyalar" element={<Campaigns />} />
+        <Route path="/ev-sarj-cihazlari" element={<HomeChargers />} />
+        <Route path="/hakkimizda" element={<AboutPage />} />
+        
+        {/* Panel routes */}
+        <Route path="/panel" element={<Panel />}>
+          <Route index element={<Index />} />
+          <Route path="kampanyalar" element={<Campaigns />} />
+          <Route path="ev-sarj-cihazlari" element={<HomeChargers />} />
+          <Route path="hakkimizda" element={<AboutPage />} />
+        </Route>
+        
+        <Route path="*" element={<NotFound />} />
+      </Routes>
       <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/kampanyalar" element={<Campaigns />} />
-          <Route path="/ev-sarj-cihazlari" element={<HomeChargers />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+    </Router>
+  );
+}
 
 export default App;
