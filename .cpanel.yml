@@ -1,0 +1,4 @@
+deployment:
+  tasks:
+    - export DEPLOYMENT_PATH=/home2/sarjfiya/public_html/
+    - /bin/cp -R * $DEPLOYMENT_PATH
