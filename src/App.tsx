@@ -10,8 +10,11 @@ import AboutPage from "./pages/AboutPage";
 import "./App.css";
 
 function App() {
+  // URL'nin kök dizinine göre yapılandırma
+  const basename = '/'; // Eğer site bir alt klasörde çalışıyorsa, burayı değiştirin (örn: '/alt-klasor')
+  
   return (
-    <Router>
+    <Router basename={basename}>
       <Routes>
         {/* Normal site routes */}
         <Route path="/" element={<Index />} />
