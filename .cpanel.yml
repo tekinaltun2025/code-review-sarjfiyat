@@ -1,4 +1,7 @@
+
 deployment:
   tasks:
     - export DEPLOYMENT_PATH=/home2/sarjfiya/public_html/
     - /bin/cp -R * $DEPLOYMENT_PATH
+    - /bin/cp -R .htaccess $DEPLOYMENT_PATH
+    - echo "Deployment completed"
