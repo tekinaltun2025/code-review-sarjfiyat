@@ -16,3 +16,11 @@
   AddType text/javascript .js
   AddType text/javascript .mjs
 </IfModule>
+
+# Enable CORS if needed
+<IfModule mod_headers.c>
+  Header set Access-Control-Allow-Origin "*"
+</IfModule>
+
+# Set proper encoding
+AddDefaultCharset UTF-8

@@ -1,5 +1,5 @@
 
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Campaigns from "./pages/Campaigns";
 import HomeChargers from "./pages/HomeChargers";
@@ -10,8 +10,10 @@ import AboutPage from "./pages/AboutPage";
 import "./App.css";
 
 function App() {
-  // URL'nin kök dizinine göre yapılandırma
-  const basename = '/'; // Eğer site bir alt klasörde çalışıyorsa, burayı değiştirin (örn: '/alt-klasor')
+  // Doğru basename yapılandırması
+  // Site kök dizinde çalışıyorsa bu "/" olmalı
+  // Alt dizinde çalışıyorsa "/alt-dizin" şeklinde olmalı
+  const basename = '/'; 
   
   return (
     <Router basename={basename}>

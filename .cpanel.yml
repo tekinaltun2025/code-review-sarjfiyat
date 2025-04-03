@@ -4,4 +4,7 @@ deployment:
     - export DEPLOYMENT_PATH=/home2/sarjfiya/public_html/
     - /bin/cp -R * $DEPLOYMENT_PATH
     - /bin/cp -R .htaccess $DEPLOYMENT_PATH
+    - /bin/cp -R .env* $DEPLOYMENT_PATH 2>/dev/null || :
+    - /bin/find $DEPLOYMENT_PATH -type d -exec chmod 755 {} \;
+    - /bin/find $DEPLOYMENT_PATH -type f -exec chmod 644 {} \;
     - echo "Deployment completed"
