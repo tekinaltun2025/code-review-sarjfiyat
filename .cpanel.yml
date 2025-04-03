@@ -7,4 +7,5 @@ deployment:
     - /bin/cp -R .env* $DEPLOYMENT_PATH 2>/dev/null || :
     - /bin/find $DEPLOYMENT_PATH -type d -exec chmod 755 {} \;
     - /bin/find $DEPLOYMENT_PATH -type f -exec chmod 644 {} \;
-    - echo "Deployment completed"
+    - echo "Deployment completed successfully to $DEPLOYMENT_PATH"
+    - echo "Server time: $(date)"

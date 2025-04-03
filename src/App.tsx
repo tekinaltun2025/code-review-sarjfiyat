@@ -15,6 +15,8 @@ function App() {
   // Alt dizinde çalışıyorsa "/alt-dizin" şeklinde olmalı
   const basename = '/'; 
   
+  console.log("App bileşeni yükleniyor, basename:", basename);
+  
   return (
     <Router basename={basename}>
       <Routes>

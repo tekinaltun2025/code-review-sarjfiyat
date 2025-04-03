@@ -25,7 +25,10 @@ export default defineConfig(({ mode }) => ({
     },
   },
   plugins: [
-    react(),
+    react({
+      jsxImportSource: "react",
+      include: "**/*.tsx",
+    }),
     mode === 'development' &&
     componentTagger(),
   ].filter(Boolean),

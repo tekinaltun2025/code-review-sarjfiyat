@@ -20,7 +20,21 @@
 # Enable CORS if needed
 <IfModule mod_headers.c>
   Header set Access-Control-Allow-Origin "*"
+  # Add cache control for assets
+  <FilesMatch "\.(js|css|jpg|jpeg|png|gif|ico|svg|woff|woff2)$">
+    Header set Cache-Control "max-age=31536000, public"
+  </FilesMatch>
+  # But not for HTML files
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </FilesMatch>
 </IfModule>
 
 # Set proper encoding
 AddDefaultCharset UTF-8
+
+# Disable directory browsing
+Options -Indexes
+
+# Handle 404 errors
+ErrorDocument 404 /index.html
