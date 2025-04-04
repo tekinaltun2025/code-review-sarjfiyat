@@ -5,62 +5,22 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
 import SurveyStatCards from './SurveyStatCards';
 import SurveyTable from './SurveyTable';
+import { RefreshCw } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
-// Yedek veri (API başarısız olursa)
-const MOCK_SURVEY_STATS = [
-  {
-    provider_name: "Trugo",
-    average_rating: 4.5,
-    response_count: 12,
-    comments: [
-      "İstasyonları her zaman temiz ve bakımlı.",
-      "Fiyatları biraz yüksek ama hizmet kalitesi iyi."
-    ]
-  },
-  {
-    provider_name: "ZES",
-    average_rating: 4.2,
-    response_count: 18,
-    comments: [
-      "Uygulaması kullanışlı ve konum bilgileri doğru.",
-      "Bazen istasyonlarda ufak teknik sorunlar yaşanıyor."
-    ]
-  },
-  {
-    provider_name: "Eşarj",
-    average_rating: 3.8,
-    response_count: 15,
-    comments: [
-      "Genelde sorunsuz ama bazen şarj hızı beklenenden düşük.",
-      "Müşteri hizmetleri çok yardımcı oluyor."
-    ]
-  },
-  {
-    provider_name: "Sharz",
-    average_rating: 4.0,
-    response_count: 10,
-    comments: [
-      "Şarj istasyonları kolay bulunabilir konumlarda.",
-      "Uygulama arayüzü basit ve kullanışlı."
-    ]
-  },
-  {
-    provider_name: "Voltrun",
-    average_rating: 3.9,
-    response_count: 8,
-    comments: [
-      "Şarj hızı tatmin edici seviyede.",
-      "İstasyonların bakımı düzenli yapılıyor."
-    ]
-  }
-];
+// Veritabanı bilgileri - normalde .env veya başka güvenli bir yerden alınmalı
+const DB_INFO = {
+  db_name: "sarjfiyat_anket",
+  db_user: "sarjfiyat_user",
+  db_pass: "SF_2023!"
+};
 
 interface SurveyStatsProps {
   onRefresh?: () => void;
 }
 
 const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
-  const [surveyStats, setSurveyStats] = useState<Array<any>>([]); // Başlangıç değeri olarak boş dizi veriyoruz
+  const [surveyStats, setSurveyStats] = useState<Array<any>>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
@@ -69,22 +29,32 @@ const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
   useEffect(() => {
     console.log("SurveyStats bileşeni yükleniyor, veri çekme işlemi başlıyor...");
     fetchSurveyStats();
-  }, []); // onRefresh bağımlılığını kaldırdık, sadece ilk yüklemede çalışacak
+  }, []);
 
   const fetchSurveyStats = async () => {
     try {
       setLoading(true);
       setError(null);
       
-      console.log("Mock veri yükleme işlemi başlıyor...");
+      console.log("API'den anket istatistikleri alınıyor...");
       
-      // Gerçek bir API çağrısını simüle et ve biraz bekle
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const response = await fetch('/api/get-survey-stats.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(DB_INFO)
+      });
       
-      console.log("Mock veriler yükleniyor:", MOCK_SURVEY_STATS);
+      const result = await response.json();
       
-      // Mock verileri direkt olarak state'e ata
-      setSurveyStats(MOCK_SURVEY_STATS);
+      if (!result.success) {
+        throw new Error(result.message || "API'den veri alınamadı");
+      }
+      
+      console.log("API'den gelen veriler:", result.data);
+      
+      setSurveyStats(result.data || []);
       
       // onRefresh callback'i varsa çağır
       if (onRefresh) {
@@ -93,18 +63,24 @@ const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
     } catch (error) {
       console.error("Anket verileri alınırken hata:", error);
       
-      // Hata durumunda yedek veriyi kullan
-      setSurveyStats(MOCK_SURVEY_STATS);
-      setError("Anket verileri API'den yüklenirken bir hata oluştu. Örnek veriler gösteriliyor.");
+      setError("Anket verileri yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.");
       
       toast({
-        title: "API Hatası",
-        description: "Anket verileri yüklenirken bir hata oluştu. Örnek veriler gösteriliyor.",
+        title: "Veri Yükleme Hatası",
+        description: "Anket verileri yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.",
         variant: "destructive",
       });
     } finally {
       setLoading(false);
       console.log("Veri yükleme işlemi tamamlandı, loading:", false);
+    }
+  };
+
+  // Yeniden yükleme butonu için işleyici
+  const handleRefresh = () => {
+    fetchSurveyStats();
+    if (onRefresh) {
+      onRefresh();
     }
   };
 
@@ -129,6 +105,15 @@ const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
       <Alert variant="destructive" className="mb-6">
         <AlertTitle>Hata</AlertTitle>
         <AlertDescription>{error}</AlertDescription>
+        <Button 
+          variant="outline" 
+          className="mt-4" 
+          onClick={handleRefresh}
+          size="sm"
+        >
+          <RefreshCw className="h-4 w-4 mr-2" />
+          Yeniden Dene
+        </Button>
       </Alert>
     );
   }
@@ -138,7 +123,15 @@ const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
     console.log("Veri yok durumu, surveyStats:", surveyStats);
     return (
       <div className="bg-gray-50 rounded-lg p-8 text-center">
-        <p className="text-gray-600">Henüz değerlendirme bulunmamaktadır.</p>
+        <p className="text-gray-600 mb-4">Henüz değerlendirme bulunmamaktadır.</p>
+        <Button 
+          variant="outline" 
+          onClick={handleRefresh}
+          size="sm"
+        >
+          <RefreshCw className="h-4 w-4 mr-2" />
+          Yenile
+        </Button>
       </div>
     );
   }
@@ -147,6 +140,20 @@ const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
   console.log("Veriler başarıyla yüklendi, gösteriliyor:", surveyStats);
   return (
     <>
+      <div className="flex justify-between items-center mb-6">
+        <div className="text-sm text-gray-500">
+          Toplam {surveyStats.reduce((acc, curr) => acc + curr.response_count, 0)} değerlendirme
+        </div>
+        <Button 
+          variant="outline" 
+          onClick={handleRefresh}
+          size="sm"
+          className="flex items-center"
+        >
+          <RefreshCw className="h-4 w-4 mr-2" />
+          Yenile
+        </Button>
+      </div>
       <SurveyStatCards stats={surveyStats} />
       <SurveyTable stats={surveyStats} />
     </>

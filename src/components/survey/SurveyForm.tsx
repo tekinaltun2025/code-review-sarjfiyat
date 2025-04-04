@@ -12,6 +12,13 @@ import ProviderSelector from "./ProviderSelector";
 import RatingPicker from "./RatingPicker";
 import CommentField from "./CommentField";
 
+// Veritabanı bilgileri - normalde .env veya başka güvenli bir yerden alınmalı
+const DB_INFO = {
+  db_name: "sarjfiyat_anket",
+  db_user: "sarjfiyat_user",
+  db_pass: "SF_2023!"
+};
+
 interface SurveyFormProps {
   onSubmitted?: () => void;
 }
@@ -88,25 +95,31 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
     const providerName = providerObj ? providerObj.name : selectedProvider;
     
     const surveyData = {
+      ...DB_INFO,
       provider_id: selectedProvider,
       provider_name: providerName,
       rating: userRating,
       comment: data.comment
     };
     
-    console.log("Form gönderiliyor:", surveyData);
+    console.log("Anket gönderiliyor:", surveyData);
     
     try {
       setSubmitting(true);
       
-      // API isteği yerine simüle edilmiş başarılı yanıt kullanıyoruz
-      // PHP API'si düzelene kadar
-      await new Promise(resolve => setTimeout(resolve, 500)); // Ağ gecikmesi simülasyonu
+      const response = await fetch('/api/submit-survey.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(surveyData)
+      });
       
-      const result = {
-        success: true,
-        message: "Anket başarıyla kaydedildi."
-      };
+      const result = await response.json();
+      
+      if (!result.success) {
+        throw new Error(result.message || "Anket gönderilemedi");
+      }
       
       toast({
         title: "Anket Gönderildi",
