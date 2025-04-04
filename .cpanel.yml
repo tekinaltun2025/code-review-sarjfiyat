@@ -2,7 +2,7 @@
 deployment:
   tasks:
     - export DEPLOYMENT_PATH=/home2/sarjfiya/public_html/
-    - /bin/cp -R * $DEPLOYMENT_PATH
+    - /bin/cp -R dist/* $DEPLOYMENT_PATH
     - /bin/cp -R .htaccess $DEPLOYMENT_PATH
     - /bin/cp -R .env* $DEPLOYMENT_PATH 2>/dev/null || :
     - /bin/find $DEPLOYMENT_PATH -type d -exec chmod 755 {} \;
