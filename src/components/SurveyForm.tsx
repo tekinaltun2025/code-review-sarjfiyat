@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -7,46 +7,32 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { Star } from "lucide-react";
-
-// Define survey providers with their ratings
-interface Provider {
-  id: string;
-  name: string;
-  logo: string;
-  rating: number;
-}
-
-const providers: Provider[] = [
-  {
-    id: "trugo",
-    name: "Trugo",
-    logo: "/lovable-uploads/4e883d70-0fb2-41c7-9bc4-f51d94c026ef.png",
-    rating: 5.0
-  },
-  {
-    id: "zes",
-    name: "ZES",
-    logo: "/lovable-uploads/6e47365f-9335-4024-9da3-18b00c4ce94b.png",
-    rating: 4.2
-  },
-  {
-    id: "beefull",
-    name: "Beefull",
-    logo: "/lovable-uploads/cc0015aa-72d6-4e18-bc05-8c7486d57eb7.png",
-    rating: 2.5
-  },
-  {
-    id: "esarj",
-    name: "Eşarj",
-    logo: "/lovable-uploads/fb66fe81-1208-4c6d-a276-363ee14ce4b9.png",
-    rating: 4.9
-  }
-];
+import { fetchProviderData } from "@/services/googleSheetsService";
+import { Provider } from "@/data/types/provider.types";
 
 const SurveyForm = () => {
+  const [providers, setProviders] = useState<Provider[]>([]);
   const [selectedProvider, setSelectedProvider] = useState<string>("");
   const [userRating, setUserRating] = useState<number>(0);
   const [hoveredRating, setHoveredRating] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(true);
+  
+  useEffect(() => {
+    // Fetch providers data when component mounts
+    const loadProviders = async () => {
+      try {
+        setLoading(true);
+        const data = await fetchProviderData();
+        setProviders(data);
+      } catch (error) {
+        console.error("Failed to load providers:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    loadProviders();
+  }, []);
   
   const form = useForm({
     defaultValues: {
@@ -92,6 +78,34 @@ const SurveyForm = () => {
     setSelectedProvider("");
     setUserRating(0);
   };
+
+  // Sample provider ratings (we'd use real data in a production app)
+  const providerRatings = [
+    {
+      id: "trugo",
+      name: "Trugo",
+      logo: "/lovable-uploads/4e883d70-0fb2-41c7-9bc4-f51d94c026ef.png",
+      rating: 5.0
+    },
+    {
+      id: "zes",
+      name: "ZES",
+      logo: "/lovable-uploads/6e47365f-9335-4024-9da3-18b00c4ce94b.png",
+      rating: 4.2
+    },
+    {
+      id: "beefull",
+      name: "Beefull",
+      logo: "/lovable-uploads/cc0015aa-72d6-4e18-bc05-8c7486d57eb7.png",
+      rating: 2.5
+    },
+    {
+      id: "esarj",
+      name: "Eşarj",
+      logo: "/lovable-uploads/fb66fe81-1208-4c6d-a276-363ee14ce4b9.png",
+      rating: 4.9
+    }
+  ];
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -156,19 +170,23 @@ const SurveyForm = () => {
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Şarj operatörü seçin" />
                     </SelectTrigger>
-                    <SelectContent>
-                      {providers.map((provider) => (
-                        <SelectItem key={provider.id} value={provider.id}>
-                          <div className="flex items-center gap-2">
-                            <img 
-                              src={provider.logo} 
-                              alt={provider.name} 
-                              className="h-6 w-6 object-contain"
-                            />
-                            <span>{provider.name}</span>
-                          </div>
-                        </SelectItem>
-                      ))}
+                    <SelectContent className="max-h-80 overflow-y-auto">
+                      {loading ? (
+                        <SelectItem value="loading" disabled>Yükleniyor...</SelectItem>
+                      ) : (
+                        providers.map((provider) => (
+                          <SelectItem key={provider.id} value={provider.id}>
+                            <div className="flex items-center gap-2">
+                              <img 
+                                src={provider.logo} 
+                                alt={provider.name} 
+                                className="h-6 w-6 object-contain"
+                              />
+                              <span>{provider.name}</span>
+                            </div>
+                          </SelectItem>
+                        ))
+                      )}
                     </SelectContent>
                   </Select>
                 </div>
@@ -246,7 +264,7 @@ const SurveyForm = () => {
           </div>
           
           <div className="space-y-4">
-            {providers.map((provider) => (
+            {providerRatings.map((provider) => (
               <div key={provider.id} className="bg-white rounded-md shadow-sm p-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
