@@ -250,18 +250,7 @@ const SurveyForm = () => {
         <div className="bg-gray-50 rounded-lg p-6">
           <h2 className="text-xl font-bold mb-6">Şarj Operatörü Değerlendirmeleri</h2>
           
-          <div className="mb-6 grid grid-cols-2 gap-4">
-            <div className="bg-white p-4 rounded-md shadow-sm text-center">
-              <h3 className="font-medium mb-2">Yıldız Ortalaması</h3>
-              <div className="flex justify-center">
-                {renderStars(5)}
-              </div>
-            </div>
-            <div className="bg-white p-4 rounded-md shadow-sm text-center">
-              <h3 className="font-medium mb-2">Not Ortalaması</h3>
-              <span className="text-2xl font-bold">4.2</span>
-            </div>
-          </div>
+          {/* Removed the rating summary section that was here */}
           
           <div className="space-y-4">
             {providerRatings.map((provider) => (
