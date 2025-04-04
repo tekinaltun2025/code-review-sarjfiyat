@@ -22,6 +22,10 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
   const [userRating, setUserRating] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   const [submitting, setSubmitting] = useState<boolean>(false);
+  const [validationErrors, setValidationErrors] = useState<{
+    provider?: string;
+    rating?: string;
+  }>({});
   const { toast } = useToast();
   
   useEffect(() => {
@@ -51,13 +55,34 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
 
   const handleProviderChange = (value: string) => {
     setSelectedProvider(value);
+    setValidationErrors(prev => ({ ...prev, provider: undefined }));
   };
   
   const handleRatingChange = (rating: number) => {
     setUserRating(rating);
+    setValidationErrors(prev => ({ ...prev, rating: undefined }));
+  };
+
+  const validateForm = () => {
+    const errors: { provider?: string; rating?: string } = {};
+    
+    if (!selectedProvider) {
+      errors.provider = "Lütfen bir şarj operatörü seçin";
+    }
+    
+    if (userRating === 0) {
+      errors.rating = "Lütfen bir puan verin";
+    }
+    
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
   };
 
   const onSubmit = async (data: any) => {
+    if (!validateForm()) {
+      return;
+    }
+    
     // Get provider name from the id
     const providerObj = providers.find(p => p.id === selectedProvider);
     const providerName = providerObj ? providerObj.name : selectedProvider;
@@ -104,6 +129,7 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
         form.reset();
         setSelectedProvider("");
         setUserRating(0);
+        setValidationErrors({});
         
         // Refresh survey stats if callback is provided
         if (onSubmitted) {
@@ -141,22 +167,29 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
                   providers={providers} 
                   loading={loading} 
                   selectedProvider={selectedProvider} 
-                  onProviderChange={handleProviderChange} 
+                  onProviderChange={handleProviderChange}
+                  error={validationErrors.provider}
+                  required
                 />
 
                 {/* Star Rating */}
                 <RatingPicker 
                   userRating={userRating} 
                   onRatingChange={handleRatingChange} 
+                  error={validationErrors.rating}
+                  required
                 />
 
                 {/* Comment */}
-                <CommentField control={form.control} />
+                <CommentField 
+                  control={form.control} 
+                  maxLength={500}
+                />
 
                 <Button 
                   type="submit" 
                   className="w-full bg-blue-600 hover:bg-blue-700"
-                  disabled={submitting || userRating === 0 || selectedProvider === ""}
+                  disabled={submitting}
                 >
                   {submitting ? "Gönderiliyor..." : "Anketi Gönder"}
                 </Button>
