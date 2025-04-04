@@ -34,6 +34,9 @@ const Header = () => {
           <Link to="/ev-sarj-cihazlari" className="text-gray-800 hover:text-teal-500 transition-colors">
             Ev Şarj Cihazları
           </Link>
+          <Link to="/anket" className="text-gray-800 hover:text-teal-500 transition-colors">
+            Anket
+          </Link>
           <Link to="/hakkimizda" className="text-gray-800 hover:text-teal-500 transition-colors">
             Hakkımızda
           </Link>
@@ -83,6 +86,13 @@ const Header = () => {
               onClick={() => setMenuOpen(false)}
             >
               Ev Şarj Cihazları
+            </Link>
+            <Link 
+              to="/anket" 
+              className="text-gray-800 hover:text-teal-500 transition-colors"
+              onClick={() => setMenuOpen(false)}
+            >
+              Anket
             </Link>
             <Link 
               to="/hakkimizda" 

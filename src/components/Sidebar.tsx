@@ -6,6 +6,7 @@ import {
   Zap, 
   Info, 
   Map,
+  Star,
   ChevronRight 
 } from "lucide-react";
 
@@ -17,6 +18,7 @@ const Sidebar = () => {
     { name: "Şarj Ağları", path: "/panel/sarj-aglari", icon: <Map className="w-5 h-5" /> },
     { name: "Kampanyalar", path: "/panel/kampanyalar", icon: <Tag className="w-5 h-5" /> },
     { name: "Ev Şarj Cihazları", path: "/panel/ev-sarj-cihazlari", icon: <Zap className="w-5 h-5" /> },
+    { name: "Anket", path: "/panel/anket", icon: <Star className="w-5 h-5" /> },
     { name: "Hakkımızda", path: "/panel/hakkimizda", icon: <Info className="w-5 h-5" /> },
   ];
 
