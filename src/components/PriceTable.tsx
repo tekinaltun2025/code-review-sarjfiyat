@@ -13,6 +13,7 @@ import { useToast } from "@/components/ui/use-toast";
 import PriceTableHeader from "./price-table/PriceTableHeader";
 import PriceTableRow from "./price-table/PriceTableRow";
 import PriceTableInfoFooter from "./price-table/PriceTableInfoFooter";
+import PriceTableFilters from "./price-table/PriceTableFilters";
 import { fetchProviderData } from "@/services/googleSheetsService";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
@@ -29,6 +30,12 @@ const PriceTable = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [error, setError] = useState<string | null>(null);
+  
+  // Filter states
+  const [nameFilter, setNameFilter] = useState("");
+  const [acPriceFilter, setAcPriceFilter] = useState("all");
+  const [dcPriceFilter, setDcPriceFilter] = useState("all");
+  
   const { toast } = useToast();
   
   const loadData = async () => {
@@ -74,13 +81,47 @@ const PriceTable = () => {
     }
   };
   
+  // Filter providers based on the current filter settings
+  const getFilteredProviders = () => {
+    return localProviders.filter(provider => {
+      // Name filter
+      const nameMatch = provider.name.toLowerCase().includes(nameFilter.toLowerCase());
+      
+      // AC Price filter
+      let acPriceMatch = true;
+      if (acPriceFilter !== "all") {
+        const [minAc, maxAc] = acPriceFilter.split("-");
+        if (maxAc) {
+          acPriceMatch = provider.acPrice >= parseFloat(minAc) && provider.acPrice < parseFloat(maxAc);
+        } else {
+          // Handle "15+" case
+          acPriceMatch = provider.acPrice >= parseFloat(minAc.replace("+", ""));
+        }
+      }
+      
+      // DC Price filter
+      let dcPriceMatch = true;
+      if (dcPriceFilter !== "all") {
+        const [minDc, maxDc] = dcPriceFilter.split("-");
+        if (maxDc) {
+          dcPriceMatch = provider.dcPrice >= parseFloat(minDc) && provider.dcPrice < parseFloat(maxDc);
+        } else {
+          // Handle "15+" case
+          dcPriceMatch = provider.dcPrice >= parseFloat(minDc.replace("+", ""));
+        }
+      }
+      
+      return nameMatch && acPriceMatch && dcPriceMatch;
+    });
+  };
+  
   // Sort the providers based on current sort settings
   const getSortedProviders = () => {
-    // Start with a copy of the providers to avoid mutating the original
-    const allSortedProviders = [...localProviders];
+    // Get filtered providers first
+    const filteredProviders = getFilteredProviders();
     
     // Sort by the selected price (only non-priority providers)
-    return allSortedProviders.sort((a, b) => {
+    return filteredProviders.sort((a, b) => {
       // Check if both providers are priority providers
       const aIsPriority = priorityProviderIds.includes(a.id);
       const bIsPriority = priorityProviderIds.includes(b.id);
@@ -106,6 +147,7 @@ const PriceTable = () => {
   };
 
   const sortedProviders = getSortedProviders();
+  const filteredAndSortedProviders = sortedProviders;
 
   return (
     <section id="price-comparison" className="py-12 bg-gray-50">
@@ -153,30 +195,47 @@ const PriceTable = () => {
               <p>Veri yüklenemedi</p>
             </div>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <PriceTableHeader 
-                  sortBy={sortBy} 
-                  handleSort={handleSort} 
-                  getSortIcon={(key) => {
-                    if (sortBy !== key) return null;
-                    return sortOrder === 'asc' ? 
-                      <ArrowUp className="inline h-4 w-4 ml-1" /> : 
-                      <ArrowDown className="inline h-4 w-4 ml-1" />;
-                  }}
+            <div>
+              <div className="p-4 border-b border-gray-100">
+                <PriceTableFilters 
+                  onNameFilterChange={setNameFilter}
+                  onAcPriceFilterChange={setAcPriceFilter}
+                  onDcPriceFilterChange={setDcPriceFilter}
                 />
-                <tbody className="divide-y divide-gray-200">
-                  {sortedProviders.map((provider: Provider, index: number) => (
-                    <PriceTableRow
-                      key={provider.id}
-                      provider={provider}
-                      index={index}
-                      sortBy={sortBy}
-                      dividerIndex={priorityProviderIds.length}
-                    />
-                  ))}
-                </tbody>
-              </table>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <PriceTableHeader 
+                    sortBy={sortBy} 
+                    handleSort={handleSort} 
+                    getSortIcon={(key) => {
+                      if (sortBy !== key) return null;
+                      return sortOrder === 'asc' ? 
+                        <ArrowUp className="inline h-4 w-4 ml-1" /> : 
+                        <ArrowDown className="inline h-4 w-4 ml-1" />;
+                    }}
+                  />
+                  <tbody className="divide-y divide-gray-200">
+                    {filteredAndSortedProviders.length > 0 ? (
+                      filteredAndSortedProviders.map((provider: Provider, index: number) => (
+                        <PriceTableRow
+                          key={provider.id}
+                          provider={provider}
+                          index={index}
+                          sortBy={sortBy}
+                          dividerIndex={priorityProviderIds.length}
+                        />
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan={6} className="px-6 py-8 text-center text-gray-500">
+                          Arama kriterlerinize uygun operatör bulunamadı.
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
             </div>
           )}
         </div>
