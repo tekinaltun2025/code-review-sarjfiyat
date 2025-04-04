@@ -1,8 +1,7 @@
 
 <?php
+// Set headers first before any output
 header('Content-Type: application/json');
-
-// Allow CORS
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
@@ -89,4 +88,3 @@ try {
 } catch (Exception $e) {
     echo json_encode(['success' => false, 'message' => $e->getMessage()]);
 }
-?>

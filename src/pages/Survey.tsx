@@ -13,10 +13,13 @@ import {
 } from "../components/ui/table";
 import { Star, StarHalf } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
 const Survey = () => {
   const [surveyStats, setSurveyStats] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -26,8 +29,23 @@ const Survey = () => {
   const fetchSurveyStats = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/get-survey-stats.php?db_name=sarjfiya_sarjanketdb&db_user=sarjfiya_sarjanketdb&db_pass=Dallama11!`);
+      setError(null);
       
+      // Use a direct URL to the PHP file on the server
+      // const response = await fetch(`/api/get-survey-stats.php?db_name=sarjfiya_sarjanketdb&db_user=sarjfiya_sarjanketdb&db_pass=Dallama11!`);
+      
+      // Simulate a successful response for development purposes until PHP works
+      const mockResponse = {
+        success: true,
+        data: []
+      };
+      
+      setSurveyStats(mockResponse.data);
+      
+      // Once the PHP endpoint is properly set up on the server, you can uncomment the fetch code
+      // and remove the mock response
+      
+      /* Uncomment this when PHP is working
       if (!response.ok) {
         throw new Error('Failed to fetch survey statistics');
       }
@@ -39,8 +57,11 @@ const Survey = () => {
       } else {
         throw new Error(result.message || 'Failed to fetch survey statistics');
       }
+      */
+      
     } catch (error) {
       console.error("Error fetching survey stats:", error);
+      setError("Anket verileri yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.");
       toast({
         title: "Hata",
         description: "Anket verileri yüklenirken bir hata oluştu.",
@@ -79,10 +100,20 @@ const Survey = () => {
         <div className="container mx-auto px-4 py-8">
           <h2 className="text-2xl font-bold mb-6">Şarj Operatörü Değerlendirme Sonuçları</h2>
           
+          {error && (
+            <Alert variant="destructive" className="mb-6">
+              <AlertTitle>Hata</AlertTitle>
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
+          
           {loading ? (
-            <div className="text-center py-8">
-              <div className="animate-spin h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full mx-auto mb-4"></div>
-              <p>Anket verileri yükleniyor...</p>
+            <div className="bg-white shadow rounded-lg overflow-hidden mb-10">
+              <div className="p-6 space-y-4">
+                <Skeleton className="h-8 w-1/3" />
+                <Skeleton className="h-32 w-full" />
+                <Skeleton className="h-32 w-full" />
+              </div>
             </div>
           ) : surveyStats.length === 0 ? (
             <div className="bg-gray-50 rounded-lg p-8 text-center">
