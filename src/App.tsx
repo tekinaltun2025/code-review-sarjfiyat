@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound";
 import { Toaster } from "./components/ui/toaster";
 import Panel from "./components/Panel";
 import AboutPage from "./pages/AboutPage";
+import SarjAglari from "./pages/SarjAglari";
 import "./App.css";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/" element={<Index />} />
         <Route path="/kampanyalar" element={<Campaigns />} />
         <Route path="/ev-sarj-cihazlari" element={<HomeChargers />} />
+        <Route path="/sarj-aglari" element={<SarjAglari />} />
         <Route path="/hakkimizda" element={<AboutPage />} />
         
         {/* Panel routes */}
@@ -31,6 +33,7 @@ function App() {
           <Route index element={<Index />} />
           <Route path="kampanyalar" element={<Campaigns />} />
           <Route path="ev-sarj-cihazlari" element={<HomeChargers />} />
+          <Route path="sarj-aglari" element={<SarjAglari />} />
           <Route path="hakkimizda" element={<AboutPage />} />
         </Route>
         

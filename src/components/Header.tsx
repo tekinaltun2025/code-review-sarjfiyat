@@ -25,7 +25,7 @@ const Header = () => {
           <Link to="/" className="text-gray-800 hover:text-teal-500 transition-colors">
             Ana Sayfa
           </Link>
-          <Link to="/" className="text-gray-800 hover:text-teal-500 transition-colors">
+          <Link to="/sarj-aglari" className="text-gray-800 hover:text-teal-500 transition-colors">
             Şarj Ağları
           </Link>
           <Link to="/kampanyalar" className="text-gray-800 hover:text-teal-500 transition-colors">
@@ -34,7 +34,7 @@ const Header = () => {
           <Link to="/ev-sarj-cihazlari" className="text-gray-800 hover:text-teal-500 transition-colors">
             Ev Şarj Cihazları
           </Link>
-          <Link to="/" className="text-gray-800 hover:text-teal-500 transition-colors">
+          <Link to="/hakkimizda" className="text-gray-800 hover:text-teal-500 transition-colors">
             Hakkımızda
           </Link>
         </nav>
@@ -64,7 +64,7 @@ const Header = () => {
               Ana Sayfa
             </Link>
             <Link 
-              to="/" 
+              to="/sarj-aglari" 
               className="text-gray-800 hover:text-teal-500 transition-colors"
               onClick={() => setMenuOpen(false)}
             >
@@ -85,7 +85,7 @@ const Header = () => {
               Ev Şarj Cihazları
             </Link>
             <Link 
-              to="/" 
+              to="/hakkimizda" 
               className="text-gray-800 hover:text-teal-500 transition-colors"
               onClick={() => setMenuOpen(false)}
             >
