@@ -1,5 +1,5 @@
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import Campaigns from "./pages/Campaigns";
 import HomeChargers from "./pages/HomeChargers";
@@ -32,7 +32,8 @@ function App() {
         
         {/* Panel routes */}
         <Route path="/panel" element={<Panel />}>
-          <Route index element={<Index />} />
+          <Route index element={<Navigate to="/panel/anasayfa" replace />} />
+          <Route path="anasayfa" element={<Index />} />
           <Route path="kampanyalar" element={<Campaigns />} />
           <Route path="ev-sarj-cihazlari" element={<HomeChargers />} />
           <Route path="sarj-aglari" element={<SarjAglari />} />

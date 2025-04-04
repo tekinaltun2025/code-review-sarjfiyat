@@ -66,7 +66,9 @@ const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
   const { toast } = useToast();
 
   useEffect(() => {
+    // Component mount edildiğinde veya key değiştiğinde istatistikleri yükle
     fetchSurveyStats();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchSurveyStats = async () => {
@@ -77,6 +79,7 @@ const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
       // API'den veri almak yerine mock veriyi kullan
       // PHP API hataları düzelene kadar
       console.log("Mock veriler kullanılıyor");
+      await new Promise(resolve => setTimeout(resolve, 500)); // Gerçek bir API çağrısını simüle et
       setSurveyStats(MOCK_SURVEY_STATS);
       
       if (onRefresh) {

@@ -14,7 +14,7 @@ const Sidebar = () => {
   const location = useLocation();
   
   const menuItems = [
-    { name: "Ana Sayfa", path: "/panel", icon: <Home className="w-5 h-5" /> },
+    { name: "Ana Sayfa", path: "/panel/anasayfa", icon: <Home className="w-5 h-5" /> },
     { name: "Şarj Ağları", path: "/panel/sarj-aglari", icon: <Map className="w-5 h-5" /> },
     { name: "Kampanyalar", path: "/panel/kampanyalar", icon: <Tag className="w-5 h-5" /> },
     { name: "Ev Şarj Cihazları", path: "/panel/ev-sarj-cihazlari", icon: <Zap className="w-5 h-5" /> },
