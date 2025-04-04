@@ -6,7 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import SurveyStatCards from './SurveyStatCards';
 import SurveyTable from './SurveyTable';
 
-// Fallback mock data in case API fails
+// Yedek veri (API başarısız olursa)
 const MOCK_SURVEY_STATS = [
   {
     provider_name: "Trugo",
@@ -74,33 +74,33 @@ const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
       setLoading(true);
       setError(null);
       
-      // Database connection parameters (these would ideally be handled securely on backend)
+      // Veritabanı bağlantı parametreleri (normalde bu işlem backend tarafında güvenli bir şekilde yönetilir)
       const params = {
         db_name: "evfix_survey",
         db_user: "evfix_survey_user",
         db_pass: "survey_password_2025"
       };
       
-      // Make a real API call to get survey statistics
-      const response = await fetch('/api/get-survey-stats.php', {
-        method: 'POST',
+      // GET metodu kullanarak API'ye istek gönder (PHP dosyası GET bekliyor)
+      const queryString = new URLSearchParams(params).toString();
+      const response = await fetch(`/api/get-survey-stats.php?${queryString}`, {
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(params),
+        }
       });
       
       if (!response.ok) {
-        throw new Error(`API returned status code ${response.status}`);
+        throw new Error(`API ${response.status} hata kodu döndürdü`);
       }
       
       const data = await response.json();
       
-      if (data.success && data.stats) {
-        setSurveyStats(data.stats);
+      if (data.success && data.data) {
+        setSurveyStats(data.data);
       } else {
-        // If no data or error, fall back to mock data
-        console.warn("API returned no data, using mock data");
+        // Eğer veri yoksa veya hata varsa, yedek veriyi kullan
+        console.warn("API veri döndürmedi, yedek veriler kullanılıyor");
         setSurveyStats(MOCK_SURVEY_STATS);
       }
       
@@ -108,8 +108,8 @@ const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
         onRefresh();
       }
     } catch (error) {
-      console.error("Error fetching survey stats:", error);
-      // Fall back to mock data on error
+      console.error("Anket verileri alınırken hata:", error);
+      // Hata durumunda yedek veriyi kullan
       setSurveyStats(MOCK_SURVEY_STATS);
       setError("Anket verileri API'den yüklenirken bir hata oluştu. Örnek veriler gösteriliyor.");
       toast({

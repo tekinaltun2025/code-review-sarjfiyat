@@ -3,7 +3,7 @@
 // Set headers first before any output
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, OPTIONS');
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
 // Handle preflight OPTIONS request
@@ -12,41 +12,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-// Only accept GET requests
-if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
-    echo json_encode(['success' => false, 'message' => 'Only GET method is allowed']);
+// Parametreleri al (GET veya POST metodu için destek sağla)
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $db_name = $_GET['db_name'] ?? '';
+    $db_user = $_GET['db_user'] ?? '';
+    $db_pass = $_GET['db_pass'] ?? '';
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $postData = json_decode(file_get_contents('php://input'), true);
+    $db_name = $postData['db_name'] ?? '';
+    $db_user = $postData['db_user'] ?? '';
+    $db_pass = $postData['db_pass'] ?? '';
+} else {
+    echo json_encode(['success' => false, 'message' => 'Sadece GET veya POST metodu kabul edilir']);
     exit();
 }
 
-// Get database credentials from query parameters
-$db_name = $_GET['db_name'] ?? '';
-$db_user = $_GET['db_user'] ?? '';
-$db_pass = $_GET['db_pass'] ?? '';
-
-// Validate database credentials
+// Veritabanı bilgilerini doğrula
 if (empty($db_name) || empty($db_user) || empty($db_pass)) {
-    echo json_encode(['success' => false, 'message' => 'Database credentials are required']);
+    echo json_encode(['success' => false, 'message' => 'Veritabanı bilgileri gereklidir']);
     exit();
 }
 
 try {
-    // Connect to the database
+    // Veritabanına bağlan
     $conn = new mysqli('localhost', $db_user, $db_pass, $db_name);
 
-    // Check connection
+    // Bağlantıyı kontrol et
     if ($conn->connect_error) {
-        throw new Exception("Connection failed: " . $conn->connect_error);
+        throw new Exception("Bağlantı hatası: " . $conn->connect_error);
     }
     
-    // Check if table exists
+    // Tablo var mı kontrol et
     $tableExists = $conn->query("SHOW TABLES LIKE 'survey_responses'");
     if ($tableExists->num_rows == 0) {
-        // Return empty data if table doesn't exist
+        // Tablo yoksa boş veri döndür
         echo json_encode(['success' => true, 'data' => []]);
         exit();
     }
     
-    // Query to get average ratings by provider
+    // Operatörlere göre ortalama puanları sorgula
     $sql = "SELECT 
                 provider_id, 
                 provider_name, 
@@ -60,12 +64,12 @@ try {
     $result = $conn->query($sql);
     
     if (!$result) {
-        throw new Exception("Error executing query: " . $conn->error);
+        throw new Exception("Sorgu çalıştırılırken hata: " . $conn->error);
     }
     
     $data = [];
     while ($row = $result->fetch_assoc()) {
-        // Format the comments array
+        // Yorumları düzenle
         $comments = explode('|||', $row['comments']);
         $filteredComments = array_filter($comments, function($comment) {
             return !empty(trim($comment));
@@ -82,9 +86,10 @@ try {
     
     echo json_encode(['success' => true, 'data' => $data]);
     
-    // Close connection
+    // Bağlantıyı kapat
     $conn->close();
     
 } catch (Exception $e) {
     echo json_encode(['success' => false, 'message' => $e->getMessage()]);
 }
+?>

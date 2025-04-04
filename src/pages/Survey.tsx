@@ -7,15 +7,15 @@ import SurveyStats from "../components/survey/SurveyStats";
 
 const Survey = () => {
   const refreshStats = () => {
-    console.log("Refreshing survey stats after new submission");
-    // This function is passed to SurveyStats and will be called when needed
+    console.log("Yeni gönderim sonrası anket istatistikleri yenileniyor");
+    // Bu fonksiyon SurveyStats'a iletilir ve gerektiğinde çağrılır
   };
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow">
-        {/* Survey Results Section */}
+        {/* Anket Sonuçları Bölümü */}
         <div className="container mx-auto px-4 py-8">
           <h2 className="text-2xl font-bold mb-6">Şarj Operatörü Değerlendirme Sonuçları</h2>
           <SurveyStats onRefresh={refreshStats} />

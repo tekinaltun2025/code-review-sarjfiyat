@@ -92,19 +92,19 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
       provider_name: providerName,
       rating: userRating,
       comment: data.comment,
-      // Database credentials would typically be handled securely on the backend
-      // These are included here for demonstration purposes
+      // Normalde veritabanı bilgileri backend'de güvenli bir şekilde tutulmalıdır
+      // Burada sadece örnek amaçlı eklenmiştir
       db_name: "evfix_survey",
       db_user: "evfix_survey_user",
       db_pass: "survey_password_2025"
     };
     
-    console.log("Submitting survey data to API:", surveyData);
+    console.log("API'ye anket verisi gönderiliyor:", surveyData);
     
     try {
       setSubmitting(true);
       
-      // Make the actual API call to the PHP endpoint
+      // PHP dosyasına POST isteği gönder
       const response = await fetch('/api/submit-survey.php', {
         method: 'POST',
         headers: {
@@ -113,11 +113,19 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
         body: JSON.stringify(surveyData),
       });
       
-      if (!response.ok) {
-        throw new Error(`API returned status code ${response.status}`);
-      }
+      // API yanıtını JSON olarak parse et
+      // PHP kodunu görebildiğimiz için, burada sunucudan plain text 
+      // olarak dönen php dosyasını değil JSON cevabını parse etmeliyiz
+      const resultText = await response.text();
+      let result;
       
-      const result = await response.json();
+      try {
+        // PHP kaynak kodunu değil, çalıştırıldığında üretilen JSON çıktıyı almaya çalışalım
+        result = JSON.parse(resultText);
+      } catch (e) {
+        console.error("API yanıtı geçerli bir JSON değil:", resultText);
+        throw new Error("API yanıtı işlenemedi");
+      }
       
       if (result.success) {
         toast({
@@ -125,13 +133,13 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
           description: "Değerlendirmeniz için teşekkür ederiz!",
         });
         
-        // Reset form after submission
+        // Form'u sıfırla
         form.reset();
         setSelectedProvider("");
         setUserRating(0);
         setValidationErrors({});
         
-        // Refresh survey stats if callback is provided
+        // İstatistikleri yenile
         if (onSubmitted) {
           onSubmitted();
         }
@@ -139,7 +147,7 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
         throw new Error(result.message || 'Bir hata oluştu');
       }
     } catch (error) {
-      console.error("Failed to submit survey:", error);
+      console.error("Anket gönderilirken hata:", error);
       toast({
         title: "Hata",
         description: "Anket gönderilirken bir hata oluştu. Lütfen tekrar deneyin.",
