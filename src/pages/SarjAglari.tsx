@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import MapSection from '../components/MapSection';
 import Footer from '../components/Footer';
-import { Map, MapPin } from "lucide-react";
+import { Map } from "lucide-react";
 
 const SarjAglari = () => {
   const location = useLocation();
@@ -17,17 +17,9 @@ const SarjAglari = () => {
           <h1 className="text-3xl font-bold text-gray-900 mb-3 flex items-center">
             <Map className="mr-2 text-teal-500" /> Şarj Ağları
           </h1>
-          <p className="text-lg text-gray-600">
-            Türkiye genelindeki elektrikli araç şarj istasyonlarını keşfedin.
-          </p>
         </div>
         
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-            <MapPin className="mr-2 text-teal-500" /> Şarj İstasyonları Haritası
-          </h2>
-          <MapSection />
-        </div>
+        <MapSection />
       </div>
     </main>
   );
