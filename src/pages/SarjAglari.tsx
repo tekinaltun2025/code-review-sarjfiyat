@@ -5,8 +5,7 @@ import Header from '../components/Header';
 import MapSection from '../components/MapSection';
 import ChargingProviders from '../components/ChargingProviders';
 import Footer from '../components/Footer';
-import { Card, CardContent } from "@/components/ui/card";
-import { Map, MapPin, Info } from "lucide-react";
+import { Map, MapPin } from "lucide-react";
 
 const SarjAglari = () => {
   const location = useLocation();
@@ -23,21 +22,6 @@ const SarjAglari = () => {
             Türkiye genelindeki elektrikli araç şarj istasyonlarını keşfedin.
           </p>
         </div>
-        
-        <Card className="mb-8 border-teal-100">
-          <CardContent className="p-6">
-            <div className="flex items-start space-x-4 mb-4">
-              <Info className="text-amber-500 mt-1 flex-shrink-0" />
-              <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-1">İstasyon Arama İpuçları</h3>
-                <p className="text-gray-600">
-                  Haritada konumları görebilir, yakındaki istasyonları bulabilir ve 
-                  farklı operatörlerin kapsamını karşılaştırabilirsiniz.
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
         
         <div className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
