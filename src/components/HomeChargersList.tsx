@@ -103,6 +103,41 @@ const HomeChargersList = () => {
 
   return (
     <div className="container mx-auto px-4 py-12">
+      {/* Öne Çıkan Ürün - Khons Şarj Cihazı */}
+      <div className="mb-12 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl overflow-hidden shadow-lg">
+        <div className="p-6 md:p-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-blue-700 mb-4">Öne Çıkan Ürün: KHONS Tip 2 Şarj Cihazı</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+              <img 
+                src="/lovable-uploads/b9b1761f-720e-4a94-9519-7fc17998b6b0.png" 
+                alt="KHONS 22kW 32A Type 2 Ev Şarj Cihazı" 
+                className="w-full h-auto rounded-lg shadow-md"
+              />
+            </div>
+            <div>
+              <div className="space-y-4">
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="secondary" className="bg-blue-100 text-blue-700 hover:bg-blue-200">22kW Güç</Badge>
+                  <Badge variant="secondary" className="bg-blue-100 text-blue-700 hover:bg-blue-200">32A Akım</Badge>
+                  <Badge variant="secondary" className="bg-blue-100 text-blue-700 hover:bg-blue-200">Tip 2 Konnektör</Badge>
+                  <Badge variant="secondary" className="bg-blue-100 text-blue-700 hover:bg-blue-200">IP65 Koruma</Badge>
+                  <Badge variant="secondary" className="bg-blue-100 text-blue-700 hover:bg-blue-200">CE Sertifikalı</Badge>
+                </div>
+                <p className="text-gray-700 text-lg">
+                  6A-32A ayarlanabilir akım, 3 fazlı 22kW yüksek güçlü şarj imkanı sunan bu cihaz, tüm elektrikli araçlarla uyumludur. 
+                  5 metre TPU kablo, depolama çantası ile birlikte gelir. LCD ekranı ile kullanım kolaylığı sağlar.
+                </p>
+                <div className="flex items-center">
+                  <span className="text-2xl font-bold text-blue-700 mr-4">27.900 ₺</span>
+                  <Button className="bg-blue-600 hover:bg-blue-700">Detayları Gör</Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="mb-8 bg-gray-50 p-6 rounded-lg shadow-sm">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
