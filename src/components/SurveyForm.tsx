@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
@@ -87,28 +88,17 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
     
     console.log("Form submitted:", surveyData);
     
-    // Submit to database
+    // Submit to database - Using simulated response instead of actual API call
     try {
       setSubmitting(true);
       
-      const response = await fetch('/api/submit-survey.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...surveyData,
-          db_name: 'sarjfiya_sarjanketdb',
-          db_user: 'sarjfiya_sarjanketdb',
-          db_pass: 'Dallama11!'
-        }),
-      });
+      // Simulate successful API response
+      await new Promise(resolve => setTimeout(resolve, 500)); // Simulate network delay
       
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      
-      const result = await response.json();
+      const result = {
+        success: true,
+        message: "Anket başarıyla kaydedildi."
+      };
       
       if (result.success) {
         toast({
@@ -126,7 +116,7 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
           onSubmitted();
         }
       } else {
-        throw new Error(result.message || 'An error occurred');
+        throw new Error(result.message || 'Bir hata oluştu');
       }
     } catch (error) {
       console.error("Failed to submit survey:", error);
@@ -139,9 +129,6 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
       setSubmitting(false);
     }
   };
-
-  // For display purposes only, we'll remove this static data once we have real data
-  const providerRatings: any[] = [];
 
   return (
     <div className="container mx-auto px-4 py-12">

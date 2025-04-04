@@ -16,6 +16,37 @@ import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
+// Simulated survey stats data
+const MOCK_SURVEY_STATS = [
+  {
+    provider_name: "Trugo",
+    average_rating: 4.5,
+    response_count: 12,
+    comments: [
+      "İstasyonları her zaman temiz ve bakımlı.",
+      "Fiyatları biraz yüksek ama hizmet kalitesi iyi."
+    ]
+  },
+  {
+    provider_name: "ZES",
+    average_rating: 4.2,
+    response_count: 18,
+    comments: [
+      "Uygulaması kullanışlı ve konum bilgileri doğru.",
+      "Bazen istasyonlarda ufak teknik sorunlar yaşanıyor."
+    ]
+  },
+  {
+    provider_name: "Eşarj",
+    average_rating: 3.8,
+    response_count: 15,
+    comments: [
+      "Genelde sorunsuz ama bazen şarj hızı beklenenden düşük.",
+      "Müşteri hizmetleri çok yardımcı oluyor."
+    ]
+  }
+];
+
 const Survey = () => {
   const [surveyStats, setSurveyStats] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -31,33 +62,11 @@ const Survey = () => {
       setLoading(true);
       setError(null);
       
-      // Use a direct URL to the PHP file on the server
-      // const response = await fetch(`/api/get-survey-stats.php?db_name=sarjfiya_sarjanketdb&db_user=sarjfiya_sarjanketdb&db_pass=Dallama11!`);
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // Simulate a successful response for development purposes until PHP works
-      const mockResponse = {
-        success: true,
-        data: []
-      };
-      
-      setSurveyStats(mockResponse.data);
-      
-      // Once the PHP endpoint is properly set up on the server, you can uncomment the fetch code
-      // and remove the mock response
-      
-      /* Uncomment this when PHP is working
-      if (!response.ok) {
-        throw new Error('Failed to fetch survey statistics');
-      }
-      
-      const result = await response.json();
-      
-      if (result.success) {
-        setSurveyStats(result.data);
-      } else {
-        throw new Error(result.message || 'Failed to fetch survey statistics');
-      }
-      */
+      // Use mock data instead of API call
+      setSurveyStats(MOCK_SURVEY_STATS);
       
     } catch (error) {
       console.error("Error fetching survey stats:", error);
