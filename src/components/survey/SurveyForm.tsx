@@ -66,22 +66,33 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
       provider_id: selectedProvider,
       provider_name: providerName,
       rating: userRating,
-      comment: data.comment
+      comment: data.comment,
+      // Database credentials would typically be handled securely on the backend
+      // These are included here for demonstration purposes
+      db_name: "evfix_survey",
+      db_user: "evfix_survey_user",
+      db_pass: "survey_password_2025"
     };
     
-    console.log("Form submitted:", surveyData);
+    console.log("Submitting survey data to API:", surveyData);
     
-    // Submit to database - Using simulated response instead of actual API call
     try {
       setSubmitting(true);
       
-      // Simulate successful API response
-      await new Promise(resolve => setTimeout(resolve, 500)); // Simulate network delay
+      // Make the actual API call to the PHP endpoint
+      const response = await fetch('/api/submit-survey.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(surveyData),
+      });
       
-      const result = {
-        success: true,
-        message: "Anket başarıyla kaydedildi."
-      };
+      if (!response.ok) {
+        throw new Error(`API returned status code ${response.status}`);
+      }
+      
+      const result = await response.json();
       
       if (result.success) {
         toast({

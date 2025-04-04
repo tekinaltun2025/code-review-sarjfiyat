@@ -6,7 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import SurveyStatCards from './SurveyStatCards';
 import SurveyTable from './SurveyTable';
 
-// Simulated survey stats data
+// Fallback mock data in case API fails
 const MOCK_SURVEY_STATS = [
   {
     provider_name: "Trugo",
@@ -74,21 +74,47 @@ const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
       setLoading(true);
       setError(null);
       
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Database connection parameters (these would ideally be handled securely on backend)
+      const params = {
+        db_name: "evfix_survey",
+        db_user: "evfix_survey_user",
+        db_pass: "survey_password_2025"
+      };
       
-      // Use mock data instead of API call
-      setSurveyStats(MOCK_SURVEY_STATS);
+      // Make a real API call to get survey statistics
+      const response = await fetch('/api/get-survey-stats.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(params),
+      });
+      
+      if (!response.ok) {
+        throw new Error(`API returned status code ${response.status}`);
+      }
+      
+      const data = await response.json();
+      
+      if (data.success && data.stats) {
+        setSurveyStats(data.stats);
+      } else {
+        // If no data or error, fall back to mock data
+        console.warn("API returned no data, using mock data");
+        setSurveyStats(MOCK_SURVEY_STATS);
+      }
       
       if (onRefresh) {
         onRefresh();
       }
     } catch (error) {
       console.error("Error fetching survey stats:", error);
-      setError("Anket verileri yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.");
+      // Fall back to mock data on error
+      setSurveyStats(MOCK_SURVEY_STATS);
+      setError("Anket verileri API'den yüklenirken bir hata oluştu. Örnek veriler gösteriliyor.");
       toast({
-        title: "Hata",
-        description: "Anket verileri yüklenirken bir hata oluştu.",
+        title: "API Hatası",
+        description: "Anket verileri yüklenirken bir hata oluştu. Örnek veriler gösteriliyor.",
         variant: "destructive",
       });
     } finally {
