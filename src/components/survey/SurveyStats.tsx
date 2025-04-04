@@ -74,35 +74,10 @@ const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
       setLoading(true);
       setError(null);
       
-      // Veritabanı bağlantı parametreleri (normalde bu işlem backend tarafında güvenli bir şekilde yönetilir)
-      const params = {
-        db_name: "evfix_survey",
-        db_user: "evfix_survey_user",
-        db_pass: "survey_password_2025"
-      };
-      
-      // GET metodu kullanarak API'ye istek gönder (PHP dosyası GET bekliyor)
-      const queryString = new URLSearchParams(params).toString();
-      const response = await fetch(`/api/get-survey-stats.php?${queryString}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
-      
-      if (!response.ok) {
-        throw new Error(`API ${response.status} hata kodu döndürdü`);
-      }
-      
-      const data = await response.json();
-      
-      if (data.success && data.data) {
-        setSurveyStats(data.data);
-      } else {
-        // Eğer veri yoksa veya hata varsa, yedek veriyi kullan
-        console.warn("API veri döndürmedi, yedek veriler kullanılıyor");
-        setSurveyStats(MOCK_SURVEY_STATS);
-      }
+      // API'den veri almak yerine mock veriyi kullan
+      // PHP API hataları düzelene kadar
+      console.log("Mock veriler kullanılıyor");
+      setSurveyStats(MOCK_SURVEY_STATS);
       
       if (onRefresh) {
         onRefresh();

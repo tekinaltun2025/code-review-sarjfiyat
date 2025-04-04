@@ -16,11 +16,12 @@ const Survey = () => {
       <Header />
       <main className="flex-grow">
         {/* Anket Sonuçları Bölümü */}
-        <div className="container mx-auto px-4 py-8">
-          <h2 className="text-2xl font-bold mb-6">Şarj Operatörü Değerlendirme Sonuçları</h2>
+        <div className="container mx-auto px-4 py-8 mb-6">
+          <h2 className="text-3xl font-bold mb-6">Şarj Operatörü Değerlendirme Sonuçları</h2>
           <SurveyStats onRefresh={refreshStats} />
         </div>
         
+        {/* Anket Formu Bölümü */}
         <SurveyForm onSubmitted={refreshStats} />
       </main>
       <Footer />
