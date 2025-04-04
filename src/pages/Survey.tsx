@@ -15,6 +15,7 @@ import { Star, StarHalf } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { Card, CardContent } from "@/components/ui/card";
 
 // Simulated survey stats data
 const MOCK_SURVEY_STATS = [
@@ -43,6 +44,24 @@ const MOCK_SURVEY_STATS = [
     comments: [
       "Genelde sorunsuz ama bazen şarj hızı beklenenden düşük.",
       "Müşteri hizmetleri çok yardımcı oluyor."
+    ]
+  },
+  {
+    provider_name: "Sharz",
+    average_rating: 4.0,
+    response_count: 10,
+    comments: [
+      "Şarj istasyonları kolay bulunabilir konumlarda.",
+      "Uygulama arayüzü basit ve kullanışlı."
+    ]
+  },
+  {
+    provider_name: "Voltrun",
+    average_rating: 3.9,
+    response_count: 8,
+    comments: [
+      "Şarj hızı tatmin edici seviyede.",
+      "İstasyonların bakımı düzenli yapılıyor."
     ]
   }
 ];
@@ -129,28 +148,31 @@ const Survey = () => {
               <p className="text-gray-600">Henüz değerlendirme bulunmamaktadır.</p>
             </div>
           ) : (
-            <div className="bg-white shadow rounded-lg overflow-hidden mb-10">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Operatör</TableHead>
-                    <TableHead>Değerlendirme</TableHead>
-                    <TableHead>Değerlendirme Sayısı</TableHead>
-                    <TableHead>Son Yorumlar</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {surveyStats.map((stat, index) => (
-                    <TableRow key={index} className={index % 2 === 0 ? "bg-gray-50" : ""}>
-                      <TableCell className="font-medium">{stat.provider_name}</TableCell>
-                      <TableCell>{renderStarRating(stat.average_rating)}</TableCell>
-                      <TableCell>{stat.response_count}</TableCell>
-                      <TableCell>
-                        {stat.comments && stat.comments.length > 0 ? (
-                          <div className="max-h-32 overflow-y-auto">
+            <>
+              {/* Değerlendirme Kartları */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                {surveyStats.map((stat, index) => (
+                  <Card key={index} className="overflow-hidden">
+                    <CardContent className="p-6">
+                      <div className="flex items-center mb-4">
+                        <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                          <span className="text-blue-600 font-bold text-xl">{stat.provider_name.charAt(0)}</span>
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-bold">{stat.provider_name}</h3>
+                          <div className="flex items-center">
+                            {renderStarRating(stat.average_rating)}
+                            <span className="text-sm text-gray-500 ml-2">({stat.response_count} değerlendirme)</span>
+                          </div>
+                        </div>
+                      </div>
+                      {stat.comments && stat.comments.length > 0 && (
+                        <div className="mt-4 border-t pt-4">
+                          <p className="text-sm text-gray-500 font-medium mb-2">Son Yorumlar:</p>
+                          <div className="max-h-24 overflow-y-auto">
                             {stat.comments.slice(0, 2).map((comment: string, i: number) => (
-                              <p key={i} className="text-sm text-gray-600 mb-2">
-                                "{comment.substring(0, 100)}{comment.length > 100 ? '...' : ''}"
+                              <p key={i} className="text-sm text-gray-600 mb-2 italic">
+                                "{comment}"
                               </p>
                             ))}
                             {stat.comments.length > 2 && (
@@ -159,15 +181,54 @@ const Survey = () => {
                               </p>
                             )}
                           </div>
-                        ) : (
-                          <span className="text-sm text-gray-500">Yorum yok</span>
-                        )}
-                      </TableCell>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+
+              {/* Değerlendirme Tablosu */}
+              <div className="bg-white shadow rounded-lg overflow-hidden mb-10">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Operatör</TableHead>
+                      <TableHead>Değerlendirme</TableHead>
+                      <TableHead>Değerlendirme Sayısı</TableHead>
+                      <TableHead>Son Yorumlar</TableHead>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
+                  </TableHeader>
+                  <TableBody>
+                    {surveyStats.map((stat, index) => (
+                      <TableRow key={index} className={index % 2 === 0 ? "bg-gray-50" : ""}>
+                        <TableCell className="font-medium">{stat.provider_name}</TableCell>
+                        <TableCell>{renderStarRating(stat.average_rating)}</TableCell>
+                        <TableCell>{stat.response_count}</TableCell>
+                        <TableCell>
+                          {stat.comments && stat.comments.length > 0 ? (
+                            <div className="max-h-32 overflow-y-auto">
+                              {stat.comments.slice(0, 2).map((comment: string, i: number) => (
+                                <p key={i} className="text-sm text-gray-600 mb-2">
+                                  "{comment.substring(0, 100)}{comment.length > 100 ? '...' : ''}"
+                                </p>
+                              ))}
+                              {stat.comments.length > 2 && (
+                                <p className="text-xs text-gray-500">
+                                  +{stat.comments.length - 2} daha fazla yorum
+                                </p>
+                              )}
+                            </div>
+                          ) : (
+                            <span className="text-sm text-gray-500">Yorum yok</span>
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </>
           )}
         </div>
         
