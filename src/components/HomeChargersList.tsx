@@ -86,7 +86,6 @@ const HomeChargersList = () => {
             </div>
             
             <div className="flex items-center pt-6">
-              <span className="text-2xl font-bold text-blue-700 mr-4">27.900 ₺</span>
               <Button className="bg-blue-600 hover:bg-blue-700">Detayları Gör</Button>
             </div>
           </div>
