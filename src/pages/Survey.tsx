@@ -6,8 +6,10 @@ import SurveyForm from "../components/survey/SurveyForm";
 import SurveyStats from "../components/survey/SurveyStats";
 
 const Survey = () => {
+  // statsKey state'i ile SurveyStats bileşenini yeniden render etmeyi sağlıyoruz
   const [statsKey, setStatsKey] = useState<number>(0);
 
+  // Form gönderildiğinde veya başka bir durumda istatistikleri yenilemek için kullanılan callback
   const refreshStats = useCallback(() => {
     console.log("Yeni gönderim sonrası anket istatistikleri yenileniyor");
     setStatsKey(prevKey => prevKey + 1);

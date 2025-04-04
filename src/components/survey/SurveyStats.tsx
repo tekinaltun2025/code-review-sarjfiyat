@@ -60,17 +60,16 @@ interface SurveyStatsProps {
 }
 
 const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
-  const [surveyStats, setSurveyStats] = useState<any[]>([]);
+  const [surveyStats, setSurveyStats] = useState<Array<any>>([]); // Başlangıç değeri olarak boş dizi veriyoruz
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
 
+  // Komponent mount edildiğinde verileri yükle
   useEffect(() => {
-    // Component mount edildiğinde veya key değiştiğinde istatistikleri yükle
     console.log("SurveyStats bileşeni yükleniyor, veri çekme işlemi başlıyor...");
     fetchSurveyStats();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, []); // onRefresh bağımlılığını kaldırdık, sadece ilk yüklemede çalışacak
 
   const fetchSurveyStats = async () => {
     try {
@@ -78,22 +77,26 @@ const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
       setError(null);
       
       console.log("Mock veri yükleme işlemi başlıyor...");
-      // API'den veri almak yerine mock veriyi kullan
-      // PHP API hataları düzelene kadar
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Gerçek bir API çağrısını simüle et
       
-      // Mock verileri ayarla
+      // Gerçek bir API çağrısını simüle et ve biraz bekle
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
       console.log("Mock veriler yükleniyor:", MOCK_SURVEY_STATS);
+      
+      // Mock verileri direkt olarak state'e ata
       setSurveyStats(MOCK_SURVEY_STATS);
       
+      // onRefresh callback'i varsa çağır
       if (onRefresh) {
         onRefresh();
       }
     } catch (error) {
       console.error("Anket verileri alınırken hata:", error);
+      
       // Hata durumunda yedek veriyi kullan
       setSurveyStats(MOCK_SURVEY_STATS);
       setError("Anket verileri API'den yüklenirken bir hata oluştu. Örnek veriler gösteriliyor.");
+      
       toast({
         title: "API Hatası",
         description: "Anket verileri yüklenirken bir hata oluştu. Örnek veriler gösteriliyor.",
@@ -105,6 +108,7 @@ const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
     }
   };
 
+  // Yükleme durumunda iskeleti göster
   if (loading) {
     console.log("Yükleniyor durumu, loading:", loading);
     return (
@@ -118,6 +122,7 @@ const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
     );
   }
 
+  // Hata durumunda uyarı göster
   if (error) {
     console.log("Hata durumu:", error);
     return (
@@ -128,6 +133,7 @@ const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
     );
   }
 
+  // Veri yoksa mesaj göster
   if (!surveyStats || surveyStats.length === 0) {
     console.log("Veri yok durumu, surveyStats:", surveyStats);
     return (
@@ -137,6 +143,7 @@ const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
     );
   }
 
+  // Verileri göster
   console.log("Veriler başarıyla yüklendi, gösteriliyor:", surveyStats);
   return (
     <>
