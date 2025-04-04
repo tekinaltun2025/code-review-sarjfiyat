@@ -39,38 +39,38 @@ const HomeChargersList = () => {
               
               <div>
                 <h3 className="font-semibold text-blue-800 text-lg">Özellikler</h3>
-                <ul className="list-disc pl-5 space-y-1">
-                  <li>32A üç fazlı 22kw</li>
-                  <li>110V-450V arasında çalışabilir</li>
-                  <li>Ayarlanabilir 6A-32A akım</li>
-                  <li>Şarj başlatma süresi 1-9 saate ayarlanabilir</li>
-                  <li>5m kablo</li>
-                  <li>IP65 koruma</li>
-                  <li>Gizlilik korunur</li>
-                  <li>Dinamik yük dengeleme</li>
-                  <li>Taşınabilir/duvara monte</li>
-                  <li>RCD: A Tipi AC 30mA+DC 6mA</li>
-                  <li>Standart: IEC62196</li>
-                  <li>Ekran boyutu: 1,54 inç</li>
-                  <li>Kablo özellikleri: 5*6mm2+1*0,75mm2/2*0,5mm2</li>
-                  <li>Sertifikalar: CE, ROHS, FCC, CQC, TUV, UKCA, TSE, UL, RCM, vb.</li>
-                  <li>Garanti: 2 yıl garanti</li>
-                </ul>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-y-1">
+                  <div className="text-gray-700">32A üç fazlı 22kw</div>
+                  <div className="text-gray-700">110V-450V arasında çalışabilir</div>
+                  <div className="text-gray-700">Ayarlanabilir 6A-32A akım</div>
+                  <div className="text-gray-700">Şarj başlatma süresi 1-9 saate ayarlanabilir</div>
+                  <div className="text-gray-700">5m kablo</div>
+                  <div className="text-gray-700">IP65 koruma</div>
+                  <div className="text-gray-700">Gizlilik korunur</div>
+                  <div className="text-gray-700">Dinamik yük dengeleme</div>
+                  <div className="text-gray-700">Taşınabilir/duvara monte</div>
+                  <div className="text-gray-700">RCD: A Tipi AC 30mA+DC 6mA</div>
+                  <div className="text-gray-700">Standart: IEC62196</div>
+                  <div className="text-gray-700">Ekran boyutu: 1,54 inç</div>
+                  <div className="text-gray-700">Kablo özellikleri: 5*6mm2+1*0,75mm2/2*0,5mm2</div>
+                  <div className="text-gray-700">Sertifikalar: CE, ROHS, FCC, CQC, TUV, UKCA, TSE, UL, RCM, vb.</div>
+                  <div className="text-gray-700">Garanti: 2 yıl garanti</div>
+                </div>
               </div>
               
               <div>
                 <h3 className="font-semibold text-blue-800 text-lg">Koruma Özellikleri</h3>
-                <ul className="list-disc pl-5 grid grid-cols-2 gap-1">
-                  <li>Düşük voltaj koruması</li>
-                  <li>Kısa devre koruması</li>
-                  <li>Aşırı sıcaklık koruması</li>
-                  <li>Zemin koruması</li>
-                  <li>UV direnci</li>
-                  <li>Aşırı voltaj koruması</li>
-                  <li>Aşırı yük koruması</li>
-                  <li>Sızıntı koruması</li>
-                  <li>Yıldırımdan korunma</li>
-                </ul>
+                <div className="grid grid-cols-2 gap-1">
+                  <div className="text-gray-700">Düşük voltaj koruması</div>
+                  <div className="text-gray-700">Kısa devre koruması</div>
+                  <div className="text-gray-700">Aşırı sıcaklık koruması</div>
+                  <div className="text-gray-700">Zemin koruması</div>
+                  <div className="text-gray-700">UV direnci</div>
+                  <div className="text-gray-700">Aşırı voltaj koruması</div>
+                  <div className="text-gray-700">Aşırı yük koruması</div>
+                  <div className="text-gray-700">Sızıntı koruması</div>
+                  <div className="text-gray-700">Yıldırımdan korunma</div>
+                </div>
               </div>
               
               <div>
