@@ -3,7 +3,6 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import MapSection from '../components/MapSection';
-import ChargingProviders from '../components/ChargingProviders';
 import Footer from '../components/Footer';
 import { Map, MapPin } from "lucide-react";
 
@@ -28,11 +27,6 @@ const SarjAglari = () => {
             <MapPin className="mr-2 text-teal-500" /> Şarj İstasyonları Haritası
           </h2>
           <MapSection />
-        </div>
-        
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Şarj Ağları Karşılaştırması</h2>
-          <ChargingProviders />
         </div>
       </div>
     </main>
