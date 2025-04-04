@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { Star } from "lucide-react";
 import { fetchProviderData } from "@/services/googleSheetsService";
 import { Provider } from "@/data/types/provider.types";
+import { useToast } from "@/hooks/use-toast";
 
 const SurveyForm = () => {
   const [providers, setProviders] = useState<Provider[]>([]);
@@ -16,6 +17,8 @@ const SurveyForm = () => {
   const [userRating, setUserRating] = useState<number>(0);
   const [hoveredRating, setHoveredRating] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
+  const [submitting, setSubmitting] = useState<boolean>(false);
+  const { toast } = useToast();
   
   useEffect(() => {
     // Fetch providers data when component mounts
@@ -67,16 +70,66 @@ const SurveyForm = () => {
     ));
   };
   
-  const onSubmit = (data: any) => {
-    console.log("Form submitted:", {
-      provider: selectedProvider,
+  const onSubmit = async (data: any) => {
+    // Get provider name from the id
+    const providerObj = providers.find(p => p.id === selectedProvider);
+    const providerName = providerObj ? providerObj.name : selectedProvider;
+    
+    const surveyData = {
+      provider_id: selectedProvider,
+      provider_name: providerName,
       rating: userRating,
       comment: data.comment
-    });
-    // Reset form after submission
-    form.reset();
-    setSelectedProvider("");
-    setUserRating(0);
+    };
+    
+    console.log("Form submitted:", surveyData);
+    
+    // Submit to database
+    try {
+      setSubmitting(true);
+      
+      const response = await fetch('/api/submit-survey.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...surveyData,
+          db_name: 'sarjfiya_sarjanketdb',
+          db_user: 'sarjfiya_sarjanketdb',
+          db_pass: 'Dallama11!'
+        }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        toast({
+          title: "Anket Gönderildi",
+          description: "Değerlendirmeniz için teşekkür ederiz!",
+        });
+        
+        // Reset form after submission
+        form.reset();
+        setSelectedProvider("");
+        setUserRating(0);
+      } else {
+        throw new Error(result.message || 'An error occurred');
+      }
+    } catch (error) {
+      console.error("Failed to submit survey:", error);
+      toast({
+        title: "Hata",
+        description: "Anket gönderilirken bir hata oluştu. Lütfen tekrar deneyin.",
+        variant: "destructive",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   // Sample provider ratings (we'd use real data in a production app)
@@ -238,8 +291,12 @@ const SurveyForm = () => {
                   />
                 </div>
 
-                <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
-                  Anketi Gönder
+                <Button 
+                  type="submit" 
+                  className="w-full bg-blue-600 hover:bg-blue-700"
+                  disabled={submitting}
+                >
+                  {submitting ? "Gönderiliyor..." : "Anketi Gönder"}
                 </Button>
               </form>
             </Form>
