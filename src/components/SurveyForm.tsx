@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,7 +10,11 @@ import { fetchProviderData } from "@/services/googleSheetsService";
 import { Provider } from "@/data/types/provider.types";
 import { useToast } from "@/hooks/use-toast";
 
-const SurveyForm = () => {
+interface SurveyFormProps {
+  onSubmitted?: () => void;
+}
+
+const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
   const [providers, setProviders] = useState<Provider[]>([]);
   const [selectedProvider, setSelectedProvider] = useState<string>("");
   const [userRating, setUserRating] = useState<number>(0);
@@ -117,6 +120,11 @@ const SurveyForm = () => {
         form.reset();
         setSelectedProvider("");
         setUserRating(0);
+        
+        // Refresh survey stats if callback is provided
+        if (onSubmitted) {
+          onSubmitted();
+        }
       } else {
         throw new Error(result.message || 'An error occurred');
       }
@@ -132,33 +140,8 @@ const SurveyForm = () => {
     }
   };
 
-  // Sample provider ratings (we'd use real data in a production app)
-  const providerRatings = [
-    {
-      id: "trugo",
-      name: "Trugo",
-      logo: "/lovable-uploads/4e883d70-0fb2-41c7-9bc4-f51d94c026ef.png",
-      rating: 5.0
-    },
-    {
-      id: "zes",
-      name: "ZES",
-      logo: "/lovable-uploads/6e47365f-9335-4024-9da3-18b00c4ce94b.png",
-      rating: 4.2
-    },
-    {
-      id: "beefull",
-      name: "Beefull",
-      logo: "/lovable-uploads/cc0015aa-72d6-4e18-bc05-8c7486d57eb7.png",
-      rating: 2.5
-    },
-    {
-      id: "esarj",
-      name: "Eşarj",
-      logo: "/lovable-uploads/fb66fe81-1208-4c6d-a276-363ee14ce4b9.png",
-      rating: 4.9
-    }
-  ];
+  // For display purposes only, we'll remove this static data once we have real data
+  const providerRatings: any[] = [];
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -294,7 +277,7 @@ const SurveyForm = () => {
                 <Button 
                   type="submit" 
                   className="w-full bg-blue-600 hover:bg-blue-700"
-                  disabled={submitting}
+                  disabled={submitting || userRating === 0 || selectedProvider === ""}
                 >
                   {submitting ? "Gönderiliyor..." : "Anketi Gönder"}
                 </Button>
@@ -303,41 +286,7 @@ const SurveyForm = () => {
           </CardContent>
         </Card>
 
-        {/* Provider Ratings */}
-        <div className="bg-gray-50 rounded-lg p-6">
-          <h2 className="text-xl font-bold mb-6">Şarj Operatörü Değerlendirmeleri</h2>
-          
-          {/* Removed the rating summary section that was here */}
-          
-          <div className="space-y-4">
-            {providerRatings.map((provider) => (
-              <div key={provider.id} className="bg-white rounded-md shadow-sm p-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-md">
-                      <img 
-                        src={provider.logo} 
-                        alt={provider.name} 
-                        className="max-h-8 max-w-8 object-contain" 
-                      />
-                    </div>
-                    <span className="font-medium">{provider.name}</span>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <div className="flex">
-                      {renderStars(Math.floor(provider.rating))}
-                      {provider.rating % 1 > 0 && 
-                        renderStars(5 - Math.floor(provider.rating), false)}
-                    </div>
-                    <div className="w-12 h-12 rounded-md border flex items-center justify-center font-bold">
-                      {provider.rating.toFixed(1)}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* We've removed the Provider Ratings section since we now display this data at the top of the page */}
       </div>
     </div>
   );
