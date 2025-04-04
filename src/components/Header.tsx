@@ -10,6 +10,16 @@ const Header = () => {
     setMenuOpen(!menuOpen);
   };
 
+  // Centralized navigation items to maintain consistency
+  const navItems = [
+    { name: "Ana Sayfa", path: "/" },
+    { name: "Şarj Ağları", path: "/sarj-aglari" },
+    { name: "Kampanyalar", path: "/kampanyalar" },
+    { name: "Ev Şarj Cihazları", path: "/ev-sarj-cihazlari" },
+    { name: "Anket", path: "/anket" },
+    { name: "Hakkımızda", path: "/hakkimizda" },
+  ];
+
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -22,24 +32,15 @@ const Header = () => {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <Link to="/" className="text-gray-800 hover:text-teal-500 transition-colors">
-            Ana Sayfa
-          </Link>
-          <Link to="/sarj-aglari" className="text-gray-800 hover:text-teal-500 transition-colors">
-            Şarj Ağları
-          </Link>
-          <Link to="/kampanyalar" className="text-gray-800 hover:text-teal-500 transition-colors">
-            Kampanyalar
-          </Link>
-          <Link to="/ev-sarj-cihazlari" className="text-gray-800 hover:text-teal-500 transition-colors">
-            Ev Şarj Cihazları
-          </Link>
-          <Link to="/anket" className="text-gray-800 hover:text-teal-500 transition-colors">
-            Anket
-          </Link>
-          <Link to="/hakkimizda" className="text-gray-800 hover:text-teal-500 transition-colors">
-            Hakkımızda
-          </Link>
+          {navItems.map((item) => (
+            <Link 
+              key={item.path}
+              to={item.path} 
+              className="text-gray-800 hover:text-teal-500 transition-colors"
+            >
+              {item.name}
+            </Link>
+          ))}
         </nav>
 
         {/* Mobile Menu Button */}
@@ -59,48 +60,16 @@ const Header = () => {
       {menuOpen && (
         <div className="md:hidden bg-white px-4 py-2 shadow-lg">
           <nav className="flex flex-col space-y-4 py-4">
-            <Link 
-              to="/" 
-              className="text-gray-800 hover:text-teal-500 transition-colors"
-              onClick={() => setMenuOpen(false)}
-            >
-              Ana Sayfa
-            </Link>
-            <Link 
-              to="/sarj-aglari" 
-              className="text-gray-800 hover:text-teal-500 transition-colors"
-              onClick={() => setMenuOpen(false)}
-            >
-              Şarj Ağları
-            </Link>
-            <Link 
-              to="/kampanyalar" 
-              className="text-gray-800 hover:text-teal-500 transition-colors"
-              onClick={() => setMenuOpen(false)}
-            >
-              Kampanyalar
-            </Link>
-            <Link 
-              to="/ev-sarj-cihazlari" 
-              className="text-gray-800 hover:text-teal-500 transition-colors"
-              onClick={() => setMenuOpen(false)}
-            >
-              Ev Şarj Cihazları
-            </Link>
-            <Link 
-              to="/anket" 
-              className="text-gray-800 hover:text-teal-500 transition-colors"
-              onClick={() => setMenuOpen(false)}
-            >
-              Anket
-            </Link>
-            <Link 
-              to="/hakkimizda" 
-              className="text-gray-800 hover:text-teal-500 transition-colors"
-              onClick={() => setMenuOpen(false)}
-            >
-              Hakkımızda
-            </Link>
+            {navItems.map((item) => (
+              <Link 
+                key={item.path}
+                to={item.path} 
+                className="text-gray-800 hover:text-teal-500 transition-colors"
+                onClick={() => setMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
           </nav>
         </div>
       )}
