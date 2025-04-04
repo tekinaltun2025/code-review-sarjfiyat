@@ -20,7 +20,7 @@ const CampaignsList = () => {
           <div className="md:w-1/2 flex justify-center">
             <div className="rounded-full overflow-hidden border-4 border-white w-64 h-64 md:w-80 md:h-80">
               <img 
-                src="/lovable-uploads/69dcf742-321c-4bd1-ba3a-dc90801201c7.png" 
+                src="/lovable-uploads/403f86d1-2727-40f4-b7d8-33761e00ad54.png" 
                 alt="Akbank elektrikli araç şarj kampanyası" 
                 className="w-full h-full object-cover"
               />
