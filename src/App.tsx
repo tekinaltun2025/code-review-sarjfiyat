@@ -8,6 +8,7 @@ import { Toaster } from "./components/ui/toaster";
 import Panel from "./components/Panel";
 import AboutPage from "./pages/AboutPage";
 import SarjAglari from "./pages/SarjAglari";
+import Survey from "./pages/Survey";
 import "./App.css";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/ev-sarj-cihazlari" element={<HomeChargers />} />
         <Route path="/sarj-aglari" element={<SarjAglari />} />
         <Route path="/hakkimizda" element={<AboutPage />} />
+        <Route path="/anket" element={<Survey />} />
         
         {/* Panel routes */}
         <Route path="/panel" element={<Panel />}>
@@ -35,6 +37,7 @@ function App() {
           <Route path="ev-sarj-cihazlari" element={<HomeChargers />} />
           <Route path="sarj-aglari" element={<SarjAglari />} />
           <Route path="hakkimizda" element={<AboutPage />} />
+          <Route path="anket" element={<Survey />} />
         </Route>
         
         <Route path="*" element={<NotFound />} />
