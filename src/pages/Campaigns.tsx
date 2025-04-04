@@ -15,14 +15,12 @@ const Campaigns = () => {
         <div className="container mx-auto px-4">
           <h1 className="text-3xl md:text-4xl font-bold text-white text-center">Kampanyalar</h1>
           <p className="text-white text-center mt-4 max-w-3xl mx-auto">
-            Türkiye'deki elektrikli araç şarj operatörlerinin güncel kampanyaları
+            Elektrikli araç şarj kampanyalarından faydalanarak tasarruf edin
           </p>
         </div>
       </div>
       
-      <div className="container mx-auto px-4 py-12">
-        <CampaignsList />
-      </div>
+      <CampaignsList />
     </main>
   );
   
