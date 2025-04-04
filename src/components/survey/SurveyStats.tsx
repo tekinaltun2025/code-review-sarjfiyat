@@ -10,9 +10,9 @@ import { Button } from '@/components/ui/button';
 
 // Veritabanı bilgileri - normalde .env veya başka güvenli bir yerden alınmalı
 const DB_INFO = {
-  db_name: "sarjfiyat_anket",
-  db_user: "sarjfiyat_user",
-  db_pass: "SF_2023!"
+  db_name: "sarjfiya_sarjanketdb",
+  db_user: "sarjfiya_sarjuser",
+  db_pass: "Dallama11!"
 };
 
 interface SurveyStatsProps {
