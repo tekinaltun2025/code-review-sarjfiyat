@@ -67,6 +67,7 @@ const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
 
   useEffect(() => {
     // Component mount edildiğinde veya key değiştiğinde istatistikleri yükle
+    console.log("SurveyStats bileşeni yükleniyor, veri çekme işlemi başlıyor...");
     fetchSurveyStats();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -76,10 +77,13 @@ const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
       setLoading(true);
       setError(null);
       
+      console.log("Mock veri yükleme işlemi başlıyor...");
       // API'den veri almak yerine mock veriyi kullan
       // PHP API hataları düzelene kadar
-      console.log("Mock veriler kullanılıyor");
-      await new Promise(resolve => setTimeout(resolve, 500)); // Gerçek bir API çağrısını simüle et
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Gerçek bir API çağrısını simüle et
+      
+      // Mock verileri ayarla
+      console.log("Mock veriler yükleniyor:", MOCK_SURVEY_STATS);
       setSurveyStats(MOCK_SURVEY_STATS);
       
       if (onRefresh) {
@@ -97,19 +101,12 @@ const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
       });
     } finally {
       setLoading(false);
+      console.log("Veri yükleme işlemi tamamlandı, loading:", false);
     }
   };
 
-  if (error) {
-    return (
-      <Alert variant="destructive" className="mb-6">
-        <AlertTitle>Hata</AlertTitle>
-        <AlertDescription>{error}</AlertDescription>
-      </Alert>
-    );
-  }
-
   if (loading) {
+    console.log("Yükleniyor durumu, loading:", loading);
     return (
       <div className="bg-white shadow rounded-lg overflow-hidden mb-10">
         <div className="p-6 space-y-4">
@@ -121,7 +118,18 @@ const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
     );
   }
 
-  if (surveyStats.length === 0) {
+  if (error) {
+    console.log("Hata durumu:", error);
+    return (
+      <Alert variant="destructive" className="mb-6">
+        <AlertTitle>Hata</AlertTitle>
+        <AlertDescription>{error}</AlertDescription>
+      </Alert>
+    );
+  }
+
+  if (!surveyStats || surveyStats.length === 0) {
+    console.log("Veri yok durumu, surveyStats:", surveyStats);
     return (
       <div className="bg-gray-50 rounded-lg p-8 text-center">
         <p className="text-gray-600">Henüz değerlendirme bulunmamaktadır.</p>
@@ -129,6 +137,7 @@ const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
     );
   }
 
+  console.log("Veriler başarıyla yüklendi, gösteriliyor:", surveyStats);
   return (
     <>
       <SurveyStatCards stats={surveyStats} />
