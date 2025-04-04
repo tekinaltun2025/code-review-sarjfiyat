@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Home, Zap, Battery, BatteryCharging } from "lucide-react";
 
@@ -83,10 +82,6 @@ const HomeChargersList = () => {
                 <h3 className="font-semibold text-blue-800 text-lg">Kullanım</h3>
                 <p>Fişi prize takın, gerekli şarj akımını cihazdaki "AMPS" düğmesi aracılığıyla ayarlayın, şarj başlatma süresini ayarlamak için "TIME" düğmesine basın (1 saat-9 saat olarak ayarlanabilir), ardından fişi araca takın ve şarj etmeye başlayın.</p>
               </div>
-            </div>
-            
-            <div className="flex items-center pt-6">
-              <Button className="bg-blue-600 hover:bg-blue-700">Detayları Gör</Button>
             </div>
           </div>
         </div>
