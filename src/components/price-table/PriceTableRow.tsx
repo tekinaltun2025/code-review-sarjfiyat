@@ -32,7 +32,7 @@ const PriceTableRow: React.FC<PriceTableRowProps> = ({
     >
       <td className="px-6 py-4">
         <div className="flex items-center space-x-3">
-          <Avatar className="h-10 w-10 bg-gray-100 rounded-md">
+          <Avatar className="h-10 w-10 bg-gray-100 rounded-md flex-shrink-0">
             <AvatarImage 
               src={provider.logo} 
               alt={`${provider.name} logo`}
@@ -42,27 +42,27 @@ const PriceTableRow: React.FC<PriceTableRowProps> = ({
               {providerInitial}
             </AvatarFallback>
           </Avatar>
-          <div className="font-medium text-gray-900">{provider.name}</div>
+          <div className="font-medium text-gray-900 min-w-0 flex-1">{provider.name}</div>
         </div>
       </td>
-      <td className="px-6 py-4 text-center">
+      <td className="px-4 py-4 text-center whitespace-nowrap">
         <span className={`text-sm font-medium ${sortBy === 'acPrice' ? 'text-teal-600' : 'text-gray-700'}`}>
           {provider.acPrice.toFixed(2)} ₺
         </span>
       </td>
-      <td className="px-6 py-4 text-center">
+      <td className="px-4 py-4 text-center whitespace-nowrap">
         <span className={`text-sm font-medium ${sortBy === 'dcPrice' ? 'text-teal-600' : 'text-gray-700'}`}>
           {provider.dcPrice.toFixed(2)} ₺
         </span>
       </td>
-      <td className="px-6 py-4 text-center">
+      <td className="px-4 py-4 text-center whitespace-nowrap">
         <span className="text-sm font-medium text-gray-700">
           {provider.stationCount ? (
             provider.id === 'trugo' ? '600+' : provider.stationCount
           ) : '-'}
         </span>
       </td>
-      <td className="px-6 py-4 text-center">
+      <td className="px-4 py-4 text-center whitespace-nowrap">
         <a 
           href={provider.websiteUrl} 
           target="_blank" 
@@ -72,10 +72,10 @@ const PriceTableRow: React.FC<PriceTableRowProps> = ({
           <ExternalLink className="h-4 w-4" />
         </a>
       </td>
-      <td className="px-6 py-4 text-center">
-        <span className="text-sm text-gray-700">
+      <td className="px-4 py-4 text-left">
+        <div className="text-sm text-gray-700 max-w-xs">
           {provider.notes || '-'}
-        </span>
+        </div>
       </td>
     </tr>
   );
