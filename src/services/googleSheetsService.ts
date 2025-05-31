@@ -1,4 +1,3 @@
-
 import { Provider } from "@/data/types/provider.types";
 
 // Direct URL to the published Google Sheet as CSV
@@ -28,7 +27,7 @@ const providerLogos: Record<string, string> = {
   dcharge: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
   echarge: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
   powersarj: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
-  voltgo: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png"
+  voltgo: "/lovable-uploads/2648e919-dca0-4764-ba85-3bdd8540116c.png"
 };
 
 // Default logo for providers without custom logos
