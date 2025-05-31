@@ -1,5 +1,4 @@
 
-
 import { BatteryCharging, Zap, MapPin, Car } from "lucide-react";
 
 const HeroSection = () => {
