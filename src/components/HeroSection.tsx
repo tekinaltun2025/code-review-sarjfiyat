@@ -67,11 +67,19 @@ const HeroSection = () => {
       <section className="bg-gray-100 py-6">
         <div className="container mx-auto px-4">
           <div className="bg-white rounded-xl shadow-lg p-6 text-center">
-            <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-8 border-2 border-dashed border-blue-200">
-              <h3 className="text-2xl font-bold text-gray-800 mb-3">Reklam Alanı</h3>
-              <p className="text-gray-600 mb-4">Bu alan reklam içeriği için ayrılmıştır</p>
-              <div className="text-sm text-gray-500">
-                Banner / Video / İçerik Reklamı
+            <div 
+              className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-8 border-2 border-dashed border-blue-200 relative bg-cover bg-center min-h-[200px] flex items-center justify-center"
+              style={{
+                backgroundImage: "url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80')"
+              }}
+            >
+              <div className="absolute inset-0 bg-black/40 rounded-lg"></div>
+              <div className="relative z-10 text-white">
+                <h3 className="text-2xl font-bold mb-3">Reklam Alanı</h3>
+                <p className="mb-4">Bu alan reklam içeriği için ayrılmıştır</p>
+                <div className="text-sm opacity-90">
+                  Banner / Video / İçerik Reklamı
+                </div>
               </div>
             </div>
           </div>
