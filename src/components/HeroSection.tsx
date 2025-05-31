@@ -4,6 +4,29 @@ import { BatteryCharging, Zap, MapPin, Car } from "lucide-react";
 const HeroSection = () => {
   return (
     <>
+      {/* Reklam Alanı - En üstte */}
+      <section className="bg-gray-100 py-6">
+        <div className="container mx-auto px-4">
+          <div className="bg-white rounded-xl shadow-lg p-6 text-center">
+            <div 
+              className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-8 border-2 border-dashed border-blue-200 relative bg-cover bg-center min-h-[100px] flex items-center justify-center"
+              style={{
+                backgroundImage: "url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80')"
+              }}
+            >
+              <div className="absolute inset-0 bg-black/40 rounded-lg"></div>
+              <div className="relative z-10 text-white">
+                <h3 className="text-xl font-bold mb-2">Reklam Alanı</h3>
+                <p className="mb-2 text-sm">Bu alan reklam içeriği için ayrılmıştır</p>
+                <div className="text-xs opacity-90">
+                  Banner / Video / İçerik Reklamı
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Ana Hero Section - Daha ince yapıldı */}
       <section className="bg-gradient-to-r from-teal-500 to-blue-500 text-white py-6">
         <div className="container mx-auto px-4">
@@ -56,29 +79,6 @@ const HeroSection = () => {
                     <h3 className="font-semibold text-lg">Tüm Şarj Ağları</h3>
                     <p className="opacity-80 text-sm">Türkiye'deki tüm şarj operatörleri karşılaştırması</p>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Reklam Alanı */}
-      <section className="bg-gray-100 py-6">
-        <div className="container mx-auto px-4">
-          <div className="bg-white rounded-xl shadow-lg p-6 text-center">
-            <div 
-              className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-8 border-2 border-dashed border-blue-200 relative bg-cover bg-center min-h-[100px] flex items-center justify-center"
-              style={{
-                backgroundImage: "url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80')"
-              }}
-            >
-              <div className="absolute inset-0 bg-black/40 rounded-lg"></div>
-              <div className="relative z-10 text-white">
-                <h3 className="text-xl font-bold mb-2">Reklam Alanı</h3>
-                <p className="mb-2 text-sm">Bu alan reklam içeriği için ayrılmıştır</p>
-                <div className="text-xs opacity-90">
-                  Banner / Video / İçerik Reklamı
                 </div>
               </div>
             </div>
