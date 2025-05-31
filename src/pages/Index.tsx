@@ -18,14 +18,26 @@ const Index = () => {
       {/* Sol Reklam Alanı */}
       <div className="hidden xl:block w-32 flex-shrink-0">
         <div className="sticky top-4 space-y-4 p-2">
-          <div className="bg-white rounded-lg shadow-md p-4 text-center min-h-[300px] flex flex-col justify-center border-2 border-dashed border-gray-200">
-            <div className="transform -rotate-90 whitespace-nowrap">
-              <span className="text-sm text-gray-600 font-medium">Reklam Alanı</span>
+          <div 
+            className="bg-white rounded-lg shadow-md p-4 text-center min-h-[300px] flex flex-col justify-center border-2 border-dashed border-gray-200 relative bg-cover bg-center"
+            style={{
+              backgroundImage: "url('https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"
+            }}
+          >
+            <div className="absolute inset-0 bg-black/30 rounded-lg"></div>
+            <div className="transform -rotate-90 whitespace-nowrap relative z-10">
+              <span className="text-lg text-white font-bold">Reklam Alanı</span>
             </div>
           </div>
-          <div className="bg-white rounded-lg shadow-md p-4 text-center min-h-[300px] flex flex-col justify-center border-2 border-dashed border-gray-200">
-            <div className="transform -rotate-90 whitespace-nowrap">
-              <span className="text-sm text-gray-600 font-medium">Reklam Alanı</span>
+          <div 
+            className="bg-white rounded-lg shadow-md p-4 text-center min-h-[300px] flex flex-col justify-center border-2 border-dashed border-gray-200 relative bg-cover bg-center"
+            style={{
+              backgroundImage: "url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"
+            }}
+          >
+            <div className="absolute inset-0 bg-black/30 rounded-lg"></div>
+            <div className="transform -rotate-90 whitespace-nowrap relative z-10">
+              <span className="text-lg text-white font-bold">Reklam Alanı</span>
             </div>
           </div>
         </div>
@@ -43,14 +55,26 @@ const Index = () => {
       {/* Sağ Reklam Alanı */}
       <div className="hidden xl:block w-32 flex-shrink-0">
         <div className="sticky top-4 space-y-4 p-2">
-          <div className="bg-white rounded-lg shadow-md p-4 text-center min-h-[300px] flex flex-col justify-center border-2 border-dashed border-gray-200">
-            <div className="transform -rotate-90 whitespace-nowrap">
-              <span className="text-sm text-gray-600 font-medium">Reklam Alanı</span>
+          <div 
+            className="bg-white rounded-lg shadow-md p-4 text-center min-h-[300px] flex flex-col justify-center border-2 border-dashed border-gray-200 relative bg-cover bg-center"
+            style={{
+              backgroundImage: "url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"
+            }}
+          >
+            <div className="absolute inset-0 bg-black/30 rounded-lg"></div>
+            <div className="transform -rotate-90 whitespace-nowrap relative z-10">
+              <span className="text-lg text-white font-bold">Reklam Alanı</span>
             </div>
           </div>
-          <div className="bg-white rounded-lg shadow-md p-4 text-center min-h-[300px] flex flex-col justify-center border-2 border-dashed border-gray-200">
-            <div className="transform -rotate-90 whitespace-nowrap">
-              <span className="text-sm text-gray-600 font-medium">Reklam Alanı</span>
+          <div 
+            className="bg-white rounded-lg shadow-md p-4 text-center min-h-[300px] flex flex-col justify-center border-2 border-dashed border-gray-200 relative bg-cover bg-center"
+            style={{
+              backgroundImage: "url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"
+            }}
+          >
+            <div className="absolute inset-0 bg-black/30 rounded-lg"></div>
+            <div className="transform -rotate-90 whitespace-nowrap relative z-10">
+              <span className="text-lg text-white font-bold">Reklam Alanı</span>
             </div>
           </div>
         </div>
