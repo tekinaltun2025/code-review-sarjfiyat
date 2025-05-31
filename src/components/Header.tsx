@@ -23,9 +23,9 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center space-x-2">
-          <BatteryCharging className="h-8 w-8 text-teal-500" />
-          <h1 className="text-xl font-bold bg-gradient-to-r from-teal-500 to-blue-500 bg-clip-text text-transparent">
+        <div className="flex items-center space-x-2 ml-4">
+          <BatteryCharging className="h-16 w-16 text-teal-500" />
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-teal-500 to-blue-500 bg-clip-text text-transparent">
             ŞarjFiyat
           </h1>
         </div>
