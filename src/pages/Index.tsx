@@ -17,7 +17,7 @@ const Index = () => {
       {/* Sol Reklam Alanı - Ana içeriğe yakın */}
       <div className="hidden xl:block w-32 flex-shrink-0">
         <div className="sticky top-4 space-y-4 p-2">
-          <div className="bg-white rounded-lg shadow-md p-2 text-center min-h-[300px] flex flex-col justify-center border-2 border-dashed border-gray-200 relative overflow-hidden">
+          <div className="bg-white rounded-lg shadow-md p-2 text-center min-h-[400px] flex flex-col justify-center border-2 border-dashed border-gray-200 relative overflow-hidden">
             <img 
               src="/lovable-uploads/f115850b-eabd-46be-b611-c662fe0da189.png" 
               alt="ZES - Yolların Yeni, Temiz, Hızlı Enerjisi" 
