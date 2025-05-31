@@ -30,7 +30,7 @@ const PriceTableRow: React.FC<PriceTableRowProps> = ({
           : ""
       }`}
     >
-      <td className="px-6 py-4">
+      <td className="px-6 py-4 w-64">
         <div className="flex items-center space-x-3">
           <Avatar className="h-10 w-10 bg-gray-100 rounded-md flex-shrink-0">
             <AvatarImage 
@@ -42,27 +42,29 @@ const PriceTableRow: React.FC<PriceTableRowProps> = ({
               {providerInitial}
             </AvatarFallback>
           </Avatar>
-          <div className="font-medium text-gray-900 min-w-0 flex-1">{provider.name}</div>
+          <div className="font-medium text-gray-900 min-w-0 flex-1 leading-tight">
+            {provider.name}
+          </div>
         </div>
       </td>
-      <td className="px-4 py-4 text-center whitespace-nowrap">
+      <td className="px-4 py-4 text-center whitespace-nowrap w-24">
         <span className={`text-sm font-medium ${sortBy === 'acPrice' ? 'text-teal-600' : 'text-gray-700'}`}>
           {provider.acPrice.toFixed(2)} ₺
         </span>
       </td>
-      <td className="px-4 py-4 text-center whitespace-nowrap">
+      <td className="px-4 py-4 text-center whitespace-nowrap w-24">
         <span className={`text-sm font-medium ${sortBy === 'dcPrice' ? 'text-teal-600' : 'text-gray-700'}`}>
           {provider.dcPrice.toFixed(2)} ₺
         </span>
       </td>
-      <td className="px-4 py-4 text-center whitespace-nowrap">
+      <td className="px-4 py-4 text-center whitespace-nowrap w-20">
         <span className="text-sm font-medium text-gray-700">
           {provider.stationCount ? (
             provider.id === 'trugo' ? '600+' : provider.stationCount
           ) : '-'}
         </span>
       </td>
-      <td className="px-4 py-4 text-center whitespace-nowrap">
+      <td className="px-4 py-4 text-center whitespace-nowrap w-16">
         <a 
           href={provider.websiteUrl} 
           target="_blank" 
@@ -73,7 +75,7 @@ const PriceTableRow: React.FC<PriceTableRowProps> = ({
         </a>
       </td>
       <td className="px-4 py-4 text-left">
-        <div className="text-sm text-gray-700 max-w-xs">
+        <div className="text-sm text-gray-700 max-w-xs break-words">
           {provider.notes || '-'}
         </div>
       </td>
