@@ -164,7 +164,7 @@ export async function fetchProviderData(): Promise<Provider[]> {
     // Ensure the priority providers are at the top
     const priorityProviderIds = ["trugo", "zes", "beefull", "esarj"];
     
-    // Filter out priority providers
+    // Filter priority providers
     const priorityProviders = providers.filter(p => 
       priorityProviderIds.includes(p.id)
     );
@@ -174,22 +174,24 @@ export async function fetchProviderData(): Promise<Provider[]> {
       return priorityProviderIds.indexOf(a.id) - priorityProviderIds.indexOf(b.id);
     });
     
-    // Filter out non-priority providers except Voltgo and Obişarj
-    const otherProviders = providers.filter(p => 
+    // Filter out regular providers (not priority, not Voltgo, not Obişarj)
+    const regularProviders = providers.filter(p => 
       !priorityProviderIds.includes(p.id) && p.id !== 'voltgo' && p.id !== 'obisarj'
     );
     
-    // Find Voltgo and Obişarj
+    // Find Voltgo and Obişarj providers
     const voltgoProvider_final = providers.find(p => p.id === 'voltgo');
     const obisarjProvider = providers.find(p => p.id === 'obisarj');
     
-    // Create final array with Voltgo before Obişarj at the end
-    const finalProviders = [...priorityProviders, ...otherProviders];
+    // Build the final array: priority providers, then regular providers, then Voltgo, then Obişarj
+    const finalProviders = [...priorityProviders, ...regularProviders];
     
-    // Add Voltgo before Obişarj at the end
+    // Add Voltgo at the end (before Obişarj)
     if (voltgoProvider_final) {
       finalProviders.push(voltgoProvider_final);
     }
+    
+    // Add Obişarj at the very end
     if (obisarjProvider) {
       finalProviders.push(obisarjProvider);
     }
