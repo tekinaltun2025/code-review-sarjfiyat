@@ -174,12 +174,27 @@ export async function fetchProviderData(): Promise<Provider[]> {
       return priorityProviderIds.indexOf(a.id) - priorityProviderIds.indexOf(b.id);
     });
     
-    // Filter out non-priority providers
+    // Filter out non-priority providers except Voltgo and Obişarj
     const otherProviders = providers.filter(p => 
-      !priorityProviderIds.includes(p.id)
+      !priorityProviderIds.includes(p.id) && p.id !== 'voltgo' && p.id !== 'obisarj'
     );
     
-    return [...priorityProviders, ...otherProviders];
+    // Find Voltgo and Obişarj
+    const voltgoProvider_final = providers.find(p => p.id === 'voltgo');
+    const obisarjProvider = providers.find(p => p.id === 'obisarj');
+    
+    // Create final array with Voltgo before Obişarj at the end
+    const finalProviders = [...priorityProviders, ...otherProviders];
+    
+    // Add Voltgo before Obişarj at the end
+    if (voltgoProvider_final) {
+      finalProviders.push(voltgoProvider_final);
+    }
+    if (obisarjProvider) {
+      finalProviders.push(obisarjProvider);
+    }
+    
+    return finalProviders;
   } catch (error) {
     console.error("Failed to fetch provider data:", error);
     throw error;
