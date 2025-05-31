@@ -1,5 +1,3 @@
-
-
 import { BatteryCharging, Zap, MapPin, Car } from "lucide-react";
 
 const HeroSection = () => {
@@ -12,8 +10,8 @@ const HeroSection = () => {
             <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-0 border-2 border-dashed border-blue-200 relative overflow-hidden min-h-[200px] flex items-center justify-center">
               <div className="relative z-10 w-full h-full">
                 <img 
-                  src="/lovable-uploads/2378dcfc-a04a-4497-a230-8566ecdd0521.png" 
-                  alt="Togg Trugo - Yüksek Performanslı ve Geniş Kapsamlı Şarj Ağı" 
+                  src="/lovable-uploads/5f3973af-f524-4918-8841-f9d92bdaf57b.png" 
+                  alt="ZES - Güven dolu seyahatler! Elektrikli Araç Şarj İstasyonu" 
                   className="w-full h-full object-cover rounded-lg"
                 />
               </div>
