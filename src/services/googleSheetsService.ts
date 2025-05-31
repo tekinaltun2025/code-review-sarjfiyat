@@ -174,19 +174,25 @@ export async function fetchProviderData(): Promise<Provider[]> {
       return priorityProviderIds.indexOf(a.id) - priorityProviderIds.indexOf(b.id);
     });
     
-    // Filter out regular providers (not priority, not Voltgo, not Obişarj)
+    // Filter out regular providers (not priority, not Voltgo, not Obişarj, not Voltrun)
     const regularProviders = providers.filter(p => 
-      !priorityProviderIds.includes(p.id) && p.id !== 'voltgo' && p.id !== 'obisarj'
+      !priorityProviderIds.includes(p.id) && p.id !== 'voltgo' && p.id !== 'obisarj' && p.id !== 'voltrun'
     );
     
-    // Find Voltgo and Obişarj providers
+    // Find specific providers
+    const voltrunProvider = providers.find(p => p.id === 'voltrun');
     const voltgoProvider_final = providers.find(p => p.id === 'voltgo');
     const obisarjProvider = providers.find(p => p.id === 'obisarj');
     
-    // Build the final array: priority providers, then regular providers, then Voltgo, then Obişarj
+    // Build the final array: priority providers, then regular providers, then Voltrun, then Voltgo, then Obişarj
     const finalProviders = [...priorityProviders, ...regularProviders];
     
-    // Add Voltgo at the end (before Obişarj)
+    // Add Voltrun
+    if (voltrunProvider) {
+      finalProviders.push(voltrunProvider);
+    }
+    
+    // Add Voltgo right after Voltrun
     if (voltgoProvider_final) {
       finalProviders.push(voltgoProvider_final);
     }
