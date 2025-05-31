@@ -1,3 +1,4 @@
+
 import { Provider } from "@/data/types/provider.types";
 
 // Direct URL to the published Google Sheet as CSV
@@ -150,6 +151,23 @@ export async function fetchProviderData(): Promise<Provider[]> {
           websiteUrl: providerWebsites[providerId] || "#",
           stationCount: stationCounts[providerId] || null,
           notes: row[3] || ""
+        };
+      }
+      
+      // Special handling for RHG Enertürk - update with official website prices
+      if (providerId === 'rhg') {
+        return {
+          id: providerId,
+          name: providerName,
+          logo: providerLogos[providerId] || DEFAULT_LOGO,
+          acPrice: 6.60, // Updated AC price: 6.60 TL/kWh (official website price)
+          dcPrice: 10.60, // Updated DC price: 10.60 TL/kWh (official website price)
+          fastDcPrice: 10.60, // Same as DC price
+          membershipFee: null,
+          hasApp: false,
+          websiteUrl: providerWebsites[providerId] || "#",
+          stationCount: stationCounts[providerId] || null,
+          notes: "DC: 60 kWh ve üzeri"
         };
       }
       
