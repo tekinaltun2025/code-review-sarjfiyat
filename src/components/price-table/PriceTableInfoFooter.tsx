@@ -32,12 +32,13 @@ const PriceTableInfoFooter: React.FC<PriceTableInfoFooterProps> = ({ lastUpdated
               Fiyatlar {formatDate(lastUpdated)} tarihinde saat {formatTime(lastUpdated)} 
               itibariyle güncellenmiştir. Geçerli fiyatlar için lütfen 
               ilgili operatörün resmi websitesini ziyaret ediniz. Tüm fiyatlar TL/kWh cinsindendir 
-              ve KDV dahildir.
+              ve KDV dahildir. Fiyat farklılıklarından sitemizin yasal sorumluluğu yoktur.
             </>
           ) : (
             <>
               Fiyat bilgileri için lütfen ilgili operatörün resmi websitesini ziyaret ediniz. 
-              Tüm fiyatlar TL/kWh cinsindendir ve KDV dahildir.
+              Tüm fiyatlar TL/kWh cinsindendir ve KDV dahildir. 
+              Fiyat farklılıklarından sitemizin yasal sorumluluğu yoktur.
             </>
           )}
         </span>
