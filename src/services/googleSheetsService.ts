@@ -1,3 +1,4 @@
+
 import { Provider } from "@/data/types/provider.types";
 
 // Direct URL to the published Google Sheet as CSV
@@ -118,6 +119,23 @@ export async function fetchProviderData(): Promise<Provider[]> {
       const acPriceStr = row[1] ? row[1].replace(',', '.') : "0";
       const dcPriceStr = row[2] ? row[2].replace(',', '.') : "0";
       const fastDcPriceStr = row[3] ? row[3].replace(',', '.') : dcPriceStr; // Default to DC price if not specified
+      
+      // Special handling for Multiforce - update with new pricing
+      if (providerId === 'multiforce') {
+        return {
+          id: providerId,
+          name: providerName,
+          logo: providerLogos[providerId] || DEFAULT_LOGO,
+          acPrice: 5.50, // Updated AC price: 5.50 TL/kWh for AC 22 kW
+          dcPrice: 9.90, // Updated DC price: 9.90 TL/kWh for DC up to 60 kW
+          fastDcPrice: 11.50, // Updated fast DC price: 11.50 TL/kWh for DC 60 kW and above
+          membershipFee: null,
+          hasApp: false,
+          websiteUrl: providerWebsites[providerId] || "#",
+          stationCount: stationCounts[providerId] || null,
+          notes: "AC: 22 kW (5.50 TL), DC: 60 kW'a kadar (9.90 TL), DC: 60 kW ve üzeri (11.50 TL)"
+        };
+      }
       
       return {
         id: providerId,
