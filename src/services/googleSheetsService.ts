@@ -26,7 +26,8 @@ const providerLogos: Record<string, string> = {
   rhg: "/lovable-uploads/e7ac1293-6e03-43a4-9d54-840d01f3dcc4.png", // Updated to new RHG Enertürk logo
   dcharge: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
   echarge: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
-  powersarj: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png"
+  powersarj: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
+  voltgo: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png"
 };
 
 // Default logo for providers without custom logos
@@ -55,7 +56,8 @@ const providerWebsites: Record<string, string> = {
   rhg: "https://rhg.com.tr/ev-sarj-cihazlari",
   dcharge: "https://dcharge.com.tr",
   echarge: "https://echarge.com.tr",
-  powersarj: "https://powersarj.com"
+  powersarj: "https://powersarj.com",
+  voltgo: "https://voltgo.com.tr"
 };
 
 // 2025 station counts based on latest research - keeping existing counts and adding new ones
@@ -82,7 +84,8 @@ const stationCounts: Record<string, number> = {
   rhg: 12,
   dcharge: 28,
   echarge: 18,
-  powersarj: 22
+  powersarj: 22,
+  voltgo: 40
 };
 
 export async function fetchProviderData(): Promise<Provider[]> {
@@ -130,6 +133,27 @@ export async function fetchProviderData(): Promise<Provider[]> {
         notes: row[3] || ""
       };
     }).filter(provider => provider.name && provider.acPrice > 0 && provider.id !== 'swapp'); // Added filter to exclude swapp
+    
+    // Add Voltgo manually to ensure it appears in the list
+    const voltgoProvider: Provider = {
+      id: "voltgo",
+      name: "Voltgo",
+      logo: providerLogos["voltgo"] || DEFAULT_LOGO,
+      acPrice: 6.99,
+      dcPrice: 9.75,
+      fastDcPrice: 9.75,
+      membershipFee: null,
+      hasApp: false,
+      websiteUrl: "https://voltgo.com.tr",
+      stationCount: 40,
+      notes: ""
+    };
+    
+    // Check if Voltgo already exists in the data, if not add it
+    const voltgoExists = providers.some(p => p.id === 'voltgo');
+    if (!voltgoExists) {
+      providers.push(voltgoProvider);
+    }
     
     // Ensure the priority providers are at the top
     const priorityProviderIds = ["trugo", "zes", "beefull", "esarj"];

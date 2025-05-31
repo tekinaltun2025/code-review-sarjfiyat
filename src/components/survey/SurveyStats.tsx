@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -60,6 +59,13 @@ const SurveyStats = ({ onRefresh }: SurveyStatsProps) => {
           average_rating: 4.0,
           response_count: 8,
           comments: ['Uygulaması kullanışlı']
+        },
+        {
+          provider_id: 'voltgo',
+          provider_name: 'Voltgo',
+          average_rating: 4.5,
+          response_count: 5,
+          comments: ['Çok uygun fiyatlar', 'Yeni ama umut verici']
         }
       ];
       

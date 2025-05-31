@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -47,28 +46,55 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
             name: 'ZES',
             logo: 'https://example.com/logos/zes.png',
             acPrice: 8.99,
-            dcPrice: 12.99
+            dcPrice: 12.99,
+            fastDcPrice: 12.99,
+            membershipFee: null,
+            hasApp: true,
+            websiteUrl: "https://zes.net/tr"
           },
           {
             id: 'esarj',
             name: 'Eşarj',
             logo: 'https://example.com/logos/esarj.png',
             acPrice: 8.9,
-            dcPrice: 11.9
+            dcPrice: 11.9,
+            fastDcPrice: 11.9,
+            membershipFee: null,
+            hasApp: true,
+            websiteUrl: "https://esarj.com"
           },
           {
             id: 'voltrun',
             name: 'Voltrun',
             logo: 'https://example.com/logos/voltrun.png',
             acPrice: 9.29,
-            dcPrice: 12.49
+            dcPrice: 12.49,
+            fastDcPrice: 12.49,
+            membershipFee: null,
+            hasApp: true,
+            websiteUrl: "https://voltrun.com"
           },
           {
             id: 'trugo',
             name: 'Trugo',
             logo: 'https://example.com/logos/trugo.png',
             acPrice: 8.49,
-            dcPrice: 11.82
+            dcPrice: 11.82,
+            fastDcPrice: 11.82,
+            membershipFee: null,
+            hasApp: true,
+            websiteUrl: "https://trugo.com.tr"
+          },
+          {
+            id: 'voltgo',
+            name: 'Voltgo',
+            logo: 'https://example.com/logos/voltgo.png',
+            acPrice: 6.99,
+            dcPrice: 9.75,
+            fastDcPrice: 9.75,
+            membershipFee: null,
+            hasApp: true,
+            websiteUrl: "https://voltgo.com.tr"
           }
         ];
         setProviders(mockData);
