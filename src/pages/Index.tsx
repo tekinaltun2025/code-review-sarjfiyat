@@ -6,7 +6,6 @@ import HeroSection from '../components/HeroSection';
 import ChargingStats from '../components/ChargingStats';
 import PriceTable from '../components/PriceTable';
 import MapSection from '../components/MapSection';
-import ChargingProviders from '../components/ChargingProviders';
 import Footer from '../components/Footer';
 
 const Index = () => {
@@ -16,7 +15,7 @@ const Index = () => {
   const content = (
     <div className="flex min-h-screen justify-center max-w-[1400px] mx-auto">
       {/* Sol Reklam Alanı - Ana içeriğe yakın */}
-      <div className="hidden xl:block w-40 flex-shrink-0">
+      <div className="hidden xl:block w-32 flex-shrink-0">
         <div className="sticky top-4 space-y-4 p-2">
           <div 
             className="bg-white rounded-lg shadow-md p-4 text-center min-h-[300px] flex flex-col justify-center border-2 border-dashed border-gray-200 relative bg-cover bg-center"
@@ -49,11 +48,10 @@ const Index = () => {
         <ChargingStats />
         <PriceTable />
         <MapSection />
-        <ChargingProviders />
       </main>
 
       {/* Sağ Reklam Alanı - Ana içeriğe yakın */}
-      <div className="hidden xl:block w-40 flex-shrink-0">
+      <div className="hidden xl:block w-32 flex-shrink-0">
         <div className="sticky top-4 space-y-4 p-2">
           <div 
             className="bg-white rounded-lg shadow-md p-4 text-center min-h-[300px] flex flex-col justify-center border-2 border-dashed border-gray-200 relative bg-cover bg-center"
@@ -90,7 +88,6 @@ const Index = () => {
         <ChargingStats />
         <PriceTable />
         <MapSection />
-        <ChargingProviders />
       </main>
     );
   }
