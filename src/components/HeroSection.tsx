@@ -1,25 +1,26 @@
 
+
 import { BatteryCharging, Zap, MapPin, Car } from "lucide-react";
 
 const HeroSection = () => {
   return (
     <>
       {/* Reklam Alanı - Header'dan sonra sabit pozisyon */}
-      <section className="sticky top-16 z-30 bg-gray-100 py-3">
+      <section className="sticky top-16 z-30 bg-gray-100 py-4">
         <div className="container mx-auto px-4">
-          <div className="bg-white rounded-xl shadow-lg p-3 text-center">
+          <div className="bg-white rounded-xl shadow-lg p-4 text-center">
             <div 
-              className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-4 border-2 border-dashed border-blue-200 relative bg-cover bg-center min-h-[60px] flex items-center justify-center"
+              className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-2 border-2 border-dashed border-blue-200 relative bg-cover bg-center min-h-[80px] flex items-center justify-center"
               style={{
                 backgroundImage: "url('/lovable-uploads/16285b0b-0d74-4a33-b99d-0a895994c123.png')"
               }}
             >
-              <div className="absolute inset-0 bg-black/20 rounded-lg"></div>
-              <div className="relative z-10">
+              <div className="absolute inset-0 bg-black/10 rounded-lg"></div>
+              <div className="relative z-10 w-full">
                 <img 
-                  src="/lovable-uploads/16285b0b-0d74-4a33-b99d-0a895994c123.png" 
+                  src="/lovable-uploads/c41bac97-dc80-4227-b41d-baf950e77168.png" 
                   alt="Togg Trugo - Yüksek Performanslı ve Geniş Kapsamlı Şarj Ağı" 
-                  className="w-full h-auto max-h-[50px] object-contain"
+                  className="w-full h-auto max-h-[70px] object-cover rounded-lg"
                 />
               </div>
             </div>
@@ -90,3 +91,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
