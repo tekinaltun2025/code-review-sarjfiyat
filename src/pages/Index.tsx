@@ -15,9 +15,9 @@ const Index = () => {
   
   const content = (
     <div className="flex min-h-screen">
-      {/* Sol Reklam Alanı */}
-      <div className="hidden xl:block w-32 flex-shrink-0">
-        <div className="sticky top-4 space-y-4 p-2">
+      {/* Sol Reklam Alanı - Genişletildi */}
+      <div className="hidden xl:block w-48 flex-shrink-0">
+        <div className="sticky top-4 space-y-4 p-3">
           <div 
             className="bg-white rounded-lg shadow-md p-4 text-center min-h-[300px] flex flex-col justify-center border-2 border-dashed border-gray-200 relative bg-cover bg-center"
             style={{
@@ -43,8 +43,8 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Ana İçerik */}
-      <main className="flex-grow">
+      {/* Ana İçerik - Daraltıldı */}
+      <main className="flex-grow max-w-4xl mx-auto px-4">
         {!isInPanel && <HeroSection />}
         <ChargingStats />
         <PriceTable />
@@ -52,9 +52,9 @@ const Index = () => {
         <ChargingProviders />
       </main>
 
-      {/* Sağ Reklam Alanı */}
-      <div className="hidden xl:block w-32 flex-shrink-0">
-        <div className="sticky top-4 space-y-4 p-2">
+      {/* Sağ Reklam Alanı - Genişletildi */}
+      <div className="hidden xl:block w-48 flex-shrink-0">
+        <div className="sticky top-4 space-y-4 p-3">
           <div 
             className="bg-white rounded-lg shadow-md p-4 text-center min-h-[300px] flex flex-col justify-center border-2 border-dashed border-gray-200 relative bg-cover bg-center"
             style={{
