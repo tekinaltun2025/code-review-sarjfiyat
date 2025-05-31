@@ -5,10 +5,10 @@ const HeroSection = () => {
   return (
     <>
       {/* Ana Hero Section - Daha ince yapıldı */}
-      <section className="bg-gradient-to-r from-teal-500 to-blue-500 text-white py-8">
+      <section className="bg-gradient-to-r from-teal-500 to-blue-500 text-white py-6">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-6 items-center">
-            <div className="space-y-4">
+            <div className="space-y-3">
               <h1 className="text-3xl md:text-4xl font-bold leading-tight">
                 Elektrikli Araç Şarj Fiyatlarını Karşılaştırın
               </h1>
@@ -27,7 +27,7 @@ const HeroSection = () => {
               </div>
             </div>
             <div className="hidden md:block">
-              <div className="bg-white/20 backdrop-blur-sm rounded-xl p-6 space-y-6">
+              <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 space-y-4">
                 <div className="flex items-start space-x-3">
                   <div className="bg-teal-400 p-2 rounded-lg">
                     <BatteryCharging className="h-5 w-5 text-white" />
@@ -64,10 +64,10 @@ const HeroSection = () => {
       </section>
 
       {/* Reklam Alanı */}
-      <section className="bg-gray-100 py-8">
+      <section className="bg-gray-100 py-6">
         <div className="container mx-auto px-4">
-          <div className="bg-white rounded-xl shadow-lg p-8 text-center">
-            <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-12 border-2 border-dashed border-blue-200">
+          <div className="bg-white rounded-xl shadow-lg p-6 text-center">
+            <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-8 border-2 border-dashed border-blue-200">
               <h3 className="text-2xl font-bold text-gray-800 mb-3">Reklam Alanı</h3>
               <p className="text-gray-600 mb-4">Bu alan reklam içeriği için ayrılmıştır</p>
               <div className="text-sm text-gray-500">
