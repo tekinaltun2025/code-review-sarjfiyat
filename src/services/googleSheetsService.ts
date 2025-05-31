@@ -1,4 +1,3 @@
-
 import { Provider } from "@/data/types/provider.types";
 
 // Direct URL to the published Google Sheet as CSV
@@ -134,6 +133,23 @@ export async function fetchProviderData(): Promise<Provider[]> {
           websiteUrl: providerWebsites[providerId] || "#",
           stationCount: stationCounts[providerId] || null,
           notes: "AC: 22 kW (5.50 TL), DC: 60 kW'a kadar (9.90 TL), DC: 60 kW ve üzeri (11.50 TL)"
+        };
+      }
+      
+      // Special handling for Beefull - update AC price
+      if (providerId === 'beefull') {
+        return {
+          id: providerId,
+          name: providerName,
+          logo: providerLogos[providerId] || DEFAULT_LOGO,
+          acPrice: 8.99, // Updated AC price: 8.99 TL/kWh
+          dcPrice: parseFloat(dcPriceStr) || 0,
+          fastDcPrice: parseFloat(fastDcPriceStr) || 0,
+          membershipFee: null,
+          hasApp: false,
+          websiteUrl: providerWebsites[providerId] || "#",
+          stationCount: stationCounts[providerId] || null,
+          notes: row[3] || ""
         };
       }
       
