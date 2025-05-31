@@ -4,8 +4,8 @@ import { BatteryCharging, Zap, MapPin, Car } from "lucide-react";
 const HeroSection = () => {
   return (
     <>
-      {/* Reklam Alanı - En üstte */}
-      <section className="bg-gray-100 py-3">
+      {/* Reklam Alanı - En üstte ve sticky */}
+      <section className="sticky top-0 z-50 bg-gray-100 py-3">
         <div className="container mx-auto px-4">
           <div className="bg-white rounded-xl shadow-lg p-3 text-center">
             <div 
