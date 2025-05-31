@@ -1,3 +1,4 @@
+
 import { BatteryCharging, Zap, MapPin, Car } from "lucide-react";
 
 const HeroSection = () => {
@@ -10,16 +11,16 @@ const HeroSection = () => {
             <div 
               className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-4 border-2 border-dashed border-blue-200 relative bg-cover bg-center min-h-[60px] flex items-center justify-center"
               style={{
-                backgroundImage: "url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80')"
+                backgroundImage: "url('/lovable-uploads/16285b0b-0d74-4a33-b99d-0a895994c123.png')"
               }}
             >
-              <div className="absolute inset-0 bg-black/40 rounded-lg"></div>
-              <div className="relative z-10 text-white">
-                <h3 className="text-lg font-bold mb-1">Reklam Alanı</h3>
-                <p className="mb-1 text-xs">Bu alan reklam içeriği için ayrılmıştır</p>
-                <div className="text-xs opacity-90">
-                  Banner / Video / İçerik Reklamı
-                </div>
+              <div className="absolute inset-0 bg-black/20 rounded-lg"></div>
+              <div className="relative z-10">
+                <img 
+                  src="/lovable-uploads/16285b0b-0d74-4a33-b99d-0a895994c123.png" 
+                  alt="Togg Trugo - Yüksek Performanslı ve Geniş Kapsamlı Şarj Ağı" 
+                  className="w-full h-auto max-h-[50px] object-contain"
+                />
               </div>
             </div>
           </div>
