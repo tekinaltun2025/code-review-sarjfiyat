@@ -146,13 +146,19 @@ export async function fetchProviderData(): Promise<Provider[]> {
       hasApp: false,
       websiteUrl: "https://voltgo.com.tr",
       stationCount: 40,
-      notes: ""
+      notes: "DC:40 kWH-160 kWh , Genelde 120kWh"
     };
     
     // Check if Voltgo already exists in the data, if not add it
     const voltgoExists = providers.some(p => p.id === 'voltgo');
     if (!voltgoExists) {
       providers.push(voltgoProvider);
+    } else {
+      // Update existing Voltgo entry with the notes
+      const voltgoIndex = providers.findIndex(p => p.id === 'voltgo');
+      if (voltgoIndex !== -1) {
+        providers[voltgoIndex].notes = "DC:40 kWH-160 kWh , Genelde 120kWh";
+      }
     }
     
     // Ensure the priority providers are at the top
