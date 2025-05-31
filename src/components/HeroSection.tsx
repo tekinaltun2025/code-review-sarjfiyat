@@ -1,4 +1,5 @@
 
+
 import { BatteryCharging, Zap, MapPin, Car } from "lucide-react";
 
 const HeroSection = () => {
@@ -7,8 +8,8 @@ const HeroSection = () => {
       {/* Reklam Alanı - Header'dan sonra sabit pozisyon */}
       <section className="sticky top-16 z-30 bg-gray-100 py-6">
         <div className="container mx-auto px-4">
-          <div className="bg-white rounded-xl shadow-lg p-6 text-center">
-            <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-2 border-2 border-dashed border-blue-200 relative overflow-hidden min-h-[150px] flex items-center justify-center">
+          <div className="bg-white rounded-xl shadow-lg p-2 text-center">
+            <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-1 border-2 border-dashed border-blue-200 relative overflow-hidden min-h-[150px] flex items-center justify-center">
               <div className="relative z-10 w-full h-full">
                 <img 
                   src="/lovable-uploads/2378dcfc-a04a-4497-a230-8566ecdd0521.png" 
