@@ -10,12 +10,12 @@ const HeroSection = React.memo(() => {
       <section className="sticky top-16 z-30 bg-gray-100 py-2">
         <div className="container mx-auto px-4">
           <div className="bg-white rounded-xl shadow-lg p-1 text-center">
-            <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-0 border-2 border-dashed border-blue-200 relative overflow-hidden min-h-[150px] md:min-h-[200px] flex items-center justify-center">
-              <div className="relative z-10 w-full h-full">
+            <div className="bg-black rounded-lg p-0 border-2 border-dashed border-blue-200 relative overflow-hidden min-h-[150px] md:min-h-[200px] flex items-center justify-center">
+              <div className="relative z-10">
                 <OptimizedImage
                   src="/lovable-uploads/2378dcfc-a04a-4497-a230-8566ecdd0521.png" 
                   alt="Togg Trugo - Türkiye'nin en geniş elektrikli araç şarj ağı. Yüksek performanslı DC hızlı şarj istasyonları ile elektrikli aracınızı hızla şarj edin." 
-                  className="w-full h-full object-cover rounded-lg"
+                  className="rounded-lg"
                   priority={true}
                   width={800}
                   height={200}
