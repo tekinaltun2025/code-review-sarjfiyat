@@ -1,222 +1,57 @@
+
 <!DOCTYPE html>
 <html lang="tr">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Basic Meta Tags -->
+    <script>
+      fetch('/meta/basic-meta.html')
+        .then(response => response.text())
+        .then(html => {
+          document.head.insertAdjacentHTML('afterbegin', html);
+        });
+    </script>
     
-    <!-- Primary Meta Tags -->
-    <title>ŞarjFiyat - Türkiye'deki En Güncel Elektrikli Araç Şarj Fiyatları Karşılaştırması</title>
-    <meta name="title" content="ŞarjFiyat - Türkiye'deki En Güncel Elektrikli Araç Şarj Fiyatları Karşılaştırması" />
-    <meta name="description" content="Türkiye'deki tüm elektrikli araç şarj istasyonu operatörlerinin güncel fiyatlarını karşılaştırın. ZES, Eşarj, Trugo, Beefull ve diğer şarj ağlarının tarifelerini inceleyin. En ekonomik şarj noktasını bulun." />
-    <meta name="keywords" content="elektrikli araç şarj fiyatları, şarj istasyonu karşılaştırma, EV charging prices Turkey, ZES fiyatları, Eşarj tarifeleri, Trugo şarj ücreti, elektrikli araç Türkiye, şarj ağları" />
-    <meta name="author" content="ŞarjFiyat" />
-    <meta name="robots" content="index, follow" />
-    <meta name="language" content="Turkish" />
-    <meta name="revisit-after" content="7 days" />
+    <!-- Social Media Meta Tags -->
+    <script>
+      fetch('/meta/social-meta.html')
+        .then(response => response.text())
+        .then(html => {
+          document.head.insertAdjacentHTML('beforeend', html);
+        });
+    </script>
     
-    <!-- Performance Optimization -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="theme-color" content="#14b8a6" />
-    <meta name="msapplication-TileColor" content="#14b8a6" />
-    <meta name="application-name" content="ŞarjFiyat" />
+    <!-- Preconnect Links -->
+    <script>
+      fetch('/meta/preconnect-links.html')
+        .then(response => response.text())
+        .then(html => {
+          document.head.insertAdjacentHTML('beforeend', html);
+        });
+    </script>
     
-    <!-- Preconnect for third-party resources -->
-    <link rel="preconnect" href="https://www.google.com" crossorigin>
-    <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
-    <link rel="preconnect" href="https://maps.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://sarjfiyat.com.tr/" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="ŞarjFiyat" />
-    <meta property="og:title" content="ŞarjFiyat - Türkiye'deki En Güncel Elektrikli Araç Şarj Fiyatları Karşılaştırması" />
-    <meta property="og:description" content="Türkiye'deki tüm elektrikli araç şarj istasyonu operatörlerinin güncel fiyatlarını karşılaştırın. ZES, Eşarj, Trugo, Beefull ve diğer şarj ağlarının tarifelerini inceleyin." />
-    <meta property="og:url" content="https://sarjfiyat.com.tr/" />
-    <meta property="og:image" content="https://sarjfiyat.com.tr/images/opengraph-image.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="ŞarjFiyat - Elektrikli Araç Şarj Fiyatları Karşılaştırma Platformu" />
-    <meta property="og:locale" content="tr_TR" />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@sarjfiyat" />
-    <meta name="twitter:creator" content="@sarjfiyat" />
-    <meta name="twitter:title" content="ŞarjFiyat - Türkiye'deki En Güncel Elektrikli Araç Şarj Fiyatları Karşılaştırması" />
-    <meta name="twitter:description" content="Türkiye'deki tüm elektrikli araç şarj istasyonu operatörlerinin güncel fiyatlarını karşılaştırın. En ekonomik şarj noktasını bulun." />
-    <meta name="twitter:image" content="https://sarjfiyat.com.tr/images/opengraph-image.png" />
-    <meta name="twitter:image:alt" content="ŞarjFiyat - Elektrikli Araç Şarj Fiyatları Karşılaştırma Platformu" />
-    
-    <!-- Base URL ayarını mutlaka ekleyin -->
+    <!-- Base URL -->
     <base href="/" />
     
     <!-- Favicon -->
     <link rel="icon" href="/lovable-uploads/976fb8f2-b5ea-4978-ac8a-2c7dffd9f7a2.png" type="image/png">
     <link rel="apple-touch-icon" href="/lovable-uploads/976fb8f2-b5ea-4978-ac8a-2c7dffd9f7a2.png">
     
-    <!-- Structured Data - Organization -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "ŞarjFiyat",
-      "url": "https://sarjfiyat.com.tr",
-      "logo": "https://sarjfiyat.com.tr/lovable-uploads/976fb8f2-b5ea-4978-ac8a-2c7dffd9f7a2.png",
-      "description": "Türkiye'deki elektrikli araç şarj istasyonu operatörlerinin fiyatlarını karşılaştıran platform",
-      "foundingDate": "2023",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "customer service",
-        "email": "info@sarjfiyat.com.tr",
-        "availableLanguage": "Turkish"
-      },
-      "sameAs": [
-        "https://twitter.com/sarjfiyat",
-        "https://facebook.com/sarjfiyat",
-        "https://instagram.com/sarjfiyat"
-      ]
-    }
-    </script>
-
-    <!-- Structured Data - LocalBusiness -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "ŞarjFiyat",
-      "description": "Türkiye'deki elektrikli araç şarj fiyatları karşılaştırma platformu",
-      "url": "https://sarjfiyat.com.tr",
-      "logo": "https://sarjfiyat.com.tr/lovable-uploads/976fb8f2-b5ea-4978-ac8a-2c7dffd9f7a2.png",
-      "areaServed": {
-        "@type": "Country",
-        "name": "Turkey"
-      },
-      "serviceArea": {
-        "@type": "Country",
-        "name": "Turkey"
-      },
-      "knowsAbout": [
-        "Elektrikli araç şarj fiyatları",
-        "EV charging stations",
-        "Şarj istasyonu karşılaştırma",
-        "ZES fiyatları",
-        "Eşarj tarifeleri",
-        "Trugo şarj ücreti"
-      ]
-    }
-    </script>
-
-    <!-- Structured Data - Website -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "ŞarjFiyat",
-      "url": "https://sarjfiyat.com.tr",
-      "description": "Türkiye'deki elektrikli araç şarj fiyatları karşılaştırma platformu",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://sarjfiyat.com.tr/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
-
-    <!-- Structured Data - FAQ Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Elektrikli araç şarj fiyatları hangi operatörlerde karşılaştırılıyor?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ŞarjFiyat platformunda ZES, Eşarj, Trugo, Beefull ve Türkiye'deki diğer tüm elektrikli araç şarj operatörlerinin güncel fiyatlarını karşılaştırabilirsiniz."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "AC ve DC şarj fiyatları arasında ne fark var?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "AC şarj daha yavaş ve genellikle daha ucuzdur. DC şarj ise hızlı şarj olarak bilinir ve daha pahalı ama çok daha hızlıdır. DC şarj ile aracınızı 30-45 dakikada %80'e kadar şarj edebilirsiniz."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Şarj fiyatları ne kadar sık güncelleniyor?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ŞarjFiyat platformundaki tüm şarj operatörü fiyatları düzenli olarak güncellenmekte ve en güncel tarifeleri sunmaktayız."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "En ekonomik şarj istasyonu hangisidir?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "En ekonomik şarj operatörü şarj tipi ve lokasyona göre değişmektedir. AC şarj için genellikle Trugo ve Beefull daha uygun fiyatlı seçenekler sunarken, DC şarj için operatörler arasında fiyat karşılaştırması yapmak önemlidir."
-          }
-        }
-      ]
-    }
-    </script>
-
-    <!-- Structured Data - Service -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Elektrikli Araç Şarj Fiyatları Karşılaştırma",
-      "description": "Türkiye'deki tüm elektrikli araç şarj istasyonu operatörlerinin güncel fiyatlarını karşılaştırma hizmeti",
-      "provider": {
-        "@type": "Organization",
-        "name": "ŞarjFiyat"
-      },
-      "areaServed": {
-        "@type": "Country",
-        "name": "Turkey"
-      },
-      "serviceType": "Price Comparison Service",
-      "audience": {
-        "@type": "Audience",
-        "audienceType": "Electric Vehicle Owners"
-      }
-    }
-    </script>
-    
-    <!-- Optimized Google Analytics - Defer loading -->
+    <!-- Structured Data -->
     <script>
-      // Defer Google Analytics loading until after page load
-      window.addEventListener('load', function() {
-        setTimeout(function() {
-          var script = document.createElement('script');
-          script.async = true;
-          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-MJD4ERPGL8';
-          document.head.appendChild(script);
-          
-          script.onload = function() {
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-MJD4ERPGL8');
-          };
-        }, 1000); // 1 saniye gecikme ile yükle
-      });
+      fetch('/scripts/structured-data.html')
+        .then(response => response.text())
+        .then(html => {
+          document.head.insertAdjacentHTML('beforeend', html);
+        });
     </script>
   </head>
 
   <body>
     <div id="root"></div>
+    
+    <!-- Analytics Script -->
+    <script src="/scripts/analytics.js"></script>
+    
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
