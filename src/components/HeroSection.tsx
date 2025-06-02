@@ -11,14 +11,14 @@ const HeroSection = React.memo(() => {
         <div className="container mx-auto px-4">
           <div className="bg-white rounded-xl shadow-lg p-1 text-center">
             <div className="bg-black rounded-lg p-0 border-2 border-dashed border-blue-200 relative overflow-hidden min-h-[150px] md:min-h-[200px] flex items-center justify-center">
-              <div className="relative z-10">
+              <div className="relative z-10 w-full max-w-4xl">
                 <OptimizedImage
                   src="/lovable-uploads/2378dcfc-a04a-4497-a230-8566ecdd0521.png" 
                   alt="Togg Trugo - Türkiye'nin en geniş elektrikli araç şarj ağı. Yüksek performanslı DC hızlı şarj istasyonları ile elektrikli aracınızı hızla şarj edin." 
-                  className="rounded-lg"
+                  className="rounded-lg w-full h-auto object-contain"
                   priority={true}
-                  width={800}
-                  height={200}
+                  width={932}
+                  height={191}
                   quality={85}
                 />
               </div>

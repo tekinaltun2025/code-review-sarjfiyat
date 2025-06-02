@@ -70,6 +70,32 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     );
   }
 
+  // Image props with proper HTML attributes
+  const imageProps: React.ImgHTMLAttributes<HTMLImageElement> = {
+    src: optimizedSrc,
+    alt,
+    width,
+    height,
+    sizes: responsiveSizes,
+    loading: priority ? 'eager' : 'lazy',
+    decoding: 'async',
+    onLoad: handleLoad,
+    onError: handleError,
+    className: `transition-opacity duration-300 ${
+      imageLoaded ? 'opacity-100' : 'opacity-0'
+    } ${className}`,
+    style: {
+      width: width ? `${width}px` : '100%',
+      height: height ? `${height}px` : 'auto',
+      aspectRatio: width && height ? `${width}/${height}` : undefined,
+    }
+  };
+
+  // Add fetchpriority for high priority images (HTML attribute, not React prop)
+  if (priority) {
+    (imageProps as any).fetchpriority = 'high';
+  }
+
   return (
     <div className={`relative overflow-hidden ${className}`}>
       {!imageLoaded && (
@@ -79,26 +105,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
           aria-hidden="true"
         />
       )}
-      <img
-        src={optimizedSrc}
-        alt={alt}
-        width={width}
-        height={height}
-        sizes={responsiveSizes}
-        loading={priority ? 'eager' : 'lazy'}
-        decoding="async"
-        fetchPriority={priority ? 'high' : 'auto'}
-        onLoad={handleLoad}
-        onError={handleError}
-        className={`transition-opacity duration-300 ${
-          imageLoaded ? 'opacity-100' : 'opacity-0'
-        } ${className}`}
-        style={{
-          width: width ? `${width}px` : '100%',
-          height: height ? `${height}px` : 'auto',
-          aspectRatio: width && height ? `${width}/${height}` : undefined,
-        }}
-      />
+      <img {...imageProps} />
     </div>
   );
 };
