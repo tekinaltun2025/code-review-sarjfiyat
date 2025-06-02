@@ -1,24 +1,61 @@
 
 import { BatteryCharging, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+  const toggleMenu = useCallback(() => {
+    setMenuOpen(prev => !prev);
+  }, []);
+
+  const closeMenu = useCallback(() => {
+    setMenuOpen(false);
+  }, []);
 
   // Centralized navigation items to maintain consistency
-  const navItems = [
+  const navItems = useMemo(() => [
     { name: "Ana Sayfa", path: "/" },
     { name: "Şarj Ağları", path: "/sarj-aglari" },
     { name: "Kampanyalar", path: "/kampanyalar" },
     { name: "Ev Şarj Cihazları", path: "/ev-sarj-cihazlari" },
     { name: "Anket", path: "/anket" },
     { name: "Hakkımızda", path: "/hakkimizda" },
-  ];
+  ], []);
+
+  const desktopNav = useMemo(() => (
+    <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8 mr-4 md:mr-20">
+      {navItems.map((item) => (
+        <Link 
+          key={item.path}
+          to={item.path} 
+          className="text-gray-800 hover:text-teal-500 transition-colors text-sm xl:text-base"
+        >
+          {item.name}
+        </Link>
+      ))}
+    </nav>
+  ), [navItems]);
+
+  const mobileNav = useMemo(() => (
+    menuOpen && (
+      <div className="lg:hidden bg-white px-2 sm:px-4 py-2 shadow-lg border-t">
+        <nav className="flex flex-col space-y-3 sm:space-y-4 py-3 sm:py-4">
+          {navItems.map((item) => (
+            <Link 
+              key={item.path}
+              to={item.path} 
+              className="text-gray-800 hover:text-teal-500 transition-colors py-1 sm:py-2 text-sm sm:text-base"
+              onClick={closeMenu}
+            >
+              {item.name}
+            </Link>
+          ))}
+        </nav>
+      </div>
+    )
+  ), [menuOpen, navItems, closeMenu]);
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm relative">
@@ -36,22 +73,13 @@ const Header = () => {
         </div>
         
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8 mr-4 md:mr-20">
-          {navItems.map((item) => (
-            <Link 
-              key={item.path}
-              to={item.path} 
-              className="text-gray-800 hover:text-teal-500 transition-colors text-sm xl:text-base"
-            >
-              {item.name}
-            </Link>
-          ))}
-        </nav>
+        {desktopNav}
 
         {/* Mobile Menu Button */}
         <button 
           className="lg:hidden text-gray-800 focus:outline-none p-1 sm:p-2 mr-2 sm:mr-4"
           onClick={toggleMenu}
+          aria-label={menuOpen ? "Menüyü kapat" : "Menüyü aç"}
         >
           {menuOpen ? (
             <X className="h-5 w-5 sm:h-6 sm:w-6" />
@@ -62,22 +90,7 @@ const Header = () => {
       </div>
 
       {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="lg:hidden bg-white px-2 sm:px-4 py-2 shadow-lg border-t">
-          <nav className="flex flex-col space-y-3 sm:space-y-4 py-3 sm:py-4">
-            {navItems.map((item) => (
-              <Link 
-                key={item.path}
-                to={item.path} 
-                className="text-gray-800 hover:text-teal-500 transition-colors py-1 sm:py-2 text-sm sm:text-base"
-                onClick={() => setMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      )}
+      {mobileNav}
     </header>
   );
 };

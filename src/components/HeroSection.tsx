@@ -1,7 +1,9 @@
 
 import { BatteryCharging, Zap, MapPin, Car } from "lucide-react";
+import OptimizedImage from "./OptimizedImage";
+import React from "react";
 
-const HeroSection = () => {
+const HeroSection = React.memo(() => {
   return (
     <>
       {/* Reklam Alanı - Header'dan sonra sabit pozisyon */}
@@ -10,13 +12,13 @@ const HeroSection = () => {
           <div className="bg-white rounded-xl shadow-lg p-1 text-center">
             <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-0 border-2 border-dashed border-blue-200 relative overflow-hidden min-h-[150px] md:min-h-[200px] flex items-center justify-center">
               <div className="relative z-10 w-full h-full">
-                <img 
+                <OptimizedImage
                   src="/lovable-uploads/2378dcfc-a04a-4497-a230-8566ecdd0521.png" 
                   alt="Togg Trugo - Türkiye'nin en geniş elektrikli araç şarj ağı. Yüksek performanslı DC hızlı şarj istasyonları ile elektrikli aracınızı hızla şarj edin." 
                   className="w-full h-full object-cover rounded-lg"
-                  loading="lazy"
-                  decoding="async"
-                  fetchPriority="low"
+                  priority={true}
+                  width={800}
+                  height={200}
                 />
               </div>
             </div>
@@ -49,35 +51,23 @@ const HeroSection = () => {
             </div>
             <div className="hidden md:block">
               <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 lg:p-6 space-y-4">
-                <div className="flex items-start space-x-3">
-                  <div className="bg-teal-400 p-2 rounded-lg flex-shrink-0">
-                    <BatteryCharging className="h-5 w-5 text-white" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <h2 className="font-semibold text-base lg:text-lg">Güncel Şarj Tarifeleri</h2>
-                    <p className="opacity-80 text-xs lg:text-sm">Tüm elektrikli araç şarj operatörlerinin en güncel AC ve DC şarj fiyatları</p>
-                  </div>
-                </div>
+                <FeatureItem
+                  icon={<BatteryCharging className="h-5 w-5 text-white" />}
+                  title="Güncel Şarj Tarifeleri"
+                  description="Tüm elektrikli araç şarj operatörlerinin en güncel AC ve DC şarj fiyatları"
+                />
                 
-                <div className="flex items-start space-x-3">
-                  <div className="bg-blue-400 p-2 rounded-lg flex-shrink-0">
-                    <MapPin className="h-5 w-5 text-white" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <h2 className="font-semibold text-base lg:text-lg">Şarj İstasyonu Haritası</h2>
-                    <p className="opacity-80 text-xs lg:text-sm">Türkiye genelindeki 5000+ elektrikli araç şarj noktası lokasyonları</p>
-                  </div>
-                </div>
+                <FeatureItem
+                  icon={<MapPin className="h-5 w-5 text-white" />}
+                  title="Şarj İstasyonu Haritası"
+                  description="Türkiye genelindeki 5000+ elektrikli araç şarj noktası lokasyonları"
+                />
                 
-                <div className="flex items-start space-x-3">
-                  <div className="bg-teal-400 p-2 rounded-lg flex-shrink-0">
-                    <Car className="h-5 w-5 text-white" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <h2 className="font-semibold text-base lg:text-lg">15+ Şarj Operatörü</h2>
-                    <p className="opacity-80 text-xs lg:text-sm">ZES, Eşarj, Trugo, Beefull dahil tüm şarj ağları karşılaştırması</p>
-                  </div>
-                </div>
+                <FeatureItem
+                  icon={<Car className="h-5 w-5 text-white" />}
+                  title="15+ Şarj Operatörü"
+                  description="ZES, Eşarj, Trugo, Beefull dahil tüm şarj ağları karşılaştırması"
+                />
               </div>
             </div>
           </div>
@@ -85,6 +75,27 @@ const HeroSection = () => {
       </section>
     </>
   );
-};
+});
+
+interface FeatureItemProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
+
+const FeatureItem = React.memo<FeatureItemProps>(({ icon, title, description }) => (
+  <div className="flex items-start space-x-3">
+    <div className="bg-teal-400 p-2 rounded-lg flex-shrink-0">
+      {icon}
+    </div>
+    <div>
+      <h2 className="font-semibold text-base lg:text-lg">{title}</h2>
+      <p className="opacity-80 text-xs lg:text-sm">{description}</p>
+    </div>
+  </div>
+));
+
+HeroSection.displayName = 'HeroSection';
+FeatureItem.displayName = 'FeatureItem';
 
 export default HeroSection;
