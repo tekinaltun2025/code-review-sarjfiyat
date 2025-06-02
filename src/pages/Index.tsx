@@ -14,8 +14,8 @@ const Index = () => {
   
   const content = (
     <div className="flex min-h-screen justify-center max-w-[1400px] mx-auto">
-      {/* Sol Reklam Alanı - Ana içeriğe yakın */}
-      <div className="hidden xl:block w-32 flex-shrink-0">
+      {/* Sol Reklam Alanı - Ana içeriğe yakın - Responsive */}
+      <div className="hidden 2xl:block w-32 flex-shrink-0">
         <div className="sticky top-4 space-y-4 p-2">
           <div className="bg-white rounded-lg shadow-md overflow-hidden min-h-[300px] border-2 border-dashed border-gray-200">
             <img 
@@ -24,7 +24,6 @@ const Index = () => {
               className="w-full h-full object-cover"
               loading="lazy"
               decoding="async"
-              fetchPriority="low"
             />
           </div>
           <div 
@@ -41,16 +40,16 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Ana İçerik - Ortalanmış */}
-      <main className="flex-grow max-w-5xl px-6">
+      {/* Ana İçerik - Responsive padding */}
+      <main className="flex-grow max-w-5xl px-4 sm:px-6">
         {!isInPanel && <HeroSection />}
         <ChargingStats />
         <PriceTable />
         <MapSection />
       </main>
 
-      {/* Sağ Reklam Alanı - Ana içeriğe yakın */}
-      <div className="hidden xl:block w-32 flex-shrink-0">
+      {/* Sağ Reklam Alanı - Ana içeriğe yakın - Responsive */}
+      <div className="hidden 2xl:block w-32 flex-shrink-0">
         <div className="sticky top-4 space-y-4 p-2">
           <div 
             className="bg-white rounded-lg shadow-md p-4 text-center min-h-[300px] flex flex-col justify-center border-2 border-dashed border-gray-200 relative bg-cover bg-center"
@@ -82,7 +81,7 @@ const Index = () => {
   // Panel içinde gösteriliyorsa, sadece ana içeriği döndür
   if (isInPanel) {
     return (
-      <main className="flex-grow">
+      <main className="flex-grow px-4 sm:px-6">
         {!isInPanel && <HeroSection />}
         <ChargingStats />
         <PriceTable />
