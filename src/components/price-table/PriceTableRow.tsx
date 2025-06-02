@@ -70,8 +70,11 @@ const PriceTableRow: React.FC<PriceTableRowProps> = ({
           target="_blank" 
           rel="noopener noreferrer"
           className="inline-flex items-center text-blue-600 hover:text-blue-800"
+          aria-label={`${provider.name} web sitesini ziyaret et`}
+          title={`${provider.name} web sitesini ziyaret et`}
         >
-          <ExternalLink className="h-4 w-4" />
+          <span className="sr-only">{provider.name} web sitesi</span>
+          <ExternalLink className="h-4 w-4" aria-hidden="true" />
         </a>
       </td>
       <td className="px-4 py-4 text-left">
