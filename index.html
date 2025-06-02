@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="tr">
   <head>
@@ -21,6 +20,15 @@
     <meta name="theme-color" content="#14b8a6" />
     <meta name="msapplication-TileColor" content="#14b8a6" />
     <meta name="application-name" content="ŞarjFiyat" />
+    
+    <!-- Preconnect for third-party resources -->
+    <link rel="preconnect" href="https://www.google.com" crossorigin>
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+    <link rel="preconnect" href="https://maps.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://sarjfiyat.com.tr/" />
@@ -186,13 +194,24 @@
     }
     </script>
     
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJD4ERPGL8"></script>
+    <!-- Optimized Google Analytics - Defer loading -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-MJD4ERPGL8');
+      // Defer Google Analytics loading until after page load
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-MJD4ERPGL8';
+          document.head.appendChild(script);
+          
+          script.onload = function() {
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-MJD4ERPGL8');
+          };
+        }, 1000); // 1 saniye gecikme ile yükle
+      });
     </script>
   </head>
 
