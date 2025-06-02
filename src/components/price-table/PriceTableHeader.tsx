@@ -35,8 +35,14 @@ const PriceTableHeader: React.FC<PriceTableHeaderProps> = ({
           {getSortIcon('acPrice')}
           <TooltipProvider>
             <Tooltip>
-              <TooltipTrigger>
-                <Info className="inline h-4 w-4 ml-1 text-gray-400" />
+              <TooltipTrigger asChild>
+                <button 
+                  className="inline-flex items-center"
+                  aria-label="AC şarj fiyatı hakkında bilgi"
+                  title="AC şarj fiyatı hakkında bilgi"
+                >
+                  <Info className="inline h-4 w-4 ml-1 text-gray-400" aria-hidden="true" />
+                </button>
               </TooltipTrigger>
               <TooltipContent>
                 <p className="w-48">AC şarj, 3.7-22kW güçlerindeki yavaş şarj istasyonlarıdır.</p>
@@ -52,8 +58,14 @@ const PriceTableHeader: React.FC<PriceTableHeaderProps> = ({
           {getSortIcon('dcPrice')}
           <TooltipProvider>
             <Tooltip>
-              <TooltipTrigger>
-                <Info className="inline h-4 w-4 ml-1 text-gray-400" />
+              <TooltipTrigger asChild>
+                <button 
+                  className="inline-flex items-center"
+                  aria-label="DC şarj fiyatı hakkında bilgi"
+                  title="DC şarj fiyatı hakkında bilgi"
+                >
+                  <Info className="inline h-4 w-4 ml-1 text-gray-400" aria-hidden="true" />
+                </button>
               </TooltipTrigger>
               <TooltipContent>
                 <p className="w-48">DC şarj, 50kW güçlerindeki hızlı şarj istasyonlarıdır.</p>
@@ -65,8 +77,14 @@ const PriceTableHeader: React.FC<PriceTableHeaderProps> = ({
           İstasyon Sayısı
           <TooltipProvider>
             <Tooltip>
-              <TooltipTrigger>
-                <Info className="inline h-4 w-4 ml-1 text-gray-400" />
+              <TooltipTrigger asChild>
+                <button 
+                  className="inline-flex items-center"
+                  aria-label="İstasyon sayısı hakkında bilgi"
+                  title="İstasyon sayısı hakkında bilgi"
+                >
+                  <Info className="inline h-4 w-4 ml-1 text-gray-400" aria-hidden="true" />
+                </button>
               </TooltipTrigger>
               <TooltipContent>
                 <p className="w-48">2025 verileri baz alınarak hazırlanmıştır.</p>
