@@ -7,10 +7,24 @@ import LazySection from '../components/LazySection';
 import OptimizedImage from '../components/OptimizedImage';
 import Footer from '../components/Footer';
 
-// Lazy load heavy components
-const ChargingStats = React.lazy(() => import('../components/ChargingStats'));
-const PriceTable = React.lazy(() => import('../components/PriceTable'));
-const MapSection = React.lazy(() => import('../components/MapSection'));
+// Lazy load heavy components with better chunking
+const ChargingStats = React.lazy(() => 
+  import('../components/ChargingStats').then(module => ({
+    default: module.default
+  }))
+);
+
+const PriceTable = React.lazy(() => 
+  import('../components/PriceTable').then(module => ({
+    default: module.default
+  }))
+);
+
+const MapSection = React.lazy(() => 
+  import('../components/MapSection').then(module => ({
+    default: module.default
+  }))
+);
 
 const AdBanner = React.memo<{ src: string; alt: string; className?: string }>(({ src, alt, className }) => (
   <div className={`bg-white rounded-lg shadow-md overflow-hidden min-h-[300px] border-2 border-dashed border-gray-200 ${className}`}>
@@ -20,6 +34,7 @@ const AdBanner = React.memo<{ src: string; alt: string; className?: string }>(({
       className="w-full h-full object-cover"
       width={150}
       height={300}
+      quality={80}
     />
   </div>
 ));
@@ -46,13 +61,17 @@ const Index = React.memo(() => {
   const leftSidebar = useMemo(() => (
     <div className="hidden xl:block w-28 2xl:w-32 flex-shrink-0">
       <div className="sticky top-4 space-y-4 p-2">
-        <AdBanner
-          src="/lovable-uploads/f115850b-eabd-46be-b611-c662fe0da189.png"
-          alt="ZES - Yolların Yeni, Temiz, Hızlı Enerjisi"
-        />
-        <RotatedAdBanner 
-          backgroundImage="url('https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"
-        />
+        <LazySection rootMargin="400px">
+          <AdBanner
+            src="/lovable-uploads/f115850b-eabd-46be-b611-c662fe0da189.png"
+            alt="ZES - Yolların Yeni, Temiz, Hızlı Enerjisi"
+          />
+        </LazySection>
+        <LazySection rootMargin="400px">
+          <RotatedAdBanner 
+            backgroundImage="url('https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"
+          />
+        </LazySection>
       </div>
     </div>
   ), []);
@@ -60,12 +79,16 @@ const Index = React.memo(() => {
   const rightSidebar = useMemo(() => (
     <div className="hidden xl:block w-28 2xl:w-32 flex-shrink-0">
       <div className="sticky top-4 space-y-4 p-2">
-        <RotatedAdBanner 
-          backgroundImage="url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"
-        />
-        <RotatedAdBanner 
-          backgroundImage="url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"
-        />
+        <LazySection rootMargin="400px">
+          <RotatedAdBanner 
+            backgroundImage="url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"
+          />
+        </LazySection>
+        <LazySection rootMargin="400px">
+          <RotatedAdBanner 
+            backgroundImage="url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"
+          />
+        </LazySection>
       </div>
     </div>
   ), []);
@@ -74,19 +97,19 @@ const Index = React.memo(() => {
     <main className="flex-grow w-full max-w-5xl px-2 sm:px-4 md:px-6">
       {!isInPanel && <HeroSection />}
       
-      <LazySection>
+      <LazySection skipLazyLoading={true}>
         <React.Suspense fallback={<div className="h-32 bg-gray-100 animate-pulse rounded-lg mb-6" />}>
           <ChargingStats />
         </React.Suspense>
       </LazySection>
       
-      <LazySection>
+      <LazySection rootMargin="300px">
         <React.Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse rounded-lg mb-6" />}>
           <PriceTable />
         </React.Suspense>
       </LazySection>
       
-      <LazySection>
+      <LazySection rootMargin="500px">
         <React.Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse rounded-lg" />}>
           <MapSection />
         </React.Suspense>
@@ -106,21 +129,19 @@ const Index = React.memo(() => {
   if (isInPanel) {
     return (
       <main className="flex-grow px-2 sm:px-4 md:px-6">
-        {!isInPanel && <HeroSection />}
-        
-        <LazySection>
+        <LazySection skipLazyLoading={true}>
           <React.Suspense fallback={<div className="h-32 bg-gray-100 animate-pulse rounded-lg mb-6" />}>
             <ChargingStats />
           </React.Suspense>
         </LazySection>
         
-        <LazySection>
+        <LazySection rootMargin="300px">
           <React.Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse rounded-lg mb-6" />}>
             <PriceTable />
           </React.Suspense>
         </LazySection>
         
-        <LazySection>
+        <LazySection rootMargin="500px">
           <React.Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse rounded-lg" />}>
             <MapSection />
           </React.Suspense>

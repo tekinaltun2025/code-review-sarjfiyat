@@ -19,6 +19,7 @@ const HeroSection = React.memo(() => {
                   priority={true}
                   width={800}
                   height={200}
+                  quality={85}
                 />
               </div>
             </div>

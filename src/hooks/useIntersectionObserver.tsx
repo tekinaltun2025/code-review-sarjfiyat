@@ -1,5 +1,5 @@
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 
 interface UseIntersectionObserverProps {
   threshold?: number;
@@ -15,12 +15,23 @@ export const useIntersectionObserver = ({
   const [isIntersecting, setIsIntersecting] = useState(false);
   const [hasTriggered, setHasTriggered] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  const cleanup = useCallback(() => {
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+      observerRef.current = null;
+    }
+  }, []);
 
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
 
-    const observer = new IntersectionObserver(
+    // Clean up previous observer
+    cleanup();
+
+    observerRef.current = new IntersectionObserver(
       ([entry]) => {
         const isVisible = entry.isIntersecting;
         
@@ -28,6 +39,8 @@ export const useIntersectionObserver = ({
           setIsIntersecting(true);
           if (triggerOnce) {
             setHasTriggered(true);
+            // Disconnect observer after triggering once for performance
+            cleanup();
           }
         } else if (!triggerOnce) {
           setIsIntersecting(isVisible);
@@ -39,12 +52,10 @@ export const useIntersectionObserver = ({
       }
     );
 
-    observer.observe(element);
+    observerRef.current.observe(element);
 
-    return () => {
-      observer.unobserve(element);
-    };
-  }, [threshold, rootMargin, triggerOnce, hasTriggered]);
+    return cleanup;
+  }, [threshold, rootMargin, triggerOnce, hasTriggered, cleanup]);
 
   return { ref, isIntersecting };
 };

@@ -1,5 +1,5 @@
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 
 interface OptimizedImageProps {
   src: string;
@@ -34,25 +34,36 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     console.warn(`Failed to load image: ${src}`);
   }, [src]);
 
-  // WebP support detection and fallback
-  const getOptimizedSrc = useCallback((originalSrc: string) => {
+  // WebP support detection and optimized src generation
+  const optimizedSrc = useMemo(() => {
     // For Unsplash images, add optimization parameters
-    if (originalSrc.includes('unsplash.com')) {
-      const url = new URL(originalSrc);
+    if (src.includes('unsplash.com')) {
+      const url = new URL(src);
       url.searchParams.set('auto', 'format,compress');
       url.searchParams.set('q', quality.toString());
+      url.searchParams.set('fm', 'webp');
       if (width) url.searchParams.set('w', width.toString());
       if (height) url.searchParams.set('h', height.toString());
       return url.toString();
     }
-    return originalSrc;
-  }, [quality, width, height]);
+    return src;
+  }, [src, quality, width, height]);
+
+  // Generate responsive sizes attribute
+  const responsiveSizes = useMemo(() => {
+    if (sizes) return sizes;
+    if (width && width <= 400) return '(max-width: 400px) 100vw, 400px';
+    if (width && width <= 800) return '(max-width: 800px) 100vw, 800px';
+    return '(max-width: 1200px) 100vw, 1200px';
+  }, [sizes, width]);
 
   if (imageError) {
     return (
       <div 
         className={`bg-gray-200 flex items-center justify-center ${className}`}
         style={{ width, height }}
+        role="img"
+        aria-label={`${alt} - Image not available`}
       >
         <span className="text-gray-400 text-sm">Image not available</span>
       </div>
@@ -65,16 +76,18 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         <div 
           className="absolute inset-0 bg-gray-200 animate-pulse"
           style={{ width, height }}
+          aria-hidden="true"
         />
       )}
       <img
-        src={getOptimizedSrc(src)}
+        src={optimizedSrc}
         alt={alt}
         width={width}
         height={height}
-        sizes={sizes}
+        sizes={responsiveSizes}
         loading={priority ? 'eager' : 'lazy'}
         decoding="async"
+        fetchPriority={priority ? 'high' : 'auto'}
         onLoad={handleLoad}
         onError={handleError}
         className={`transition-opacity duration-300 ${
@@ -83,6 +96,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         style={{
           width: width ? `${width}px` : '100%',
           height: height ? `${height}px` : 'auto',
+          aspectRatio: width && height ? `${width}/${height}` : undefined,
         }}
       />
     </div>
