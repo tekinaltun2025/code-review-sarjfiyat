@@ -15,6 +15,13 @@
     <meta name="language" content="Turkish" />
     <meta name="revisit-after" content="7 days" />
     
+    <!-- Performance Optimization -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#14b8a6" />
+    <meta name="msapplication-TileColor" content="#14b8a6" />
+    <meta name="application-name" content="ŞarjFiyat" />
+    
     <!-- Canonical URL -->
     <link rel="canonical" href="https://sarjfiyat.com.tr/" />
 
@@ -39,10 +46,22 @@
     <meta name="twitter:image" content="https://sarjfiyat.com.tr/images/opengraph-image.png" />
     <meta name="twitter:image:alt" content="ŞarjFiyat - Elektrikli Araç Şarj Fiyatları Karşılaştırma Platformu" />
     
-    <!-- Additional SEO Meta Tags -->
-    <meta name="theme-color" content="#14b8a6" />
-    <meta name="msapplication-TileColor" content="#14b8a6" />
-    <meta name="application-name" content="ŞarjFiyat" />
+    <!-- Base URL ayarını mutlaka ekleyin -->
+    <base href="/" />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/lovable-uploads/976fb8f2-b5ea-4978-ac8a-2c7dffd9f7a2.png" type="image/png">
+    <link rel="apple-touch-icon" href="/lovable-uploads/976fb8f2-b5ea-4978-ac8a-2c7dffd9f7a2.png">
+    
+    <!-- Roboto font import with performance optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- DNS Prefetch for external resources -->
+    <link rel="dns-prefetch" href="//www.google.com">
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
+    <link rel="dns-prefetch" href="//images.unsplash.com">
     
     <!-- Structured Data - Organization -->
     <script type="application/ld+json">
@@ -68,6 +87,34 @@
     }
     </script>
 
+    <!-- Structured Data - LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "ŞarjFiyat",
+      "description": "Türkiye'deki elektrikli araç şarj fiyatları karşılaştırma platformu",
+      "url": "https://sarjfiyat.com.tr",
+      "logo": "https://sarjfiyat.com.tr/lovable-uploads/976fb8f2-b5ea-4978-ac8a-2c7dffd9f7a2.png",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Turkey"
+      },
+      "serviceArea": {
+        "@type": "Country",
+        "name": "Turkey"
+      },
+      "knowsAbout": [
+        "Elektrikli araç şarj fiyatları",
+        "EV charging stations",
+        "Şarj istasyonu karşılaştırma",
+        "ZES fiyatları",
+        "Eşarj tarifeleri",
+        "Trugo şarj ücreti"
+      ]
+    }
+    </script>
+
     <!-- Structured Data - Website -->
     <script type="application/ld+json">
     {
@@ -81,6 +128,48 @@
         "target": "https://sarjfiyat.com.tr/search?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
+    }
+    </script>
+
+    <!-- Structured Data - FAQ Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Elektrikli araç şarj fiyatları hangi operatörlerde karşılaştırılıyor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ŞarjFiyat platformunda ZES, Eşarj, Trugo, Beefull ve Türkiye'deki diğer tüm elektrikli araç şarj operatörlerinin güncel fiyatlarını karşılaştırabilirsiniz."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "AC ve DC şarj fiyatları arasında ne fark var?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "AC şarj daha yavaş ve genellikle daha ucuzdur. DC şarj ise hızlı şarj olarak bilinir ve daha pahalı ama çok daha hızlıdır. DC şarj ile aracınızı 30-45 dakikada %80'e kadar şarj edebilirsiniz."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Şarj fiyatları ne kadar sık güncelleniyor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ŞarjFiyat platformundaki tüm şarj operatörü fiyatları düzenli olarak güncellenmekte ve en güncel tarifeleri sunmaktayız."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "En ekonomik şarj istasyonu hangisidir?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En ekonomik şarj operatörü şarj tipi ve lokasyona göre değişmektedir. AC şarj için genellikle Trugo ve Beefull daha uygun fiyatlı seçenekler sunarken, DC şarj için operatörler arasında fiyat karşılaştırması yapmak önemlidir."
+          }
+        }
+      ]
     }
     </script>
 
@@ -106,18 +195,6 @@
       }
     }
     </script>
-    
-    <!-- Base URL ayarını mutlaka ekleyin -->
-    <base href="/" />
-    
-    <!-- Favicon -->
-    <link rel="icon" href="/lovable-uploads/976fb8f2-b5ea-4978-ac8a-2c7dffd9f7a2.png" type="image/png">
-    <link rel="apple-touch-icon" href="/lovable-uploads/976fb8f2-b5ea-4978-ac8a-2c7dffd9f7a2.png">
-    
-    <!-- Roboto font import -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJD4ERPGL8"></script>

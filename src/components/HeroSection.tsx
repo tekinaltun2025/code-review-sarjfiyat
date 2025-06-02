@@ -14,6 +14,9 @@ const HeroSection = () => {
                   src="/lovable-uploads/2378dcfc-a04a-4497-a230-8566ecdd0521.png" 
                   alt="Togg Trugo - Türkiye'nin en geniş elektrikli araç şarj ağı. Yüksek performanslı DC hızlı şarj istasyonları ile elektrikli aracınızı hızla şarj edin." 
                   className="w-full h-full object-cover rounded-lg"
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
                 />
               </div>
             </div>

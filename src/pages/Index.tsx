@@ -22,6 +22,9 @@ const Index = () => {
               src="/lovable-uploads/f115850b-eabd-46be-b611-c662fe0da189.png" 
               alt="ZES - Yolların Yeni, Temiz, Hızlı Enerjisi" 
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+              fetchPriority="low"
             />
           </div>
           <div 

@@ -1,8 +1,11 @@
+
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Twitterbot
 Allow: /
@@ -12,3 +15,14 @@ Allow: /
 
 User-agent: *
 Allow: /
+Crawl-delay: 2
+
+# Sitemap
+Sitemap: https://sarjfiyat.com.tr/sitemap.xml
+
+# Disallow unnecessary crawling
+Disallow: /api/
+Disallow: /admin/
+Disallow: /*.json$
+Disallow: /*?*sort=
+Disallow: /*?*filter=
