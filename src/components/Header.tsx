@@ -21,7 +21,12 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
+    <header className="sticky top-0 z-50 bg-white shadow-sm relative">
+      {/* Version number - positioned absolutely in top right */}
+      <div className="absolute top-2 right-2 text-xs text-gray-400 font-medium z-60">
+        V5.0
+      </div>
+      
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <div className="flex items-center space-x-2 ml-4 md:ml-20">
           <BatteryCharging className="h-12 w-12 md:h-16 md:w-16 text-teal-500" />
