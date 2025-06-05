@@ -11,6 +11,8 @@ import SurveyHero from "./SurveyHero";
 import ProviderSelector from "./ProviderSelector";
 import RatingPicker from "./RatingPicker";
 import CommentField from "./CommentField";
+import { validateSurveyForm, sanitizeInput, isRateLimited, setRateLimitTimestamp } from "./FormValidation";
+import { createSecureRequest, validateApiResponse, logSecurityEvent } from "./SecurityUtils";
 
 interface SurveyFormProps {
   onSubmitted?: () => void;
@@ -22,14 +24,10 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
   const [userRating, setUserRating] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   const [submitting, setSubmitting] = useState<boolean>(false);
-  const [validationErrors, setValidationErrors] = useState<{
-    provider?: string;
-    rating?: string;
-  }>({});
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
   const { toast } = useToast();
   
   useEffect(() => {
-    // Fetch providers data when component mounts
     const loadProviders = async () => {
       try {
         setLoading(true);
@@ -94,6 +92,7 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
         setProviders(mockData);
       } catch (error) {
         console.error("Failed to load providers:", error);
+        logSecurityEvent("Provider loading failed", error);
       } finally {
         setLoading(false);
       }
@@ -111,83 +110,115 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
   });
 
   const handleProviderChange = (value: string) => {
-    setSelectedProvider(value);
+    const sanitizedValue = sanitizeInput(value);
+    setSelectedProvider(sanitizedValue);
     setValidationErrors(prev => ({ ...prev, provider: undefined }));
   };
   
   const handleRatingChange = (rating: number) => {
-    setUserRating(rating);
-    setValidationErrors(prev => ({ ...prev, rating: undefined }));
-  };
-
-  const validateForm = () => {
-    const errors: { provider?: string; rating?: string } = {};
-    
-    if (!selectedProvider) {
-      errors.provider = "Lütfen bir şarj operatörü seçin";
+    if (rating >= 1 && rating <= 5 && Number.isInteger(rating)) {
+      setUserRating(rating);
+      setValidationErrors(prev => ({ ...prev, rating: undefined }));
     }
-    
-    if (userRating === 0) {
-      errors.rating = "Lütfen bir puan verin";
-    }
-    
-    setValidationErrors(errors);
-    return Object.keys(errors).length === 0;
   };
 
   const onSubmit = async (data: any) => {
-    if (!validateForm()) {
+    // Check rate limiting
+    if (isRateLimited()) {
+      toast({
+        title: "Çok Hızlı",
+        description: "Lütfen bir dakika bekleyip tekrar deneyin.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Get and sanitize provider data
+    const providerObj = providers.find(p => p.id === selectedProvider);
+    const providerName = providerObj ? sanitizeInput(providerObj.name) : sanitizeInput(selectedProvider);
+    
+    const surveyData = {
+      provider_id: sanitizeInput(selectedProvider),
+      provider_name: providerName,
+      rating: userRating,
+      comment: sanitizeInput(data.comment || "")
+    };
+
+    // Validate form data
+    const validation = validateSurveyForm(surveyData);
+    if (!validation.isValid) {
+      setValidationErrors(validation.errors);
+      toast({
+        title: "Form Hatası",
+        description: "Lütfen tüm alanları doğru şekilde doldurun.",
+        variant: "destructive",
+      });
       return;
     }
     
-    // Get provider name from the id
-    const providerObj = providers.find(p => p.id === selectedProvider);
-    const providerName = providerObj ? providerObj.name : selectedProvider;
-    
-    const surveyData = {
-      provider_id: selectedProvider,
-      provider_name: providerName,
-      rating: userRating,
-      comment: data.comment
-    };
-    
-    console.log("Anket gönderiliyor:", surveyData);
+    console.log("Güvenli anket gönderiliyor:", surveyData);
     
     try {
       setSubmitting(true);
       
-      // Güvenlik nedeniyle API çağrısı devre dışı - local storage kullanılıyor
-      // Gerçek bir uygulamada Supabase veya güvenli backend API kullanılmalı
+      // Use localStorage instead of external API for security
       const existingSurveys = JSON.parse(localStorage.getItem('surveyResponses') || '[]');
+      
+      // Check for duplicate submissions
+      const isDuplicate = existingSurveys.some((survey: any) => 
+        survey.provider_id === surveyData.provider_id &&
+        survey.rating === surveyData.rating &&
+        Date.now() - new Date(survey.timestamp).getTime() < 300000 // 5 minutes
+      );
+
+      if (isDuplicate) {
+        toast({
+          title: "Tekrar Gönderim",
+          description: "Bu değerlendirmeyi yakın zamanda göndermişsiniz.",
+          variant: "destructive",
+        });
+        return;
+      }
+
       const newSurvey = {
         ...surveyData,
         timestamp: new Date().toISOString(),
-        id: Date.now().toString()
+        id: Date.now().toString(),
+        userAgent: navigator.userAgent.substring(0, 50) // Limited user agent info
       };
       
       existingSurveys.push(newSurvey);
+      
+      // Limit storage to last 100 surveys
+      if (existingSurveys.length > 100) {
+        existingSurveys.splice(0, existingSurveys.length - 100);
+      }
+      
       localStorage.setItem('surveyResponses', JSON.stringify(existingSurveys));
       
-      await new Promise(resolve => setTimeout(resolve, 500)); // Simulate network delay
+      // Set rate limit timestamp
+      setRateLimitTimestamp();
+      
+      await new Promise(resolve => setTimeout(resolve, 500));
       
       toast({
         title: "Anket Gönderildi",
         description: "Değerlendirmeniz için teşekkür ederiz!",
       });
       
-      // Form'u sıfırla
+      // Reset form securely
       form.reset();
       setSelectedProvider("");
       setUserRating(0);
       setValidationErrors({});
       
-      // İstatistikleri yenile
       if (onSubmitted) {
         onSubmitted();
       }
       
     } catch (error) {
       console.error("Anket gönderilirken hata:", error);
+      logSecurityEvent("Survey submission failed", error);
       toast({
         title: "Hata",
         description: "Anket gönderilirken bir hata oluştu. Lütfen tekrar deneyin.",
@@ -201,16 +232,13 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="max-w-6xl mx-auto">
-        {/* Hero Section with Gradient Background */}
         <SurveyHero />
 
-        {/* Survey Form */}
         <Card className="mb-10">
           <CardContent className="pt-6">
             <h2 className="text-2xl font-bold mb-6 text-center">Şarj Operatörü Memnuniyet Anketi</h2>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                {/* Provider Selection */}
                 <ProviderSelector 
                   providers={providers} 
                   loading={loading} 
@@ -220,7 +248,6 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
                   required
                 />
 
-                {/* Star Rating */}
                 <RatingPicker 
                   userRating={userRating} 
                   onRatingChange={handleRatingChange} 
@@ -228,16 +255,22 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
                   required
                 />
 
-                {/* Comment */}
                 <CommentField 
                   control={form.control} 
                   maxLength={500}
+                  error={validationErrors.comment}
                 />
+
+                {validationErrors.security && (
+                  <div className="text-red-600 text-sm">
+                    {validationErrors.security}
+                  </div>
+                )}
 
                 <Button 
                   type="submit" 
                   className="w-full bg-blue-600 hover:bg-blue-700"
-                  disabled={submitting}
+                  disabled={submitting || !selectedProvider || userRating === 0}
                 >
                   {submitting ? "Gönderiliyor..." : "Anketi Gönder"}
                 </Button>

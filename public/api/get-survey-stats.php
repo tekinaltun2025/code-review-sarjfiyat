@@ -1,9 +1,13 @@
 
 <?php
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: https://sarjfiyatlari.com'); // Specific domain only
+header('Access-Control-Allow-Origin: https://sarjfiyatlari.com');
 header('Access-Control-Allow-Methods: GET, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
+header('X-Content-Type-Options: nosniff');
+header('X-Frame-Options: DENY');
+header('X-XSS-Protection: 1; mode=block');
+header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
 
 // Handle preflight OPTIONS request
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -18,8 +22,30 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     exit();
 }
 
+// Rate limiting for stats endpoint
+session_start();
+$current_time = time();
+$ip_hash = hash('sha256', $_SERVER['REMOTE_ADDR'] ?? '');
+$stats_requests_key = 'stats_requests_' . $ip_hash;
+$stats_requests = $_SESSION[$stats_requests_key] ?? [];
+
+// Clean old requests (older than 10 minutes)
+$stats_requests = array_filter($stats_requests, function($time) use ($current_time) {
+    return ($current_time - $time) < 600;
+});
+
+// Check rate limits (max 30 requests per 10 minutes)
+if (count($stats_requests) >= 30) {
+    http_response_code(429);
+    echo json_encode(['success' => false, 'message' => 'Rate limit exceeded']);
+    exit();
+}
+
+$stats_requests[] = $current_time;
+$_SESSION[$stats_requests_key] = $stats_requests;
+
 try {
-    // Database credentials should come from environment variables
+    // Database credentials from environment variables
     $db_host = $_ENV['DB_HOST'] ?? 'localhost';
     $db_name = $_ENV['DB_NAME'] ?? '';
     $db_user = $_ENV['DB_USER'] ?? '';
@@ -45,7 +71,7 @@ try {
         exit();
     }
     
-    // Secure query with proper sanitization
+    // Enhanced secure query with better filtering
     $sql = "SELECT 
                 provider_id, 
                 provider_name, 
@@ -53,18 +79,21 @@ try {
                 COUNT(*) as response_count,
                 GROUP_CONCAT(
                     CASE 
-                        WHEN comment IS NOT NULL AND comment != '' 
-                        THEN SUBSTRING(comment, 1, 200) 
+                        WHEN comment IS NOT NULL AND comment != '' AND LENGTH(comment) > 3
+                        THEN SUBSTRING(comment, 1, 150) 
                         ELSE NULL 
                     END 
                     SEPARATOR '|||'
                 ) as comments
             FROM survey_responses 
-            WHERE created_at >= DATE_SUB(NOW(), INTERVAL 1 YEAR)
+            WHERE created_at >= DATE_SUB(NOW(), INTERVAL 6 MONTH)
+            AND rating BETWEEN 1 AND 5
+            AND LENGTH(provider_id) <= 50
+            AND LENGTH(provider_name) <= 100
             GROUP BY provider_id, provider_name
-            HAVING response_count >= 1
+            HAVING response_count >= 1 AND response_count <= 10000
             ORDER BY average_rating DESC, response_count DESC
-            LIMIT 50";
+            LIMIT 25";
     
     $result = $conn->query($sql);
     
@@ -75,30 +104,46 @@ try {
     
     $data = [];
     while ($row = $result->fetch_assoc()) {
-        // Process comments safely
+        // Enhanced comment processing with security
         $comments = [];
         if (!empty($row['comments'])) {
             $rawComments = explode('|||', $row['comments']);
-            $comments = array_filter(array_map('trim', $rawComments), function($comment) {
-                return !empty($comment) && strlen($comment) > 3;
-            });
+            foreach ($rawComments as $comment) {
+                $comment = trim($comment);
+                if (!empty($comment) && strlen($comment) > 3 && strlen($comment) <= 150) {
+                    // Additional XSS protection
+                    $comment = preg_replace('/[<>"\']/', '', $comment);
+                    $comments[] = $comment;
+                }
+                if (count($comments) >= 5) break; // Limit to 5 comments
+            }
         }
         
-        $data[] = [
-            'provider_id' => htmlspecialchars($row['provider_id'], ENT_QUOTES, 'UTF-8'),
-            'provider_name' => htmlspecialchars($row['provider_name'], ENT_QUOTES, 'UTF-8'),
-            'average_rating' => round((float)$row['average_rating'], 1),
-            'response_count' => (int)$row['response_count'],
-            'comments' => array_map(function($comment) {
-                return htmlspecialchars($comment, ENT_QUOTES, 'UTF-8');
-            }, array_slice($comments, 0, 10)) // Limit to 10 comments
-        ];
+        // Validate and sanitize all output
+        $provider_id = htmlspecialchars($row['provider_id'], ENT_QUOTES, 'UTF-8');
+        $provider_name = htmlspecialchars($row['provider_name'], ENT_QUOTES, 'UTF-8');
+        $average_rating = round((float)$row['average_rating'], 1);
+        $response_count = min((int)$row['response_count'], 10000); // Cap at reasonable number
+        
+        // Final validation
+        if (!empty($provider_id) && !empty($provider_name) && $average_rating >= 1 && $average_rating <= 5) {
+            $data[] = [
+                'provider_id' => $provider_id,
+                'provider_name' => $provider_name,
+                'average_rating' => $average_rating,
+                'response_count' => $response_count,
+                'comments' => array_map(function($comment) {
+                    return htmlspecialchars($comment, ENT_QUOTES, 'UTF-8');
+                }, $comments)
+            ];
+        }
     }
     
     echo json_encode([
         'success' => true, 
         'data' => $data,
-        'generated_at' => date('c')
+        'generated_at' => date('c'),
+        'total_providers' => count($data)
     ]);
     
     $conn->close();
