@@ -36,7 +36,7 @@ export const LeftSidebar = memo(() => (
     <div className="sticky top-4 space-y-4 p-2">
       <LazySection rootMargin="400px">
         <AdBanner
-          src="/lovable-uploads/f115850b-eabd-46be-b611-c662fe0da189.png"
+          src="/lovable-uploads/af5ad040-f40a-4aa8-81c4-dbfa55a8ea72.png"
           alt="ZES - Yolların Yeni, Temiz, Hızlı Enerjisi"
         />
       </LazySection>

@@ -13,7 +13,7 @@ const HeroSection = React.memo(() => {
             <div className="bg-black rounded-lg p-0 border-2 border-dashed border-blue-200 relative overflow-hidden min-h-[150px] md:min-h-[200px] flex items-center justify-center">
               <div className="relative z-10 w-full max-w-4xl">
                 <OptimizedImage
-                  src="/lovable-uploads/2378dcfc-a04a-4497-a230-8566ecdd0521.png" 
+                  src="/lovable-uploads/6b168525-a204-45c7-bd83-29952eb5000e.png" 
                   alt="Togg Trugo - Türkiye'nin en geniş elektrikli araç şarj ağı. Yüksek performanslı DC hızlı şarj istasyonları ile elektrikli aracınızı hızla şarj edin." 
                   className="rounded-lg w-full h-auto object-contain"
                   priority={true}
