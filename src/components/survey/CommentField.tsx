@@ -8,9 +8,10 @@ interface CommentFieldProps {
   control: Control<any>;
   required?: boolean;
   maxLength?: number;
+  error?: string;
 }
 
-const CommentField = ({ control, required = false, maxLength = 500 }: CommentFieldProps) => {
+const CommentField = ({ control, required = false, maxLength = 500, error }: CommentFieldProps) => {
   return (
     <div className="space-y-2">
       <label className="text-sm font-medium">
@@ -31,12 +32,19 @@ const CommentField = ({ control, required = false, maxLength = 500 }: CommentFie
             <FormControl>
               <Textarea 
                 placeholder="Deneyiminizi paylaşın..." 
-                className={`min-h-[100px] ${fieldState.error ? "border-red-500" : ""}`}
+                className={`min-h-[100px] ${(fieldState.error || error) ? "border-red-500" : ""}`}
                 {...field}
               />
             </FormControl>
             <div className="flex justify-between">
-              <FormMessage />
+              <div>
+                <FormMessage />
+                {error && (
+                  <p className="text-sm font-medium text-destructive">
+                    {error}
+                  </p>
+                )}
+              </div>
               {field.value && (
                 <p className={`text-xs ${field.value.length > maxLength ? "text-red-500" : "text-gray-500"}`}>
                   {field.value.length}/{maxLength}
