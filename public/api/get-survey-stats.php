@@ -1,9 +1,8 @@
 
 <?php
-// Set headers first before any output
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+header('Access-Control-Allow-Origin: https://sarjfiyatlari.com'); // Specific domain only
+header('Access-Control-Allow-Methods: GET, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
 // Handle preflight OPTIONS request
@@ -12,84 +11,101 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-// Parametreleri al (GET veya POST metodu için destek sağla)
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $db_name = $_GET['db_name'] ?? '';
-    $db_user = $_GET['db_user'] ?? '';
-    $db_pass = $_GET['db_pass'] ?? '';
-} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $postData = json_decode(file_get_contents('php://input'), true);
-    $db_name = $postData['db_name'] ?? '';
-    $db_user = $postData['db_user'] ?? '';
-    $db_pass = $postData['db_pass'] ?? '';
-} else {
-    echo json_encode(['success' => false, 'message' => 'Sadece GET veya POST metodu kabul edilir']);
-    exit();
-}
-
-// Veritabanı bilgilerini doğrula
-if (empty($db_name) || empty($db_user) || empty($db_pass)) {
-    echo json_encode(['success' => false, 'message' => 'Veritabanı bilgileri gereklidir']);
+// Only accept GET requests
+if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+    http_response_code(405);
+    echo json_encode(['success' => false, 'message' => 'Method not allowed']);
     exit();
 }
 
 try {
-    // Veritabanına bağlan
-    $conn = new mysqli('localhost', $db_user, $db_pass, $db_name);
-
-    // Bağlantıyı kontrol et
-    if ($conn->connect_error) {
-        throw new Exception("Bağlantı hatası: " . $conn->connect_error);
+    // Database credentials should come from environment variables
+    $db_host = $_ENV['DB_HOST'] ?? 'localhost';
+    $db_name = $_ENV['DB_NAME'] ?? '';
+    $db_user = $_ENV['DB_USER'] ?? '';
+    $db_pass = $_ENV['DB_PASS'] ?? '';
+    
+    if (empty($db_name) || empty($db_user)) {
+        throw new Exception("Database configuration missing");
     }
     
-    // Tablo var mı kontrol et
+    // Connect to database
+    $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+    $conn->set_charset("utf8mb4");
+
+    if ($conn->connect_error) {
+        error_log("Database connection failed: " . $conn->connect_error);
+        throw new Exception("Service temporarily unavailable");
+    }
+    
+    // Check if table exists
     $tableExists = $conn->query("SHOW TABLES LIKE 'survey_responses'");
     if ($tableExists->num_rows == 0) {
-        // Tablo yoksa boş veri döndür
         echo json_encode(['success' => true, 'data' => []]);
         exit();
     }
     
-    // Operatörlere göre ortalama puanları sorgula
+    // Secure query with proper sanitization
     $sql = "SELECT 
                 provider_id, 
                 provider_name, 
                 AVG(rating) as average_rating, 
                 COUNT(*) as response_count,
-                GROUP_CONCAT(comment SEPARATOR '|||') as comments
+                GROUP_CONCAT(
+                    CASE 
+                        WHEN comment IS NOT NULL AND comment != '' 
+                        THEN SUBSTRING(comment, 1, 200) 
+                        ELSE NULL 
+                    END 
+                    SEPARATOR '|||'
+                ) as comments
             FROM survey_responses 
+            WHERE created_at >= DATE_SUB(NOW(), INTERVAL 1 YEAR)
             GROUP BY provider_id, provider_name
-            ORDER BY average_rating DESC";
+            HAVING response_count >= 1
+            ORDER BY average_rating DESC, response_count DESC
+            LIMIT 50";
     
     $result = $conn->query($sql);
     
     if (!$result) {
-        throw new Exception("Sorgu çalıştırılırken hata: " . $conn->error);
+        error_log("Query failed: " . $conn->error);
+        throw new Exception("Service temporarily unavailable");
     }
     
     $data = [];
     while ($row = $result->fetch_assoc()) {
-        // Yorumları düzenle
-        $comments = explode('|||', $row['comments']);
-        $filteredComments = array_filter($comments, function($comment) {
-            return !empty(trim($comment));
-        });
+        // Process comments safely
+        $comments = [];
+        if (!empty($row['comments'])) {
+            $rawComments = explode('|||', $row['comments']);
+            $comments = array_filter(array_map('trim', $rawComments), function($comment) {
+                return !empty($comment) && strlen($comment) > 3;
+            });
+        }
         
         $data[] = [
-            'provider_id' => $row['provider_id'],
-            'provider_name' => $row['provider_name'],
-            'average_rating' => (float)number_format($row['average_rating'], 1),
+            'provider_id' => htmlspecialchars($row['provider_id'], ENT_QUOTES, 'UTF-8'),
+            'provider_name' => htmlspecialchars($row['provider_name'], ENT_QUOTES, 'UTF-8'),
+            'average_rating' => round((float)$row['average_rating'], 1),
             'response_count' => (int)$row['response_count'],
-            'comments' => $filteredComments
+            'comments' => array_map(function($comment) {
+                return htmlspecialchars($comment, ENT_QUOTES, 'UTF-8');
+            }, array_slice($comments, 0, 10)) // Limit to 10 comments
         ];
     }
     
-    echo json_encode(['success' => true, 'data' => $data]);
+    echo json_encode([
+        'success' => true, 
+        'data' => $data,
+        'generated_at' => date('c')
+    ]);
     
-    // Bağlantıyı kapat
     $conn->close();
     
 } catch (Exception $e) {
-    echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+    error_log("Survey stats error: " . $e->getMessage());
+    http_response_code(500);
+    echo json_encode(['success' => false, 'message' => 'Service temporarily unavailable']);
 }
 ?>

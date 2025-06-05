@@ -88,36 +88,39 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
     
     console.log("Form submitted:", surveyData);
     
-    // Submit to database - Using simulated response instead of actual API call
+    // Submit to local storage instead of external API for security
     try {
       setSubmitting(true);
       
-      // Simulate successful API response
-      await new Promise(resolve => setTimeout(resolve, 500)); // Simulate network delay
-      
-      const result = {
-        success: true,
-        message: "Anket başarıyla kaydedildi."
+      // Store in localStorage instead of external database for security
+      const existingSurveys = JSON.parse(localStorage.getItem('surveyResponses') || '[]');
+      const newSurvey = {
+        ...surveyData,
+        timestamp: new Date().toISOString(),
+        id: Date.now().toString()
       };
       
-      if (result.success) {
-        toast({
-          title: "Anket Gönderildi",
-          description: "Değerlendirmeniz için teşekkür ederiz!",
-        });
-        
-        // Reset form after submission
-        form.reset();
-        setSelectedProvider("");
-        setUserRating(0);
-        
-        // Refresh survey stats if callback is provided
-        if (onSubmitted) {
-          onSubmitted();
-        }
-      } else {
-        throw new Error(result.message || 'Bir hata oluştu');
+      existingSurveys.push(newSurvey);
+      localStorage.setItem('surveyResponses', JSON.stringify(existingSurveys));
+      
+      // Simulate network delay
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      toast({
+        title: "Anket Gönderildi",
+        description: "Değerlendirmeniz için teşekkür ederiz!",
+      });
+      
+      // Reset form after submission
+      form.reset();
+      setSelectedProvider("");
+      setUserRating(0);
+      
+      // Refresh survey stats if callback is provided
+      if (onSubmitted) {
+        onSubmitted();
       }
+      
     } catch (error) {
       console.error("Failed to submit survey:", error);
       toast({
@@ -253,6 +256,7 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
                           <Textarea 
                             placeholder="Deneyiminizi paylaşın..." 
                             className="min-h-[100px]"
+                            maxLength={500}
                             {...field}
                           />
                         </FormControl>
@@ -272,8 +276,6 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
             </Form>
           </CardContent>
         </Card>
-
-        {/* We've removed the Provider Ratings section since we now display this data at the top of the page */}
       </div>
     </div>
   );

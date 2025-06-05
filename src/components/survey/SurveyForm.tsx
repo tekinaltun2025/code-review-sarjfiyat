@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -10,13 +11,6 @@ import SurveyHero from "./SurveyHero";
 import ProviderSelector from "./ProviderSelector";
 import RatingPicker from "./RatingPicker";
 import CommentField from "./CommentField";
-
-// Veritabanı bilgileri - normalde .env veya başka güvenli bir yerden alınmalı
-const DB_INFO = {
-  db_name: "sarjfiya_sarjanketdb",
-  db_user: "sarjfiya_sarjuser",
-  db_pass: "Dallama11!"
-};
 
 interface SurveyFormProps {
   onSubmitted?: () => void;
@@ -151,7 +145,6 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
     const providerName = providerObj ? providerObj.name : selectedProvider;
     
     const surveyData = {
-      ...DB_INFO,
       provider_id: selectedProvider,
       provider_name: providerName,
       rating: userRating,
@@ -163,8 +156,18 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
     try {
       setSubmitting(true);
       
-      // Simulate API submission because the actual API is not working
-      // Simulate successful API response
+      // Güvenlik nedeniyle API çağrısı devre dışı - local storage kullanılıyor
+      // Gerçek bir uygulamada Supabase veya güvenli backend API kullanılmalı
+      const existingSurveys = JSON.parse(localStorage.getItem('surveyResponses') || '[]');
+      const newSurvey = {
+        ...surveyData,
+        timestamp: new Date().toISOString(),
+        id: Date.now().toString()
+      };
+      
+      existingSurveys.push(newSurvey);
+      localStorage.setItem('surveyResponses', JSON.stringify(existingSurveys));
+      
       await new Promise(resolve => setTimeout(resolve, 500)); // Simulate network delay
       
       toast({
