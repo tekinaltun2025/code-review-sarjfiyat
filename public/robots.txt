@@ -1,5 +1,14 @@
 
+# Main search engine bots
 User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Googlebot-Image
+Allow: /
+Crawl-delay: 1
+
+User-agent: Googlebot-News
 Allow: /
 Crawl-delay: 1
 
@@ -7,22 +16,57 @@ User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
 
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# Social media bots
 User-agent: Twitterbot
 Allow: /
 
 User-agent: facebookexternalhit
 Allow: /
 
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+# General crawler rules (must be last)
 User-agent: *
 Allow: /
 Crawl-delay: 2
 
-# Sitemap
-Sitemap: https://sarjfiyat.com.tr/sitemap.xml
-
-# Disallow unnecessary crawling
+# Enhanced security - block sensitive areas
 Disallow: /api/
 Disallow: /admin/
-Disallow: /*.json$
+Disallow: /private/
+Disallow: /config/
+Disallow: /.env*
+Disallow: /.git/
+Disallow: /logs/
+Disallow: /backup/
+Disallow: /temp/
+
+# Block parameter-based URLs that can cause duplicate content
 Disallow: /*?*sort=
 Disallow: /*?*filter=
+Disallow: /*?*page=
+Disallow: /*?*limit=
+Disallow: /*?utm_*
+
+# Block file types that shouldn't be indexed
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /*.txt$
+Disallow: /*.log$
+Disallow: /*.sql$
+Disallow: /*.zip$
+Disallow: /*.tar$
+
+# Sitemap location
+Sitemap: https://sarjfiyat.com.tr/sitemap.xml
+
+# Cache directive
+Cache-delay: 1800
