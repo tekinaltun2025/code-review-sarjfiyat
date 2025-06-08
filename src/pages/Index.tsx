@@ -20,12 +20,6 @@ const PriceTable = React.lazy(() =>
   }))
 );
 
-const MapSection = React.lazy(() => 
-  import('../components/MapSection').then(module => ({
-    default: module.default
-  }))
-);
-
 // Suspense fallback bileşenlerini optimize edelim
 const LoadingFallback = memo<{ height: string }>(({ height }) => (
   <div className={`${height} bg-gray-100 animate-pulse rounded-lg mb-6`} />
@@ -49,12 +43,6 @@ const MainContent = memo<{ isInPanel: boolean }>(({ isInPanel }) => (
         <PriceTable />
       </React.Suspense>
     </LazySection>
-    
-    <LazySection rootMargin="500px">
-      <React.Suspense fallback={<LoadingFallback height="h-96" />}>
-        <MapSection />
-      </React.Suspense>
-    </LazySection>
   </main>
 ));
 
@@ -72,12 +60,6 @@ const PanelContent = memo(() => (
     <LazySection rootMargin="300px">
       <React.Suspense fallback={<LoadingFallback height="h-96" />}>
         <PriceTable />
-      </React.Suspense>
-    </LazySection>
-    
-    <LazySection rootMargin="500px">
-      <React.Suspense fallback={<LoadingFallback height="h-96" />}>
-        <MapSection />
       </React.Suspense>
     </LazySection>
   </main>
