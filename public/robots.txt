@@ -38,35 +38,12 @@ User-agent: *
 Allow: /
 Crawl-delay: 2
 
-# Enhanced security - block sensitive areas
+# Block only truly sensitive areas
 Disallow: /api/
 Disallow: /admin/
 Disallow: /private/
-Disallow: /config/
 Disallow: /.env*
-Disallow: /.git/
 Disallow: /logs/
-Disallow: /backup/
-Disallow: /temp/
-
-# Block parameter-based URLs that can cause duplicate content
-Disallow: /*?*sort=
-Disallow: /*?*filter=
-Disallow: /*?*page=
-Disallow: /*?*limit=
-Disallow: /*?utm_*
-
-# Block file types that shouldn't be indexed
-Disallow: /*.json$
-Disallow: /*.xml$
-Disallow: /*.txt$
-Disallow: /*.log$
-Disallow: /*.sql$
-Disallow: /*.zip$
-Disallow: /*.tar$
 
 # Sitemap location
 Sitemap: https://sarjfiyat.com.tr/sitemap.xml
-
-# Cache directive
-Cache-delay: 1800
