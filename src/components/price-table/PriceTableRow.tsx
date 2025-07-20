@@ -30,44 +30,44 @@ const PriceTableRow: React.FC<PriceTableRowProps> = ({
           : ""
       }`}
     >
-      <td className="px-6 py-4 w-64">
+      <td className="px-4 py-3 w-48">
         <div className="flex items-center space-x-3">
-          <Avatar className="h-10 w-10 bg-gray-100 rounded-md flex-shrink-0">
+          <Avatar className="h-8 w-8 bg-gray-100 rounded-md flex-shrink-0">
             <AvatarImage 
               src={provider.logo} 
               alt={`${provider.name} logo`}
               className="object-contain p-1"
             />
-            <AvatarFallback className="bg-gray-200 text-gray-700 rounded-md">
+            <AvatarFallback className="bg-gray-200 text-gray-700 rounded-md text-xs">
               {providerInitial}
             </AvatarFallback>
           </Avatar>
-          <div className="font-medium text-gray-900 min-w-0 flex-1 leading-tight">
+          <div className="font-medium text-gray-900 min-w-0 flex-1 leading-tight text-sm">
             {provider.name}
           </div>
         </div>
       </td>
-      <td className="px-4 py-4 text-center whitespace-nowrap w-24">
+      <td className="px-3 py-3 text-center w-24">
         <span className={`text-sm font-medium ${sortBy === 'acPrice' ? 'text-teal-600' : 'text-gray-700'}`}>
           {provider.acPrice.toFixed(2)} ₺
         </span>
       </td>
-      <td className="px-4 py-4 text-center whitespace-nowrap w-24">
+      <td className="px-3 py-3 text-center w-24">
         <span className={`text-sm font-medium ${sortBy === 'dcPrice' ? 'text-teal-600' : 'text-gray-700'}`}>
           {provider.dcPrice.toFixed(2)} ₺
         </span>
       </td>
-      <td className="px-4 py-4 text-center whitespace-nowrap w-24">
-        <span className="text-sm font-medium text-gray-700">
+      <td className="px-3 py-3 text-center w-32">
+        <span className="text-xs text-gray-700 leading-tight">
           {provider.stationInfo || (provider.stationCount ? provider.stationCount.toString() : '-')}
         </span>
       </td>
-      <td className="px-4 py-4 text-center whitespace-nowrap w-24">
-        <span className="text-sm text-gray-700">
+      <td className="px-3 py-3 text-center w-28">
+        <span className="text-xs text-gray-600 leading-tight">
           {provider.supportLine || '-'}
         </span>
       </td>
-      <td className="px-4 py-4 text-center whitespace-nowrap w-16">
+      <td className="px-3 py-3 text-center w-20">
         <a 
           href={provider.websiteUrl} 
           target="_blank" 
@@ -80,8 +80,8 @@ const PriceTableRow: React.FC<PriceTableRowProps> = ({
           <ExternalLink className="h-4 w-4" aria-hidden="true" />
         </a>
       </td>
-      <td className="px-4 py-4 text-left">
-        <div className="text-sm text-gray-700 max-w-xs break-words">
+      <td className="px-3 py-3 w-32">
+        <div className="text-xs text-gray-700 leading-tight break-words">
           {provider.notes || '-'}
         </div>
       </td>

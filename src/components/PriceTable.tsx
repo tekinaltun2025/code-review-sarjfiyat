@@ -187,15 +187,15 @@ const PriceTable = () => {
                 />
               </div>
               <div className="overflow-x-auto">
-                <table className="w-full">
+                <table className="w-full min-w-[800px] table-fixed">
                   <PriceTableHeader 
                     sortBy={sortBy} 
                     handleSort={handleSort} 
                     getSortIcon={(key) => {
                       if (sortBy !== key) return null;
                       return sortOrder === 'asc' ? 
-                        <ArrowUp className="inline h-4 w-4 ml-1" /> : 
-                        <ArrowDown className="inline h-4 w-4 ml-1" />;
+                        <ArrowUp className="inline h-3 w-3 ml-1" /> : 
+                        <ArrowDown className="inline h-3 w-3 ml-1" />;
                     }}
                   />
                   <tbody className="divide-y divide-gray-200">
