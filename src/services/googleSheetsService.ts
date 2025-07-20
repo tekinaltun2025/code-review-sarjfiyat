@@ -117,7 +117,8 @@ export async function fetchProviderData(): Promise<Provider[]> {
       // Parse prices, handling comma as decimal separator
       const acPriceStr = row[1] ? row[1].replace(',', '.') : "0";
       const dcPriceStr = row[2] ? row[2].replace(',', '.') : "0";
-      const fastDcPriceStr = row[3] ? row[3].replace(',', '.') : dcPriceStr; // Default to DC price if not specified
+      const websiteUrl = row[3] || ""; // Website column from CSV
+      const notes = row[4] || ""; // Notes column from CSV
       
       // Special handling for Multiforce - update with new pricing
       if (providerId === 'multiforce') {
@@ -130,7 +131,7 @@ export async function fetchProviderData(): Promise<Provider[]> {
           fastDcPrice: 11.50, // Updated fast DC price: 11.50 TL/kWh for DC 60 kW and above
           membershipFee: null,
           hasApp: false,
-          websiteUrl: providerWebsites[providerId] || "#",
+          websiteUrl: websiteUrl || providerWebsites[providerId] || "#",
           stationCount: stationCounts[providerId] || null,
           notes: "AC: 22 kW (5.50 TL), DC: 60 kW'a kadar (9.90 TL), DC: 60 kW ve üzeri (11.50 TL)"
         };
@@ -144,12 +145,12 @@ export async function fetchProviderData(): Promise<Provider[]> {
           logo: providerLogos[providerId] || DEFAULT_LOGO,
           acPrice: 8.99, // Updated AC price: 8.99 TL/kWh
           dcPrice: parseFloat(dcPriceStr) || 0,
-          fastDcPrice: parseFloat(fastDcPriceStr) || 0,
+          fastDcPrice: parseFloat(dcPriceStr) || 0,
           membershipFee: null,
           hasApp: false,
-          websiteUrl: providerWebsites[providerId] || "#",
+          websiteUrl: websiteUrl || providerWebsites[providerId] || "#",
           stationCount: stationCounts[providerId] || null,
-          notes: row[3] || ""
+          notes: notes
         };
       }
       
@@ -164,7 +165,7 @@ export async function fetchProviderData(): Promise<Provider[]> {
           fastDcPrice: 10.60, // Same as DC price
           membershipFee: null,
           hasApp: false,
-          websiteUrl: providerWebsites[providerId] || "#",
+          websiteUrl: websiteUrl || providerWebsites[providerId] || "#",
           stationCount: stationCounts[providerId] || null,
           notes: "DC: 60 kWh ve üzeri"
         };
@@ -176,12 +177,12 @@ export async function fetchProviderData(): Promise<Provider[]> {
         logo: providerLogos[providerId] || DEFAULT_LOGO, // Use mapped logo or default
         acPrice: parseFloat(acPriceStr) || 0,
         dcPrice: parseFloat(dcPriceStr) || 0,
-        fastDcPrice: parseFloat(fastDcPriceStr) || 0,
+        fastDcPrice: parseFloat(dcPriceStr) || 0,
         membershipFee: null, // Not used in current data
         hasApp: false, // Not used in current data
-        websiteUrl: providerWebsites[providerId] || "#", // Use mapped website URL or default "#"
+        websiteUrl: websiteUrl || providerWebsites[providerId] || "#", // Use CSV website URL first, then mapped URL
         stationCount: stationCounts[providerId] || null,
-        notes: row[3] || ""
+        notes: notes
       };
     }).filter(provider => provider.name && provider.acPrice > 0 && provider.id !== 'swapp'); // Added filter to exclude swapp
     
