@@ -28,7 +28,7 @@ const HeroSection = React.memo(() => {
       </section>
 
       {/* Ana Hero Section - SEO Optimized */}
-      <section className="bg-gradient-to-r from-teal-500 to-blue-500 text-white py-4 md:py-6">
+      <section className="bg-gradient-to-r from-teal-500 to-blue-500 text-white py-8 md:py-12">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="space-y-4">
