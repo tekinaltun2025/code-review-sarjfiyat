@@ -139,9 +139,8 @@ const PriceTable = () => {
           <h2 className="text-3xl font-bold text-gray-900 mb-2">
             Şarj Fiyatları Karşılaştırması
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Aşağıdaki tabloda Türkiye'deki elektrikli araç şarj istasyonu operatörlerinin 
-            güncel fiyatlarını karşılaştırabilirsiniz.
+          <p className="text-sm text-gray-600 mx-auto">
+            Aşağıdaki tabloda Türkiye'deki elektrikli araç şarj istasyonu operatörlerinin güncel fiyatlarını karşılaştırabilirsiniz.
           </p>
           {lastUpdated && (
             <div className="mt-2">
