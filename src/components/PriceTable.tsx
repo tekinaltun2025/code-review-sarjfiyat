@@ -135,8 +135,8 @@ const PriceTable = () => {
   return (
     <section id="price-comparison" className="py-12 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-5">
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">
             Şarj Fiyatları Karşılaştırması
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -144,7 +144,7 @@ const PriceTable = () => {
             güncel fiyatlarını karşılaştırabilirsiniz.
           </p>
           {lastUpdated && (
-            <div className="mt-4">
+            <div className="mt-2">
               <span className="text-sm text-gray-500">
                 Son güncelleme: {lastUpdated.toLocaleTimeString('tr-TR', {
                   hour: '2-digit',
