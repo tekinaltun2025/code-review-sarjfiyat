@@ -108,13 +108,20 @@ export async function fetchProviderData(): Promise<Provider[]> {
         // Create ID from provider name (lowercase, no spaces)
         const providerName = row[0].trim();
         // Generate a provider ID by converting the name to lowercase and removing spaces
-        const providerId = providerName.toLowerCase().replace(/\s+/g, '').replace(/[üşğıçöĞÜŞİÇÖ]/g, c => {
+        let providerId = providerName.toLowerCase().replace(/\s+/g, '').replace(/[üşğıçöĞÜŞİÇÖ]/g, c => {
           const turkishToEnglish: Record<string, string> = {
             'ü': 'u', 'ş': 's', 'ğ': 'g', 'ı': 'i', 'ç': 'c', 'ö': 'o',
             'Ü': 'U', 'Ş': 'S', 'Ğ': 'G', 'İ': 'I', 'Ç': 'C', 'Ö': 'O'
           };
           return turkishToEnglish[c] || c;
         });
+        
+        // Special ID mappings to match existing logo/website mappings
+        if (providerId === 'astorsarj') providerId = 'astor';
+        if (providerId === 'petrolofiside-power') providerId = 'petrolofisi';
+        if (providerId === 'teslasupercharger') providerId = 'tesla';
+        if (providerId === 'aksasarj') providerId = 'aksasarj';
+        if (providerId === 'nevasarj') providerId = 'nevasarj';
         
         // Parse prices and station count, handling comma as decimal separator
         const acPriceStr = row[1] ? row[1].replace(',', '.') : "0";
