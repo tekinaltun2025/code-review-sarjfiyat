@@ -114,11 +114,21 @@ export async function fetchProviderData(): Promise<Provider[]> {
         return turkishToEnglish[c] || c;
       });
       
-      // Parse prices, handling comma as decimal separator
+      // Parse prices and station count, handling comma as decimal separator
       const acPriceStr = row[1] ? row[1].replace(',', '.') : "0";
       const dcPriceStr = row[2] ? row[2].replace(',', '.') : "0";
-      const websiteUrl = row[3] || ""; // Website column from CSV
-      const notes = row[4] || ""; // Notes column from CSV
+      const stationCountStr = row[3] || ""; // Station count column from CSV
+      const websiteUrl = row[4] || ""; // Website column from CSV
+      const notes = row[5] || ""; // Notes column from CSV
+      
+      // Parse station count from CSV or use hardcoded value
+      let csvStationCount = null;
+      if (stationCountStr && stationCountStr.trim() !== "") {
+        const parsed = parseInt(stationCountStr);
+        if (!isNaN(parsed)) {
+          csvStationCount = parsed;
+        }
+      }
       
       // Special handling for Multiforce - update with new pricing
       if (providerId === 'multiforce') {
@@ -132,7 +142,7 @@ export async function fetchProviderData(): Promise<Provider[]> {
           membershipFee: null,
           hasApp: false,
           websiteUrl: websiteUrl || providerWebsites[providerId] || "#",
-          stationCount: stationCounts[providerId] || null,
+          stationCount: csvStationCount || stationCounts[providerId] || null,
           notes: "AC: 22 kW (5.50 TL), DC: 60 kW'a kadar (9.90 TL), DC: 60 kW ve üzeri (11.50 TL)"
         };
       }
@@ -149,7 +159,7 @@ export async function fetchProviderData(): Promise<Provider[]> {
           membershipFee: null,
           hasApp: false,
           websiteUrl: websiteUrl || providerWebsites[providerId] || "#",
-          stationCount: stationCounts[providerId] || null,
+          stationCount: csvStationCount || stationCounts[providerId] || null,
           notes: notes
         };
       }
@@ -166,7 +176,7 @@ export async function fetchProviderData(): Promise<Provider[]> {
           membershipFee: null,
           hasApp: false,
           websiteUrl: websiteUrl || providerWebsites[providerId] || "#",
-          stationCount: stationCounts[providerId] || null,
+          stationCount: csvStationCount || stationCounts[providerId] || null,
           notes: "DC: 60 kWh ve üzeri"
         };
       }
@@ -181,7 +191,7 @@ export async function fetchProviderData(): Promise<Provider[]> {
         membershipFee: null, // Not used in current data
         hasApp: false, // Not used in current data
         websiteUrl: websiteUrl || providerWebsites[providerId] || "#", // Use CSV website URL first, then mapped URL
-        stationCount: stationCounts[providerId] || null,
+        stationCount: csvStationCount || stationCounts[providerId] || null, // Use CSV station count first, then hardcoded
         notes: notes
       };
     }).filter(provider => provider.name && provider.acPrice > 0 && provider.id !== 'swapp'); // Added filter to exclude swapp
