@@ -123,19 +123,25 @@ export async function fetchProviderData(): Promise<Provider[]> {
         if (providerId === 'aksasarj') providerId = 'aksasarj';
         if (providerId === 'nevasarj') providerId = 'nevasarj';
         
-        // Parse prices and station count, handling comma as decimal separator
+        // Parse prices and new columns, handling comma as decimal separator
         const acPriceStr = row[1] ? row[1].replace(',', '.') : "0";
         const dcPriceStr = row[2] ? row[2].replace(',', '.') : "0";
-        const stationCountStr = row[3] || ""; // Station count column from CSV
-        const websiteUrl = row[4] || ""; // Website column from CSV
-        const notes = row[5] || ""; // Notes column from CSV
+        const stationInfoStr = row[3] || ""; // İstasyon Sayısı (Lokasyon/Soket) column
+        const supportLineStr = row[4] || ""; // Destek Hattı column
+        const websiteUrl = row[5] || ""; // Website column from CSV
+        const notes = row[6] || ""; // Notes column from CSV
         
-        // Parse station count from CSV or use hardcoded value
+        // Parse station count from station info (e.g., "153 / 1 299" -> extract first number)
         let csvStationCount = null;
-        if (stationCountStr && stationCountStr.trim() !== "") {
-          const parsed = parseInt(stationCountStr);
-          if (!isNaN(parsed)) {
-            csvStationCount = parsed;
+        if (stationInfoStr && stationInfoStr.trim() !== "" && stationInfoStr !== "-") {
+          // Extract the first number from format like "153 / 1 299"
+          const match = stationInfoStr.match(/(\d+(?:\s\d+)*)/);
+          if (match) {
+            const numberStr = match[1].replace(/\s/g, ''); // Remove spaces
+            const parsed = parseInt(numberStr);
+            if (!isNaN(parsed)) {
+              csvStationCount = parsed;
+            }
           }
         }
         
@@ -150,6 +156,8 @@ export async function fetchProviderData(): Promise<Provider[]> {
           hasApp: false,
           websiteUrl: websiteUrl || providerWebsites[providerId] || "#",
           stationCount: csvStationCount || stationCounts[providerId] || null,
+          stationInfo: stationInfoStr && stationInfoStr !== "-" ? stationInfoStr : undefined,
+          supportLine: supportLineStr && supportLineStr !== "-" ? supportLineStr : undefined,
           notes: notes
         };
       }).filter(provider => provider.acPrice > 0); // Only filter out entries with no valid price data

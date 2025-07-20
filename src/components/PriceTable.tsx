@@ -211,7 +211,7 @@ const PriceTable = () => {
                       ))
                     ) : (
                       <tr>
-                        <td colSpan={6} className="px-6 py-8 text-center text-gray-500">
+                        <td colSpan={7} className="px-6 py-8 text-center text-gray-500">
                           Arama kriterlerinize uygun operatör bulunamadı.
                         </td>
                       </tr>

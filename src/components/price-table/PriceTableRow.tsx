@@ -57,11 +57,14 @@ const PriceTableRow: React.FC<PriceTableRowProps> = ({
           {provider.dcPrice.toFixed(2)} ₺
         </span>
       </td>
-      <td className="px-4 py-4 text-center whitespace-nowrap w-20">
+      <td className="px-4 py-4 text-center whitespace-nowrap w-24">
         <span className="text-sm font-medium text-gray-700">
-          {provider.stationCount ? (
-            provider.id === 'trugo' ? '600+' : provider.stationCount
-          ) : '-'}
+          {provider.stationInfo || (provider.stationCount ? provider.stationCount.toString() : '-')}
+        </span>
+      </td>
+      <td className="px-4 py-4 text-center whitespace-nowrap w-24">
+        <span className="text-sm text-gray-700">
+          {provider.supportLine || '-'}
         </span>
       </td>
       <td className="px-4 py-4 text-center whitespace-nowrap w-16">

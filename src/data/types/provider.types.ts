@@ -10,5 +10,7 @@ export interface Provider {
   hasApp: boolean;
   websiteUrl: string;
   stationCount?: number;
+  stationInfo?: string; // Lokasyon/Soket formatındaki istasyon bilgisi
+  supportLine?: string; // Destek hattı bilgisi
   notes?: string;
 }

@@ -87,10 +87,13 @@ const PriceTableHeader: React.FC<PriceTableHeaderProps> = ({
                 </button>
               </TooltipTrigger>
               <TooltipContent>
-                <p className="w-48">2025 verileri baz alınarak hazırlanmıştır.</p>
+                <p className="w-48">Lokasyon/Soket formatında gösterilmektedir.</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
+        </th>
+        <th className="px-6 py-4 text-center text-sm font-semibold text-gray-800">
+          Destek Hattı
         </th>
         <th className="px-6 py-4 text-center text-sm font-semibold text-gray-800">
           Websitesi
