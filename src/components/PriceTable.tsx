@@ -20,7 +20,7 @@ type SortKey = 'acPrice' | 'dcPrice';
 type SortOrder = 'asc' | 'desc';
 
 const PriceTable = () => {
-  const [sortBy, setSortBy] = useState<SortKey>('acPrice');
+  const [sortBy, setSortBy] = useState<SortKey | null>(null);
   const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
   const [localProviders, setLocalProviders] = useState<Provider[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -117,6 +117,10 @@ const PriceTable = () => {
     
     // Only sort if user has specifically clicked on a sort column
     // Otherwise preserve the original Google Sheets order
+    if (!sortBy) {
+      return filteredProviders; // Return in original Google Sheets order
+    }
+    
     return filteredProviders.sort((a, b) => {
       if (sortOrder === 'asc') {
         return a[sortBy] - b[sortBy];
