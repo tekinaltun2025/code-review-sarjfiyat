@@ -144,52 +144,10 @@ export async function fetchProviderData(): Promise<Provider[]> {
         stationCount: csvStationCount || stationCounts[providerId] || null, // Use CSV station count first, then hardcoded
         notes: notes
       };
-    }).filter(provider => provider.name && provider.acPrice > 0 && provider.id !== 'swapp'); // Added filter to exclude swapp
+    }).filter(provider => provider.name && provider.acPrice > 0); // Keep all providers with valid data
     
-    // All data now comes directly from CSV - no manual additions
-    
-    // Ensure the priority providers are at the top
-    const priorityProviderIds = ["trugo", "zes", "beefull", "esarj"];
-    
-    // Filter priority providers
-    const priorityProviders = providers.filter(p => 
-      priorityProviderIds.includes(p.id)
-    );
-    
-    // Sort priority providers according to the priorityProviderIds order
-    priorityProviders.sort((a, b) => {
-      return priorityProviderIds.indexOf(a.id) - priorityProviderIds.indexOf(b.id);
-    });
-    
-    // Filter out regular providers (not priority, not Voltgo, not Obişarj, not Voltrun)
-    const regularProviders = providers.filter(p => 
-      !priorityProviderIds.includes(p.id) && p.id !== 'voltgo' && p.id !== 'obisarj' && p.id !== 'voltrun'
-    );
-    
-    // Find specific providers
-    const voltrunProvider = providers.find(p => p.id === 'voltrun');
-    const voltgoProvider_final = providers.find(p => p.id === 'voltgo');
-    const obisarjProvider = providers.find(p => p.id === 'obisarj');
-    
-    // Build the final array: priority providers, then regular providers, then Voltrun, then Voltgo, then Obişarj
-    const finalProviders = [...priorityProviders, ...regularProviders];
-    
-    // Add Voltrun
-    if (voltrunProvider) {
-      finalProviders.push(voltrunProvider);
-    }
-    
-    // Add Voltgo right after Voltrun
-    if (voltgoProvider_final) {
-      finalProviders.push(voltgoProvider_final);
-    }
-    
-    // Add Obişarj at the very end
-    if (obisarjProvider) {
-      finalProviders.push(obisarjProvider);
-    }
-    
-    return finalProviders;
+    // Return providers in the exact same order as they appear in Google Sheets
+    return providers;
   } catch (error) {
     console.error("Failed to fetch provider data:", error);
     throw error;
