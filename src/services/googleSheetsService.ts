@@ -1,7 +1,7 @@
 import { Provider } from "@/data/types/provider.types";
 
 // Direct URL to the published Google Sheet as CSV
-const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR28VqZAXDGApycSFAqZ7lZGBnlp3cAwZxJaJqsLNy5ImubsKdVf-hVNgysIs8F-ZE6yHe6b7R8D4Ls/pub?output=csv";
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/1KLBQYxRzeesboC038qEyLK_Y8J1Uhs2TPh3lkCMoD-Q/export?format=csv&gid=0";
 
 // Provider ID to logo mapping - updated with more logos
 const providerLogos: Record<string, string> = {
