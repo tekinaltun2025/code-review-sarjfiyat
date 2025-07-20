@@ -101,50 +101,51 @@ export async function fetchProviderData(): Promise<Provider[]> {
     const csvText = await response.text();
     const rows = parseCSV(csvText);
     
-    // Skip header row and map the rows to provider objects
-    const providers: Provider[] = rows.slice(1).map((row: string[]) => {
-      // Create ID from provider name (lowercase, no spaces)
-      const providerName = row[0] || "Unnamed Provider";
-      // Generate a provider ID by converting the name to lowercase and removing spaces
-      const providerId = providerName.toLowerCase().replace(/\s+/g, '').replace(/[üşğıçöĞÜŞİÇÖ]/g, c => {
-        const turkishToEnglish: Record<string, string> = {
-          'ü': 'u', 'ş': 's', 'ğ': 'g', 'ı': 'i', 'ç': 'c', 'ö': 'o',
-          'Ü': 'U', 'Ş': 'S', 'Ğ': 'G', 'İ': 'I', 'Ç': 'C', 'Ö': 'O'
-        };
-        return turkishToEnglish[c] || c;
-      });
-      
-      // Parse prices and station count, handling comma as decimal separator
-      const acPriceStr = row[1] ? row[1].replace(',', '.') : "0";
-      const dcPriceStr = row[2] ? row[2].replace(',', '.') : "0";
-      const stationCountStr = row[3] || ""; // Station count column from CSV
-      const websiteUrl = row[4] || ""; // Website column from CSV
-      const notes = row[5] || ""; // Notes column from CSV
-      
-      // Parse station count from CSV or use hardcoded value
-      let csvStationCount = null;
-      if (stationCountStr && stationCountStr.trim() !== "") {
-        const parsed = parseInt(stationCountStr);
-        if (!isNaN(parsed)) {
-          csvStationCount = parsed;
+    // Skip header row and map the rows to provider objects - EXACT Google Sheets order
+    const providers: Provider[] = rows.slice(1)
+      .filter(row => row[0] && row[0].trim() !== "") // Only process rows with provider names
+      .map((row: string[]) => {
+        // Create ID from provider name (lowercase, no spaces)
+        const providerName = row[0].trim();
+        // Generate a provider ID by converting the name to lowercase and removing spaces
+        const providerId = providerName.toLowerCase().replace(/\s+/g, '').replace(/[üşğıçöĞÜŞİÇÖ]/g, c => {
+          const turkishToEnglish: Record<string, string> = {
+            'ü': 'u', 'ş': 's', 'ğ': 'g', 'ı': 'i', 'ç': 'c', 'ö': 'o',
+            'Ü': 'U', 'Ş': 'S', 'Ğ': 'G', 'İ': 'I', 'Ç': 'C', 'Ö': 'O'
+          };
+          return turkishToEnglish[c] || c;
+        });
+        
+        // Parse prices and station count, handling comma as decimal separator
+        const acPriceStr = row[1] ? row[1].replace(',', '.') : "0";
+        const dcPriceStr = row[2] ? row[2].replace(',', '.') : "0";
+        const stationCountStr = row[3] || ""; // Station count column from CSV
+        const websiteUrl = row[4] || ""; // Website column from CSV
+        const notes = row[5] || ""; // Notes column from CSV
+        
+        // Parse station count from CSV or use hardcoded value
+        let csvStationCount = null;
+        if (stationCountStr && stationCountStr.trim() !== "") {
+          const parsed = parseInt(stationCountStr);
+          if (!isNaN(parsed)) {
+            csvStationCount = parsed;
+          }
         }
-      }
-      
-      // Special handling removed - use raw CSV data for all providers
-      return {
-        id: providerId,
-        name: providerName,
-        logo: providerLogos[providerId] || DEFAULT_LOGO, // Use mapped logo or default
-        acPrice: parseFloat(acPriceStr) || 0,
-        dcPrice: parseFloat(dcPriceStr) || 0,
-        fastDcPrice: parseFloat(dcPriceStr) || 0,
-        membershipFee: null, // Not used in current data
-        hasApp: false, // Not used in current data
-        websiteUrl: websiteUrl || providerWebsites[providerId] || "#", // Use CSV website URL first, then mapped URL
-        stationCount: csvStationCount || stationCounts[providerId] || null, // Use CSV station count first, then hardcoded
-        notes: notes
-      };
-    }).filter(provider => provider.name && provider.acPrice > 0); // Keep all providers with valid data
+        
+        return {
+          id: providerId,
+          name: providerName,
+          logo: providerLogos[providerId] || DEFAULT_LOGO,
+          acPrice: parseFloat(acPriceStr) || 0,
+          dcPrice: parseFloat(dcPriceStr) || 0,
+          fastDcPrice: parseFloat(dcPriceStr) || 0,
+          membershipFee: null,
+          hasApp: false,
+          websiteUrl: websiteUrl || providerWebsites[providerId] || "#",
+          stationCount: csvStationCount || stationCounts[providerId] || null,
+          notes: notes
+        };
+      }).filter(provider => provider.acPrice > 0); // Only filter out entries with no valid price data
     
     // Return providers in the exact same order as they appear in Google Sheets
     return providers;
