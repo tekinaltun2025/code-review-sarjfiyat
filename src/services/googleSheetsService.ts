@@ -144,7 +144,7 @@ export async function fetchProviderData(): Promise<Provider[]> {
         stationCount: csvStationCount || stationCounts[providerId] || null, // Use CSV station count first, then hardcoded
         notes: notes
       };
-    }).filter(provider => provider.name && provider.name.trim() !== ""); // Only filter out empty names
+    }).filter(provider => provider.name && provider.acPrice > 0 && provider.id !== 'swapp'); // Added filter to exclude swapp
     
     // All data now comes directly from CSV - no manual additions
     
