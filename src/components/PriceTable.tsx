@@ -135,16 +135,16 @@ const PriceTable = () => {
   return (
     <section id="price-comparison" className="py-12 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-5">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+        <div className="text-center mb-2">
+          <h2 className="text-2xl font-bold text-gray-900 mb-1">
             Şarj Fiyatları Karşılaştırması
           </h2>
           <p className="text-sm text-gray-600 mx-auto">
             Aşağıdaki tabloda Türkiye'deki elektrikli araç şarj istasyonu operatörlerinin güncel fiyatlarını karşılaştırabilirsiniz.
           </p>
           {lastUpdated && (
-            <div className="mt-2">
-              <span className="text-sm text-gray-500">
+            <div className="mt-1">
+              <span className="text-xs text-gray-500">
                 Son güncelleme: {lastUpdated.toLocaleTimeString('tr-TR', {
                   hour: '2-digit',
                   minute: '2-digit'
