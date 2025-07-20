@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { providers, updateProviders } from "@/data/providers";
 import { Provider } from "@/data/types/provider.types";
@@ -19,9 +18,6 @@ import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
 type SortKey = 'acPrice' | 'dcPrice';
 type SortOrder = 'asc' | 'desc';
-
-// IDs of providers to be prioritized in order
-const priorityProviderIds = ["trugo", "zes", "beefull", "esarj"];
 
 const PriceTable = () => {
   const [sortBy, setSortBy] = useState<SortKey>('acPrice');
@@ -115,29 +111,13 @@ const PriceTable = () => {
     });
   };
   
-  // Sort the providers based on current sort settings
+  // Sort the providers based on current sort settings - preserving Google Sheets order when no sorting is applied
   const getSortedProviders = () => {
-    // Get filtered providers first
     const filteredProviders = getFilteredProviders();
     
-    // Sort by the selected price (only non-priority providers)
+    // Only sort if user has specifically clicked on a sort column
+    // Otherwise preserve the original Google Sheets order
     return filteredProviders.sort((a, b) => {
-      // Check if both providers are priority providers
-      const aIsPriority = priorityProviderIds.includes(a.id);
-      const bIsPriority = priorityProviderIds.includes(b.id);
-      
-      // If both are priority, sort by priorityProviderIds order
-      if (aIsPriority && bIsPriority) {
-        return priorityProviderIds.indexOf(a.id) - priorityProviderIds.indexOf(b.id);
-      }
-      
-      // If only a is priority, a comes first
-      if (aIsPriority) return -1;
-      
-      // If only b is priority, b comes first
-      if (bIsPriority) return 1;
-      
-      // If neither is priority, sort by price
       if (sortOrder === 'asc') {
         return a[sortBy] - b[sortBy];
       } else {
@@ -147,7 +127,6 @@ const PriceTable = () => {
   };
 
   const sortedProviders = getSortedProviders();
-  const filteredAndSortedProviders = sortedProviders;
 
   return (
     <section id="price-comparison" className="py-12 bg-gray-50">
@@ -216,14 +195,14 @@ const PriceTable = () => {
                     }}
                   />
                   <tbody className="divide-y divide-gray-200">
-                    {filteredAndSortedProviders.length > 0 ? (
-                      filteredAndSortedProviders.map((provider: Provider, index: number) => (
+                    {sortedProviders.length > 0 ? (
+                      sortedProviders.map((provider: Provider, index: number) => (
                         <PriceTableRow
                           key={provider.id}
                           provider={provider}
                           index={index}
                           sortBy={sortBy}
-                          dividerIndex={priorityProviderIds.length}
+                          dividerIndex={-1}
                         />
                       ))
                     ) : (
