@@ -60,14 +60,14 @@ const PriceTable = () => {
     }
   };
 
-  // Load data on component mount
+  // Load data on component mount and on every page refresh
   useEffect(() => {
     loadData();
     
-    // Set up auto refresh every 30 minutes (1800000 ms)
+    // Set up auto refresh every 5 minutes (300000 ms) for real-time updates
     const refreshInterval = setInterval(() => {
       loadData();
-    }, 1800000);
+    }, 300000);
     
     return () => clearInterval(refreshInterval);
   }, []);
