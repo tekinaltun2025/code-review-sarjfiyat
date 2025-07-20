@@ -130,57 +130,7 @@ export async function fetchProviderData(): Promise<Provider[]> {
         }
       }
       
-      // Special handling for Multiforce - update with new pricing
-      if (providerId === 'multiforce') {
-        return {
-          id: providerId,
-          name: providerName,
-          logo: providerLogos[providerId] || DEFAULT_LOGO,
-          acPrice: 5.50, // Updated AC price: 5.50 TL/kWh for AC 22 kW
-          dcPrice: 9.90, // Updated DC price: 9.90 TL/kWh for DC up to 60 kW
-          fastDcPrice: 11.50, // Updated fast DC price: 11.50 TL/kWh for DC 60 kW and above
-          membershipFee: null,
-          hasApp: false,
-          websiteUrl: websiteUrl || providerWebsites[providerId] || "#",
-          stationCount: csvStationCount || stationCounts[providerId] || null,
-          notes: "AC: 22 kW (5.50 TL), DC: 60 kW'a kadar (9.90 TL), DC: 60 kW ve üzeri (11.50 TL)"
-        };
-      }
-      
-      // Special handling for Beefull - update AC price
-      if (providerId === 'beefull') {
-        return {
-          id: providerId,
-          name: providerName,
-          logo: providerLogos[providerId] || DEFAULT_LOGO,
-          acPrice: 8.99, // Updated AC price: 8.99 TL/kWh
-          dcPrice: parseFloat(dcPriceStr) || 0,
-          fastDcPrice: parseFloat(dcPriceStr) || 0,
-          membershipFee: null,
-          hasApp: false,
-          websiteUrl: websiteUrl || providerWebsites[providerId] || "#",
-          stationCount: csvStationCount || stationCounts[providerId] || null,
-          notes: notes
-        };
-      }
-      
-      // Special handling for RHG Enertürk - update with official website prices
-      if (providerId === 'rhg') {
-        return {
-          id: providerId,
-          name: providerName,
-          logo: providerLogos[providerId] || DEFAULT_LOGO,
-          acPrice: 6.60, // Updated AC price: 6.60 TL/kWh (official website price)
-          dcPrice: 10.60, // Updated DC price: 10.60 TL/kWh (official website price)
-          fastDcPrice: 10.60, // Same as DC price
-          membershipFee: null,
-          hasApp: false,
-          websiteUrl: websiteUrl || providerWebsites[providerId] || "#",
-          stationCount: csvStationCount || stationCounts[providerId] || null,
-          notes: "DC: 60 kWh ve üzeri"
-        };
-      }
-      
+      // Special handling removed - use raw CSV data for all providers
       return {
         id: providerId,
         name: providerName,
@@ -196,32 +146,7 @@ export async function fetchProviderData(): Promise<Provider[]> {
       };
     }).filter(provider => provider.name && provider.acPrice > 0 && provider.id !== 'swapp'); // Added filter to exclude swapp
     
-    // Add Voltgo manually to ensure it appears in the list
-    const voltgoProvider: Provider = {
-      id: "voltgo",
-      name: "Voltgo",
-      logo: providerLogos["voltgo"] || DEFAULT_LOGO,
-      acPrice: 6.99,
-      dcPrice: 9.75,
-      fastDcPrice: 9.75,
-      membershipFee: null,
-      hasApp: false,
-      websiteUrl: "https://voltgo.com.tr",
-      stationCount: 40,
-      notes: "DC:40 kWH-160 kWh , Genelde 120kWh"
-    };
-    
-    // Check if Voltgo already exists in the data, if not add it
-    const voltgoExists = providers.some(p => p.id === 'voltgo');
-    if (!voltgoExists) {
-      providers.push(voltgoProvider);
-    } else {
-      // Update existing Voltgo entry with the notes
-      const voltgoIndex = providers.findIndex(p => p.id === 'voltgo');
-      if (voltgoIndex !== -1) {
-        providers[voltgoIndex].notes = "DC:40 kWH-160 kWh , Genelde 120kWh";
-      }
-    }
+    // All data now comes directly from CSV - no manual additions
     
     // Ensure the priority providers are at the top
     const priorityProviderIds = ["trugo", "zes", "beefull", "esarj"];
