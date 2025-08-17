@@ -90,17 +90,12 @@ const stationCounts: Record<string, number> = {
 
 export async function fetchProviderData(): Promise<Provider[]> {
   try {
-    // Add cache busting parameter to ensure fresh data
-    const cacheBuster = new Date().getTime();
-    const urlWithCacheBuster = `${SHEET_URL}&cachebuster=${cacheBuster}`;
-    
-    // Fetch the CSV data directly from the published URL with no-cache headers
-    const response = await fetch(urlWithCacheBuster, {
-      cache: 'no-cache',
+    // Fetch the CSV data directly from the published URL with cache control headers
+    const response = await fetch(SHEET_URL, {
+      method: 'GET',
       headers: {
         'Cache-Control': 'no-cache, no-store, must-revalidate',
-        'Pragma': 'no-cache',
-        'Expires': '0'
+        'Pragma': 'no-cache'
       }
     });
     
