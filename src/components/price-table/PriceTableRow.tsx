@@ -68,17 +68,21 @@ const PriceTableRow: React.FC<PriceTableRowProps> = ({
         </span>
       </td>
       <td className="px-3 py-3 text-center w-20">
-        <a 
-          href={provider.websiteUrl} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="inline-flex items-center text-blue-600 hover:text-blue-800"
-          aria-label={`${provider.name} web sitesini ziyaret et`}
-          title={`${provider.name} web sitesini ziyaret et`}
-        >
-          <span className="sr-only">{provider.name} web sitesi</span>
-          <ExternalLink className="h-4 w-4" aria-hidden="true" />
-        </a>
+        {provider.websiteUrl && provider.websiteUrl !== '-' ? (
+          <a 
+            href={provider.websiteUrl.startsWith('http') ? provider.websiteUrl : `https://${provider.websiteUrl}`}
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors"
+            aria-label={`${provider.name} web sitesini ziyaret et`}
+            title={`${provider.name} web sitesini ziyaret et`}
+          >
+            <span className="sr-only">{provider.name} web sitesi</span>
+            <ExternalLink className="h-4 w-4" aria-hidden="true" />
+          </a>
+        ) : (
+          <span className="text-gray-400">-</span>
+        )}
       </td>
       <td className="px-3 py-3 w-32">
         <div className="text-xs text-gray-700 leading-tight break-words">
