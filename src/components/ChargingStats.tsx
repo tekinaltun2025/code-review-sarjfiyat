@@ -11,10 +11,13 @@ const ChargingStats = () => {
     queryFn: fetchProviderData,
   });
 
-  // Get top 3 providers with most stations
+  // Get top 3 providers with most stations - filter out those without station counts
   const topByStations = [...providers]
+    .filter(p => p.stationCount && p.stationCount > 0)
     .sort((a, b) => (b.stationCount || 0) - (a.stationCount || 0))
     .slice(0, 3);
+  
+  console.log('Top providers by station count:', topByStations.map(p => ({ name: p.name, count: p.stationCount })));
 
   // Get top 3 providers with cheapest AC prices
   const topByAcPrice = sortProvidersByPrice("acPrice", true).slice(0, 3);
