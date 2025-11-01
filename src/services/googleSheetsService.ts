@@ -137,16 +137,17 @@ export async function fetchProviderData(): Promise<Provider[]> {
         const websiteUrl = row[5] || ""; // Website column from CSV
         const notes = row[6] || ""; // Notes column from CSV
         
-        // Parse station count from station info (e.g., "153 / 1 299" -> extract first number which is location count)
+        // Parse station count from station info (e.g., "2.447" or "153 / 1.299")
+        // In Turkish format, dot (.) is used as thousands separator
         let csvStationCount = null;
         if (stationInfoStr && stationInfoStr.trim() !== "" && stationInfoStr !== "-") {
-          // Extract the first number from format like "153 / 1 299" (locations / sockets)
-          // Remove any non-digit characters except spaces within numbers
+          // Extract the first number, considering dot as thousands separator
           const cleanStr = stationInfoStr.trim();
-          const match = cleanStr.match(/^(\d+(?:\s+\d+)*)/);
+          // Match numbers with optional dots as thousands separators (e.g., "2.447" or "153")
+          const match = cleanStr.match(/^(\d{1,3}(?:\.\d{3})*)/);
           if (match) {
-            // Remove spaces from the matched number (e.g., "1 299" -> "1299")
-            const numberStr = match[1].replace(/\s+/g, '');
+            // Remove dots (thousands separators) to get the actual number
+            const numberStr = match[1].replace(/\./g, '');
             const parsed = parseInt(numberStr, 10);
             if (!isNaN(parsed) && parsed > 0) {
               csvStationCount = parsed;
