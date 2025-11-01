@@ -137,17 +137,23 @@ export async function fetchProviderData(): Promise<Provider[]> {
         const websiteUrl = row[5] || ""; // Website column from CSV
         const notes = row[6] || ""; // Notes column from CSV
         
-        // Parse station count from station info (e.g., "153 / 1 299" -> extract first number)
+        // Parse station count from station info (e.g., "153 / 1 299" -> extract first number which is location count)
         let csvStationCount = null;
         if (stationInfoStr && stationInfoStr.trim() !== "" && stationInfoStr !== "-") {
-          // Extract the first number from format like "153 / 1 299"
-          const match = stationInfoStr.match(/(\d+(?:\s\d+)*)/);
+          // Extract the first number from format like "153 / 1 299" (locations / sockets)
+          // Remove any non-digit characters except spaces within numbers
+          const cleanStr = stationInfoStr.trim();
+          const match = cleanStr.match(/^(\d+(?:\s+\d+)*)/);
           if (match) {
-            const numberStr = match[1].replace(/\s/g, ''); // Remove spaces
-            const parsed = parseInt(numberStr);
-            if (!isNaN(parsed)) {
+            // Remove spaces from the matched number (e.g., "1 299" -> "1299")
+            const numberStr = match[1].replace(/\s+/g, '');
+            const parsed = parseInt(numberStr, 10);
+            if (!isNaN(parsed) && parsed > 0) {
               csvStationCount = parsed;
+              console.log(`Parsed station count for ${providerName}: ${csvStationCount} from "${stationInfoStr}"`);
             }
+          } else {
+            console.warn(`Could not parse station count for ${providerName} from: "${stationInfoStr}"`);
           }
         }
         
@@ -161,7 +167,7 @@ export async function fetchProviderData(): Promise<Provider[]> {
           membershipFee: null,
           hasApp: false,
           websiteUrl: websiteUrl || providerWebsites[providerId] || "#",
-          stationCount: csvStationCount || stationCounts[providerId] || null,
+          stationCount: csvStationCount !== null ? csvStationCount : (stationCounts[providerId] || null),
           stationInfo: stationInfoStr && stationInfoStr !== "-" ? stationInfoStr : undefined,
           supportLine: supportLineStr && supportLineStr !== "-" ? supportLineStr : undefined,
           notes: notes
