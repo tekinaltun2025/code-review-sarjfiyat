@@ -27,9 +27,9 @@ const PriceTableFilters: React.FC<PriceTableFiltersProps> = ({
   // Updated AC price range options
   const acPriceRangeOptions = [
     { value: "all", label: "Tümü" },
-    { value: "1-5", label: "1-5 ₺" },
-    { value: "5-7", label: "5-7 ₺" },
-    { value: "8-20", label: "8-20 ₺" }
+    { value: "5-9", label: "5-9 ₺" },
+    { value: "9-11", label: "9-11 ₺" },
+    { value: "11-20", label: "11-20 ₺" }
   ];
 
   // DC price range options (keep the original)
