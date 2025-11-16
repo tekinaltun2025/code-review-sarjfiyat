@@ -35,10 +35,10 @@ const PriceTableFilters: React.FC<PriceTableFiltersProps> = ({
   // DC price range options (keep the original)
   const dcPriceRangeOptions = [
     { value: "all", label: "Tümü" },
-    { value: "0-10", label: "0-10 ₺" },
-    { value: "10-12", label: "10-12 ₺" },
-    { value: "12-15", label: "12-15 ₺" },
-    { value: "15+", label: "15+ ₺" }
+    { value: "0-9", label: "0-9 ₺" },
+    { value: "9-11", label: "9-11 ₺" },
+    { value: "11-13", label: "11-13 ₺" },
+    { value: "13+", label: "13+ ₺" }
   ];
 
   // Handle name filter change
