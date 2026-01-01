@@ -56,7 +56,7 @@ const HeroSection = React.memo(() => {
                 <FeatureItem
                   icon={<BatteryCharging className="h-5 w-5 text-white" />}
                   title="Güncel Elektrikli Araç Şarj Fiyatları"
-                  description="2025 yılı güncel AC ve DC şarj tarifeleri, anlık fiyat güncellemeleri"
+                  description="2026 yılı güncel AC ve DC şarj tarifeleri, anlık fiyat güncellemeleri"
                 />
                 
                 <FeatureItem
