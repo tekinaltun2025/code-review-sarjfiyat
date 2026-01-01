@@ -37,7 +37,7 @@ const HeroSection = React.memo(() => {
               </h1>
               <p className="text-sm md:text-base lg:text-lg opacity-90 leading-relaxed">
                 <strong>Elektrikli araç şarj fiyatları</strong> için Türkiye'nin en kapsamlı karşılaştırma platformu. 
-                ZES, Eşarj, Trugo, Beefull ve 15+ şarj ağının güncel AC ve DC şarj ücretlerini karşılaştırın. 
+                ZES, Eşarj, Trugo, Beefull ve 45+ şarj ağının güncel AC ve DC şarj ücretlerini karşılaştırın. 
                 Araç şarj fiyatlarını anlık takip edin, en ucuz şarj noktasını bulun ve tasarruf edin.
               </p>
               <div className="pt-2">
