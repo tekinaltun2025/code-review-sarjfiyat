@@ -67,7 +67,7 @@ const HeroSection = React.memo(() => {
                 
                 <FeatureItem
                   icon={<Car className="h-5 w-5 text-white" />}
-                  title="15+ Şarj Ağı Karşılaştırması"
+                  title="45+ Şarj Ağı Karşılaştırması"
                   description="ZES, Eşarj, Trugo, Beefull ve diğer tüm operatörlerin şarj fiyatları"
                 />
               </div>
