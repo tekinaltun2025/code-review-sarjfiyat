@@ -33,11 +33,12 @@ const HeroSection = React.memo(() => {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="space-y-4">
               <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
-                Türkiye'deki Elektrikli Araç Şarj Fiyatlarını Karşılaştırın
+                Elektrikli Araç Şarj Fiyatları 2025 - Güncel Fiyat Karşılaştırması
               </h1>
               <p className="text-sm md:text-base lg:text-lg opacity-90 leading-relaxed">
-                ZES, Eşarj, Trugo, Beefull ve diğer tüm şarj istasyonu operatörlerinin güncel AC ve DC şarj fiyatlarını karşılaştırın. 
-                Elektrikli aracınız için en ekonomik şarj noktasını bulun ve tasarruf edin.
+                <strong>Elektrikli araç şarj fiyatları</strong> için Türkiye'nin en kapsamlı karşılaştırma platformu. 
+                ZES, Eşarj, Trugo, Beefull ve 15+ şarj ağının güncel AC ve DC şarj ücretlerini karşılaştırın. 
+                Araç şarj fiyatlarını anlık takip edin, en ucuz şarj noktasını bulun ve tasarruf edin.
               </p>
               <div className="pt-2">
                 <a 
@@ -54,20 +55,20 @@ const HeroSection = React.memo(() => {
               <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 lg:p-6 space-y-4">
                 <FeatureItem
                   icon={<BatteryCharging className="h-5 w-5 text-white" />}
-                  title="Güncel Şarj Tarifeleri"
-                  description="Tüm elektrikli araç şarj operatörlerinin en güncel AC ve DC şarj fiyatları"
+                  title="Güncel Elektrikli Araç Şarj Fiyatları"
+                  description="2025 yılı güncel AC ve DC şarj tarifeleri, anlık fiyat güncellemeleri"
                 />
                 
                 <FeatureItem
                   icon={<MapPin className="h-5 w-5 text-white" />}
                   title="Şarj İstasyonu Haritası"
-                  description="Türkiye genelindeki 5000+ elektrikli araç şarj noktası lokasyonları"
+                  description="Türkiye genelinde 5000+ elektrikli araç şarj noktası konumları"
                 />
                 
                 <FeatureItem
                   icon={<Car className="h-5 w-5 text-white" />}
-                  title="15+ Şarj Operatörü"
-                  description="ZES, Eşarj, Trugo, Beefull dahil tüm şarj ağları karşılaştırması"
+                  title="15+ Şarj Ağı Karşılaştırması"
+                  description="ZES, Eşarj, Trugo, Beefull ve diğer tüm operatörlerin şarj fiyatları"
                 />
               </div>
             </div>
