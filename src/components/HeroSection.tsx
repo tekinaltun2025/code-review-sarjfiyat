@@ -33,7 +33,7 @@ const HeroSection = React.memo(() => {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="space-y-4">
               <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
-                Elektrikli Araç Şarj Fiyatları 2025 - Güncel Fiyat Karşılaştırması
+                Elektrikli Araç Şarj Fiyatları 2026 - Güncel Fiyat Karşılaştırması
               </h1>
               <p className="text-sm md:text-base lg:text-lg opacity-90 leading-relaxed">
                 <strong>Elektrikli araç şarj fiyatları</strong> için Türkiye'nin en kapsamlı karşılaştırma platformu. 
