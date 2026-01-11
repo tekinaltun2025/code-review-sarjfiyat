@@ -30,44 +30,44 @@ const PriceTableRow: React.FC<PriceTableRowProps> = ({
           : ""
       }`}
     >
-      <td className="px-4 py-3 w-48">
-        <div className="flex items-center space-x-3">
-          <Avatar className="h-8 w-8 bg-gray-100 rounded-md flex-shrink-0">
+      <td className="px-2 sm:px-4 py-2 sm:py-3 w-32 sm:w-48">
+        <div className="flex items-center space-x-2 sm:space-x-3">
+          <Avatar className="h-6 w-6 sm:h-8 sm:w-8 bg-gray-100 rounded-md flex-shrink-0">
             <AvatarImage 
               src={provider.logo} 
               alt={`${provider.name} logo`}
-              className="object-contain p-1"
+              className="object-contain p-0.5 sm:p-1"
             />
-            <AvatarFallback className="bg-gray-200 text-gray-700 rounded-md text-xs">
+            <AvatarFallback className="bg-gray-200 text-gray-700 rounded-md text-[10px] sm:text-xs">
               {providerInitial}
             </AvatarFallback>
           </Avatar>
-          <div className="font-medium text-gray-900 min-w-0 flex-1 leading-tight text-sm">
+          <div className="font-medium text-gray-900 min-w-0 flex-1 leading-tight text-[11px] sm:text-sm truncate">
             {provider.name}
           </div>
         </div>
       </td>
-      <td className="px-3 py-3 text-center w-24">
-        <span className={`text-sm font-medium ${sortBy === 'acPrice' ? 'text-teal-600' : 'text-gray-700'}`}>
+      <td className="px-1 sm:px-3 py-2 sm:py-3 text-center w-16 sm:w-24">
+        <span className={`text-[11px] sm:text-sm font-medium ${sortBy === 'acPrice' ? 'text-teal-600' : 'text-gray-700'}`}>
           {provider.acPrice.toFixed(2)} ₺
         </span>
       </td>
-      <td className="px-3 py-3 text-center w-24">
-        <span className={`text-sm font-medium ${sortBy === 'dcPrice' ? 'text-teal-600' : 'text-gray-700'}`}>
+      <td className="px-1 sm:px-3 py-2 sm:py-3 text-center w-16 sm:w-24">
+        <span className={`text-[11px] sm:text-sm font-medium ${sortBy === 'dcPrice' ? 'text-teal-600' : 'text-gray-700'}`}>
           {provider.dcPrice.toFixed(2)} ₺
         </span>
       </td>
-      <td className="px-3 py-3 text-center w-32">
-        <span className="text-xs text-gray-700 leading-tight">
+      <td className="px-1 sm:px-3 py-2 sm:py-3 text-center w-20 sm:w-32 hidden sm:table-cell">
+        <span className="text-[10px] sm:text-xs text-gray-700 leading-tight">
           {provider.stationInfo || (provider.stationCount ? provider.stationCount.toString() : '-')}
         </span>
       </td>
-      <td className="px-3 py-3 text-center w-28">
-        <span className="text-xs text-gray-600 leading-tight">
+      <td className="px-1 sm:px-3 py-2 sm:py-3 text-center w-20 sm:w-28 hidden sm:table-cell">
+        <span className="text-[10px] sm:text-xs text-gray-600 leading-tight">
           {provider.supportLine || '-'}
         </span>
       </td>
-      <td className="px-3 py-3 text-center w-20">
+      <td className="px-1 sm:px-3 py-2 sm:py-3 text-center w-12 sm:w-20">
         {provider.websiteUrl && provider.websiteUrl !== '-' ? (
           <a 
             href={provider.websiteUrl.startsWith('http') ? provider.websiteUrl : `https://${provider.websiteUrl}`}
@@ -78,14 +78,14 @@ const PriceTableRow: React.FC<PriceTableRowProps> = ({
             title={`${provider.name} web sitesini ziyaret et`}
           >
             <span className="sr-only">{provider.name} web sitesi</span>
-            <ExternalLink className="h-4 w-4" aria-hidden="true" />
+            <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" aria-hidden="true" />
           </a>
         ) : (
           <span className="text-gray-400">-</span>
         )}
       </td>
-      <td className="px-3 py-3 w-32">
-        <div className="text-xs text-gray-700 leading-tight break-words">
+      <td className="px-1 sm:px-3 py-2 sm:py-3 w-24 sm:w-32 hidden md:table-cell">
+        <div className="text-[10px] sm:text-xs text-gray-700 leading-tight break-words">
           {provider.notes || '-'}
         </div>
       </td>

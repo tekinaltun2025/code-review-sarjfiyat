@@ -7,15 +7,15 @@ const HeroSection = React.memo(() => {
   return (
     <>
       {/* Reklam Alanı - Header'dan sonra sabit pozisyon */}
-      <section className="sticky top-16 z-30 bg-gray-100 py-2">
-        <div className="container mx-auto px-4">
-          <div className="bg-white rounded-xl shadow-lg p-1 text-center">
-            <div className="bg-black rounded-lg p-0 border-2 border-dashed border-blue-200 relative overflow-hidden min-h-[150px] md:min-h-[200px] flex items-center justify-center">
-              <div className="relative z-10 w-full max-w-4xl">
+      <section className="sticky top-14 sm:top-16 z-30 bg-gray-100 py-1 sm:py-2">
+        <div className="container mx-auto px-2 sm:px-4">
+          <div className="bg-white rounded-lg sm:rounded-xl shadow-lg p-1 text-center">
+            <div className="bg-black rounded-md sm:rounded-lg p-0 border-2 border-dashed border-blue-200 relative overflow-hidden min-h-[80px] sm:min-h-[150px] md:min-h-[200px] flex items-center justify-center">
+              <div className="relative z-10 w-full max-w-4xl px-1 sm:px-0">
                 <OptimizedImage
                   src="/lovable-uploads/6b168525-a204-45c7-bd83-29952eb5000e.png" 
                   alt="Togg Trugo - Türkiye'nin en geniş elektrikli araç şarj ağı. Yüksek performanslı DC hızlı şarj istasyonları ile elektrikli aracınızı hızla şarj edin." 
-                  className="rounded-lg w-full h-auto object-contain"
+                  className="rounded-md sm:rounded-lg w-full h-auto object-contain"
                   priority={true}
                   width={932}
                   height={191}
@@ -28,25 +28,25 @@ const HeroSection = React.memo(() => {
       </section>
 
       {/* Ana Hero Section - SEO Optimized */}
-      <section className="bg-gradient-to-r from-teal-500 to-blue-500 text-white py-8 md:py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="space-y-4">
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
+      <section className="bg-gradient-to-r from-teal-500 to-blue-500 text-white py-6 sm:py-8 md:py-12">
+        <div className="container mx-auto px-3 sm:px-4">
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
+            <div className="space-y-3 sm:space-y-4">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
                 Elektrikli Araç Şarj Fiyatları 2026 - Güncel Fiyat Karşılaştırması
               </h1>
-              <p className="text-sm md:text-base lg:text-lg opacity-90 leading-relaxed">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg opacity-90 leading-relaxed">
                 <strong>Elektrikli araç şarj fiyatları</strong> için Türkiye'nin en kapsamlı karşılaştırma platformu. 
                 ZES, Eşarj, Trugo, Beefull ve 45+ şarj ağının güncel AC ve DC şarj ücretlerini karşılaştırın. 
                 Araç şarj fiyatlarını anlık takip edin, en ucuz şarj noktasını bulun ve tasarruf edin.
               </p>
-              <div className="pt-2">
+              <div className="pt-1 sm:pt-2">
                 <a 
                   href="#price-comparison" 
-                  className="inline-flex items-center bg-white text-teal-600 px-4 md:px-6 py-2 md:py-3 rounded-lg font-medium hover:bg-teal-50 transition-colors shadow-lg text-sm md:text-base"
+                  className="inline-flex items-center bg-white text-teal-600 px-3 sm:px-4 md:px-6 py-2 md:py-3 rounded-lg font-medium hover:bg-teal-50 transition-colors shadow-lg text-xs sm:text-sm md:text-base"
                   aria-label="Elektrikli araç şarj fiyatlarını karşılaştır"
                 >
-                  <Zap className="mr-2 h-4 w-4" />
+                  <Zap className="mr-1.5 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
                   Fiyatları Karşılaştır
                 </a>
               </div>
