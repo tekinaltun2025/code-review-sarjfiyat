@@ -24,11 +24,11 @@ const PriceTableHeader: React.FC<PriceTableHeaderProps> = ({
   return (
     <thead>
       <tr className="bg-teal-50">
-        <th className="px-4 py-3 text-left text-xs font-semibold text-gray-800 w-48">
+        <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-semibold text-gray-800 w-32 sm:w-48">
           Şarj Operatörü
         </th>
         <th 
-          className="px-3 py-3 text-center text-xs font-semibold text-gray-800 cursor-pointer hover:text-teal-600 w-24"
+          className="px-1 sm:px-3 py-2 sm:py-3 text-center text-[10px] sm:text-xs font-semibold text-gray-800 cursor-pointer hover:text-teal-600 w-16 sm:w-24"
           onClick={() => handleSort('acPrice')}
         >
           <div className="flex flex-col items-center">
@@ -54,7 +54,7 @@ const PriceTableHeader: React.FC<PriceTableHeaderProps> = ({
           </TooltipProvider>
         </th>
         <th 
-          className="px-3 py-3 text-center text-xs font-semibold text-gray-800 cursor-pointer hover:text-teal-600 w-24"
+          className="px-1 sm:px-3 py-2 sm:py-3 text-center text-[10px] sm:text-xs font-semibold text-gray-800 cursor-pointer hover:text-teal-600 w-16 sm:w-24"
           onClick={() => handleSort('dcPrice')}
         >
           <div className="flex flex-col items-center">
@@ -79,10 +79,10 @@ const PriceTableHeader: React.FC<PriceTableHeaderProps> = ({
             </Tooltip>
           </TooltipProvider>
         </th>
-        <th className="px-3 py-3 text-center text-xs font-semibold text-gray-800 w-32">
+        <th className="px-1 sm:px-3 py-2 sm:py-3 text-center text-[10px] sm:text-xs font-semibold text-gray-800 w-20 sm:w-32 hidden sm:table-cell">
           <div className="flex flex-col items-center">
-            <span>İstasyon Sayısı</span>
-            <span className="text-xs">(Lokasyon/Soket)</span>
+            <span>İstasyon</span>
+            <span className="text-[9px] sm:text-xs">(Lok/Soket)</span>
           </div>
           <TooltipProvider>
             <Tooltip>
@@ -101,13 +101,13 @@ const PriceTableHeader: React.FC<PriceTableHeaderProps> = ({
             </Tooltip>
           </TooltipProvider>
         </th>
-        <th className="px-3 py-3 text-center text-xs font-semibold text-gray-800 w-28">
-          Destek Hattı
+        <th className="px-1 sm:px-3 py-2 sm:py-3 text-center text-[10px] sm:text-xs font-semibold text-gray-800 w-20 sm:w-28 hidden sm:table-cell">
+          Destek
         </th>
-        <th className="px-3 py-3 text-center text-xs font-semibold text-gray-800 w-20">
-          Website
+        <th className="px-1 sm:px-3 py-2 sm:py-3 text-center text-[10px] sm:text-xs font-semibold text-gray-800 w-12 sm:w-20">
+          Web
         </th>
-        <th className="px-3 py-3 text-center text-xs font-semibold text-gray-800 w-32">
+        <th className="px-1 sm:px-3 py-2 sm:py-3 text-center text-[10px] sm:text-xs font-semibold text-gray-800 w-24 sm:w-32 hidden md:table-cell">
           Notlar
         </th>
       </tr>

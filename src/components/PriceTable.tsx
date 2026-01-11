@@ -185,8 +185,8 @@ const PriceTable = () => {
                   onDcPriceFilterChange={setDcPriceFilter}
                 />
               </div>
-              <div className="overflow-x-auto">
-                <table className="w-full min-w-[800px] table-fixed">
+            <div className="overflow-x-auto -mx-4 sm:mx-0">
+                <table className="w-full min-w-[640px] sm:min-w-[800px] table-fixed text-xs sm:text-sm">
                   <PriceTableHeader 
                     sortBy={sortBy} 
                     handleSort={handleSort} 
