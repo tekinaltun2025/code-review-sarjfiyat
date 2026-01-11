@@ -15,7 +15,9 @@ const NotFound = () => {
   }, [location.pathname]);
 
   const handleGoHome = () => {
-    navigate('/');
+    // Mobil sayfadaysa mobil ana sayfaya, değilse normal ana sayfaya yönlendir
+    const isMobilePath = location.pathname.startsWith('/m');
+    navigate(isMobilePath ? '/m' : '/');
   };
 
   return (
