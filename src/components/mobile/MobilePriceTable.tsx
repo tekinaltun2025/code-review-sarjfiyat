@@ -1,9 +1,11 @@
-import React, { useState, useMemo, memo } from 'react';
+import React, { useState, useMemo, memo, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
-import { Zap, ChevronDown, ChevronUp, Info } from 'lucide-react';
-import { providers } from '../../data/providers';
+import { Input } from '../ui/input';
+import { Zap, ChevronDown, ChevronUp, Info, Search } from 'lucide-react';
+import { providers, updateProviders } from '../../data/providers';
 import { Provider } from '../../data/types/provider.types';
+import { fetchProviderData } from '../../services/googleSheetsService';
 
 interface MobileProviderCardProps {
   provider: Provider;
@@ -104,17 +106,51 @@ const MobileProviderCard = memo<MobileProviderCardProps>(({ provider, rank }) =>
 MobileProviderCard.displayName = 'MobileProviderCard';
 
 const MobilePriceTable = memo(() => {
-  const [sortBy, setSortBy] = useState<'acPrice' | 'dcPrice' | 'stationCount'>('acPrice');
+  const [sortBy, setSortBy] = useState<'acPrice' | 'dcPrice' | 'stationCount' | null>(null);
+  const [localProviders, setLocalProviders] = useState<Provider[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [nameFilter, setNameFilter] = useState('');
   
-  const sortedProviders = useMemo(() => {
-    return [...providers].sort((a, b) => {
+  // Web ile aynı şekilde Google Sheets'den veri çek
+  useEffect(() => {
+    const loadData = async () => {
+      setIsLoading(true);
+      try {
+        const data = await fetchProviderData();
+        updateProviders(data);
+        setLocalProviders(data);
+      } catch (error) {
+        console.error('Error fetching provider data:', error);
+        setLocalProviders(providers);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    loadData();
+  }, []);
+  
+  // Filtreleme ve sıralama - web ile aynı mantık
+  const filteredAndSortedProviders = useMemo(() => {
+    // Önce filtrele
+    let filtered = localProviders.filter(provider => 
+      provider.name.toLowerCase().includes(nameFilter.toLowerCase())
+    );
+    
+    // sortBy null ise orijinal sırayı koru (Google Sheets sırası)
+    if (!sortBy) {
+      return filtered;
+    }
+    
+    // Sıralama uygula
+    return [...filtered].sort((a, b) => {
       const aVal = a[sortBy];
       const bVal = b[sortBy];
       if (aVal === null) return 1;
       if (bVal === null) return -1;
       return (aVal as number) - (bVal as number);
     });
-  }, [sortBy]);
+  }, [localProviders, sortBy, nameFilter]);
 
   return (
     <div className="mt-4">
@@ -126,8 +162,26 @@ const MobilePriceTable = memo(() => {
           </CardTitle>
         </CardHeader>
         <CardContent className="px-3 pb-3">
+          {/* Arama kutusu */}
+          <div className="relative mb-3">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+            <Input
+              placeholder="Operatör ara..."
+              value={nameFilter}
+              onChange={(e) => setNameFilter(e.target.value)}
+              className="pl-9 h-9 text-sm"
+            />
+          </div>
+          
           {/* Sıralama seçenekleri */}
           <div className="flex gap-2 mb-3 overflow-x-auto pb-1">
+            <Badge 
+              variant={sortBy === null ? 'default' : 'outline'}
+              className="cursor-pointer whitespace-nowrap text-xs"
+              onClick={() => setSortBy(null)}
+            >
+              Varsayılan
+            </Badge>
             <Badge 
               variant={sortBy === 'acPrice' ? 'default' : 'outline'}
               className="cursor-pointer whitespace-nowrap text-xs"
@@ -151,20 +205,32 @@ const MobilePriceTable = memo(() => {
             </Badge>
           </div>
           
-          <p className="text-xs text-muted-foreground mb-3">
-            {sortedProviders.length} şarj ağı listeleniyor. Detaylar için karta tıklayın.
+          <p className="text-xs text-muted-foreground">
+            {filteredAndSortedProviders.length} şarj ağı listeleniyor
           </p>
         </CardContent>
       </Card>
       
-      {/* Provider kartları */}
-      {sortedProviders.map((provider, index) => (
-        <MobileProviderCard 
-          key={provider.id} 
-          provider={provider} 
-          rank={index + 1}
-        />
-      ))}
+      {/* Loading state */}
+      {isLoading ? (
+        <div className="p-6 text-center">
+          <div className="animate-spin h-6 w-6 border-2 border-primary border-t-transparent rounded-full mx-auto mb-2"></div>
+          <p className="text-sm text-muted-foreground">Yükleniyor...</p>
+        </div>
+      ) : filteredAndSortedProviders.length === 0 ? (
+        <Card className="p-4 text-center text-muted-foreground text-sm">
+          Arama kriterlerinize uygun operatör bulunamadı.
+        </Card>
+      ) : (
+        /* Provider kartları */
+        filteredAndSortedProviders.map((provider, index) => (
+          <MobileProviderCard 
+            key={provider.id} 
+            provider={provider} 
+            rank={index + 1}
+          />
+        ))
+      )}
     </div>
   );
 });
