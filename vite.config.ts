@@ -9,6 +9,11 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    // SPA fallback - tüm route'ları index.html'e yönlendir
+    historyApiFallback: true,
+  },
+  preview: {
+    port: 8080,
   },
   base: "/", // Taban URL'i açıkça belirtelim
   build: {
