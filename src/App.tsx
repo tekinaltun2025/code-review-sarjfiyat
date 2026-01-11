@@ -9,7 +9,15 @@ import Panel from "./components/Panel";
 import AboutPage from "./pages/AboutPage";
 import SarjAglari from "./pages/SarjAglari";
 import Survey from "./pages/Survey";
+import MobileIndex from "./pages/mobile/MobileIndex";
+import { useMobileRedirect } from "./hooks/useMobileRedirect";
 import "./App.css";
+
+// Mobil yönlendirme wrapper
+const MobileRedirectWrapper = ({ children }: { children: React.ReactNode }) => {
+  useMobileRedirect();
+  return <>{children}</>;
+};
 
 function App() {
   // Doğru basename yapılandırması
@@ -21,29 +29,39 @@ function App() {
   
   return (
     <Router basename={basename}>
-      <Routes>
-        {/* Normal site routes */}
-        <Route path="/" element={<Index />} />
-        <Route path="/kampanyalar" element={<Campaigns />} />
-        <Route path="/ev-sarj-cihazlari" element={<HomeChargers />} />
-        <Route path="/sarj-aglari" element={<SarjAglari />} />
-        <Route path="/hakkimizda" element={<AboutPage />} />
-        <Route path="/anket" element={<Survey />} />
-        
-        {/* Panel routes */}
-        <Route path="/panel" element={<Panel />}>
-          <Route index element={<Navigate to="/panel/anasayfa" replace />} />
-          <Route path="anasayfa" element={<Index />} />
-          <Route path="kampanyalar" element={<Campaigns />} />
-          <Route path="ev-sarj-cihazlari" element={<HomeChargers />} />
-          <Route path="sarj-aglari" element={<SarjAglari />} />
-          <Route path="hakkimizda" element={<AboutPage />} />
-          <Route path="anket" element={<Survey />} />
-        </Route>
-        
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <Toaster />
+      <MobileRedirectWrapper>
+        <Routes>
+          {/* Normal site routes */}
+          <Route path="/" element={<Index />} />
+          <Route path="/kampanyalar" element={<Campaigns />} />
+          <Route path="/ev-sarj-cihazlari" element={<HomeChargers />} />
+          <Route path="/sarj-aglari" element={<SarjAglari />} />
+          <Route path="/hakkimizda" element={<AboutPage />} />
+          <Route path="/anket" element={<Survey />} />
+          
+          {/* Mobil routes */}
+          <Route path="/m" element={<MobileIndex />} />
+          <Route path="/m/kampanyalar" element={<Campaigns />} />
+          <Route path="/m/ev-sarj-cihazlari" element={<HomeChargers />} />
+          <Route path="/m/sarj-aglari" element={<SarjAglari />} />
+          <Route path="/m/hakkimizda" element={<AboutPage />} />
+          <Route path="/m/anket" element={<Survey />} />
+          
+          {/* Panel routes */}
+          <Route path="/panel" element={<Panel />}>
+            <Route index element={<Navigate to="/panel/anasayfa" replace />} />
+            <Route path="anasayfa" element={<Index />} />
+            <Route path="kampanyalar" element={<Campaigns />} />
+            <Route path="ev-sarj-cihazlari" element={<HomeChargers />} />
+            <Route path="sarj-aglari" element={<SarjAglari />} />
+            <Route path="hakkimizda" element={<AboutPage />} />
+            <Route path="anket" element={<Survey />} />
+          </Route>
+          
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Toaster />
+      </MobileRedirectWrapper>
     </Router>
   );
 }
