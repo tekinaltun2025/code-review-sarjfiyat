@@ -15,9 +15,9 @@ LoadingFallback.displayName = 'LoadingFallback';
 
 const MobileIndex = memo(() => {
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-background w-full overflow-x-hidden">
       <Header />
-      <main className="flex-grow px-3 py-2">
+      <main className="flex-grow px-2 py-2 w-full max-w-full">
         <HeroSection />
         
         <React.Suspense fallback={<LoadingFallback height="h-24" />}>
