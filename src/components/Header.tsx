@@ -54,13 +54,13 @@ const MobileNavigation = memo<{ isOpen: boolean; onClose: () => void }>(({ isOpe
 
 MobileNavigation.displayName = 'MobileNavigation';
 
-// Logo bileşenini ayrı bir component yapalım
+// Logo bileşenini ayrı bir component yapalım - Header'daki logo için h1 yerine span kullanıyoruz (H1 sadece HeroSection'da olmalı)
 const Logo = memo(() => (
   <div className="flex items-center space-x-1 sm:space-x-2 ml-2 sm:ml-4 md:ml-20">
-    <BatteryCharging className="h-8 w-8 sm:h-12 sm:w-12 md:h-16 md:w-16 text-teal-500" />
-    <h1 className="text-lg sm:text-2xl md:text-4xl font-bold bg-gradient-to-r from-teal-500 to-blue-500 bg-clip-text text-transparent">
+    <BatteryCharging className="h-8 w-8 sm:h-12 sm:w-12 md:h-16 md:w-16 text-teal-500" aria-hidden="true" />
+    <span className="text-lg sm:text-2xl md:text-4xl font-bold bg-gradient-to-r from-teal-500 to-blue-500 bg-clip-text text-transparent">
       ŞarjFiyat
-    </h1>
+    </span>
   </div>
 ));
 

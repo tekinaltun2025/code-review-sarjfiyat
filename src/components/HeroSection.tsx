@@ -91,7 +91,7 @@ const FeatureItem = React.memo<FeatureItemProps>(({ icon, title, description }) 
       {icon}
     </div>
     <div>
-      <h2 className="font-semibold text-base lg:text-lg">{title}</h2>
+      <h3 className="font-semibold text-base lg:text-lg">{title}</h3>
       <p className="opacity-80 text-xs lg:text-sm">{description}</p>
     </div>
   </div>
