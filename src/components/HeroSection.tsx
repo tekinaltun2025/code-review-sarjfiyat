@@ -53,6 +53,7 @@ const HeroSection = React.memo(() => {
             </div>
             <div className="hidden md:block">
               <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 lg:p-6 space-y-4">
+                <h2 className="sr-only">Platform Özellikleri</h2>
                 <FeatureItem
                   icon={<BatteryCharging className="h-5 w-5 text-white" />}
                   title="Güncel Elektrikli Araç Şarj Fiyatları"
