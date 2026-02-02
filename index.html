@@ -1,36 +1,58 @@
-
 <!DOCTYPE html>
 <html lang="tr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     
-    <!-- Basic Meta Tags -->
-    <script>
-      fetch('/meta/basic-meta.html')
-        .then(response => response.text())
-        .then(html => {
-          document.head.insertAdjacentHTML('afterbegin', html);
-        });
-    </script>
+    <!-- Primary Meta Tags -->
+    <title>Şarj Fiyatları 2026 | EV Şarj İstasyonu Karşılaştırma</title>
+    <meta name="title" content="Şarj Fiyatları 2026 | EV Şarj İstasyonu Karşılaştırma" />
+    <meta name="description" content="Türkiye'deki tüm elektrikli araç şarj istasyonu fiyatlarını karşılaştırın. ZES, Eşarj, Trugo, Beefull AC/DC şarj ücretleri. En uygun şarj noktasını bulun." />
+    <meta name="keywords" content="elektrikli araç şarj fiyatları, şarj istasyonu fiyatları, EV şarj fiyatları, ZES fiyatları, Eşarj tarifeleri, Trugo, DC şarj, AC şarj" />
+    <meta name="author" content="ŞarjFiyat" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="language" content="Turkish" />
+    <meta name="geo.region" content="TR" />
+    <meta name="geo.country" content="Turkey" />
+    <meta name="revisit-after" content="7 days" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#14b8a6" />
+    <meta name="msapplication-TileColor" content="#14b8a6" />
+    <meta name="application-name" content="ŞarjFiyat" />
+    <meta name="rating" content="general" />
+    <meta name="distribution" content="global" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
     
-    <!-- Social Media Meta Tags -->
-    <script>
-      fetch('/meta/social-meta.html')
-        .then(response => response.text())
-        .then(html => {
-          document.head.insertAdjacentHTML('beforeend', html);
-        });
-    </script>
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://sarjfiyat.com.tr/" />
     
-    <!-- Preconnect Links -->
-    <script>
-      fetch('/meta/preconnect-links.html')
-        .then(response => response.text())
-        .then(html => {
-          document.head.insertAdjacentHTML('beforeend', html);
-        });
-    </script>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ŞarjFiyat" />
+    <meta property="og:title" content="Şarj Fiyatları 2026 | EV Şarj İstasyonu Karşılaştırma" />
+    <meta property="og:description" content="Türkiye'deki tüm elektrikli araç şarj istasyonu fiyatlarını karşılaştırın. ZES, Eşarj, Trugo, Beefull AC/DC şarj ücretleri." />
+    <meta property="og:url" content="https://sarjfiyat.com.tr/" />
+    <meta property="og:image" content="https://sarjfiyat.com.tr/lovable-uploads/976fb8f2-b5ea-4978-ac8a-2c7dffd9f7a2.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="ŞarjFiyat - Elektrikli Araç Şarj Fiyatları" />
+    <meta property="og:locale" content="tr_TR" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@sarjfiyat" />
+    <meta name="twitter:creator" content="@sarjfiyat" />
+    <meta name="twitter:title" content="Şarj Fiyatları 2026 | EV Şarj İstasyonu Karşılaştırma" />
+    <meta name="twitter:description" content="Türkiye'deki tüm elektrikli araç şarj istasyonu fiyatlarını karşılaştırın. En uygun şarj noktasını bulun." />
+    <meta property="twitter:image" content="https://sarjfiyat.com.tr/lovable-uploads/976fb8f2-b5ea-4978-ac8a-2c7dffd9f7a2.png" />
+    <meta name="twitter:image:alt" content="ŞarjFiyat - Elektrikli Araç Şarj Fiyatları" />
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
     <!-- Base URL -->
     <base href="/" />
@@ -39,13 +61,152 @@
     <link rel="icon" href="/lovable-uploads/976fb8f2-b5ea-4978-ac8a-2c7dffd9f7a2.png" type="image/png">
     <link rel="apple-touch-icon" href="/lovable-uploads/976fb8f2-b5ea-4978-ac8a-2c7dffd9f7a2.png">
     
-    <!-- Structured Data -->
-    <script>
-      fetch('/scripts/structured-data.html')
-        .then(response => response.text())
-        .then(html => {
-          document.head.insertAdjacentHTML('beforeend', html);
-        });
+    <!-- Structured Data - Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "ŞarjFiyat",
+      "alternateName": "Elektrikli Araç Şarj Fiyatları",
+      "url": "https://sarjfiyat.com.tr",
+      "logo": "https://sarjfiyat.com.tr/lovable-uploads/976fb8f2-b5ea-4978-ac8a-2c7dffd9f7a2.png",
+      "description": "Türkiye'deki tüm şarj istasyonu operatörlerinin güncel fiyatlarını karşılaştıran platform",
+      "foundingDate": "2023",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "email": "info@sarjfiyat.com.tr",
+        "availableLanguage": "Turkish"
+      }
+    }
+    </script>
+    
+    <!-- Structured Data - LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "ŞarjFiyat",
+      "description": "Elektrikli araç şarj fiyatları karşılaştırma platformu",
+      "url": "https://sarjfiyat.com.tr",
+      "logo": "https://sarjfiyat.com.tr/lovable-uploads/976fb8f2-b5ea-4978-ac8a-2c7dffd9f7a2.png",
+      "email": "info@sarjfiyat.com.tr",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "TR",
+        "addressLocality": "İstanbul"
+      },
+      "priceRange": "Ücretsiz",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Türkiye"
+      }
+    }
+    </script>
+    
+    <!-- Structured Data - WebSite -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "ŞarjFiyat",
+      "url": "https://sarjfiyat.com.tr",
+      "description": "Türkiye'deki tüm şarj istasyonu fiyatlarını karşılaştırın.",
+      "inLanguage": "tr-TR",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://sarjfiyat.com.tr/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    
+    <!-- Structured Data - Article -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Elektrikli Araç Şarj Fiyatları 2026 Güncel Liste",
+      "description": "Türkiye'deki tüm elektrikli araç şarj operatörlerinin güncel fiyat karşılaştırması",
+      "image": "https://sarjfiyat.com.tr/lovable-uploads/976fb8f2-b5ea-4978-ac8a-2c7dffd9f7a2.png",
+      "author": {"@type": "Organization", "name": "ŞarjFiyat"},
+      "publisher": {
+        "@type": "Organization",
+        "name": "ŞarjFiyat",
+        "logo": {"@type": "ImageObject", "url": "https://sarjfiyat.com.tr/lovable-uploads/976fb8f2-b5ea-4978-ac8a-2c7dffd9f7a2.png"}
+      },
+      "datePublished": "2023-01-01",
+      "dateModified": "2026-02-01"
+    }
+    </script>
+    
+    <!-- Structured Data - FAQ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Elektrikli araç şarj fiyatları ne kadar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "2026 yılında AC şarj fiyatları 5-11 TL/kWh, DC hızlı şarj fiyatları 9-15 TL/kWh arasında değişmektedir."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "AC ve DC şarj farkı nedir?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "AC şarj daha yavaş ve ucuz (5-11 TL/kWh). DC hızlı şarj daha pahalı (9-15 TL/kWh) ama 30-45 dakikada %80 şarj sağlar."
+          }
+        }
+      ]
+    }
+    </script>
+    
+    <!-- Structured Data - Service with Price -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Şarj Fiyatları Karşılaştırma Hizmeti",
+      "description": "Türkiye'deki tüm elektrikli araç şarj istasyonu fiyatlarını ücretsiz karşılaştırma hizmeti",
+      "provider": {"@type": "Organization", "name": "ŞarjFiyat", "url": "https://sarjfiyat.com.tr"},
+      "areaServed": {"@type": "Country", "name": "Turkey"},
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "TRY", "availability": "https://schema.org/InStock"}
+    }
+    </script>
+    
+    <!-- Structured Data - AggregateRating -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "ŞarjFiyat Şarj Fiyatları Karşılaştırma",
+      "description": "Türkiye'nin en kapsamlı elektrikli araç şarj fiyatları karşılaştırma platformu",
+      "brand": {"@type": "Brand", "name": "ŞarjFiyat"},
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "bestRating": "5",
+        "worstRating": "1",
+        "ratingCount": "1250"
+      }
+    }
+    </script>
+    
+    <!-- Structured Data - BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://sarjfiyat.com.tr"},
+        {"@type": "ListItem", "position": 2, "name": "Şarj Fiyatları", "item": "https://sarjfiyat.com.tr/#price-comparison"}
+      ]
+    }
     </script>
   </head>
 
