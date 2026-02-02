@@ -1,0 +1,32 @@
+# ŞarjFiyat - Elektrikli Araç Şarj Fiyatları Karşılaştırma Platformu
+
+## Site Hakkında
+ŞarjFiyat, Türkiye'deki tüm elektrikli araç şarj istasyonu operatörlerinin güncel fiyatlarını karşılaştıran bağımsız bir platformdur.
+
+## Ana Sayfalar
+- / - Ana sayfa: Şarj fiyatları karşılaştırma tablosu
+- /hakkimizda - Hakkımızda sayfası
+- /kampanyalar - Güncel kampanyalar
+- /ev-sarj-cihazlari - Ev tipi şarj cihazları
+- /sarj-aglari - Şarj ağları detaylı bilgi
+- /anket - Kullanıcı memnuniyet anketi
+
+## İçerik Türleri
+- Şarj istasyonu fiyat karşılaştırmaları (AC ve DC)
+- Operatör bilgileri ve tarifeleri
+- Ev tipi şarj cihazı önerileri
+- Kampanya ve indirim bilgileri
+
+## Veri Güncelleme Sıklığı
+Fiyat verileri haftalık olarak güncellenmektedir.
+
+## İletişim
+- Web: https://sarjfiyat.com.tr
+- E-posta: info@sarjfiyat.com.tr
+
+## Lisans
+Tüm içerikler © 2023-2026 ŞarjFiyat. Tüm hakları saklıdır.
+
+## AI Crawling Politikası
+Bu site AI sistemlerinin içeriği okumasına ve referans vermesine izin vermektedir.
+Lütfen kaynak belirtin: ŞarjFiyat (sarjfiyat.com.tr)

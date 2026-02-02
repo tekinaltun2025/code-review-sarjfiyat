@@ -11,6 +11,7 @@ import SarjAglari from "./pages/SarjAglari";
 import Survey from "./pages/Survey";
 import MobileIndex from "./pages/mobile/MobileIndex";
 import { useMobileRedirect } from "./hooks/useMobileRedirect";
+import CookieBanner from "./components/CookieBanner";
 import "./App.css";
 
 // Mobil yönlendirme wrapper
@@ -61,6 +62,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Toaster />
+        <CookieBanner />
       </MobileRedirectWrapper>
     </Router>
   );
