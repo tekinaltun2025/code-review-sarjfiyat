@@ -26,15 +26,15 @@ const ChargingStats = () => {
   const topByDcPrice = sortProvidersByPrice("dcPrice", true).slice(0, 3);
 
   return (
-    <section className="py-12 bg-white">
+    <section className="py-12 bg-white" aria-labelledby="charging-stats-heading">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">Türkiye'de Elektrikli Araç Şarj İstatistikleri</h2>
+        <h2 id="charging-stats-heading" className="text-2xl md:text-3xl font-bold text-center mb-8">Türkiye'de Elektrikli Araç Şarj İstatistikleri</h2>
         <div className="grid md:grid-cols-3 gap-8">
           {/* Most Stations */}
           <Card className="border-2 border-gray-200 p-6">
-            <h3 className="text-lg font-bold text-center border-b pb-2 mb-4">En çok istasyonu olan</h3>
+            <h3 className="text-base md:text-lg font-bold text-center border-b pb-2 mb-4">En çok istasyonu olan</h3>
             <div className="space-y-4">
-              {topByStations.map((provider, index) => (
+              {topByStations.map((provider) => (
                 <div key={provider.id} className="flex justify-between items-center">
                   <span className="font-medium">{provider.name}</span>
                   <span className="font-bold">{provider.stationCount || 0}</span>
@@ -45,9 +45,9 @@ const ChargingStats = () => {
           
           {/* Cheapest AC */}
           <Card className="border-2 border-gray-200 p-6">
-            <h3 className="text-lg font-bold text-center border-b pb-2 mb-4">En ucuz AC istasyonlar</h3>
+            <h3 className="text-base md:text-lg font-bold text-center border-b pb-2 mb-4">En ucuz AC istasyonlar</h3>
             <div className="space-y-4">
-              {topByAcPrice.map((provider, index) => (
+              {topByAcPrice.map((provider) => (
                 <div key={provider.id} className="flex justify-between items-center">
                   <span className="font-medium">{provider.name}</span>
                   <span className="font-bold">{provider.acPrice} ₺</span>
@@ -58,9 +58,9 @@ const ChargingStats = () => {
           
           {/* Cheapest DC */}
           <Card className="border-2 border-gray-200 p-6">
-            <h3 className="text-lg font-bold text-center border-b pb-2 mb-4">En ucuz DC istasyonlar</h3>
+            <h3 className="text-base md:text-lg font-bold text-center border-b pb-2 mb-4">En ucuz DC istasyonlar</h3>
             <div className="space-y-4">
-              {topByDcPrice.map((provider, index) => (
+              {topByDcPrice.map((provider) => (
                 <div key={provider.id} className="flex justify-between items-center">
                   <span className="font-medium">{provider.name}</span>
                   <span className="font-bold">{provider.dcPrice} ₺</span>

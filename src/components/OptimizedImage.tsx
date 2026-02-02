@@ -70,7 +70,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     );
   }
 
-  // Image props with proper HTML attributes
+  // Image props with proper HTML attributes - native lazy loading
   const imageProps: React.ImgHTMLAttributes<HTMLImageElement> = {
     src: optimizedSrc,
     alt,
@@ -78,7 +78,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     height,
     sizes: responsiveSizes,
     loading: priority ? 'eager' : 'lazy',
-    decoding: 'async',
+    decoding: priority ? 'sync' : 'async',
     onLoad: handleLoad,
     onError: handleError,
     className: `transition-opacity duration-300 ${
