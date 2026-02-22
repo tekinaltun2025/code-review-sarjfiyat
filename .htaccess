@@ -3,8 +3,9 @@
   RewriteEngine On
   RewriteBase /
   
-  # Allow direct access to the built index
+  # Allow direct access to specific files
   RewriteRule ^index\.html$ - [L]
+  RewriteRule ^ads\.txt$ - [L]
 
   # Force SPA entry for mobile routes (/m...) even if an empty /m directory exists
   RewriteCond %{REQUEST_URI} ^/m(/|$)
