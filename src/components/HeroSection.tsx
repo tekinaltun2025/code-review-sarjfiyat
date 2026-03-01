@@ -1,28 +1,21 @@
 
 import { BatteryCharging, Zap, MapPin, Car } from "lucide-react";
-import OptimizedImage from "./OptimizedImage";
+import AdSense from "./AdSense";
 import React from "react";
 
 const HeroSection = React.memo(() => {
   return (
     <>
-      {/* Reklam Alanı - Header'dan sonra sabit pozisyon */}
+      {/* Google AdSense Reklam Alanı */}
       <section className="sticky top-14 sm:top-16 z-30 bg-gray-100 py-1 sm:py-2">
         <div className="container mx-auto px-2 sm:px-4">
-          <div className="bg-white rounded-lg sm:rounded-xl shadow-lg p-1 text-center">
-            <div className="bg-black rounded-md sm:rounded-lg p-0 border-2 border-dashed border-blue-200 relative overflow-hidden min-h-[80px] sm:min-h-[150px] md:min-h-[200px] flex items-center justify-center">
-              <div className="relative z-10 w-full max-w-4xl px-1 sm:px-0">
-                <OptimizedImage
-                  src="/lovable-uploads/6b168525-a204-45c7-bd83-29952eb5000e.png" 
-                  alt="Togg Trugo - Türkiye'nin en geniş elektrikli araç şarj ağı. Yüksek performanslı DC hızlı şarj istasyonları ile elektrikli aracınızı hızla şarj edin." 
-                  className="rounded-md sm:rounded-lg w-full h-auto object-contain"
-                  priority={true}
-                  width={932}
-                  height={191}
-                  quality={85}
-                />
-              </div>
-            </div>
+          <div className="flex justify-center">
+            <AdSense 
+              slot="9928613137" 
+              format="auto"
+              responsive={true}
+              style={{ display: 'inline-block', width: '728px', height: '50px' }}
+            />
           </div>
         </div>
       </section>
