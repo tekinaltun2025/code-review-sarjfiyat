@@ -2,21 +2,17 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
-  
-  # Allow direct access to specific files
+
   RewriteRule ^index\.html$ - [L]
   RewriteRule ^ads\.txt$ - [L]
 
-  # Force SPA entry for mobile routes (/m...) even if an empty /m directory exists
+  # Force SPA entry for mobile routes
   RewriteCond %{REQUEST_URI} ^/m(/|$)
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME}/index.html !-f
   RewriteRule ^m(/.*)?$ /index.html [L]
 
-  # SPA fallback:
-  # - Rewrite when the path is NOT a real file
-  # - Also rewrite for existing directories that don't have their own index.html
-  #   (fixes cases like an empty /m directory causing 404 on refresh)
+  # SPA fallback
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-l
   RewriteCond %{REQUEST_FILENAME} !-d [OR]
@@ -40,7 +36,6 @@
 
 # Enable GZIP compression for better performance
 <IfModule mod_deflate.c>
-  # Compress HTML, CSS, JavaScript, Text, XML and fonts
   AddOutputFilterByType DEFLATE application/javascript
   AddOutputFilterByType DEFLATE application/rss+xml
   AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
@@ -63,7 +58,6 @@
   AddOutputFilterByType DEFLATE text/plain
   AddOutputFilterByType DEFLATE text/xml
 
-  # Remove browser bugs (only needed for really old browsers)
   BrowserMatch ^Mozilla/4 gzip-only-text/html
   BrowserMatch ^Mozilla/4\.0[678] no-gzip
   BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
@@ -72,38 +66,38 @@
 
 # Enhanced security headers
 <IfModule mod_headers.c>
-  # Content Security Policy - Enhanced for XSS protection
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://www.googletagmanager.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://cdn.gpteng.co https://adservice.google.com https://adservice.google.com.tr https://www.google.com https://tpc.googlesyndication.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://sarjfiyat.com.tr https://www.sarjfiyat.com.tr https://docs.google.com https://www.googleapis.com https://*.googleusercontent.com https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://adservice.google.com; frame-src https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://www.google.com https://tpc.googlesyndication.com; frame-ancestors 'none'"
-  
+  # Content Security Policy - Google AdSense uyumlu
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://www.googletagmanager.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://adservice.google.com https://adservice.google.com.tr https://www.google.com https://tpc.googlesyndication.com https://cdn.gpteng.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://sarjfiyat.com.tr https://www.sarjfiyat.com.tr https://docs.google.com https://www.googleapis.com https://*.googleusercontent.com https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://adservice.google.com; frame-src https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://www.google.com https://tpc.googlesyndication.com; frame-ancestors 'none'"
+
   # Strict security headers
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "DENY"
   Header always set X-XSS-Protection "1; mode=block"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
-  
+
   # HTTPS enforcement
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-  
+
   # CORS headers with restrictions
   Header set Access-Control-Allow-Origin "https://sarjfiyatlari.com"
   Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
   Header set Access-Control-Allow-Headers "Content-Type, Authorization"
   Header set Access-Control-Max-Age "86400"
-  
+
   # Cache control for different file types
   <FilesMatch "\.(js|css|jpg|jpeg|png|gif|ico|svg|woff|woff2|eot|ttf)$">
     Header set Cache-Control "max-age=31536000, public, immutable"
     Header set Expires "Thu, 31 Dec 2025 23:59:59 GMT"
   </FilesMatch>
-  
+
   # No cache for HTML and API files
   <FilesMatch "\.(html|php)$">
     Header set Cache-Control "no-cache, no-store, must-revalidate"
     Header set Pragma "no-cache"
     Header set Expires "0"
   </FilesMatch>
-  
+
   # Performance headers
   Header always set Vary "Accept-Encoding, Origin"
 </IfModule>
@@ -122,7 +116,6 @@ Options -Indexes -ServerInfo
 
 # Block suspicious requests
 <IfModule mod_rewrite.c>
-  # Block common attack patterns
   RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
   RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
   RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2}) [OR]
@@ -161,7 +154,7 @@ ErrorDocument 403 /index.html
 # Enable ETags for better caching but with security
 FileETag MTime Size
 
-# Block access to wp-admin style attacks even though this isn't WordPress
+# Block access to wp-admin style attacks
 <IfModule mod_rewrite.c>
   RewriteCond %{REQUEST_URI} ^.*/wp-admin/.*$ [NC]
   RewriteRule .* - [F]
