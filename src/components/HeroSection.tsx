@@ -1,7 +1,35 @@
 
 import { BatteryCharging, Zap, MapPin, Car } from "lucide-react";
-import AdSense from "./AdSense";
-import React from "react";
+import React, { useEffect, useRef } from "react";
+
+const AdBlock = React.memo(() => {
+  const adRef = useRef<HTMLDivElement>(null);
+  const loaded = useRef(false);
+
+  useEffect(() => {
+    if (loaded.current) return;
+    try {
+      ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+      loaded.current = true;
+    } catch (e) {
+      console.error('AdSense error:', e);
+    }
+  }, []);
+
+  return (
+    <div ref={adRef}>
+      <ins
+        className="adsbygoogle"
+        style={{ display: 'block' }}
+        data-ad-client="ca-pub-5965663978373204"
+        data-ad-slot="9928613137"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
+    </div>
+  );
+});
+AdBlock.displayName = 'AdBlock';
 
 const HeroSection = React.memo(() => {
   return (
@@ -10,12 +38,7 @@ const HeroSection = React.memo(() => {
       <section className="sticky top-14 sm:top-16 z-30 bg-gray-100 py-1 sm:py-2">
         <div className="container mx-auto px-2 sm:px-4">
           <div className="flex justify-center">
-            <AdSense 
-              slot="9928613137" 
-              format="auto"
-              responsive={true}
-              style={{ display: 'inline-block', width: '728px', height: '50px' }}
-            />
+            <AdBlock />
           </div>
         </div>
       </section>
