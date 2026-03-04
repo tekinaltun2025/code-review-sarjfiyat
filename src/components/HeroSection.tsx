@@ -22,7 +22,7 @@ const AdBlock = React.memo(() => {
         className="adsbygoogle"
         style={{ display: 'block' }}
         data-ad-client="ca-pub-5965663978373204"
-        data-ad-slot="9928613137"
+        data-ad-slot="6056870631"
         data-ad-format="auto"
         data-full-width-responsive="true"
       />
