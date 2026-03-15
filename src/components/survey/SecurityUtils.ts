@@ -109,7 +109,7 @@ export const logSecurityEvent = (event: string, details?: any): void => {
   }
 
   // In production, this could send to a security monitoring service
-  if (process.env.NODE_ENV === 'production') {
+  if (import.meta.env.PROD) {
     // Could implement external logging here
     scheduleSecurityReport(logEntry);
   }

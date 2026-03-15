@@ -62,7 +62,7 @@ export const useMobileRedirect = () => {
 
   // Resize event için - sadece gerçek resize olaylarında yönlendir
   useEffect(() => {
-    let resizeTimeout: NodeJS.Timeout;
+    let resizeTimeout: ReturnType<typeof setTimeout> | undefined;
     
     const handleResize = () => {
       // Debounce resize events
