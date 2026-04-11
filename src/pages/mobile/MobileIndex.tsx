@@ -1,34 +1,34 @@
 import React, { memo } from 'react';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import HeroSection from '../../components/HeroSection';
+import MobileHeader from '../../components/mobile/MobileHeader';
+import MobileHero from '../../components/mobile/MobileHero';
+import MobileFooter from '../../components/mobile/MobileFooter';
 
-// Lazy load components
-const ChargingStats = React.lazy(() => import('../../components/ChargingStats'));
+const MobileStats = React.lazy(() => import('../../components/mobile/MobileStats'));
 const MobilePriceTable = React.lazy(() => import('../../components/mobile/MobilePriceTable'));
 
 const LoadingFallback = memo<{ height: string }>(({ height }) => (
-  <div className={`${height} bg-gray-100 animate-pulse rounded-lg mx-4 mb-4`} />
+  <div className={`${height} bg-muted animate-pulse rounded-xl mx-3 mb-3`} />
 ));
-
 LoadingFallback.displayName = 'LoadingFallback';
 
 const MobileIndex = memo(() => {
   return (
     <div className="min-h-screen flex flex-col bg-background w-full overflow-x-hidden">
-      <Header />
-      <main className="flex-grow px-2 py-2 w-full max-w-full">
-        <HeroSection />
-        
-        <React.Suspense fallback={<LoadingFallback height="h-24" />}>
-          <ChargingStats />
+      <MobileHeader />
+      <main className="flex-grow w-full">
+        <MobileHero />
+
+        <React.Suspense fallback={<LoadingFallback height="h-28" />}>
+          <MobileStats />
         </React.Suspense>
-        
-        <React.Suspense fallback={<LoadingFallback height="h-64" />}>
-          <MobilePriceTable />
-        </React.Suspense>
+
+        <div className="px-3 mt-4" id="price-comparison">
+          <React.Suspense fallback={<LoadingFallback height="h-64" />}>
+            <MobilePriceTable />
+          </React.Suspense>
+        </div>
       </main>
-      <Footer />
+      <MobileFooter />
     </div>
   );
 });
