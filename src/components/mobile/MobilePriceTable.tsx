@@ -201,6 +201,7 @@ const MobilePriceTable = memo(() => {
             key={provider.id} 
             provider={provider} 
             rank={index + 1}
+            sortBy={sortBy}
           />
         ))
       )}
