@@ -39,7 +39,7 @@ const MobileHeader = memo(() => {
 
       {/* Full screen mobile menu */}
       {menuOpen && (
-        <div className="fixed inset-0 top-14 z-50 bg-background/98 backdrop-blur-lg animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="fixed inset-0 top-14 z-50 bg-background backdrop-blur-lg animate-in fade-in slide-in-from-top-2 duration-200">
           <nav className="flex flex-col p-6 gap-1">
             {NAV_ITEMS.map((item) => {
               const isActive = location.pathname === item.path;
