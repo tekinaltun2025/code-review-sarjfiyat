@@ -15,18 +15,18 @@ const providerLogos: Record<string, string> = {
   otowatt: "/lovable-uploads/4d178d3c-d0c2-4960-a707-c4f0230e9885.png",
   petrolofisi: "/lovable-uploads/6e47365f-9335-4024-9da3-18b00c4ce94b.png",
   tesla: "/lovable-uploads/ee7cd67b-4d0f-482c-ade0-f02ed83fb68a.png",
-  aksasarj: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
-  multiforce: "/lovable-uploads/4e883d70-0fb2-41c7-9bc4-f51d94c026ef.png", // Updated to new Multiforce logo
-  onlife: "/lovable-uploads/cd2aee25-6669-44b4-b350-00d0b28175c3.png", // Updated to new OnLife logo
-  obisarj: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
-  borenco: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
-  vale: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
-  nevasarj: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
-  magicline: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
-  rhg: "/lovable-uploads/e7ac1293-6e03-43a4-9d54-840d01f3dcc4.png", // Updated to new RHG Enertürk logo
-  dcharge: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
-  echarge: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
-  powersarj: "/lovable-uploads/07d1d847-f0a9-4a61-bbff-16b2b1e4a3bf.png",
+  aksasarj: "/logos/aksasarj-logo.png",
+  multiforce: "/lovable-uploads/4e883d70-0fb2-41c7-9bc4-f51d94c026ef.png",
+  onlife: "/lovable-uploads/cd2aee25-6669-44b4-b350-00d0b28175c3.png",
+  obisarj: "/logos/obisarj-logo.png",
+  borenco: "/logos/borenco-logo.png",
+  vale: "/logos/valesarj-logo.png",
+  nevasarj: "/logos/nevasarj-logo.png",
+  magicline: "/logos/magicline-logo.png",
+  rhg: "/lovable-uploads/e7ac1293-6e03-43a4-9d54-840d01f3dcc4.png",
+  dcharge: "/logos/dcharge-logo.png",
+  echarge: "/logos/echarge-logo.png",
+  powersarj: "/logos/powersarj-logo.png",
   voltgo: "/lovable-uploads/2648e919-dca0-4764-ba85-3bdd8540116c.png"
 };
 
