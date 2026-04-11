@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import MobileHeader from '../../components/mobile/MobileHeader';
-import MobileHero from '../../components/mobile/MobileHero';
+
 import MobileFooter from '../../components/mobile/MobileFooter';
 
 const MobileStats = React.lazy(() => import('../../components/mobile/MobileStats'));
