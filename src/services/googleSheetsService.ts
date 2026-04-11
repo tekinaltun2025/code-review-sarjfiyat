@@ -152,9 +152,19 @@ export async function fetchProviderData(): Promise<Provider[]> {
         // Special ID mappings to match existing logo/website mappings
         if (providerId === 'astorsarj') providerId = 'astor';
         if (providerId === 'petrolofiside-power') providerId = 'petrolofisi';
+        if (providerId === 'petrolofisie-power') providerId = 'petrolofisi';
         if (providerId === 'teslasupercharger') providerId = 'tesla';
         if (providerId === 'aksasarj') providerId = 'aksasarj';
         if (providerId === 'nevasarj') providerId = 'nevasarj';
+        if (providerId === 'g-charge') providerId = 'gcharge';
+        if (providerId === 'oncharge(kalyon)') providerId = 'oncharge';
+        if (providerId === 'epsiz(epsizsarj)') providerId = 'epsiz';
+        if (providerId === 'fullcharger(fctr)') providerId = 'fullcharger';
+        if (providerId === '5sarj(borusanenbw)') providerId = '5sarj';
+        if (providerId === 'celiklerenerji') providerId = 'celiklerenerji';
+        if (providerId === 'ronesanscharger') providerId = 'ronesanscharger';
+        if (providerId === 'nevasarj') providerId = 'nevasarj';
+        if (providerId === 'sarjmahal') providerId = 'sarjmahal';
         
         // Parse prices and new columns, handling comma as decimal separator
         const acPriceStr = row[1] ? row[1].replace(',', '.') : "0";
