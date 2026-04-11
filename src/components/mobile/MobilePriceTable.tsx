@@ -173,7 +173,7 @@ const MobilePriceTable = memo(() => {
           </div>
           
           <p className="text-xs text-muted-foreground">
-            {filteredAndSortedProviders.length} şarj ağı listeleniyor
+            {filteredProviders.length} şarj ağı listeleniyor
           </p>
         </CardContent>
       </Card>
@@ -184,13 +184,13 @@ const MobilePriceTable = memo(() => {
           <div className="animate-spin h-6 w-6 border-2 border-primary border-t-transparent rounded-full mx-auto mb-2"></div>
           <p className="text-sm text-muted-foreground">Yükleniyor...</p>
         </div>
-      ) : filteredAndSortedProviders.length === 0 ? (
+      ) : filteredProviders.length === 0 ? (
         <Card className="p-4 text-center text-muted-foreground text-sm">
           Arama kriterlerinize uygun operatör bulunamadı.
         </Card>
       ) : (
         /* Provider kartları */
-        filteredAndSortedProviders.map((provider, index) => (
+        filteredProviders.map((provider, index) => (
           <MobileProviderCard 
             key={provider.id} 
             provider={provider} 
