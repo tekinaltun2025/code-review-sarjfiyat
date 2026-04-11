@@ -43,10 +43,6 @@ const MobileProviderCard = memo<MobileProviderCardProps>(({ provider, rank, sort
           {/* İsim */}
           <div className="flex-1 min-w-0">
             <h3 className="font-semibold text-sm truncate">{provider.name}</h3>
-            <div className="flex gap-2 text-xs mt-1 text-muted-foreground">
-              <span>AC: {provider.acPrice ? `${provider.acPrice}₺` : '-'}</span>
-              <span>DC: {provider.dcPrice ? `${provider.dcPrice}₺` : '-'}</span>
-            </div>
           </div>
           
           {/* Seçili fiyat + expand */}
