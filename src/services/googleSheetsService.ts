@@ -55,6 +55,15 @@ const providerLogos: Record<string, string> = {
   enyakitenerji: "/logos/enyakitenerji-logo.png",
   ronesanscharger: "/logos/ronesanscharger-logo.png",
   sarjmahal: "/logos/sarjmahal-logo.png",
+  watmobilite: "/logos/watmobilite-logo.png",
+  sepascharge: "/logos/sepascharge-logo.png",
+  totalenergies: "/logos/totalenergies-logo.png",
+  kingpower: "/logos/kingpower-logo.png",
+  clixolar: "/logos/clixolar-logo.png",
+  bcharge: "/logos/bcharge-logo.png",
+  plugdrive: "/logos/plugdrive-logo.png",
+  getasolar: "/logos/getasolar-logo.png",
+  hizzlan: "/logos/hizzlan-logo.png",
 };
 
 // Default logo for providers without custom logos
