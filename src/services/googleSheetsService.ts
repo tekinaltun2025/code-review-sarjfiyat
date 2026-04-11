@@ -55,6 +55,15 @@ const providerLogos: Record<string, string> = {
   enyakitenerji: "/logos/enyakitenerji-logo.png",
   ronesanscharger: "/logos/ronesanscharger-logo.png",
   sarjmahal: "/logos/sarjmahal-logo.png",
+  watmobilite: "/logos/watmobilite-logo.png",
+  sepascharge: "/logos/sepascharge-logo.png",
+  totalenergies: "/logos/totalenergies-logo.png",
+  kingpower: "/logos/kingpower-logo.png",
+  clixolar: "/logos/clixolar-logo.png",
+  bcharge: "/logos/bcharge-logo.png",
+  plugdrive: "/logos/plugdrive-logo.png",
+  getasolar: "/logos/getasolar-logo.png",
+  hizzlan: "/logos/hizzlan-logo.png",
 };
 
 // Default logo for providers without custom logos
@@ -165,6 +174,17 @@ export async function fetchProviderData(): Promise<Provider[]> {
         if (providerId === 'ronesanscharger') providerId = 'ronesanscharger';
         if (providerId === 'nevasarj') providerId = 'nevasarj';
         if (providerId === 'sarjmahal') providerId = 'sarjmahal';
+        if (providerId === 'watmobilite') providerId = 'watmobilite';
+        if (providerId === 'sepascharge') providerId = 'sepascharge';
+        if (providerId === 'totalenergies') providerId = 'totalenergies';
+        if (providerId === 'kingpower(jetco)') providerId = 'kingpower';
+        if (providerId === 'clixolar(solarsarjet)') providerId = 'clixolar';
+        if (providerId === 'b-charge(bakircıe-mobility)') providerId = 'bcharge';
+        if (providerId === 'b-charge(bakircie-mobility)') providerId = 'bcharge';
+        if (providerId === 'plug&drive(pgdenerji)') providerId = 'plugdrive';
+        if (providerId === 'getasolar(prosarj)') providerId = 'getasolar';
+        if (providerId === 'hizzlancharge/n\'drive') providerId = 'hizzlan';
+        if (providerId === 'hizzlancharge') providerId = 'hizzlan';
         
         // Parse prices and new columns, handling comma as decimal separator
         const acPriceStr = row[1] ? row[1].replace(',', '.') : "0";
