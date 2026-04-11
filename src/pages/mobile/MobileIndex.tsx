@@ -16,7 +16,6 @@ const MobileIndex = memo(() => {
     <div className="min-h-screen flex flex-col bg-background w-full overflow-x-hidden">
       <MobileHeader />
       <main className="flex-grow w-full">
-        <MobileHero />
 
         <React.Suspense fallback={<LoadingFallback height="h-28" />}>
           <MobileStats />
