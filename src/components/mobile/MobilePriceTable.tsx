@@ -106,7 +106,7 @@ const MobileProviderCard = memo<MobileProviderCardProps>(({ provider, rank }) =>
 MobileProviderCard.displayName = 'MobileProviderCard';
 
 const MobilePriceTable = memo(() => {
-  const [sortBy, setSortBy] = useState<'acPrice' | 'dcPrice' | 'stationCount' | null>(null);
+  const [sortBy, setSortBy] = useState<'acPrice' | 'dcPrice'>('dcPrice');
   const [localProviders, setLocalProviders] = useState<Provider[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [nameFilter, setNameFilter] = useState('');
@@ -132,17 +132,10 @@ const MobilePriceTable = memo(() => {
   
   // Filtreleme ve sıralama - web ile aynı mantık
   const filteredAndSortedProviders = useMemo(() => {
-    // Önce filtrele
     let filtered = localProviders.filter(provider => 
       provider.name.toLowerCase().includes(nameFilter.toLowerCase())
     );
     
-    // sortBy null ise orijinal sırayı koru (Google Sheets sırası)
-    if (!sortBy) {
-      return filtered;
-    }
-    
-    // Sıralama uygula
     return [...filtered].sort((a, b) => {
       const aVal = a[sortBy];
       const bVal = b[sortBy];
@@ -173,35 +166,21 @@ const MobilePriceTable = memo(() => {
             />
           </div>
           
-          {/* Sıralama seçenekleri */}
-          <div className="flex gap-2 mb-3 overflow-x-auto pb-1">
-            <Badge 
-              variant={sortBy === null ? 'default' : 'outline'}
-              className="cursor-pointer whitespace-nowrap text-xs"
-              onClick={() => setSortBy(null)}
-            >
-              Varsayılan
-            </Badge>
-            <Badge 
-              variant={sortBy === 'acPrice' ? 'default' : 'outline'}
-              className="cursor-pointer whitespace-nowrap text-xs"
-              onClick={() => setSortBy('acPrice')}
-            >
-              AC Fiyat
-            </Badge>
+          {/* Sıralama seçenekleri - sadece DC ve AC */}
+          <div className="flex gap-2 mb-3">
             <Badge 
               variant={sortBy === 'dcPrice' ? 'default' : 'outline'}
-              className="cursor-pointer whitespace-nowrap text-xs"
+              className="cursor-pointer whitespace-nowrap text-sm px-4 py-1.5"
               onClick={() => setSortBy('dcPrice')}
             >
               DC Fiyat
             </Badge>
             <Badge 
-              variant={sortBy === 'stationCount' ? 'default' : 'outline'}
-              className="cursor-pointer whitespace-nowrap text-xs"
-              onClick={() => setSortBy('stationCount')}
+              variant={sortBy === 'acPrice' ? 'default' : 'outline'}
+              className="cursor-pointer whitespace-nowrap text-sm px-4 py-1.5"
+              onClick={() => setSortBy('acPrice')}
             >
-              İstasyon Sayısı
+              AC Fiyat
             </Badge>
           </div>
           
