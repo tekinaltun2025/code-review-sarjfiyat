@@ -63,25 +63,31 @@ const MobileProviderCard = memo<MobileProviderCardProps>(({ provider, rank, sort
           <div className="px-3 pb-3 pt-0 border-t bg-muted/30">
             <div className="grid grid-cols-2 gap-2 text-xs mt-3">
               <div>
-                <span className="text-muted-foreground">İstasyon:</span>
+                <span className="text-muted-foreground">AC Şarj:</span>
+                <span className="ml-1 font-medium">{provider.acPrice ? `${provider.acPrice} ₺/kWh` : '-'}</span>
+              </div>
+              <div>
+                <span className="text-muted-foreground">DC Şarj:</span>
+                <span className="ml-1 font-medium">{provider.dcPrice ? `${provider.dcPrice} ₺/kWh` : '-'}</span>
+              </div>
+              <div>
+                <span className="text-muted-foreground">Toplam Soket:</span>
                 <span className="ml-1 font-medium">{provider.stationInfo || '-'}</span>
               </div>
               <div>
-                <span className="text-muted-foreground">Hızlı DC:</span>
-                <span className="ml-1 font-medium">{provider.fastDcPrice ? `${provider.fastDcPrice}₺` : '-'}</span>
+                <span className="text-muted-foreground">Destek Hattı:</span>
+                <span className="ml-1 font-medium">{provider.supportLine || '-'}</span>
               </div>
-              <div>
-                <span className="text-muted-foreground">Üyelik:</span>
-                <span className="ml-1 font-medium">{provider.membershipFee || 'Ücretsiz'}</span>
-              </div>
-              <div>
-                <span className="text-muted-foreground">Destek:</span>
-                <span className="ml-1 font-medium">{provider.supportLine ? '✓' : '✗'}</span>
+              <div className="col-span-2">
+                <span className="text-muted-foreground">Websitesi:</span>
+                <a href={provider.websiteUrl} target="_blank" rel="noopener noreferrer" className="ml-1 font-medium text-primary underline truncate">
+                  {provider.websiteUrl !== '#' ? provider.websiteUrl.replace(/^https?:\/\//, '') : '-'}
+                </a>
               </div>
             </div>
             
             {provider.notes && (
-              <div className="mt-2 p-2 bg-blue-50 rounded text-xs text-blue-700 flex items-start gap-1">
+              <div className="mt-2 p-2 bg-muted rounded text-xs text-muted-foreground flex items-start gap-1">
                 <Info className="w-3 h-3 mt-0.5 flex-shrink-0" />
                 <span>{provider.notes}</span>
               </div>
