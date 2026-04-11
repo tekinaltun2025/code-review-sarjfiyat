@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import MobileHeader from '../../components/mobile/MobileHeader';
-import MobileHero from '../../components/mobile/MobileHero';
+
 import MobileFooter from '../../components/mobile/MobileFooter';
 
 const MobileStats = React.lazy(() => import('../../components/mobile/MobileStats'));
@@ -16,7 +16,6 @@ const MobileIndex = memo(() => {
     <div className="min-h-screen flex flex-col bg-background w-full overflow-x-hidden">
       <MobileHeader />
       <main className="flex-grow w-full">
-        <MobileHero />
 
         <React.Suspense fallback={<LoadingFallback height="h-28" />}>
           <MobileStats />
