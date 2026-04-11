@@ -27,7 +27,34 @@ const providerLogos: Record<string, string> = {
   dcharge: "/logos/dcharge-logo.png",
   echarge: "/logos/echarge-logo.png",
   powersarj: "/logos/powersarj-logo.png",
-  voltgo: "/lovable-uploads/2648e919-dca0-4764-ba85-3bdd8540116c.png"
+  voltgo: "/lovable-uploads/2648e919-dca0-4764-ba85-3bdd8540116c.png",
+  swapp: "/logos/swapp-logo.png",
+  shellrecharge: "/logos/shellrecharge-logo.png",
+  chargeteknoloji: "/logos/chargeteknoloji-logo.png",
+  "360enerji": "/logos/360enerji-logo.png",
+  fastgo: "/logos/fastgo-logo.png",
+  fixcharge: "/logos/fixcharge-logo.png",
+  spark: "/logos/spark-logo.png",
+  otopriz: "/logos/otopriz-logo.png",
+  "sharz.net": "/logos/sharznet-logo.png",
+  gcharge: "/logos/gcharge-logo.png",
+  oncharge: "/logos/oncharge-logo.png",
+  jetsarj: "/logos/jetsarj-logo.png",
+  epsiz: "/logos/epsiz-logo.png",
+  resarj: "/logos/resarj-logo.png",
+  cwenerji: "/logos/cwenerji-logo.png",
+  otojet: "/logos/otojet-logo.png",
+  armatec: "/logos/armatec-logo.png",
+  fullcharger: "/logos/fullcharger-logo.png",
+  chargeiq: "/logos/chargeiq-logo.png",
+  voltla: "/logos/voltla-logo.png",
+  enomenerji: "/logos/enomenerji-logo.png",
+  hunatenerji: "/logos/hunatenerji-logo.png",
+  "5sarj": "/logos/5sarj-logo.png",
+  celiklerenerji: "/logos/celiklerenerji-logo.png",
+  enyakitenerji: "/logos/enyakitenerji-logo.png",
+  ronesanscharger: "/logos/ronesanscharger-logo.png",
+  sarjmahal: "/logos/sarjmahal-logo.png",
 };
 
 // Default logo for providers without custom logos
@@ -125,9 +152,19 @@ export async function fetchProviderData(): Promise<Provider[]> {
         // Special ID mappings to match existing logo/website mappings
         if (providerId === 'astorsarj') providerId = 'astor';
         if (providerId === 'petrolofiside-power') providerId = 'petrolofisi';
+        if (providerId === 'petrolofisie-power') providerId = 'petrolofisi';
         if (providerId === 'teslasupercharger') providerId = 'tesla';
         if (providerId === 'aksasarj') providerId = 'aksasarj';
         if (providerId === 'nevasarj') providerId = 'nevasarj';
+        if (providerId === 'g-charge') providerId = 'gcharge';
+        if (providerId === 'oncharge(kalyon)') providerId = 'oncharge';
+        if (providerId === 'epsiz(epsizsarj)') providerId = 'epsiz';
+        if (providerId === 'fullcharger(fctr)') providerId = 'fullcharger';
+        if (providerId === '5sarj(borusanenbw)') providerId = '5sarj';
+        if (providerId === 'celiklerenerji') providerId = 'celiklerenerji';
+        if (providerId === 'ronesanscharger') providerId = 'ronesanscharger';
+        if (providerId === 'nevasarj') providerId = 'nevasarj';
+        if (providerId === 'sarjmahal') providerId = 'sarjmahal';
         
         // Parse prices and new columns, handling comma as decimal separator
         const acPriceStr = row[1] ? row[1].replace(',', '.') : "0";
