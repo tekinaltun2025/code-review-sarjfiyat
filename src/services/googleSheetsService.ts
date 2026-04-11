@@ -174,6 +174,17 @@ export async function fetchProviderData(): Promise<Provider[]> {
         if (providerId === 'ronesanscharger') providerId = 'ronesanscharger';
         if (providerId === 'nevasarj') providerId = 'nevasarj';
         if (providerId === 'sarjmahal') providerId = 'sarjmahal';
+        if (providerId === 'watmobilite') providerId = 'watmobilite';
+        if (providerId === 'sepascharge') providerId = 'sepascharge';
+        if (providerId === 'totalenergies') providerId = 'totalenergies';
+        if (providerId === 'kingpower(jetco)') providerId = 'kingpower';
+        if (providerId === 'clixolar(solarsarjet)') providerId = 'clixolar';
+        if (providerId === 'b-charge(bakircıe-mobility)') providerId = 'bcharge';
+        if (providerId === 'b-charge(bakircie-mobility)') providerId = 'bcharge';
+        if (providerId === 'plug&drive(pgdenerji)') providerId = 'plugdrive';
+        if (providerId === 'getasolar(prosarj)') providerId = 'getasolar';
+        if (providerId === 'hizzlancharge/n\'drive') providerId = 'hizzlan';
+        if (providerId === 'hizzlancharge') providerId = 'hizzlan';
         
         // Parse prices and new columns, handling comma as decimal separator
         const acPriceStr = row[1] ? row[1].replace(',', '.') : "0";
