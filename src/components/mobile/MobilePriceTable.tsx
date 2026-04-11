@@ -167,17 +167,17 @@ const MobilePriceTable = memo(() => {
           </div>
           
           {/* Sıralama seçenekleri - sadece DC ve AC */}
-          <div className="flex gap-2 mb-3">
+          <div className="grid grid-cols-2 gap-2 mb-3">
             <Badge 
               variant={sortBy === 'dcPrice' ? 'default' : 'outline'}
-              className="cursor-pointer whitespace-nowrap text-sm px-4 py-1.5"
+              className="cursor-pointer text-sm py-2 justify-center"
               onClick={() => setSortBy('dcPrice')}
             >
               DC Fiyat
             </Badge>
             <Badge 
               variant={sortBy === 'acPrice' ? 'default' : 'outline'}
-              className="cursor-pointer whitespace-nowrap text-sm px-4 py-1.5"
+              className="cursor-pointer text-sm py-2 justify-center"
               onClick={() => setSortBy('acPrice')}
             >
               AC Fiyat
