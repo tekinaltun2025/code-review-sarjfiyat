@@ -37,9 +37,12 @@ const MobileHeader = memo(() => {
         </button>
       </div>
 
-      {/* Full screen mobile menu */}
+      {/* Full screen mobile menu - portal-style overlay */}
       {menuOpen && (
-        <div className="fixed inset-0 top-14 z-50 bg-background backdrop-blur-lg animate-in fade-in slide-in-from-top-2 duration-200">
+        <div 
+          className="fixed inset-0 top-14 z-[100]"
+          style={{ backgroundColor: 'hsl(var(--background))' }}
+        >
           <nav className="flex flex-col p-6 gap-1">
             {NAV_ITEMS.map((item) => {
               const isActive = location.pathname === item.path;
