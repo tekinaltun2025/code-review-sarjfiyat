@@ -126,20 +126,12 @@ const MobilePriceTable = memo(() => {
     loadData();
   }, []);
   
-  // Filtreleme ve sıralama - web ile aynı mantık
-  const filteredAndSortedProviders = useMemo(() => {
-    let filtered = localProviders.filter(provider => 
+  // Filtreleme - Google Sheets sırasını koru
+  const filteredProviders = useMemo(() => {
+    return localProviders.filter(provider => 
       provider.name.toLowerCase().includes(nameFilter.toLowerCase())
     );
-    
-    return [...filtered].sort((a, b) => {
-      const aVal = a[sortBy];
-      const bVal = b[sortBy];
-      if (aVal === null) return 1;
-      if (bVal === null) return -1;
-      return (aVal as number) - (bVal as number);
-    });
-  }, [localProviders, sortBy, nameFilter]);
+  }, [localProviders, nameFilter]);
 
   return (
     <div className="mt-4">
