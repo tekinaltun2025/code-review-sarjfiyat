@@ -10,17 +10,14 @@ import { fetchProviderData } from '../../services/googleSheetsService';
 interface MobileProviderCardProps {
   provider: Provider;
   rank: number;
+  sortBy: 'acPrice' | 'dcPrice';
 }
 
-const MobileProviderCard = memo<MobileProviderCardProps>(({ provider, rank }) => {
+const MobileProviderCard = memo<MobileProviderCardProps>(({ provider, rank, sortBy }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const getPriceColor = (price: number | null) => {
-    if (price === null) return 'text-muted-foreground';
-    if (price <= 5) return 'text-green-600';
-    if (price <= 7) return 'text-yellow-600';
-    return 'text-red-600';
-  };
+  const activePrice = sortBy === 'dcPrice' ? provider.dcPrice : provider.acPrice;
+  const activeLabel = sortBy === 'dcPrice' ? 'DC' : 'AC';
 
   return (
     <Card className="mb-3 overflow-hidden">
@@ -43,23 +40,20 @@ const MobileProviderCard = memo<MobileProviderCardProps>(({ provider, rank }) =>
             loading="lazy"
           />
           
-          {/* İsim ve fiyatlar */}
+          {/* İsim */}
           <div className="flex-1 min-w-0">
             <h3 className="font-semibold text-sm truncate">{provider.name}</h3>
-            <div className="flex gap-2 text-xs mt-1">
-              <span className={`flex items-center gap-1 ${getPriceColor(provider.acPrice)}`}>
-                <span className="text-muted-foreground">AC:</span>
-                {provider.acPrice ? `${provider.acPrice}₺` : '-'}
-              </span>
-              <span className={`flex items-center gap-1 ${getPriceColor(provider.dcPrice)}`}>
-                <span className="text-muted-foreground">DC:</span>
-                {provider.dcPrice ? `${provider.dcPrice}₺` : '-'}
-              </span>
+            <div className="flex gap-2 text-xs mt-1 text-muted-foreground">
+              <span>AC: {provider.acPrice ? `${provider.acPrice}₺` : '-'}</span>
+              <span>DC: {provider.dcPrice ? `${provider.dcPrice}₺` : '-'}</span>
             </div>
           </div>
           
-          {/* Expand butonu */}
+          {/* Seçili fiyat + expand */}
           <div className="flex items-center gap-2">
+            <span className="text-base font-bold text-foreground">
+              {activePrice ? `${activePrice}₺` : '-'}
+            </span>
             {isExpanded ? (
               <ChevronUp className="w-4 h-4 text-muted-foreground" />
             ) : (
@@ -207,6 +201,7 @@ const MobilePriceTable = memo(() => {
             key={provider.id} 
             provider={provider} 
             rank={index + 1}
+            sortBy={sortBy}
           />
         ))
       )}
