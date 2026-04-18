@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 const MobileHero = memo(() => {
   const { t } = useTranslation();
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-teal-500 via-teal-600 to-blue-600 text-white px-3 py-3 rounded-xl mx-3 mt-3">
+    <section className="relative overflow-hidden bg-gradient-to-br from-teal-500 via-teal-600 to-blue-600 dark:from-teal-900 dark:via-slate-900 dark:to-slate-950 text-white px-3 py-3 rounded-xl mx-3 mt-3">
       <div className="relative z-10">
         <h1 className="text-sm font-bold leading-snug mb-0.5">
           {t("mobileHero.title")}
