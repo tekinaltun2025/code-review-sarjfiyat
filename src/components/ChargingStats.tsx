@@ -22,12 +22,12 @@ const ChargingStats = () => {
   const topByDcPrice = sortProvidersByPrice("dcPrice", true).slice(0, 3);
 
   return (
-    <section className="py-12 bg-background" aria-labelledby="charging-stats-heading">
+    <section className="py-4 bg-background" aria-labelledby="charging-stats-heading">
       <div className="container mx-auto px-4">
-        <h2 id="charging-stats-heading" className="text-2xl md:text-3xl font-bold text-center mb-8 text-foreground">
+        <h2 id="charging-stats-heading" className="text-2xl md:text-3xl font-bold text-center mb-3 text-foreground">
           {t("stats.title")}
         </h2>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           <Card className="border-2 border-border p-6">
             <h3 className="text-base md:text-lg font-bold text-center border-b border-border pb-2 mb-4">{t("stats.mostStations")}</h3>
             <div className="space-y-4">
