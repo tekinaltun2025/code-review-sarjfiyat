@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
-import { Search, Filter } from "lucide-react";
+import { Search } from "lucide-react";
 import { Label } from "@/components/ui/label";
-import { 
+import { useTranslation } from "react-i18next";
+import {
   Select,
   SelectContent,
   SelectGroup,
@@ -20,28 +21,26 @@ interface PriceTableFiltersProps {
 const PriceTableFilters: React.FC<PriceTableFiltersProps> = ({
   onNameFilterChange,
   onAcPriceFilterChange,
-  onDcPriceFilterChange
+  onDcPriceFilterChange,
 }) => {
+  const { t } = useTranslation();
   const [nameFilter, setNameFilter] = useState("");
 
-  // Updated AC price range options
   const acPriceRangeOptions = [
-    { value: "all", label: "Tümü" },
+    { value: "all", label: t("priceTable.rangeAll") },
     { value: "5-9", label: "5-9 ₺" },
     { value: "9-11", label: "9-11 ₺" },
-    { value: "11-20", label: "11-20 ₺" }
+    { value: "11-20", label: "11-20 ₺" },
   ];
 
-  // DC price range options (keep the original)
   const dcPriceRangeOptions = [
-    { value: "all", label: "Tümü" },
+    { value: "all", label: t("priceTable.rangeAll") },
     { value: "0-9", label: "0-9 ₺" },
     { value: "9-11", label: "9-11 ₺" },
     { value: "11-13", label: "11-13 ₺" },
-    { value: "13+", label: "13+ ₺" }
+    { value: "13+", label: "13+ ₺" },
   ];
 
-  // Handle name filter change
   const handleNameFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setNameFilter(value);
@@ -52,27 +51,27 @@ const PriceTableFilters: React.FC<PriceTableFiltersProps> = ({
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
       <div className="space-y-2">
         <Label htmlFor="operator-search" className="text-sm font-medium">
-          Operatör Adı
+          {t("priceTable.operatorName")}
         </Label>
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
           <Input
             id="operator-search"
-            placeholder="Operatör ara..."
+            placeholder={t("priceTable.searchPlaceholder")}
             value={nameFilter}
             onChange={handleNameFilterChange}
-            className="pl-9 border-gray-300"
+            className="pl-9"
           />
         </div>
       </div>
-      
+
       <div className="space-y-2">
         <Label htmlFor="ac-price" className="text-sm font-medium">
-          AC Şarj Fiyatı
+          {t("priceTable.acFilter")}
         </Label>
         <Select onValueChange={onAcPriceFilterChange} defaultValue="all">
           <SelectTrigger id="ac-price" className="w-full">
-            <SelectValue placeholder="AC Şarj Fiyatı" />
+            <SelectValue placeholder={t("priceTable.acFilter")} />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
@@ -85,14 +84,14 @@ const PriceTableFilters: React.FC<PriceTableFiltersProps> = ({
           </SelectContent>
         </Select>
       </div>
-      
+
       <div className="space-y-2">
         <Label htmlFor="dc-price" className="text-sm font-medium">
-          DC Şarj Fiyatı
+          {t("priceTable.dcFilter")}
         </Label>
         <Select onValueChange={onDcPriceFilterChange} defaultValue="all">
           <SelectTrigger id="dc-price" className="w-full">
-            <SelectValue placeholder="DC Şarj Fiyatı" />
+            <SelectValue placeholder={t("priceTable.dcFilter")} />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>

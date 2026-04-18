@@ -1,13 +1,8 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { providers, updateProviders } from "@/data/providers";
 import { Provider } from "@/data/types/provider.types";
-import { ArrowDown, ArrowUp, ExternalLink, Info, AlertTriangle } from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { ArrowDown, ArrowUp, AlertTriangle } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import PriceTableHeader from "./price-table/PriceTableHeader";
 import PriceTableRow from "./price-table/PriceTableRow";
@@ -20,24 +15,24 @@ type SortKey = 'acPrice' | 'dcPrice';
 type SortOrder = 'asc' | 'desc';
 
 const PriceTable = () => {
+  const { t, i18n } = useTranslation();
   const [sortBy, setSortBy] = useState<SortKey | null>(null);
   const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
   const [localProviders, setLocalProviders] = useState<Provider[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [error, setError] = useState<string | null>(null);
-  
-  // Filter states
+
   const [nameFilter, setNameFilter] = useState("");
   const [acPriceFilter, setAcPriceFilter] = useState("all");
   const [dcPriceFilter, setDcPriceFilter] = useState("all");
-  
+
   const { toast } = useToast();
-  
+
   const loadData = async () => {
     setIsLoading(true);
     setError(null);
-    
+
     try {
       const data = await fetchProviderData();
       updateProviders(data);
@@ -45,10 +40,10 @@ const PriceTable = () => {
       setLastUpdated(new Date());
     } catch (error) {
       console.error("Error fetching provider data:", error);
-      setError("Şarj operatörleri bilgileri yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.");
+      setError(t("priceTable.loadErrorDescription"));
       toast({
-        title: "Veri yüklenemedi",
-        description: "Şarj operatörleri bilgileri yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.",
+        title: t("common.loadError"),
+        description: t("priceTable.loadErrorDescription"),
         variant: "destructive",
       });
     } finally {
@@ -133,19 +128,19 @@ const PriceTable = () => {
   const sortedProviders = getSortedProviders();
 
   return (
-    <section id="price-comparison" className="py-4 bg-gray-50" aria-labelledby="price-comparison-heading">
+    <section id="price-comparison" className="py-4 bg-background" aria-labelledby="price-comparison-heading">
       <div className="container mx-auto px-4">
         <div className="text-center mb-2">
-          <h2 id="price-comparison-heading" className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-1">
-            Şarj Fiyatları Karşılaştırması
+          <h2 id="price-comparison-heading" className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-1">
+            {t("priceTable.title")}
           </h2>
-          <p className="text-sm md:text-base text-gray-600 mx-auto">
-            Aşağıdaki tabloda Türkiye'deki elektrikli araç şarj istasyonu operatörlerinin güncel fiyatlarını karşılaştırabilirsiniz.
+          <p className="text-sm md:text-base text-muted-foreground mx-auto">
+            {t("priceTable.subtitle")}
           </p>
           {lastUpdated && (
             <div className="mt-1">
-              <span className="text-xs text-gray-500">
-                Son güncelleme: {lastUpdated.toLocaleTimeString('tr-TR', {
+              <span className="text-xs text-muted-foreground">
+                {t("priceTable.lastUpdated")}: {lastUpdated.toLocaleTimeString(i18n.language?.startsWith("en") ? "en-GB" : "tr-TR", {
                   hour: '2-digit',
                   minute: '2-digit'
                 })}
@@ -153,51 +148,50 @@ const PriceTable = () => {
             </div>
           )}
         </div>
-        
+
         {error && (
           <Alert variant="destructive" className="mb-6">
             <AlertTriangle className="h-4 w-4" />
-            <AlertTitle>Veri yüklenemedi</AlertTitle>
+            <AlertTitle>{t("common.loadError")}</AlertTitle>
             <AlertDescription>
-              Şarj operatörleri bilgileri yüklenirken bir hata oluştu. 
-              Lütfen daha sonra tekrar deneyin.
+              {t("priceTable.loadErrorDescription")}
             </AlertDescription>
           </Alert>
         )}
-        
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
+
+        <div className="bg-card text-card-foreground border border-border rounded-xl shadow-lg overflow-hidden mb-8">
           {isLoading ? (
             <div className="p-12 text-center">
               <div className="animate-spin h-8 w-8 border-4 border-teal-500 border-t-transparent rounded-full mx-auto mb-4"></div>
-              <p className="text-gray-600">Veriler yükleniyor...</p>
+              <p className="text-muted-foreground">{t("common.loadingData")}</p>
             </div>
           ) : error ? (
-            <div className="p-12 text-center text-red-500">
+            <div className="p-12 text-center text-destructive">
               <AlertTriangle className="h-12 w-12 mx-auto mb-4" />
-              <p>Veri yüklenemedi</p>
+              <p>{t("common.loadError")}</p>
             </div>
           ) : (
             <div>
-              <div className="p-4 border-b border-gray-100">
-                <PriceTableFilters 
+              <div className="p-4 border-b border-border">
+                <PriceTableFilters
                   onNameFilterChange={setNameFilter}
                   onAcPriceFilterChange={setAcPriceFilter}
                   onDcPriceFilterChange={setDcPriceFilter}
                 />
               </div>
-            <div className="overflow-x-auto -mx-4 sm:mx-0">
+              <div className="overflow-x-auto -mx-4 sm:mx-0">
                 <table className="w-full min-w-[640px] sm:min-w-[800px] table-fixed text-xs sm:text-sm">
-                  <PriceTableHeader 
-                    sortBy={sortBy} 
-                    handleSort={handleSort} 
+                  <PriceTableHeader
+                    sortBy={sortBy}
+                    handleSort={handleSort}
                     getSortIcon={(key) => {
                       if (sortBy !== key) return null;
-                      return sortOrder === 'asc' ? 
-                        <ArrowUp className="inline h-3 w-3 ml-1" /> : 
+                      return sortOrder === 'asc' ?
+                        <ArrowUp className="inline h-3 w-3 ml-1" /> :
                         <ArrowDown className="inline h-3 w-3 ml-1" />;
                     }}
                   />
-                  <tbody className="divide-y divide-gray-200">
+                  <tbody className="divide-y divide-border">
                     {sortedProviders.length > 0 ? (
                       sortedProviders.map((provider: Provider, index: number) => (
                         <PriceTableRow
@@ -210,8 +204,8 @@ const PriceTable = () => {
                       ))
                     ) : (
                       <tr>
-                        <td colSpan={7} className="px-6 py-8 text-center text-gray-500">
-                          Arama kriterlerinize uygun operatör bulunamadı.
+                        <td colSpan={7} className="px-6 py-8 text-center text-muted-foreground">
+                          {t("priceTable.noResults")}
                         </td>
                       </tr>
                     )}
@@ -221,7 +215,7 @@ const PriceTable = () => {
             </div>
           )}
         </div>
-        
+
         <PriceTableInfoFooter lastUpdated={lastUpdated} />
       </div>
     </section>
