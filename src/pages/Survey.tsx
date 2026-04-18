@@ -1,5 +1,6 @@
 
 import React, { useState, useCallback, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
@@ -17,6 +18,7 @@ interface SurveyData {
 }
 
 const Survey = () => {
+  const { t } = useTranslation();
   const [providers, setProviders] = useState<Provider[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [surveyData, setSurveyData] = useState<SurveyData[]>([]);
@@ -135,10 +137,9 @@ const Survey = () => {
         {/* Hero Section */}
         <div className="bg-gradient-to-r from-teal-400 to-blue-500 py-12">
           <div className="container mx-auto px-4">
-            <h1 className="text-3xl md:text-4xl font-bold text-white text-center">Şarj Operatörü Değerlendirme Anketi</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-white text-center">{t("survey.title")}</h1>
             <p className="text-white text-center mt-4 max-w-3xl mx-auto">
-              Elektrikli araç şarj deneyimlerinizi paylaşın ve diğer kullanıcılara yardımcı olun. 
-              Her operatörü 5 yıldız üzerinden değerlendirin ve yorumlarınızı ekleyin.
+              {t("survey.subtitle")}
             </p>
           </div>
         </div>
@@ -146,7 +147,7 @@ const Survey = () => {
         {/* Provider Rating Cards */}
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl font-bold mb-8 text-center">Şarj Operatörlerini Değerlendirin</h2>
+            <h2 className="text-2xl font-bold mb-8 text-center">{t("survey.rankingTitle")}</h2>
             
             {loading ? (
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

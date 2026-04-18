@@ -1,9 +1,11 @@
 import { MapPin, Mail, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
-  
+
   return (
     <footer className="bg-[#0D1117] text-gray-300 py-16">
       <div className="container mx-auto px-6">
@@ -15,7 +17,7 @@ const Footer = () => {
               <span className="text-2xl font-bold text-white">ŞarjFiyat</span>
             </div>
             <p className="text-gray-400 text-sm max-w-xs">
-              Türkiye'deki elektrikli araç şarj operatörlerinin fiyatlarını karşılaştırmanıza yardımcı olan bağımsız bir platformdur.
+              {t("footer.description")}
             </p>
             
             {/* Social Media Links - noopener/noreferrer ve aria-label eklendi */}
@@ -58,44 +60,44 @@ const Footer = () => {
           
           {/* Navigation Links - internal links */}
           <nav className="space-y-6" aria-label="Footer navigasyon">
-            <span className="text-white font-medium text-lg">Navigasyon</span>
+            <span className="text-white font-medium text-lg">{t("common.navigation")}</span>
             <ul className="space-y-3">
               <li>
                 <Link to="/" className="text-gray-400 hover:text-white transition-colors">
-                  Ana Sayfa
+                  {t("common.home")}
                 </Link>
               </li>
               <li>
                 <Link to="/sarj-aglari" className="text-gray-400 hover:text-white transition-colors">
-                  Şarj Ağları
+                  {t("common.chargingNetworks")}
                 </Link>
               </li>
               <li>
                 <Link to="/kampanyalar" className="text-gray-400 hover:text-white transition-colors">
-                  Kampanyalar
+                  {t("common.campaigns")}
                 </Link>
               </li>
               <li>
                 <Link to="/ev-sarj-cihazlari" className="text-gray-400 hover:text-white transition-colors">
-                  Ev Şarj Cihazları
+                  {t("common.homeChargers")}
                 </Link>
               </li>
               <li>
                 <Link to="/hakkimizda" className="text-gray-400 hover:text-white transition-colors">
-                  Hakkımızda
+                  {t("common.about")}
                 </Link>
               </li>
               <li>
                 <Link to="/gizlilik-politikasi" className="text-gray-400 hover:text-white transition-colors">
-                  Gizlilik Politikası
+                  {t("common.privacyPolicy")}
                 </Link>
               </li>
             </ul>
           </nav>
-          
+
           {/* Contact Information */}
           <div className="space-y-6">
-            <span className="text-white font-medium text-lg">İletişim</span>
+            <span className="text-white font-medium text-lg">{t("common.contact")}</span>
             <ul className="space-y-3">
               <li className="flex items-center">
                 <MapPin className="h-5 w-5 mr-3 text-[#12B6B6]" aria-hidden="true" />
@@ -121,7 +123,7 @@ const Footer = () => {
         
         {/* Copyright */}
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400 text-sm">
-          <p>&copy; {currentYear} ŞarjFiyat. Tüm hakları saklıdır.</p>
+          <p>&copy; {currentYear} ŞarjFiyat. {t("footer.rights")}</p>
         </div>
       </div>
     </footer>

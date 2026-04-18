@@ -1,0 +1,211 @@
+{
+  "common": {
+    "home": "Ana Sayfa",
+    "chargingNetworks": "Şarj Ağları",
+    "campaigns": "Kampanyalar",
+    "homeChargers": "Ev Şarj Cihazları",
+    "survey": "Anket",
+    "about": "Hakkımızda",
+    "privacyPolicy": "Gizlilik Politikası",
+    "contact": "İletişim",
+    "navigation": "Navigasyon",
+    "openMenu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat",
+    "darkMode": "Koyu mod",
+    "lightMode": "Açık mod",
+    "language": "Dil",
+    "loading": "Yükleniyor...",
+    "loadingData": "Veriler yükleniyor...",
+    "error": "Bir hata oluştu",
+    "loadError": "Veri yüklenemedi",
+    "tryAgain": "Tekrar dene",
+    "submit": "Gönder",
+    "cancel": "İptal",
+    "close": "Kapat",
+    "save": "Kaydet",
+    "search": "Ara",
+    "all": "Tümü",
+    "yes": "Evet",
+    "no": "Hayır"
+  },
+  "header": {
+    "tagline": "Elektrikli Araç Şarj Fiyatları"
+  },
+  "hero": {
+    "h1": "Elektrikli Araç Şarj Fiyatları 2026 - Güncel Fiyat Karşılaştırması",
+    "description": "<strong>Elektrikli araç şarj fiyatları</strong> için Türkiye'nin en kapsamlı karşılaştırma platformu. ZES, Eşarj, Trugo, Beefull ve 45+ şarj ağının güncel AC ve DC şarj ücretlerini karşılaştırın. Araç şarj fiyatlarını anlık takip edin, en ucuz şarj noktasını bulun ve tasarruf edin.",
+    "ctaCompare": "Fiyatları Karşılaştır",
+    "ctaCompareAria": "Elektrikli araç şarj fiyatlarını karşılaştır",
+    "platformFeatures": "Platform Özellikleri",
+    "feature1Title": "Güncel Elektrikli Araç Şarj Fiyatları",
+    "feature1Desc": "2026 yılı güncel AC ve DC şarj tarifeleri, anlık fiyat güncellemeleri",
+    "feature2Title": "Şarj İstasyonu Haritası",
+    "feature2Desc": "Türkiye genelinde 5000+ elektrikli araç şarj noktası konumları",
+    "feature3Title": "45+ Şarj Ağı Karşılaştırması",
+    "feature3Desc": "ZES, Eşarj, Trugo, Beefull ve diğer tüm operatörlerin şarj fiyatları"
+  },
+  "mobileHero": {
+    "title": "Elektrikli Araç Şarj Fiyatları",
+    "subtitle": "45+ şarj ağının güncel AC ve DC fiyatlarını karşılaştırın, en uygun istasyonu bulun.",
+    "comparePrices": "Fiyat Karşılaştır",
+    "findCheapest": "En Ucuz Bul",
+    "stations": "5000+ İstasyon"
+  },
+  "mobileStats": {
+    "highlights": "Öne Çıkanlar",
+    "mostStations": "En Çok İstasyon",
+    "cheapestAc": "En Ucuz AC",
+    "cheapestDc": "En Ucuz DC"
+  },
+  "mobileTable": {
+    "title": "Şarj Ağları Karşılaştırması",
+    "searchPlaceholder": "Operatör ara...",
+    "dcPrice": "DC Fiyat",
+    "acPrice": "AC Fiyat",
+    "listingCount": "{{count}} şarj ağı listeleniyor",
+    "noResults": "Arama kriterlerinize uygun operatör bulunamadı.",
+    "acCharge": "AC Şarj",
+    "dcCharge": "DC Şarj",
+    "totalSockets": "Toplam Soket",
+    "supportLine": "Destek Hattı",
+    "website": "Websitesi"
+  },
+  "stats": {
+    "title": "Türkiye'de Elektrikli Araç Şarj İstatistikleri",
+    "mostStations": "En çok istasyonu olan",
+    "cheapestAc": "En ucuz AC istasyonlar",
+    "cheapestDc": "En ucuz DC istasyonlar"
+  },
+  "priceTable": {
+    "title": "Şarj Fiyatları Karşılaştırması",
+    "subtitle": "Aşağıdaki tabloda Türkiye'deki elektrikli araç şarj istasyonu operatörlerinin güncel fiyatlarını karşılaştırabilirsiniz.",
+    "lastUpdated": "Son güncelleme",
+    "operator": "Şarj Operatörü",
+    "operatorName": "Operatör Adı",
+    "searchPlaceholder": "Operatör ara...",
+    "acCharge": "AC Şarj",
+    "dcCharge": "DC Şarj",
+    "stationsCol": "İstasyon",
+    "stationsColSub": "(Lok/Soket)",
+    "support": "Destek",
+    "web": "Web",
+    "notes": "Notlar",
+    "acTooltip": "AC şarj, 3.7-22kW güçlerindeki yavaş şarj istasyonlarıdır.",
+    "dcTooltip": "DC şarj, 50kW+ güçlerindeki hızlı şarj istasyonlarıdır.",
+    "stationsTooltip": "Lokasyon sayısı / Toplam soket sayısı formatında gösterilmektedir.",
+    "acFilter": "AC Şarj Fiyatı",
+    "dcFilter": "DC Şarj Fiyatı",
+    "rangeAll": "Tümü",
+    "noResults": "Arama kriterlerinize uygun operatör bulunamadı.",
+    "infoWithDate": "Fiyatlar {{date}} tarihinde saat {{time}} itibariyle güncellenmiştir. Geçerli fiyatlar için lütfen ilgili operatörün resmi websitesini ziyaret ediniz. Tüm fiyatlar TL/kWh cinsindendir ve KDV dahildir. Fiyat farklılıklarından sitemizin yasal sorumluluğu yoktur.",
+    "infoNoDate": "Fiyat bilgileri için lütfen ilgili operatörün resmi websitesini ziyaret ediniz. Tüm fiyatlar TL/kWh cinsindendir ve KDV dahildir. Fiyat farklılıklarından sitemizin yasal sorumluluğu yoktur.",
+    "loadErrorDescription": "Şarj operatörleri bilgileri yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin."
+  },
+  "footer": {
+    "description": "Türkiye'deki elektrikli araç şarj operatörlerinin fiyatlarını karşılaştırmanıza yardımcı olan bağımsız bir platformdur.",
+    "rights": "Tüm hakları saklıdır."
+  },
+  "cookies": {
+    "message": "Bu site, deneyiminizi iyileştirmek için çerezler kullanmaktadır. Siteyi kullanmaya devam ederek",
+    "policy": "Gizlilik Politikamızı",
+    "accepted": " kabul etmiş olursunuz.",
+    "accept": "Kabul Et",
+    "decline": "Reddet"
+  },
+  "about": {
+    "title": "Hakkımızda",
+    "intro": "ŞarjFiyat, elektrikli araç kullanıcılarına Türkiye'deki şarj istasyonu operatörlerinin fiyatlarını karşılaştırma imkanı sunan bağımsız bir platformdur.",
+    "missionTitle": "Misyonumuz",
+    "missionP1": "ŞarjFiyat olarak misyonumuz, elektrikli araç kullanıcılarına şeffaf ve güncel fiyat bilgisi sunarak, en uygun şarj çözümünü bulmalarına yardımcı olmaktır. Türkiye'deki elektrikli araç ekosisteminin gelişmesine katkıda bulunmayı ve elektrikli araç kullanımını yaygınlaştırmayı hedefliyoruz.",
+    "missionP2": "Bağımsız bir platform olarak, tüm şarj istasyonu operatörlerinin güncel fiyatlarını tarafsız bir şekilde karşılaştırarak, kullanıcıların bilinçli tercihler yapmasını sağlıyoruz.",
+    "contactTitle": "İletişim",
+    "contactIntro": "Sorularınız, önerileriniz veya işbirliği teklifleriniz için bizimle iletişime geçebilirsiniz:",
+    "emailContact": "E-posta ile iletişim",
+    "phoneContact": "Telefon ile iletişim"
+  },
+  "survey": {
+    "title": "Şarj Operatörü Değerlendirme Anketi",
+    "subtitle": "Elektrikli araç şarj deneyimlerinizi paylaşın ve diğer kullanıcılara yardımcı olun. Her operatörü 5 yıldız üzerinden değerlendirin ve yorumlarınızı ekleyin.",
+    "selectProvider": "Operatör seçin",
+    "rating": "Puan",
+    "comment": "Yorumunuz",
+    "commentPlaceholder": "Deneyiminizi paylaşın...",
+    "submit": "Anketi Gönder",
+    "thankYou": "Teşekkürler! Yanıtınız kaydedildi.",
+    "rankingTitle": "Şarj Operatörlerini Değerlendirin"
+  },
+  "privacy": {
+    "title": "Gizlilik Politikası",
+    "lastUpdated": "Son güncelleme"
+  },
+  "campaigns": {
+    "title": "Kampanyalar",
+    "subtitle": "Elektrikli araç şarj kampanyalarından faydalanarak tasarruf edin",
+    "imageAlt": "Akbank elektrikli araç şarj kampanyası",
+    "details": "Detaylar",
+    "validUntil": "Geçerlilik tarihi"
+  },
+  "homeChargers": {
+    "title": "Ev Şarj Cihazları",
+    "subtitle": "Elektrikli aracınızı evinizde şarj etmek için en iyi çözümler",
+    "featuredTitle": "Öne Çıkan Ürün: KHONS Tip 2 Şarj Cihazı",
+    "imageAlt": "KHONS 22kW 32A Type 2 Ev Şarj Cihazı",
+    "tags": {
+      "power": "22kW Güç",
+      "current": "32A Akım",
+      "connector": "Tip 2 Konnektör",
+      "ip": "IP65 Koruma",
+      "ce": "CE Sertifikalı"
+    },
+    "overviewTitle": "Genel Bakış",
+    "overview": "Türkiye müşterilerinin dikkatine: AliExpress platformundaki kısıtlamalar nedeniyle, gördüğünüz nakliye yeri İtalya'dır, ancak gerçek nakliye konumu İstanbul'dur ve fiyata zaten vergi dahildir. Herhangi bir ek ücret ödemenize gerek yoktur.",
+    "specsTitle": "Özellikler",
+    "specs": [
+      "32A üç fazlı 22kw",
+      "110V-450V arasında çalışabilir",
+      "Ayarlanabilir 6A-32A akım",
+      "Şarj başlatma süresi 1-9 saate ayarlanabilir",
+      "5m kablo",
+      "IP65 koruma",
+      "Gizlilik korunur",
+      "Dinamik yük dengeleme",
+      "Taşınabilir/duvara monte",
+      "RCD: A Tipi AC 30mA+DC 6mA",
+      "Standart: IEC62196",
+      "Ekran boyutu: 1,54 inç",
+      "Kablo özellikleri: 5*6mm2+1*0,75mm2/2*0,5mm2",
+      "Sertifikalar: CE, ROHS, FCC, CQC, TUV, UKCA, TSE, UL, RCM, vb.",
+      "Garanti: 2 yıl garanti"
+    ],
+    "protectionTitle": "Koruma Özellikleri",
+    "protection": [
+      "Düşük voltaj koruması",
+      "Kısa devre koruması",
+      "Aşırı sıcaklık koruması",
+      "Zemin koruması",
+      "UV direnci",
+      "Aşırı voltaj koruması",
+      "Aşırı yük koruması",
+      "Sızıntı koruması",
+      "Yıldırımdan korunma"
+    ],
+    "compatibilityTitle": "Uyumluluk",
+    "compatibility": "Ürünlerimiz TOGG, Toyota, Tesla, MG, Renault, BYD, BMW, Nissan, Audi, Mercedes Benz, Kia, Volvo, Volkswagen ve diğer araçlarla uyumludur. Aslında ürünümüz tüm saf elektrikli ve hibrit araçlarla uyumludur.",
+    "usageTitle": "Kullanım",
+    "usage": "Fişi prize takın, gerekli şarj akımını cihazdaki \"AMPS\" düğmesi aracılığıyla ayarlayın, şarj başlatma süresini ayarlamak için \"TIME\" düğmesine basın (1 saat-9 saat olarak ayarlanabilir), ardından fişi araca takın ve şarj etmeye başlayın.",
+    "infoTitle": "Ev Şarj Cihazları Hakkında",
+    "chooseTitle": "Doğru Ev Şarj Cihazını Seçmek",
+    "chooseText": "Elektrikli aracınız için doğru ev şarj cihazını seçerken, aracınızın şarj kapasitesi, evinizin elektrik altyapısı ve günlük şarj ihtiyaçlarınızı göz önünde bulundurmalısınız. Daha yüksek güçlü cihazlar daha hızlı şarj sağlarken, evinizin elektrik sistemi bu gücü desteklemelidir.",
+    "installTitle": "Kurulum Gereksinimleri",
+    "installText": "Ev şarj cihazları genellikle profesyonel bir elektrikçi tarafından kurulmalıdır. Bazı temel modeller standart prizler ile çalışabilirken, yüksek güçlü cihazlar özel kablolama ve sigortalar gerektirebilir. Kurulum öncesi elektrik altyapınızın uygunluğu kontrol edilmelidir."
+  },
+  "chargingNetworks": {
+    "title": "Şarj Ağları",
+    "subtitle": "Türkiye'deki tüm şarj operatörleri"
+  },
+  "notFound": {
+    "title": "Üzgünüz! Sayfa bulunamadı",
+    "message": "Aradığınız sayfa taşınmış, kaldırılmış veya geçici olarak kullanılamıyor olabilir.",
+    "backHome": "Ana Sayfaya Dön"
+  }
+}
