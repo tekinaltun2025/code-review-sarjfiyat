@@ -137,7 +137,7 @@ const SurveyForm = ({ onSubmitted }: SurveyFormProps) => {
     <div className="container mx-auto px-4 py-12">
       <div className="max-w-6xl mx-auto">
         {/* Hero Section with Gradient Background */}
-        <div className="bg-gradient-to-r from-teal-400 to-blue-500 rounded-xl p-8 mb-10 text-white">
+        <div className="bg-gradient-to-r from-teal-400 to-blue-500 dark:from-teal-900 dark:via-slate-900 dark:to-slate-950 rounded-xl p-8 mb-10 text-white">
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <h1 className="text-4xl font-bold mb-4">Elektrikli Araç Şarj Fiyatlarını Karşılaştırın</h1>
