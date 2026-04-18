@@ -1,6 +1,6 @@
 
-import { BatteryCharging, Zap, MapPin, Car } from "lucide-react";
 import React, { useEffect, useRef } from "react";
+import { BatteryCharging, Zap, MapPin, Car } from "lucide-react";
 import { useTranslation, Trans } from "react-i18next";
 
 const AdBlock = React.memo(() => {
