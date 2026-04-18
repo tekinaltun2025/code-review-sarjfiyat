@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -9,18 +8,53 @@ const PrivacyPolicy = () => {
   const isInPanel = location.pathname.startsWith('/panel');
   const lastUpdated = '18 Nisan 2026';
 
+  useEffect(() => {
+    const prevTitle = document.title;
+    document.title = 'Gizlilik Politikası | ŞarjFiyat';
+
+    const setMeta = (name: string, content: string) => {
+      let el = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
+      if (!el) {
+        el = document.createElement('meta');
+        el.name = name;
+        document.head.appendChild(el);
+      }
+      const prev = el.content;
+      el.content = content;
+      return () => { el!.content = prev; };
+    };
+
+    const setCanonical = (href: string) => {
+      let el = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+      const created = !el;
+      if (!el) {
+        el = document.createElement('link');
+        el.rel = 'canonical';
+        document.head.appendChild(el);
+      }
+      const prev = el.href;
+      el.href = href;
+      return () => {
+        if (created) el!.remove();
+        else el!.href = prev;
+      };
+    };
+
+    const restoreDesc = setMeta(
+      'description',
+      'ŞarjFiyat gizlilik politikası: kişisel verilerin işlenmesi, çerezler, üçüncü taraf hizmetler ve KVKK kapsamındaki haklarınız.'
+    );
+    const restoreCanonical = setCanonical('https://sarjfiyat.com.tr/gizlilik-politikasi');
+
+    return () => {
+      document.title = prevTitle;
+      restoreDesc();
+      restoreCanonical();
+    };
+  }, []);
+
   const content = (
     <main className="flex-grow">
-      <Helmet>
-        <title>Gizlilik Politikası | ŞarjFiyat</title>
-        <meta
-          name="description"
-          content="ŞarjFiyat gizlilik politikası: kişisel verilerin işlenmesi, çerezler, üçüncü taraf hizmetler ve KVKK kapsamındaki haklarınız."
-        />
-        <link rel="canonical" href="https://sarjfiyat.com.tr/gizlilik-politikasi" />
-        <meta name="robots" content="index, follow" />
-      </Helmet>
-
       <div className="bg-gradient-to-r from-teal-500 to-blue-500 py-12">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl md:text-4xl font-bold text-white text-center">
