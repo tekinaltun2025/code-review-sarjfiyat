@@ -1,0 +1,116 @@
+{
+  "common": {
+    "home": "Ana Sayfa",
+    "chargingNetworks": "Şarj Ağları",
+    "campaigns": "Kampanyalar",
+    "homeChargers": "Ev Şarj Cihazları",
+    "survey": "Anket",
+    "about": "Hakkımızda",
+    "privacyPolicy": "Gizlilik Politikası",
+    "contact": "İletişim",
+    "navigation": "Navigasyon",
+    "openMenu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat",
+    "darkMode": "Koyu mod",
+    "lightMode": "Açık mod",
+    "language": "Dil",
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "tryAgain": "Tekrar dene",
+    "submit": "Gönder",
+    "cancel": "İptal",
+    "close": "Kapat",
+    "save": "Kaydet",
+    "search": "Ara",
+    "all": "Tümü",
+    "yes": "Evet",
+    "no": "Hayır"
+  },
+  "header": {
+    "tagline": "Elektrikli Araç Şarj Fiyatları"
+  },
+  "hero": {
+    "title": "Türkiye'nin En Kapsamlı Şarj Fiyatları Karşılaştırma Platformu",
+    "subtitle": "Elektrikli aracınız için en uygun şarj istasyonunu bulun. Tüm operatörlerin güncel AC ve DC fiyatlarını tek ekranda karşılaştırın.",
+    "ctaCompare": "Fiyatları Karşılaştır",
+    "ctaCampaigns": "Kampanyaları Gör",
+    "stationsCount": "Şarj İstasyonu",
+    "providersCount": "Operatör",
+    "citiesCount": "Şehir"
+  },
+  "priceTable": {
+    "title": "Güncel Şarj Fiyatları",
+    "subtitle": "Tüm operatörlerin AC ve DC şarj fiyatlarını karşılaştırın",
+    "provider": "Operatör",
+    "ac": "AC (TL/kWh)",
+    "dc": "DC (TL/kWh)",
+    "ultraFast": "Ultra Hızlı",
+    "membership": "Üyelik",
+    "details": "Detaylar",
+    "filterAll": "Tümü",
+    "filterAc": "Sadece AC",
+    "filterDc": "Sadece DC",
+    "sortByName": "İsme göre sırala",
+    "sortByPriceAsc": "En ucuz",
+    "sortByPriceDesc": "En pahalı",
+    "noResults": "Sonuç bulunamadı",
+    "lastUpdated": "Son güncelleme",
+    "infoFooter": "Fiyatlar operatörlerin resmi kaynaklarından alınmıştır ve değişiklik gösterebilir."
+  },
+  "footer": {
+    "description": "Türkiye'deki elektrikli araç şarj operatörlerinin fiyatlarını karşılaştırmanıza yardımcı olan bağımsız bir platformdur.",
+    "rights": "Tüm hakları saklıdır."
+  },
+  "cookies": {
+    "message": "Bu site, deneyiminizi iyileştirmek için çerezler kullanmaktadır. Siteyi kullanmaya devam ederek",
+    "policy": "Gizlilik Politikamızı",
+    "accepted": "kabul etmiş olursunuz.",
+    "accept": "Kabul Et",
+    "decline": "Reddet"
+  },
+  "about": {
+    "title": "Hakkımızda",
+    "intro": "ŞarjFiyat, elektrikli araç kullanıcılarına Türkiye'deki şarj istasyonu operatörlerinin fiyatlarını karşılaştırma imkanı sunan bağımsız bir platformdur.",
+    "missionTitle": "Misyonumuz",
+    "missionP1": "ŞarjFiyat olarak misyonumuz, elektrikli araç kullanıcılarına şeffaf ve güncel fiyat bilgisi sunarak, en uygun şarj çözümünü bulmalarına yardımcı olmaktır. Türkiye'deki elektrikli araç ekosisteminin gelişmesine katkıda bulunmayı ve elektrikli araç kullanımını yaygınlaştırmayı hedefliyoruz.",
+    "missionP2": "Bağımsız bir platform olarak, tüm şarj istasyonu operatörlerinin güncel fiyatlarını tarafsız bir şekilde karşılaştırarak, kullanıcıların bilinçli tercihler yapmasını sağlıyoruz.",
+    "contactTitle": "İletişim",
+    "contactIntro": "Sorularınız, önerileriniz veya işbirliği teklifleriniz için bizimle iletişime geçebilirsiniz:",
+    "emailContact": "E-posta ile iletişim",
+    "phoneContact": "Telefon ile iletişim"
+  },
+  "survey": {
+    "title": "Şarj Operatörü Memnuniyet Anketi",
+    "subtitle": "Kullandığınız şarj operatörlerini değerlendirin, diğer kullanıcılara yardımcı olun.",
+    "selectProvider": "Operatör seçin",
+    "rating": "Puan",
+    "comment": "Yorumunuz",
+    "commentPlaceholder": "Deneyiminizi paylaşın...",
+    "submit": "Anketi Gönder",
+    "thankYou": "Teşekkürler! Yanıtınız kaydedildi.",
+    "rankingTitle": "Memnuniyet Sıralaması"
+  },
+  "privacy": {
+    "title": "Gizlilik Politikası",
+    "lastUpdated": "Son güncelleme"
+  },
+  "campaigns": {
+    "title": "Güncel Kampanyalar",
+    "subtitle": "Şarj operatörlerinin güncel kampanya ve indirimleri",
+    "details": "Detaylar",
+    "validUntil": "Geçerlilik tarihi"
+  },
+  "homeChargers": {
+    "title": "Ev Tipi Şarj Cihazları",
+    "subtitle": "Evinize uygun şarj cihazını seçin"
+  },
+  "chargingNetworks": {
+    "title": "Şarj Ağları",
+    "subtitle": "Türkiye'deki tüm şarj operatörleri"
+  },
+  "notFound": {
+    "title": "Sayfa Bulunamadı",
+    "message": "Aradığınız sayfa mevcut değil.",
+    "backHome": "Ana Sayfaya Dön"
+  }
+}

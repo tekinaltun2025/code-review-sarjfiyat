@@ -1,0 +1,116 @@
+{
+  "common": {
+    "home": "Home",
+    "chargingNetworks": "Charging Networks",
+    "campaigns": "Campaigns",
+    "homeChargers": "Home Chargers",
+    "survey": "Survey",
+    "about": "About",
+    "privacyPolicy": "Privacy Policy",
+    "contact": "Contact",
+    "navigation": "Navigation",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "darkMode": "Dark mode",
+    "lightMode": "Light mode",
+    "language": "Language",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "tryAgain": "Try again",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "close": "Close",
+    "save": "Save",
+    "search": "Search",
+    "all": "All",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "header": {
+    "tagline": "EV Charging Prices"
+  },
+  "hero": {
+    "title": "Türkiye's Most Comprehensive EV Charging Price Comparison Platform",
+    "subtitle": "Find the best charging station for your EV. Compare current AC and DC prices from all operators on a single screen.",
+    "ctaCompare": "Compare Prices",
+    "ctaCampaigns": "View Campaigns",
+    "stationsCount": "Charging Stations",
+    "providersCount": "Operators",
+    "citiesCount": "Cities"
+  },
+  "priceTable": {
+    "title": "Current Charging Prices",
+    "subtitle": "Compare AC and DC charging prices from all operators",
+    "provider": "Operator",
+    "ac": "AC (TRY/kWh)",
+    "dc": "DC (TRY/kWh)",
+    "ultraFast": "Ultra Fast",
+    "membership": "Membership",
+    "details": "Details",
+    "filterAll": "All",
+    "filterAc": "AC only",
+    "filterDc": "DC only",
+    "sortByName": "Sort by name",
+    "sortByPriceAsc": "Cheapest",
+    "sortByPriceDesc": "Most expensive",
+    "noResults": "No results found",
+    "lastUpdated": "Last updated",
+    "infoFooter": "Prices are sourced from operators' official channels and may change."
+  },
+  "footer": {
+    "description": "An independent platform that helps you compare prices of EV charging operators in Türkiye.",
+    "rights": "All rights reserved."
+  },
+  "cookies": {
+    "message": "This site uses cookies to improve your experience. By continuing to use the site, you accept our",
+    "policy": "Privacy Policy",
+    "accepted": ".",
+    "accept": "Accept",
+    "decline": "Decline"
+  },
+  "about": {
+    "title": "About Us",
+    "intro": "ŞarjFiyat is an independent platform that lets EV drivers compare prices of charging station operators across Türkiye.",
+    "missionTitle": "Our Mission",
+    "missionP1": "Our mission is to provide EV users with transparent and up-to-date pricing information so they can find the most suitable charging solution. We aim to contribute to the growth of Türkiye's EV ecosystem and to help expand EV adoption.",
+    "missionP2": "As an independent platform, we impartially compare current prices from all charging operators, helping users make informed choices.",
+    "contactTitle": "Contact",
+    "contactIntro": "For questions, suggestions, or partnership inquiries, you can reach us via:",
+    "emailContact": "Contact by email",
+    "phoneContact": "Contact by phone"
+  },
+  "survey": {
+    "title": "Charging Operator Satisfaction Survey",
+    "subtitle": "Rate the charging operators you've used and help other users.",
+    "selectProvider": "Select operator",
+    "rating": "Rating",
+    "comment": "Your comment",
+    "commentPlaceholder": "Share your experience...",
+    "submit": "Submit Survey",
+    "thankYou": "Thank you! Your response has been saved.",
+    "rankingTitle": "Satisfaction Ranking"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated"
+  },
+  "campaigns": {
+    "title": "Current Campaigns",
+    "subtitle": "Active campaigns and discounts from charging operators",
+    "details": "Details",
+    "validUntil": "Valid until"
+  },
+  "homeChargers": {
+    "title": "Home Charging Devices",
+    "subtitle": "Choose the right charger for your home"
+  },
+  "chargingNetworks": {
+    "title": "Charging Networks",
+    "subtitle": "All charging operators in Türkiye"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "message": "The page you're looking for doesn't exist.",
+    "backHome": "Back to Home"
+  }
+}
