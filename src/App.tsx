@@ -10,6 +10,7 @@ import AboutPage from "./pages/AboutPage";
 import SarjAglari from "./pages/SarjAglari";
 import Survey from "./pages/Survey";
 import MobileIndex from "./pages/mobile/MobileIndex";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import { useMobileRedirect } from "./hooks/useMobileRedirect";
 import CookieBanner from "./components/CookieBanner";
 import "./App.css";
@@ -39,6 +40,7 @@ function App() {
           <Route path="/sarj-aglari" element={<SarjAglari />} />
           <Route path="/hakkimizda" element={<AboutPage />} />
           <Route path="/anket" element={<Survey />} />
+          <Route path="/gizlilik-politikasi" element={<PrivacyPolicy />} />
           
           {/* Mobil routes */}
           <Route path="/m" element={<MobileIndex />} />
@@ -47,6 +49,7 @@ function App() {
           <Route path="/m/sarj-aglari" element={<SarjAglari />} />
           <Route path="/m/hakkimizda" element={<AboutPage />} />
           <Route path="/m/anket" element={<Survey />} />
+          <Route path="/m/gizlilik-politikasi" element={<PrivacyPolicy />} />
           
           {/* Panel routes */}
           <Route path="/panel" element={<Panel />}>
