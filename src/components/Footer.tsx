@@ -85,6 +85,11 @@ const Footer = () => {
                   Hakkımızda
                 </Link>
               </li>
+              <li>
+                <Link to="/gizlilik-politikasi" className="text-gray-400 hover:text-white transition-colors">
+                  Gizlilik Politikası
+                </Link>
+              </li>
             </ul>
           </nav>
           

@@ -19,6 +19,7 @@ const MobileFooter = memo(() => {
         <Link to="/m/kampanyalar" className="hover:text-white transition-colors">Kampanyalar</Link>
         <Link to="/m/ev-sarj-cihazlari" className="hover:text-white transition-colors">Ev Şarj Cihazları</Link>
         <Link to="/m/hakkimizda" className="hover:text-white transition-colors">Hakkımızda</Link>
+        <Link to="/m/gizlilik-politikasi" className="hover:text-white transition-colors">Gizlilik Politikası</Link>
       </div>
       <div className="border-t border-white/10 pt-4 text-xs text-center">
         © {currentYear} ŞarjFiyat. Tüm hakları saklıdır.
