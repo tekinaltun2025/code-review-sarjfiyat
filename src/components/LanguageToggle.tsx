@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import { Languages } from "lucide-react";
 
 interface LanguageToggleProps {
   className?: string;
@@ -8,22 +7,44 @@ interface LanguageToggleProps {
 const LanguageToggle = ({ className = "" }: LanguageToggleProps) => {
   const { i18n, t } = useTranslation();
   const current = i18n.language?.startsWith("en") ? "en" : "tr";
-  const next = current === "tr" ? "en" : "tr";
+  const isEn = current === "en";
 
-  const handleClick = () => {
-    void i18n.changeLanguage(next);
+  const handleToggle = () => {
+    void i18n.changeLanguage(isEn ? "tr" : "en");
   };
 
   return (
     <button
       type="button"
-      onClick={handleClick}
+      role="switch"
+      aria-checked={isEn}
+      onClick={handleToggle}
       aria-label={t("common.language")}
       title={t("common.language")}
-      className={`inline-flex items-center gap-1.5 h-9 px-2.5 rounded-md text-foreground hover:bg-muted transition-colors text-sm font-medium ${className}`}
+      className={`relative inline-flex items-center h-7 w-[62px] rounded-full bg-muted border border-border transition-colors hover:bg-muted/80 ${className}`}
     >
-      <Languages className="h-4 w-4" aria-hidden="true" />
-      <span className="uppercase">{current}</span>
+      {/* Sliding thumb */}
+      <span
+        className={`absolute top-0.5 h-6 w-7 rounded-full bg-teal-500 shadow-sm transition-transform duration-200 ease-in-out ${
+          isEn ? "translate-x-[30px]" : "translate-x-0.5"
+        }`}
+        aria-hidden="true"
+      />
+      {/* Labels */}
+      <span
+        className={`relative z-10 flex-1 text-[10px] font-bold text-center transition-colors ${
+          !isEn ? "text-white" : "text-muted-foreground"
+        }`}
+      >
+        TR
+      </span>
+      <span
+        className={`relative z-10 flex-1 text-[10px] font-bold text-center transition-colors ${
+          isEn ? "text-white" : "text-muted-foreground"
+        }`}
+      >
+        EN
+      </span>
     </button>
   );
 };
