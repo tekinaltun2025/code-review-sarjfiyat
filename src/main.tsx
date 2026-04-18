@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import App from './App.tsx'
 import './index.css'
+import './i18n'
+import { ThemeProvider } from './contexts/ThemeContext'
 
 // Daha kapsamlı hata yönetimi
 const handleError = (error: Error) => {
@@ -55,9 +57,11 @@ try {
   
   // Render işlemi
   createRoot(rootElement).render(
-    <QueryClientProvider client={queryClient}>
-      <App />
-    </QueryClientProvider>
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
+    </ThemeProvider>
   );
   
   console.log("Uygulama başarıyla yüklendi.");
