@@ -4,6 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     
+    <!-- Mobil cihaz erken yönlendirme - React yüklenmeden önce çalışır -->
+    <script>
+      (function() {
+        try {
+          var path = window.location.pathname;
+          // Panel ve zaten /m altındaki sayfaları atla
+          if (path.indexOf('/panel') === 0 || path.indexOf('/m') === 0) return;
+          
+          var ua = (navigator.userAgent || navigator.vendor || window.opera || '').toLowerCase();
+          var mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile|tablet/i;
+          var isMobile = mobileRegex.test(ua) || window.innerWidth < 768;
+          
+          if (isMobile) {
+            var target = '/m' + (path === '/' ? '' : path) + window.location.search + window.location.hash;
+            window.location.replace(target);
+          }
+        } catch (e) {}
+      })();
+    </script>
+    
+    
     <!-- Primary Meta Tags -->
     <title>Şarj Fiyatları 2026 | En Ucuz Şarj İstasyonu Karşılaştırma</title>
     <meta name="title" content="Şarj Fiyatları 2026 | En Ucuz Şarj İstasyonu Karşılaştırma" />
