@@ -30,13 +30,43 @@
     "tagline": "EV Charging Prices"
   },
   "hero": {
-    "title": "Türkiye's Most Comprehensive EV Charging Price Comparison Platform",
-    "subtitle": "Find the best charging station for your EV. Compare current AC and DC prices from all operators on a single screen.",
+    "h1": "EV Charging Prices 2026 - Up-to-date Price Comparison",
+    "description": "Türkiye's most comprehensive comparison platform for <strong>EV charging prices</strong>. Compare current AC and DC prices from ZES, Eşarj, Trugo, Beefull and 45+ charging networks. Track charging prices in real time, find the cheapest station and save.",
     "ctaCompare": "Compare Prices",
-    "ctaCampaigns": "View Campaigns",
-    "stationsCount": "Charging Stations",
-    "providersCount": "Operators",
-    "citiesCount": "Cities"
+    "ctaCompareAria": "Compare EV charging prices",
+    "platformFeatures": "Platform Features",
+    "feature1Title": "Up-to-date EV Charging Prices",
+    "feature1Desc": "Current AC and DC tariffs for 2026 with real-time price updates",
+    "feature2Title": "Charging Station Map",
+    "feature2Desc": "Locations of 5000+ EV charging points across Türkiye",
+    "feature3Title": "45+ Charging Network Comparison",
+    "feature3Desc": "Charging prices from ZES, Eşarj, Trugo, Beefull and all other operators"
+  },
+  "mobileHero": {
+    "title": "EV Charging Prices",
+    "subtitle": "Compare current AC and DC prices of 45+ charging networks and find the most affordable station.",
+    "comparePrices": "Compare Prices",
+    "findCheapest": "Find Cheapest",
+    "stations": "5000+ Stations"
+  },
+  "mobileStats": {
+    "highlights": "Highlights",
+    "mostStations": "Most Stations",
+    "cheapestAc": "Cheapest AC",
+    "cheapestDc": "Cheapest DC"
+  },
+  "mobileTable": {
+    "title": "Charging Network Comparison",
+    "searchPlaceholder": "Search operator...",
+    "dcPrice": "DC Price",
+    "acPrice": "AC Price",
+    "listingCount": "{{count}} charging networks shown",
+    "noResults": "No operators match your search.",
+    "acCharge": "AC Charging",
+    "dcCharge": "DC Charging",
+    "totalSockets": "Total Sockets",
+    "supportLine": "Support Line",
+    "website": "Website"
   },
   "priceTable": {
     "title": "Current Charging Prices",
@@ -81,36 +111,36 @@
   },
   "survey": {
     "title": "Charging Operator Satisfaction Survey",
-    "subtitle": "Rate the charging operators you've used and help other users.",
+    "subtitle": "Share your EV charging experience and help other users. Rate each operator on a 5-star scale and add your comments.",
     "selectProvider": "Select operator",
     "rating": "Rating",
     "comment": "Your comment",
     "commentPlaceholder": "Share your experience...",
     "submit": "Submit Survey",
     "thankYou": "Thank you! Your response has been saved.",
-    "rankingTitle": "Satisfaction Ranking"
+    "rankingTitle": "Rate Charging Operators"
   },
   "privacy": {
     "title": "Privacy Policy",
     "lastUpdated": "Last updated"
   },
   "campaigns": {
-    "title": "Current Campaigns",
-    "subtitle": "Active campaigns and discounts from charging operators",
+    "title": "Campaigns",
+    "subtitle": "Save by taking advantage of EV charging campaigns",
     "details": "Details",
     "validUntil": "Valid until"
   },
   "homeChargers": {
-    "title": "Home Charging Devices",
-    "subtitle": "Choose the right charger for your home"
+    "title": "Home Chargers",
+    "subtitle": "The best solutions to charge your EV at home"
   },
   "chargingNetworks": {
     "title": "Charging Networks",
     "subtitle": "All charging operators in Türkiye"
   },
   "notFound": {
-    "title": "Page Not Found",
-    "message": "The page you're looking for doesn't exist.",
+    "title": "Sorry! Page not found",
+    "message": "The page you are looking for may have been moved, removed, or is temporarily unavailable.",
     "backHome": "Back to Home"
   }
 }

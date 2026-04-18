@@ -3,8 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchProviderData } from "@/services/googleSheetsService";
 import { sortProvidersByPrice } from "@/data/providers";
 import { Zap, BatteryCharging, MapPin } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const MobileStats = memo(() => {
+  const { t } = useTranslation();
   const { data: providers = [] } = useQuery({
     queryKey: ["providers"],
     queryFn: fetchProviderData,
@@ -21,27 +23,24 @@ const MobileStats = memo(() => {
   return (
     <section className="px-3 mt-4">
       <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3 px-1">
-        Öne Çıkanlar
+        {t("mobileStats.highlights")}
       </h2>
       <div className="flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide">
-        {/* En çok istasyon */}
         <StatCard
           icon={<MapPin className="h-4 w-4 text-teal-500" />}
-          title="En Çok İstasyon"
+          title={t("mobileStats.mostStations")}
           items={topByStations.map(p => ({ name: p.name, value: `${p.stationCount}` }))}
           accentColor="bg-teal-500/10"
         />
-        {/* En ucuz AC */}
         <StatCard
           icon={<BatteryCharging className="h-4 w-4 text-green-500" />}
-          title="En Ucuz AC"
+          title={t("mobileStats.cheapestAc")}
           items={topByAcPrice.map(p => ({ name: p.name, value: `${p.acPrice}₺` }))}
           accentColor="bg-green-500/10"
         />
-        {/* En ucuz DC */}
         <StatCard
           icon={<Zap className="h-4 w-4 text-blue-500" />}
-          title="En Ucuz DC"
+          title={t("mobileStats.cheapestDc")}
           items={topByDcPrice.map(p => ({ name: p.name, value: `${p.dcPrice}₺` }))}
           accentColor="bg-blue-500/10"
         />

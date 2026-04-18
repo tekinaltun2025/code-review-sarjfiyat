@@ -30,13 +30,43 @@
     "tagline": "Elektrikli Araç Şarj Fiyatları"
   },
   "hero": {
-    "title": "Türkiye'nin En Kapsamlı Şarj Fiyatları Karşılaştırma Platformu",
-    "subtitle": "Elektrikli aracınız için en uygun şarj istasyonunu bulun. Tüm operatörlerin güncel AC ve DC fiyatlarını tek ekranda karşılaştırın.",
+    "h1": "Elektrikli Araç Şarj Fiyatları 2026 - Güncel Fiyat Karşılaştırması",
+    "description": "<strong>Elektrikli araç şarj fiyatları</strong> için Türkiye'nin en kapsamlı karşılaştırma platformu. ZES, Eşarj, Trugo, Beefull ve 45+ şarj ağının güncel AC ve DC şarj ücretlerini karşılaştırın. Araç şarj fiyatlarını anlık takip edin, en ucuz şarj noktasını bulun ve tasarruf edin.",
     "ctaCompare": "Fiyatları Karşılaştır",
-    "ctaCampaigns": "Kampanyaları Gör",
-    "stationsCount": "Şarj İstasyonu",
-    "providersCount": "Operatör",
-    "citiesCount": "Şehir"
+    "ctaCompareAria": "Elektrikli araç şarj fiyatlarını karşılaştır",
+    "platformFeatures": "Platform Özellikleri",
+    "feature1Title": "Güncel Elektrikli Araç Şarj Fiyatları",
+    "feature1Desc": "2026 yılı güncel AC ve DC şarj tarifeleri, anlık fiyat güncellemeleri",
+    "feature2Title": "Şarj İstasyonu Haritası",
+    "feature2Desc": "Türkiye genelinde 5000+ elektrikli araç şarj noktası konumları",
+    "feature3Title": "45+ Şarj Ağı Karşılaştırması",
+    "feature3Desc": "ZES, Eşarj, Trugo, Beefull ve diğer tüm operatörlerin şarj fiyatları"
+  },
+  "mobileHero": {
+    "title": "Elektrikli Araç Şarj Fiyatları",
+    "subtitle": "45+ şarj ağının güncel AC ve DC fiyatlarını karşılaştırın, en uygun istasyonu bulun.",
+    "comparePrices": "Fiyat Karşılaştır",
+    "findCheapest": "En Ucuz Bul",
+    "stations": "5000+ İstasyon"
+  },
+  "mobileStats": {
+    "highlights": "Öne Çıkanlar",
+    "mostStations": "En Çok İstasyon",
+    "cheapestAc": "En Ucuz AC",
+    "cheapestDc": "En Ucuz DC"
+  },
+  "mobileTable": {
+    "title": "Şarj Ağları Karşılaştırması",
+    "searchPlaceholder": "Operatör ara...",
+    "dcPrice": "DC Fiyat",
+    "acPrice": "AC Fiyat",
+    "listingCount": "{{count}} şarj ağı listeleniyor",
+    "noResults": "Arama kriterlerinize uygun operatör bulunamadı.",
+    "acCharge": "AC Şarj",
+    "dcCharge": "DC Şarj",
+    "totalSockets": "Toplam Soket",
+    "supportLine": "Destek Hattı",
+    "website": "Websitesi"
   },
   "priceTable": {
     "title": "Güncel Şarj Fiyatları",
@@ -64,7 +94,7 @@
   "cookies": {
     "message": "Bu site, deneyiminizi iyileştirmek için çerezler kullanmaktadır. Siteyi kullanmaya devam ederek",
     "policy": "Gizlilik Politikamızı",
-    "accepted": "kabul etmiş olursunuz.",
+    "accepted": " kabul etmiş olursunuz.",
     "accept": "Kabul Et",
     "decline": "Reddet"
   },
@@ -80,37 +110,37 @@
     "phoneContact": "Telefon ile iletişim"
   },
   "survey": {
-    "title": "Şarj Operatörü Memnuniyet Anketi",
-    "subtitle": "Kullandığınız şarj operatörlerini değerlendirin, diğer kullanıcılara yardımcı olun.",
+    "title": "Şarj Operatörü Değerlendirme Anketi",
+    "subtitle": "Elektrikli araç şarj deneyimlerinizi paylaşın ve diğer kullanıcılara yardımcı olun. Her operatörü 5 yıldız üzerinden değerlendirin ve yorumlarınızı ekleyin.",
     "selectProvider": "Operatör seçin",
     "rating": "Puan",
     "comment": "Yorumunuz",
     "commentPlaceholder": "Deneyiminizi paylaşın...",
     "submit": "Anketi Gönder",
     "thankYou": "Teşekkürler! Yanıtınız kaydedildi.",
-    "rankingTitle": "Memnuniyet Sıralaması"
+    "rankingTitle": "Şarj Operatörlerini Değerlendirin"
   },
   "privacy": {
     "title": "Gizlilik Politikası",
     "lastUpdated": "Son güncelleme"
   },
   "campaigns": {
-    "title": "Güncel Kampanyalar",
-    "subtitle": "Şarj operatörlerinin güncel kampanya ve indirimleri",
+    "title": "Kampanyalar",
+    "subtitle": "Elektrikli araç şarj kampanyalarından faydalanarak tasarruf edin",
     "details": "Detaylar",
     "validUntil": "Geçerlilik tarihi"
   },
   "homeChargers": {
-    "title": "Ev Tipi Şarj Cihazları",
-    "subtitle": "Evinize uygun şarj cihazını seçin"
+    "title": "Ev Şarj Cihazları",
+    "subtitle": "Elektrikli aracınızı evinizde şarj etmek için en iyi çözümler"
   },
   "chargingNetworks": {
     "title": "Şarj Ağları",
     "subtitle": "Türkiye'deki tüm şarj operatörleri"
   },
   "notFound": {
-    "title": "Sayfa Bulunamadı",
-    "message": "Aradığınız sayfa mevcut değil.",
+    "title": "Üzgünüz! Sayfa bulunamadı",
+    "message": "Aradığınız sayfa taşınmış, kaldırılmış veya geçici olarak kullanılamıyor olabilir.",
     "backHome": "Ana Sayfaya Dön"
   }
 }
