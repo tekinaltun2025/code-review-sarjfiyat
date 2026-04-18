@@ -64,7 +64,7 @@ const HeroSection = React.memo(() => {
         </div>
       </section>
 
-      <section className="bg-gradient-to-r from-teal-500 to-blue-500 text-white py-6 sm:py-8 md:py-12">
+      <section className="bg-gradient-to-r from-teal-500 to-blue-500 dark:from-teal-900 dark:via-slate-900 dark:to-slate-950 text-white py-6 sm:py-8 md:py-12">
         <div className="container mx-auto px-3 sm:px-4">
           <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
             <div className="space-y-3 sm:space-y-4">
