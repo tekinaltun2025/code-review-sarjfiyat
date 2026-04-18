@@ -1,8 +1,10 @@
 import { memo } from "react";
 import { Link } from "react-router-dom";
 import { BatteryCharging } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const MobileFooter = memo(() => {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -12,17 +14,17 @@ const MobileFooter = memo(() => {
         <span className="text-base font-bold text-white">ŞarjFiyat</span>
       </div>
       <p className="text-xs leading-relaxed mb-6">
-        Türkiye'deki elektrikli araç şarj operatörlerinin fiyatlarını karşılaştırmanıza yardımcı olan bağımsız bir platformdur.
+        {t("footer.description")}
       </p>
       <div className="grid grid-cols-2 gap-3 text-xs mb-6">
-        <Link to="/m/sarj-aglari" className="hover:text-white transition-colors">Şarj Ağları</Link>
-        <Link to="/m/kampanyalar" className="hover:text-white transition-colors">Kampanyalar</Link>
-        <Link to="/m/ev-sarj-cihazlari" className="hover:text-white transition-colors">Ev Şarj Cihazları</Link>
-        <Link to="/m/hakkimizda" className="hover:text-white transition-colors">Hakkımızda</Link>
-        <Link to="/m/gizlilik-politikasi" className="hover:text-white transition-colors">Gizlilik Politikası</Link>
+        <Link to="/m/sarj-aglari" className="hover:text-white transition-colors">{t("common.chargingNetworks")}</Link>
+        <Link to="/m/kampanyalar" className="hover:text-white transition-colors">{t("common.campaigns")}</Link>
+        <Link to="/m/ev-sarj-cihazlari" className="hover:text-white transition-colors">{t("common.homeChargers")}</Link>
+        <Link to="/m/hakkimizda" className="hover:text-white transition-colors">{t("common.about")}</Link>
+        <Link to="/m/gizlilik-politikasi" className="hover:text-white transition-colors">{t("common.privacyPolicy")}</Link>
       </div>
       <div className="border-t border-white/10 pt-4 text-xs text-center">
-        © {currentYear} ŞarjFiyat. Tüm hakları saklıdır.
+        © {currentYear} ŞarjFiyat. {t("footer.rights")}
       </div>
     </footer>
   );
