@@ -1,9 +1,10 @@
-
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 const NotFound = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -15,24 +16,23 @@ const NotFound = () => {
   }, [location.pathname]);
 
   const handleGoHome = () => {
-    // Mobil sayfadaysa mobil ana sayfaya, değilse normal ana sayfaya yönlendir
     const isMobilePath = location.pathname.startsWith('/m');
     navigate(isMobilePath ? '/m' : '/');
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center p-8 bg-white rounded-lg shadow-md max-w-md">
-        <h1 className="text-6xl font-bold text-gray-800 mb-4">404</h1>
-        <p className="text-xl text-gray-600 mb-6">Üzgünüz! Sayfa bulunamadı</p>
-        <p className="text-gray-500 mb-6">
-          Aradığınız sayfa taşınmış, kaldırılmış veya geçici olarak kullanılamıyor olabilir.
+    <div className="min-h-screen flex items-center justify-center bg-background">
+      <div className="text-center p-8 bg-card rounded-lg shadow-md max-w-md border border-border">
+        <h1 className="text-6xl font-bold text-foreground mb-4">404</h1>
+        <p className="text-xl text-foreground mb-6">{t("notFound.title")}</p>
+        <p className="text-muted-foreground mb-6">
+          {t("notFound.message")}
         </p>
-        <Button 
-          onClick={handleGoHome} 
-          className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg transition-colors"
+        <Button
+          onClick={handleGoHome}
+          className="bg-primary hover:bg-primary/90 text-primary-foreground py-2 px-6 rounded-lg transition-colors"
         >
-          Ana Sayfaya Dön
+          {t("notFound.backHome")}
         </Button>
       </div>
     </div>

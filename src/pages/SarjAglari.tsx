@@ -1,24 +1,26 @@
 
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Header from '../components/Header';
 import MapSection from '../components/MapSection';
 import Footer from '../components/Footer';
 import { Map } from "lucide-react";
 
 const SarjAglari = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const isInPanel = location.pathname.startsWith('/panel');
-  
+
   const content = (
     <main className="flex-grow">
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-3 flex items-center">
-            <Map className="mr-2 text-teal-500" /> Şarj Ağları
+          <h1 className="text-3xl font-bold text-foreground mb-3 flex items-center">
+            <Map className="mr-2 text-teal-500" /> {t("chargingNetworks.title")}
           </h1>
         </div>
-        
+
         <MapSection />
       </div>
     </main>
