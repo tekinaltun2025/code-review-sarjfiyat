@@ -131,7 +131,7 @@ const PriceTable = () => {
     <section id="price-comparison" className="py-4 bg-background" aria-labelledby="price-comparison-heading">
       <div className="container mx-auto px-4">
         <div className="text-center mb-2">
-          <h2 id="price-comparison-heading" className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-1">
+          <h2 id="price-comparison-heading" className="text-2xl md:text-3xl font-bold text-foreground mb-1">
             {t("priceTable.title")}
           </h2>
           <p className="text-sm md:text-base text-muted-foreground mx-auto">

@@ -68,7 +68,7 @@ const HeroSection = React.memo(() => {
         <div className="container mx-auto px-3 sm:px-4">
           <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
             <div className="space-y-3 sm:space-y-4">
-              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
+              <h1 className="text-2xl md:text-3xl font-bold leading-tight">
                 {t("hero.h1")}
               </h1>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg opacity-90 leading-relaxed">
