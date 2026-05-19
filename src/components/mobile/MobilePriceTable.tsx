@@ -147,7 +147,7 @@ const MobilePriceTable = memo(() => {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-2 mb-3">
+          <div className="grid grid-cols-2 gap-2 mb-0">
             <Badge
               variant={sortBy === 'dcPrice' ? 'default' : 'outline'}
               className="cursor-pointer text-sm py-2 justify-center"
