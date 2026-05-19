@@ -130,13 +130,7 @@ const MobilePriceTable = memo(() => {
   return (
     <div className="mt-0">
       <Card className="mb-2">
-        <CardHeader className="pb-2 pt-3 px-3">
-          <CardTitle className="text-base flex items-center justify-center gap-2">
-            <Zap className="w-4 h-4 text-primary" />
-            {t("mobileTable.title")}
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="px-3 pb-2">
+        <CardContent className="px-3 pb-2 pt-3">
           <div className="relative mb-3">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
             <Input
@@ -150,14 +144,14 @@ const MobilePriceTable = memo(() => {
           <div className="grid grid-cols-2 gap-2 mb-0">
             <Badge
               variant={sortBy === 'dcPrice' ? 'default' : 'outline'}
-              className="cursor-pointer text-sm py-2 justify-center"
+              className="cursor-pointer text-sm py-1 justify-center"
               onClick={() => setSortBy('dcPrice')}
             >
               {t("mobileTable.dcPrice")}
             </Badge>
             <Badge
               variant={sortBy === 'acPrice' ? 'default' : 'outline'}
-              className="cursor-pointer text-sm py-2 justify-center"
+              className="cursor-pointer text-sm py-1 justify-center"
               onClick={() => setSortBy('acPrice')}
             >
               {t("mobileTable.acPrice")}
