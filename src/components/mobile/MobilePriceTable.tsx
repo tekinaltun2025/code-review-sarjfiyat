@@ -131,7 +131,7 @@ const MobilePriceTable = memo(() => {
     <div className="mt-0">
       <Card className="mb-2">
         <CardHeader className="pb-2 pt-3 px-3">
-          <CardTitle className="text-base flex items-center gap-2">
+          <CardTitle className="text-base flex items-center justify-center gap-2">
             <Zap className="w-4 h-4 text-primary" />
             {t("mobileTable.title")}
           </CardTitle>
