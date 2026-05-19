@@ -58,18 +58,18 @@ const ChargingCalculator = () => {
   }, [battery, percent, consumption]);
 
   return (
-    <section className="py-4 bg-background" aria-labelledby="calc-heading">
-      <div className="container mx-auto px-4">
+    <section className="py-2 bg-background" aria-labelledby="calc-heading">
+      <div className="container mx-auto px-2 sm:px-4">
         <h2
           id="calc-heading"
-          className="text-2xl md:text-3xl font-bold text-center mb-3 text-foreground"
+          className="text-lg md:text-2xl font-bold text-center mb-2 text-foreground"
         >
-          Şarj Maliyeti & Menzil Hesaplama
+          Hesaplama
         </h2>
 
-        <Card className="border-2 border-border p-3 sm:p-4 md:p-6">
-          <div className="grid md:grid-cols-[1fr_220px] gap-4 md:gap-6 items-center">
-            <div className="space-y-4">
+        <Card className="border border-border p-2 sm:p-4 md:p-6">
+          <div className="grid md:grid-cols-[1fr_220px] gap-2 md:gap-6 items-center">
+            <div className="space-y-2">
               <Row
                 label="Ortalama Sarfiyat"
                 value={consumption}
@@ -98,20 +98,20 @@ const ChargingCalculator = () => {
                 onChange={setDistance}
               />
             </div>
-            <div className="flex items-center justify-between bg-muted/50 rounded-lg px-3 py-2 border border-border">
-              <div className="flex items-center gap-2 text-muted-foreground text-sm">
-                <Zap className="h-4 w-4 text-teal-500" /> Ne Tutar?
+            <div className="flex items-center justify-between bg-muted/50 rounded-md px-2.5 py-1 border border-border">
+              <div className="flex items-center gap-1.5 text-muted-foreground text-xs sm:text-sm">
+                <Zap className="h-3.5 w-3.5 text-teal-500" /> Ne Tutar?
               </div>
-              <div className="text-lg sm:text-xl font-bold text-teal-600 tabular-nums">
+              <div className="text-base sm:text-lg font-bold text-teal-600 tabular-nums">
                 {cost.toFixed(2)} ₺
               </div>
             </div>
           </div>
 
-          <div className="my-4 md:my-6 border-t border-border" />
+          <div className="my-2 md:my-6 border-t border-border" />
 
-          <div className="grid md:grid-cols-[1fr_220px] gap-4 md:gap-6 items-center">
-            <div className="space-y-4">
+          <div className="grid md:grid-cols-[1fr_220px] gap-2 md:gap-6 items-center">
+            <div className="space-y-2">
               <Row
                 label="Şarj Yüzdem"
                 value={percent}
@@ -131,11 +131,11 @@ const ChargingCalculator = () => {
                 onChange={setBattery}
               />
             </div>
-            <div className="flex items-center justify-between bg-muted/50 rounded-lg px-3 py-2 border border-border">
-              <div className="flex items-center gap-2 text-muted-foreground text-sm">
-                <Route className="h-4 w-4 text-teal-500" /> Kaç Km Gider?
+            <div className="flex items-center justify-between bg-muted/50 rounded-md px-2.5 py-1 border border-border">
+              <div className="flex items-center gap-1.5 text-muted-foreground text-xs sm:text-sm">
+                <Route className="h-3.5 w-3.5 text-teal-500" /> Kaç Km Gider?
               </div>
-              <div className="text-lg sm:text-xl font-bold text-teal-600 tabular-nums">
+              <div className="text-base sm:text-lg font-bold text-teal-600 tabular-nums">
                 {range.toFixed(0)} km
               </div>
             </div>
