@@ -8,8 +8,8 @@ import Footer from '../components/Footer';
 import { LeftSidebar, RightSidebar } from '../components/layout/Sidebar';
 
 // Lazy load heavy components with better chunking
-const ChargingStats = React.lazy(() => 
-  import('../components/ChargingStats').then(module => ({
+const ChargingCalculator = React.lazy(() =>
+  import('../components/ChargingCalculator').then(module => ({
     default: module.default
   }))
 );
@@ -34,7 +34,7 @@ const MainContent = memo<{ isInPanel: boolean }>(({ isInPanel }) => (
     
     <LazySection skipLazyLoading={true}>
       <React.Suspense fallback={<LoadingFallback height="h-32" />}>
-        <ChargingStats />
+        <ChargingCalculator />
       </React.Suspense>
     </LazySection>
     
@@ -53,7 +53,7 @@ const PanelContent = memo(() => (
   <main className="flex-grow px-2 sm:px-4 md:px-6">
     <LazySection skipLazyLoading={true}>
       <React.Suspense fallback={<LoadingFallback height="h-32" />}>
-        <ChargingStats />
+        <ChargingCalculator />
       </React.Suspense>
     </LazySection>
     
