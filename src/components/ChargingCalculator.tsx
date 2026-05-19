@@ -132,10 +132,10 @@ const ChargingCalculator = () => {
               />
             </div>
             <div className="flex items-center justify-between bg-muted/50 rounded-md px-2.5 py-1 border border-border">
-              <div className="flex items-center gap-1.5 text-foreground text-base sm:text-lg font-bold">
+              <div className="flex items-center gap-1.5 text-foreground text-base sm:text-lg font-bold whitespace-nowrap">
                 <Route className="h-5 w-5 text-teal-500" /> Kaç Km Gider?
               </div>
-              <div className="text-lg sm:text-xl font-bold text-teal-600 tabular-nums">
+              <div className="text-lg sm:text-xl font-bold text-teal-600 tabular-nums whitespace-nowrap">
                 {range.toFixed(0)} km
               </div>
             </div>
