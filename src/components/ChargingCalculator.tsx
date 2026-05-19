@@ -98,11 +98,11 @@ const ChargingCalculator = () => {
                 onChange={setDistance}
               />
             </div>
-            <div className="flex flex-col items-center justify-center bg-muted/50 rounded-xl p-4 border border-border">
-              <div className="flex items-center gap-2 text-muted-foreground text-sm mb-1">
+            <div className="flex items-center justify-between bg-muted/50 rounded-lg px-3 py-2 border border-border">
+              <div className="flex items-center gap-2 text-muted-foreground text-sm">
                 <Zap className="h-4 w-4 text-teal-500" /> Ne Tutar?
               </div>
-              <div className="text-3xl font-bold text-teal-600">
+              <div className="text-lg sm:text-xl font-bold text-teal-600 tabular-nums">
                 {cost.toFixed(2)} ₺
               </div>
             </div>
@@ -131,11 +131,11 @@ const ChargingCalculator = () => {
                 onChange={setBattery}
               />
             </div>
-            <div className="flex flex-col items-center justify-center bg-muted/50 rounded-xl p-4 border border-border">
-              <div className="flex items-center gap-2 text-muted-foreground text-sm mb-1">
+            <div className="flex items-center justify-between bg-muted/50 rounded-lg px-3 py-2 border border-border">
+              <div className="flex items-center gap-2 text-muted-foreground text-sm">
                 <Route className="h-4 w-4 text-teal-500" /> Kaç Km Gider?
               </div>
-              <div className="text-3xl font-bold text-teal-600">
+              <div className="text-lg sm:text-xl font-bold text-teal-600 tabular-nums">
                 {range.toFixed(0)} km
               </div>
             </div>
