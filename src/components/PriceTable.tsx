@@ -128,14 +128,14 @@ const PriceTable = () => {
   const sortedProviders = getSortedProviders();
 
   return (
-    <section id="price-comparison" className="py-4 bg-background" aria-labelledby="price-comparison-heading">
+    <section id="price-comparison" className="py-1 bg-background" aria-labelledby="price-comparison-heading">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-2">
-          <h2 id="price-comparison-heading" className="text-2xl md:text-3xl font-bold text-foreground mb-1">
+        <div className="text-center mb-1">
+          <h2 id="price-comparison-heading" className="text-2xl md:text-3xl font-bold text-foreground mb-0 leading-tight">
             {t("priceTable.title")}
           </h2>
           {lastUpdated && (
-            <div className="mt-1">
+            <div className="mt-0.5">
               <span className="text-xs text-muted-foreground">
                 {t("priceTable.lastUpdated")}: {lastUpdated.toLocaleTimeString(i18n.language?.startsWith("en") ? "en-GB" : "tr-TR", {
                   hour: '2-digit',
