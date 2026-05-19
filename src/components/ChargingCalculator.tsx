@@ -68,7 +68,7 @@ const ChargingCalculator = () => {
         </h2>
 
         <Card className="border border-border p-2 sm:p-4 md:p-6">
-          <div className="grid md:grid-cols-[1fr_220px] gap-2 md:gap-6 items-center">
+          <div className="grid md:grid-cols-[1fr_260px] gap-2 md:gap-6 items-center">
             <div className="space-y-2">
               <Row
                 label="Ortalama Sarfiyat"
@@ -98,11 +98,11 @@ const ChargingCalculator = () => {
                 onChange={setDistance}
               />
             </div>
-            <div className="flex items-center justify-between bg-muted/50 rounded-md px-2.5 py-1 border border-border">
-              <div className="flex items-center gap-1.5 text-foreground text-base sm:text-lg font-bold">
+            <div className="flex items-center justify-between gap-2 bg-muted/50 rounded-md px-2.5 py-1 border border-border">
+              <div className="flex items-center gap-1.5 text-foreground text-base sm:text-lg font-bold whitespace-nowrap">
                 <Zap className="h-5 w-5 text-teal-500" /> Ne Tutar?
               </div>
-              <div className="text-lg sm:text-xl font-bold text-teal-600 tabular-nums">
+              <div className="text-lg sm:text-xl font-bold text-teal-600 tabular-nums whitespace-nowrap">
                 {cost.toFixed(2)} ₺
               </div>
             </div>
@@ -110,7 +110,7 @@ const ChargingCalculator = () => {
 
           <div className="my-2 md:my-6 border-t border-border" />
 
-          <div className="grid md:grid-cols-[1fr_220px] gap-2 md:gap-6 items-center">
+          <div className="grid md:grid-cols-[1fr_260px] gap-2 md:gap-6 items-center">
             <div className="space-y-2">
               <Row
                 label="Şarj Yüzdem"
@@ -131,7 +131,7 @@ const ChargingCalculator = () => {
                 onChange={setBattery}
               />
             </div>
-            <div className="flex items-center justify-between bg-muted/50 rounded-md px-2.5 py-1 border border-border">
+            <div className="flex items-center justify-between gap-2 bg-muted/50 rounded-md px-2.5 py-1 border border-border">
               <div className="flex items-center gap-1.5 text-foreground text-base sm:text-lg font-bold whitespace-nowrap">
                 <Route className="h-5 w-5 text-teal-500" /> Kaç Km Gider?
               </div>
