@@ -24,7 +24,7 @@ const MobileIndex = memo(() => {
           </React.Suspense>
         </div>
 
-        <div className="px-3 mt-4" id="price-comparison">
+        <div className="px-3 mt-0" id="price-comparison">
           <React.Suspense fallback={<LoadingFallback height="h-64" />}>
             <MobilePriceTable />
           </React.Suspense>

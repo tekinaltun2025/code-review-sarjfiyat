@@ -128,7 +128,7 @@ const MobilePriceTable = memo(() => {
   }, [localProviders, nameFilter]);
 
   return (
-    <div className="mt-4">
+    <div className="mt-0">
       <Card className="mb-2">
         <CardHeader className="pb-2 pt-3 px-3">
           <CardTitle className="text-base flex items-center gap-2">
