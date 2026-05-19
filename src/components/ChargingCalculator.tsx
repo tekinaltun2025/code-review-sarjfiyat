@@ -99,8 +99,8 @@ const ChargingCalculator = () => {
               />
             </div>
             <div className="flex items-center justify-between bg-muted/50 rounded-md px-2.5 py-1 border border-border">
-              <div className="flex items-center gap-1.5 text-muted-foreground text-xs sm:text-sm">
-                <Zap className="h-3.5 w-3.5 text-teal-500" /> Ne Tutar?
+              <div className="flex items-center gap-1.5 text-foreground text-sm sm:text-base font-bold">
+                <Zap className="h-4 w-4 text-teal-500" /> Ne Tutar?
               </div>
               <div className="text-base sm:text-lg font-bold text-teal-600 tabular-nums">
                 {cost.toFixed(2)} ₺
@@ -132,8 +132,8 @@ const ChargingCalculator = () => {
               />
             </div>
             <div className="flex items-center justify-between bg-muted/50 rounded-md px-2.5 py-1 border border-border">
-              <div className="flex items-center gap-1.5 text-muted-foreground text-xs sm:text-sm">
-                <Route className="h-3.5 w-3.5 text-teal-500" /> Kaç Km Gider?
+              <div className="flex items-center gap-1.5 text-foreground text-sm sm:text-base font-bold">
+                <Route className="h-4 w-4 text-teal-500" /> Kaç Km Gider?
               </div>
               <div className="text-base sm:text-lg font-bold text-teal-600 tabular-nums">
                 {range.toFixed(0)} km
