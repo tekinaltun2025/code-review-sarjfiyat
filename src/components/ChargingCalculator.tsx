@@ -20,8 +20,13 @@ const Row = ({
   step: number;
   onChange: (v: number) => void;
 }) => (
-  <div className="grid grid-cols-[110px_1fr_80px] sm:grid-cols-[140px_1fr_90px] items-center gap-2 sm:gap-3">
-    <span className="text-xs sm:text-sm font-medium text-foreground">{label}</span>
+  <div className="space-y-1.5">
+    <div className="flex items-center justify-between gap-2">
+      <span className="text-xs sm:text-sm font-medium text-foreground">{label}</span>
+      <span className="text-xs sm:text-sm font-semibold tabular-nums">
+        {value} {unit}
+      </span>
+    </div>
     <Slider
       value={[value]}
       min={min}
@@ -29,9 +34,6 @@ const Row = ({
       step={step}
       onValueChange={(v) => onChange(v[0])}
     />
-    <span className="text-xs sm:text-sm font-semibold text-right tabular-nums">
-      {value} {unit}
-    </span>
   </div>
 );
 
