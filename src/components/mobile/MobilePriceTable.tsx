@@ -140,7 +140,7 @@ const MobilePriceTable = memo(() => {
           <div className="relative mb-3">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
             <Input
-              placeholder={t("mobileTable.searchPlaceholder")}
+              placeholder={`${t("mobileTable.searchPlaceholder")} (${t("mobileTable.listingCount", { count: filteredProviders.length })})`}
               value={nameFilter}
               onChange={(e) => setNameFilter(e.target.value)}
               className="pl-9 h-9 text-sm"
@@ -164,9 +164,6 @@ const MobilePriceTable = memo(() => {
             </Badge>
           </div>
 
-          <p className="text-xs text-muted-foreground">
-            {t("mobileTable.listingCount", { count: filteredProviders.length })}
-          </p>
         </CardContent>
       </Card>
 
