@@ -4,6 +4,7 @@ import MobileHero from '../../components/mobile/MobileHero';
 import MobileFooter from '../../components/mobile/MobileFooter';
 
 const MobilePriceTable = React.lazy(() => import('../../components/mobile/MobilePriceTable'));
+const ChargingCalculator = React.lazy(() => import('../../components/ChargingCalculator'));
 
 const LoadingFallback = memo<{ height: string }>(({ height }) => (
   <div className={`${height} bg-muted animate-pulse rounded-xl mx-3 mb-3`} />
@@ -16,6 +17,12 @@ const MobileIndex = memo(() => {
       <MobileHeader />
       <main className="flex-grow w-full">
         <MobileHero />
+
+        <div className="px-3 mt-4">
+          <React.Suspense fallback={<LoadingFallback height="h-80" />}>
+            <ChargingCalculator />
+          </React.Suspense>
+        </div>
 
         <div className="px-3 mt-4" id="price-comparison">
           <React.Suspense fallback={<LoadingFallback height="h-64" />}>

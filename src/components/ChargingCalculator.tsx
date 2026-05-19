@@ -20,8 +20,8 @@ const Row = ({
   step: number;
   onChange: (v: number) => void;
 }) => (
-  <div className="grid grid-cols-[140px_1fr_90px] items-center gap-3">
-    <span className="text-sm font-medium text-foreground">{label}</span>
+  <div className="grid grid-cols-[110px_1fr_80px] sm:grid-cols-[140px_1fr_90px] items-center gap-2 sm:gap-3">
+    <span className="text-xs sm:text-sm font-medium text-foreground">{label}</span>
     <Slider
       value={[value]}
       min={min}
@@ -29,7 +29,7 @@ const Row = ({
       step={step}
       onValueChange={(v) => onChange(v[0])}
     />
-    <span className="text-sm font-semibold text-right tabular-nums">
+    <span className="text-xs sm:text-sm font-semibold text-right tabular-nums">
       {value} {unit}
     </span>
   </div>
@@ -65,8 +65,8 @@ const ChargingCalculator = () => {
           Şarj Maliyeti & Menzil Hesaplama
         </h2>
 
-        <Card className="border-2 border-border p-4 md:p-6">
-          <div className="grid md:grid-cols-[1fr_220px] gap-6 items-center">
+        <Card className="border-2 border-border p-3 sm:p-4 md:p-6">
+          <div className="grid md:grid-cols-[1fr_220px] gap-4 md:gap-6 items-center">
             <div className="space-y-4">
               <Row
                 label="Ortalama Sarfiyat"
@@ -106,9 +106,9 @@ const ChargingCalculator = () => {
             </div>
           </div>
 
-          <div className="my-6 border-t border-border" />
+          <div className="my-4 md:my-6 border-t border-border" />
 
-          <div className="grid md:grid-cols-[1fr_220px] gap-6 items-center">
+          <div className="grid md:grid-cols-[1fr_220px] gap-4 md:gap-6 items-center">
             <div className="space-y-4">
               <Row
                 label="Şarj Yüzdem"
