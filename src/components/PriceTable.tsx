@@ -134,9 +134,6 @@ const PriceTable = () => {
           <h2 id="price-comparison-heading" className="text-2xl md:text-3xl font-bold text-foreground mb-1">
             {t("priceTable.title")}
           </h2>
-          <p className="text-sm md:text-base text-muted-foreground mx-auto">
-            {t("priceTable.subtitle")}
-          </p>
           {lastUpdated && (
             <div className="mt-1">
               <span className="text-xs text-muted-foreground">
