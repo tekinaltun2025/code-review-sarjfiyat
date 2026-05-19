@@ -58,11 +58,11 @@ const ChargingCalculator = () => {
   }, [battery, percent, consumption]);
 
   return (
-    <section className="py-2 bg-background" aria-labelledby="calc-heading">
+    <section className="py-1 bg-background" aria-labelledby="calc-heading">
       <div className="container mx-auto px-2 sm:px-4">
         <h2
           id="calc-heading"
-          className="text-lg md:text-2xl font-bold text-center mb-2 text-foreground"
+          className="text-base md:text-2xl font-bold text-center mb-1 leading-tight text-foreground"
         >
           Hesaplama
         </h2>

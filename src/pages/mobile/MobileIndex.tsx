@@ -18,7 +18,7 @@ const MobileIndex = memo(() => {
       <main className="flex-grow w-full">
         <MobileHero />
 
-        <div className="px-3 mt-4">
+        <div className="px-3 mt-1">
           <React.Suspense fallback={<LoadingFallback height="h-80" />}>
             <ChargingCalculator />
           </React.Suspense>
