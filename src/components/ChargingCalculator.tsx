@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { Card } from "./ui/card";
 import { Slider } from "./ui/slider";
-import { Zap, Route } from "lucide-react";
+import { Zap, Route, ChevronDown, ChevronUp } from "lucide-react";
 
 const Row = ({
   label,
@@ -46,6 +46,7 @@ const ChargingCalculator = () => {
   // Menzil hesaplayıcı
   const [percent, setPercent] = useState(80); // %
   const [battery, setBattery] = useState(60); // kWh
+  const [isRangeOpen, setIsRangeOpen] = useState(false);
 
   const cost = useMemo(
     () => (consumption / 100) * distance * price,
@@ -110,7 +111,24 @@ const ChargingCalculator = () => {
 
           <div className="my-2 md:my-6 border-t border-border" />
 
-          <div className="grid md:grid-cols-[1fr_260px] gap-2 md:gap-6 items-center">
+          <button
+            type="button"
+            onClick={() => setIsRangeOpen((v) => !v)}
+            aria-expanded={isRangeOpen}
+            className="w-full flex items-center justify-between gap-2 bg-muted/50 hover:bg-muted rounded-md px-2.5 py-2 border border-border text-foreground text-sm sm:text-base font-semibold transition-colors"
+          >
+            <span className="flex items-center gap-1.5">
+              <Route className="h-4 w-4 text-teal-500" /> Menzil Hesaplama
+            </span>
+            {isRangeOpen ? (
+              <ChevronUp className="h-4 w-4" />
+            ) : (
+              <ChevronDown className="h-4 w-4" />
+            )}
+          </button>
+
+          {isRangeOpen && (
+          <div className="grid md:grid-cols-[1fr_260px] gap-2 md:gap-6 items-center mt-2 md:mt-4">
             <div className="space-y-2">
               <Row
                 label="Şarj Yüzdem"
@@ -140,6 +158,7 @@ const ChargingCalculator = () => {
               </div>
             </div>
           </div>
+          )}
         </Card>
       </div>
     </section>
