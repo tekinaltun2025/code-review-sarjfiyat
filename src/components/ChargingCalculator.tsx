@@ -46,6 +46,7 @@ const ChargingCalculator = () => {
   // Menzil hesaplayıcı
   const [percent, setPercent] = useState(80); // %
   const [battery, setBattery] = useState(60); // kWh
+  const [isCostOpen, setIsCostOpen] = useState(false);
   const [isRangeOpen, setIsRangeOpen] = useState(false);
 
   const cost = useMemo(
@@ -68,48 +69,66 @@ const ChargingCalculator = () => {
           Hesaplama
         </h2>
 
-        <Card className="border border-border p-2 sm:p-4 md:p-6">
-          <div className="grid md:grid-cols-[1fr_260px] gap-2 md:gap-6 items-center">
-            <div className="space-y-2">
-              <Row
-                label="Ortalama Sarfiyat"
-                value={consumption}
-                unit="kWh"
-                min={5}
-                max={80}
-                step={1}
-                onChange={setConsumption}
-              />
-              <Row
-                label="Şarj Fiyatı"
-                value={price}
-                unit="₺"
-                min={1}
-                max={25}
-                step={0.1}
-                onChange={(v) => setPrice(Number(v.toFixed(1)))}
-              />
-              <Row
-                label="Gideceğim Mesafe"
-                value={distance}
-                unit="km"
-                min={1}
-                max={750}
-                step={1}
-                onChange={setDistance}
-              />
-            </div>
-            <div className="flex items-center justify-between gap-2 bg-muted/50 rounded-md px-2.5 py-1 border border-border">
-              <div className="flex items-center gap-1.5 text-foreground text-base sm:text-lg font-bold whitespace-nowrap">
-                <Zap className="h-5 w-5 text-teal-500" /> Ne Tutar?
-              </div>
-              <div className="text-lg sm:text-xl font-bold text-teal-600 tabular-nums whitespace-nowrap">
-                {cost.toFixed(2)} ₺
-              </div>
-            </div>
-          </div>
+        <Card className="border border-border p-2 sm:p-4 md:p-6 space-y-2 md:space-y-4">
+          <button
+            type="button"
+            onClick={() => setIsCostOpen((v) => !v)}
+            aria-expanded={isCostOpen}
+            className="w-full flex items-center justify-between gap-2 bg-muted/50 hover:bg-muted rounded-md px-2.5 py-2 border border-border text-foreground text-sm sm:text-base font-semibold transition-colors"
+          >
+            <span className="flex items-center gap-1.5">
+              <Zap className="h-4 w-4 text-teal-500" /> Sarfiyat Hesaplama
+            </span>
+            {isCostOpen ? (
+              <ChevronUp className="h-4 w-4" />
+            ) : (
+              <ChevronDown className="h-4 w-4" />
+            )}
+          </button>
 
-          <div className="my-2 md:my-6 border-t border-border" />
+          {isCostOpen && (
+            <div className="grid md:grid-cols-[1fr_260px] gap-2 md:gap-6 items-center">
+              <div className="space-y-2">
+                <Row
+                  label="Ortalama Sarfiyat"
+                  value={consumption}
+                  unit="kWh"
+                  min={5}
+                  max={80}
+                  step={1}
+                  onChange={setConsumption}
+                />
+                <Row
+                  label="Şarj Fiyatı"
+                  value={price}
+                  unit="₺"
+                  min={1}
+                  max={25}
+                  step={0.1}
+                  onChange={(v) => setPrice(Number(v.toFixed(1)))}
+                />
+                <Row
+                  label="Gideceğim Mesafe"
+                  value={distance}
+                  unit="km"
+                  min={1}
+                  max={750}
+                  step={1}
+                  onChange={setDistance}
+                />
+              </div>
+              <div className="flex items-center justify-between gap-2 bg-muted/50 rounded-md px-2.5 py-1 border border-border">
+                <div className="flex items-center gap-1.5 text-foreground text-base sm:text-lg font-bold whitespace-nowrap">
+                  <Zap className="h-5 w-5 text-teal-500" /> Ne Tutar?
+                </div>
+                <div className="text-lg sm:text-xl font-bold text-teal-600 tabular-nums whitespace-nowrap">
+                  {cost.toFixed(2)} ₺
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="border-t border-border" />
 
           <button
             type="button"
@@ -128,36 +147,36 @@ const ChargingCalculator = () => {
           </button>
 
           {isRangeOpen && (
-          <div className="grid md:grid-cols-[1fr_260px] gap-2 md:gap-6 items-center mt-2 md:mt-4">
-            <div className="space-y-2">
-              <Row
-                label="Şarj Yüzdem"
-                value={percent}
-                unit="%"
-                min={1}
-                max={100}
-                step={1}
-                onChange={setPercent}
-              />
-              <Row
-                label="Toplam Bataryam"
-                value={battery}
-                unit="kWh"
-                min={10}
-                max={150}
-                step={1}
-                onChange={setBattery}
-              />
-            </div>
-            <div className="flex items-center justify-between gap-2 bg-muted/50 rounded-md px-2.5 py-1 border border-border">
-              <div className="flex items-center gap-1.5 text-foreground text-base sm:text-lg font-bold whitespace-nowrap">
-                <Route className="h-5 w-5 text-teal-500" /> Kaç Km Gider?
+            <div className="grid md:grid-cols-[1fr_260px] gap-2 md:gap-6 items-center">
+              <div className="space-y-2">
+                <Row
+                  label="Şarj Yüzdem"
+                  value={percent}
+                  unit="%"
+                  min={1}
+                  max={100}
+                  step={1}
+                  onChange={setPercent}
+                />
+                <Row
+                  label="Toplam Bataryam"
+                  value={battery}
+                  unit="kWh"
+                  min={10}
+                  max={150}
+                  step={1}
+                  onChange={setBattery}
+                />
               </div>
-              <div className="text-lg sm:text-xl font-bold text-teal-600 tabular-nums whitespace-nowrap">
-                {range.toFixed(0)} km
+              <div className="flex items-center justify-between gap-2 bg-muted/50 rounded-md px-2.5 py-1 border border-border">
+                <div className="flex items-center gap-1.5 text-foreground text-base sm:text-lg font-bold whitespace-nowrap">
+                  <Route className="h-5 w-5 text-teal-500" /> Kaç Km Gider?
+                </div>
+                <div className="text-lg sm:text-xl font-bold text-teal-600 tabular-nums whitespace-nowrap">
+                  {range.toFixed(0)} km
+                </div>
               </div>
             </div>
-          </div>
           )}
         </Card>
       </div>
